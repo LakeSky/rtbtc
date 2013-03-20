@@ -15,16 +15,25 @@
     <form runat="server">
     <div id="wrapper">
       <div id="header-wrapper">
-        <div id="header-content" class="shade">
+        <div id="header-content">
           <div id="header">
             <div class="logo">
-              Riyadh Travels
+              <h3> Riyadh Travels </h3>
             </div>
             <div class="header-right-link">
               <div class="top-sign-up">
                 My Account
               </div>
             </div>
+            <div class="clear"></div>
+            <div class="navigation">
+              <ul>
+                <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/Home.aspx" ? "active" : "" %>"><a href="Home.aspx">Home</a></li>
+                <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/About.aspx" ? "active" : "" %>"><a href="About.aspx">About Us</a></li>
+                <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/Contact.aspx" ? "active" : "" %>"><a href="Contact.aspx">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="clear"></div>
           </div>
         </div>
       </div>
@@ -33,9 +42,26 @@
           <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
         </div>
       </div>
-      <div id="footer-content" class="shade">
+      <div id="footer-content">
         <div id="footer">
-          Footer
+          <div class="footer-navigation">
+            <ul>
+              <li>
+                <a href="Home.aspx">Home</a>
+                <span>|</span>
+              </li>
+              <li>
+                <a href="About.aspx">About Us</a>
+                <span>|</span>
+              </li>
+              <li><a href="Contact.aspx">Contact Us</a></li>
+              <div class="clear"></div>
+            </ul>
+          </div>
+          <div class="copy-right">
+            &copy; <%= DateTime.Now.Year %>. Riyadh Travels
+          </div>
+          <div class="clear"></div>
         </div>
       </div>
     </div>
