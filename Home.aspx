@@ -6,6 +6,15 @@
 <h3>
   Riyadh Travels
 </h3>
-<%= this.Session["x"] %>
+<div id="subscribe-block">
+  <div class="subscribe-wrapper">
+    <div class="subscribe-content">
+      <h5 class="inline" class="inline">Subscribe</h5>
+        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+        <asp:Button ID="btnSubscribe" runat="server" Text="Subscribe" 
+            onclick="btnSubscribe_Click" />
+    </div>
+  </div>
+</div>
 </asp:Content>
 
