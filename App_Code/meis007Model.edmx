@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="meis007Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="meis007ModelStoreContainer">
+          <EntitySet Name="B2CCustomerinfo" EntityType="meis007Model.Store.B2CCustomerinfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="B2CPaxinfo" EntityType="meis007Model.Store.B2CPaxinfo" store:Type="Tables" store:Schema="dbo" store:Name="B2CPaxinfo">
+            <DefiningQuery>SELECT 
+      [B2CPaxinfo].[CustomerSno] AS [CustomerSno], 
+      [B2CPaxinfo].[CustomerId] AS [CustomerId], 
+      [B2CPaxinfo].[Title] AS [Title], 
+      [B2CPaxinfo].[PaxFirstName] AS [PaxFirstName], 
+      [B2CPaxinfo].[PaxMiddleName] AS [PaxMiddleName], 
+      [B2CPaxinfo].[PaxLastName] AS [PaxLastName], 
+      [B2CPaxinfo].[PaxDOB] AS [PaxDOB], 
+      [B2CPaxinfo].[Nationality] AS [Nationality]
+      FROM [dbo].[B2CPaxinfo] AS [B2CPaxinfo]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="B2CCustomerinfo">
+          <Key>
+            <PropertyRef Name="CustomerSNo" />
+          </Key>
+          <Property Name="CustomerSNo" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaxEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaxFirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaxMiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaxLastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaxTelNo" Type="nvarchar" MaxLength="25" />
+          <Property Name="PaxmobileNo" Type="nvarchar" MaxLength="25" />
+          <Property Name="PaxCity" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaxAdd1" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaxAdd2" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaxAdd3" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaxPassword" Type="nvarchar" MaxLength="15" />
+          <Property Name="PaxLastLogDatetime" Type="datetime" />
+          <Property Name="authenicationcode" Type="nvarchar" MaxLength="25" />
+          <Property Name="InService" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'meis007.dbo.B2CPaxinfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="B2CPaxinfo">
+          <Key>
+            <PropertyRef Name="CustomerSno" />
+          </Key>
+          <Property Name="CustomerSno" Type="bigint" Nullable="false" />
+          <Property Name="CustomerId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="10" />
+          <Property Name="PaxFirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaxMiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaxLastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaxDOB" Type="date" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="meis007Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="meis007Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="B2CCustomerinfo" EntityType="meis007Model.B2CCustomerinfo" />
+          <EntitySet Name="B2CPaxinfo" EntityType="meis007Model.B2CPaxinfo" />
+        </EntityContainer>
+        <EntityType Name="B2CCustomerinfo">
+          <Key>
+            <PropertyRef Name="CustomerSNo" />
+          </Key>
+          <Property Name="CustomerSNo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PaxEmail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PaxFirstName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PaxMiddleName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PaxLastName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PaxTelNo" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="PaxmobileNo" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="PaxCity" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PaxAdd1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PaxAdd2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PaxAdd3" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PaxPassword" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="PaxLastLogDatetime" Type="DateTime" />
+          <Property Name="authenicationcode" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="InService" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="B2CPaxinfo">
+          <Key>
+            <PropertyRef Name="CustomerSno" />
+          </Key>
+          <Property Name="CustomerSno" Type="Int64" Nullable="false" />
+          <Property Name="CustomerId" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Title" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="PaxFirstName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PaxMiddleName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PaxLastName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PaxDOB" Type="DateTime" />
+          <Property Name="Nationality" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="meis007ModelStoreContainer" CdmEntityContainer="meis007Entities">
+          <EntitySetMapping Name="B2CCustomerinfo"><EntityTypeMapping TypeName="meis007Model.B2CCustomerinfo"><MappingFragment StoreEntitySet="B2CCustomerinfo">
+            <ScalarProperty Name="CustomerSNo" ColumnName="CustomerSNo" />
+            <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+            <ScalarProperty Name="PaxEmail" ColumnName="PaxEmail" />
+            <ScalarProperty Name="PaxFirstName" ColumnName="PaxFirstName" />
+            <ScalarProperty Name="PaxMiddleName" ColumnName="PaxMiddleName" />
+            <ScalarProperty Name="PaxLastName" ColumnName="PaxLastName" />
+            <ScalarProperty Name="PaxTelNo" ColumnName="PaxTelNo" />
+            <ScalarProperty Name="PaxmobileNo" ColumnName="PaxmobileNo" />
+            <ScalarProperty Name="PaxCity" ColumnName="PaxCity" />
+            <ScalarProperty Name="PaxAdd1" ColumnName="PaxAdd1" />
+            <ScalarProperty Name="PaxAdd2" ColumnName="PaxAdd2" />
+            <ScalarProperty Name="PaxAdd3" ColumnName="PaxAdd3" />
+            <ScalarProperty Name="PaxPassword" ColumnName="PaxPassword" />
+            <ScalarProperty Name="PaxLastLogDatetime" ColumnName="PaxLastLogDatetime" />
+            <ScalarProperty Name="authenicationcode" ColumnName="authenicationcode" />
+            <ScalarProperty Name="InService" ColumnName="InService" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="B2CPaxinfo"><EntityTypeMapping TypeName="meis007Model.B2CPaxinfo"><MappingFragment StoreEntitySet="B2CPaxinfo">
+            <ScalarProperty Name="CustomerSno" ColumnName="CustomerSno" />
+            <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="PaxFirstName" ColumnName="PaxFirstName" />
+            <ScalarProperty Name="PaxMiddleName" ColumnName="PaxMiddleName" />
+            <ScalarProperty Name="PaxLastName" ColumnName="PaxLastName" />
+            <ScalarProperty Name="PaxDOB" ColumnName="PaxDOB" />
+            <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="meis007Model">
+        <EntityTypeShape EntityType="meis007Model.B2CCustomerinfo" Width="1.5" PointX="0.75" PointY="0.75" Height="4.0956022135416656" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.B2CPaxinfo" Width="1.5" PointX="2.75" PointY="0.75" Height="2.5571907552083326" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
