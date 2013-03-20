@@ -6,8 +6,8 @@
     <title></title>
     <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Styles/jquery_ui.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="Scripts/jquery.js"></script>
-    <script type="text/javascript" src="Scripts/jquery_ui.js"></script>
+    <script type="text/javascript" src="/rtbtc/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="/rtbtc/Scripts/jquery_ui.js"></script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
