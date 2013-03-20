@@ -1,0 +1,44 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/jquery_ui.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="Scripts/jquery.js"></script>
+    <script type="text/javascript" src="Scripts/jquery_ui.js"></script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+    <div id="wrapper">
+      <div id="header-wrapper">
+        <div id="header-content" class="shade">
+          <div id="header">
+            <div class="logo">
+              Riyadh Travels
+            </div>
+            <div class="header-right-link">
+              <div class="top-sign-up">
+                My Account
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="middle-content">
+        <div id="container">
+          <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+      </div>
+      <div id="footer-content" class="shade">
+        <div id="footer">
+          Footer
+        </div>
+      </div>
+    </div>
+    </form>
+</body>
+</html>
