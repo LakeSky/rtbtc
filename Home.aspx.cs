@@ -29,6 +29,6 @@ public partial class Home : System.Web.UI.Page
         _meis007Entities.AddToB2CCustomerinfo(_b2CCustomerinfo);
         _meis007Entities.SaveChanges();
         Session["NoticeMessage"] = "Successfully added for subscription!";
-        Response.Redirect(CurrentUser.GetRedirectPath());
+        Response.Redirect(CurrentUser.GetRootPath("/Home.aspx"));
     }
 }

@@ -36,9 +36,9 @@
           <Property Name="PaxAdd1" Type="nvarchar" MaxLength="100" />
           <Property Name="PaxAdd2" Type="nvarchar" MaxLength="100" />
           <Property Name="PaxAdd3" Type="nvarchar" MaxLength="100" />
-          <Property Name="PaxPassword" Type="nvarchar" MaxLength="15" />
+          <Property Name="PaxPassword" Type="nvarchar" MaxLength="300" />
           <Property Name="PaxLastLogDatetime" Type="datetime" />
-          <Property Name="authenicationcode" Type="nvarchar" MaxLength="25" />
+          <Property Name="authenicationcode" Type="nvarchar" MaxLength="300" />
           <Property Name="InService" Type="nchar" MaxLength="1" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -82,9 +82,9 @@
           <Property Name="PaxAdd1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="PaxAdd2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="PaxAdd3" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="PaxPassword" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="PaxPassword" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
           <Property Name="PaxLastLogDatetime" Type="DateTime" />
-          <Property Name="authenicationcode" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="authenicationcode" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
           <Property Name="InService" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
         </EntityType>
         <EntityType Name="B2CPaxinfo">

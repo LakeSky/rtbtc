@@ -24,7 +24,18 @@
             </div>
             <div class="header-right-link">
               <div class="top-sign-up">
-                My Account
+                <% if (Page.User.Identity.IsAuthenticated){%>
+                  My Account
+                  |
+                  <% var _logoutPath = CurrentUser.GetRootPath("Account/Logout.aspx"); %>
+                  <a href="<%= _logoutPath %>">Log out</a>
+                <%}else{ %>
+                  <% var _registerPath = CurrentUser.GetRootPath("Account/Register.aspx"); %>
+                  <% var _loginPath = CurrentUser.GetRootPath("Account/Login.aspx"); %>
+                  <a href="<%= _registerPath %>">Register</a>
+                  |
+                  <a href="<%= _loginPath %>">Login</a>
+                <%} %>
               </div>
             </div>
             <div class="clear"></div>

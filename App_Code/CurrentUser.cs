@@ -18,7 +18,12 @@ public static class CurrentUser
 
     public static string GetRedirectPath()
     {
-        string returnUrl1 = "/rtbtc/Home.aspx";
-        return returnUrl1;
+        string returnUrl = "/rtbtc/Home.aspx";
+        return returnUrl;
+    }
+
+    public static string GetRootPath(string path) {
+        string returnUrl = "/rtbtc/" + path;
+        return returnUrl;
     }
 }

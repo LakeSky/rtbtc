@@ -13,11 +13,11 @@
           <asp:Label ID="lblErrorMsg" runat="server" ForeColor="#FF3300" Visible="False"></asp:Label>
       </p>
       <p>
-          <asp:Label ID="lblUserName" runat="server" Text="Login Id" 
-              AssociatedControlID="txtUserName"></asp:Label>
-          <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
-          <asp:RequiredFieldValidator ID="rfvUserName" runat="server" 
-              ControlToValidate="txtUserName" ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+          <asp:Label ID="lblEmail" runat="server" Text="Login Id" 
+              AssociatedControlID="txtEmail"></asp:Label>
+          <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+          <asp:RequiredFieldValidator ID="rfvEmail" runat="server" 
+              ControlToValidate="txtEmail" ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
       </p>
       <p>
           <asp:Label ID="lblPassword" runat="server" Text="Password" 
