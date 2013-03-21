@@ -19,6 +19,16 @@
       [B2CPaxinfo].[Nationality] AS [Nationality]
       FROM [dbo].[B2CPaxinfo] AS [B2CPaxinfo]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="CityMaster" EntityType="meis007Model.Store.CityMaster" store:Type="Tables" store:Schema="dbo" store:Name="CityMaster">
+            <DefiningQuery>SELECT 
+      [CityMaster].[CityID] AS [CityID], 
+      [CityMaster].[CityName] AS [CityName], 
+      [CityMaster].[CountryID] AS [CountryID], 
+      [CityMaster].[UserID] AS [UserID], 
+      [CityMaster].[ModDate] AS [ModDate], 
+      [CityMaster].[H2H] AS [H2H]
+      FROM [dbo].[CityMaster] AS [CityMaster]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
         <EntityType Name="B2CCustomerinfo">
           <Key>
@@ -57,6 +67,23 @@
           <Property Name="PaxDOB" Type="date" />
           <Property Name="Nationality" Type="nvarchar" MaxLength="200" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'meis007.dbo.CityMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="CityMaster">
+          <Key>
+            <PropertyRef Name="CityID" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ModDate" />
+          </Key>
+          <Property Name="CityID" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="CityName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="CountryID" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ModDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="H2H" Type="smallint" />
+        </EntityType>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
@@ -65,6 +92,7 @@
         <EntityContainer Name="meis007Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="B2CCustomerinfo" EntityType="meis007Model.B2CCustomerinfo" />
           <EntitySet Name="B2CPaxinfo" EntityType="meis007Model.B2CPaxinfo" />
+          <EntitySet Name="CityMasters" EntityType="meis007Model.CityMaster" />
         </EntityContainer>
         <EntityType Name="B2CCustomerinfo">
           <Key>
@@ -100,6 +128,20 @@
           <Property Name="PaxDOB" Type="DateTime" />
           <Property Name="Nationality" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
         </EntityType>
+        <EntityType Name="CityMaster">
+          <Key>
+            <PropertyRef Name="CityID" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ModDate" />
+          </Key>
+          <Property Name="CityID" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="CountryID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ModDate" Type="DateTime" Nullable="false" />
+          <Property Name="H2H" Type="Int16" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -134,6 +176,14 @@
             <ScalarProperty Name="PaxDOB" ColumnName="PaxDOB" />
             <ScalarProperty Name="Nationality" ColumnName="Nationality" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CityMasters"><EntityTypeMapping TypeName="meis007Model.CityMaster"><MappingFragment StoreEntitySet="CityMaster">
+            <ScalarProperty Name="CityID" ColumnName="CityID" />
+            <ScalarProperty Name="CityName" ColumnName="CityName" />
+            <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+            <ScalarProperty Name="H2H" ColumnName="H2H" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -157,6 +207,7 @@
       <Diagram Name="meis007Model">
         <EntityTypeShape EntityType="meis007Model.B2CCustomerinfo" Width="1.5" PointX="0.75" PointY="0.75" Height="4.0956022135416656" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.B2CPaxinfo" Width="1.5" PointX="2.75" PointY="0.75" Height="2.5571907552083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.CityMaster" Width="1.5" PointX="4.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -96,6 +96,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<B2CPaxinfo> _B2CPaxinfo;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CityMaster> CityMasters
+        {
+            get
+            {
+                if ((_CityMasters == null))
+                {
+                    _CityMasters = base.CreateObjectSet<CityMaster>("CityMasters");
+                }
+                return _CityMasters;
+            }
+        }
+        private ObjectSet<CityMaster> _CityMasters;
 
         #endregion
         #region AddTo Methods
@@ -114,6 +130,14 @@ namespace meis007Model
         public void AddToB2CPaxinfo(B2CPaxinfo b2CPaxinfo)
         {
             base.AddObject("B2CPaxinfo", b2CPaxinfo);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CityMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCityMasters(CityMaster cityMaster)
+        {
+            base.AddObject("CityMasters", cityMaster);
         }
 
         #endregion
@@ -757,6 +781,196 @@ namespace meis007Model
         private global::System.String _Nationality;
         partial void OnNationalityChanging(global::System.String value);
         partial void OnNationalityChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="meis007Model", Name="CityMaster")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class CityMaster : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new CityMaster object.
+        /// </summary>
+        /// <param name="cityID">Initial value of the CityID property.</param>
+        /// <param name="cityName">Initial value of the CityName property.</param>
+        /// <param name="userID">Initial value of the UserID property.</param>
+        /// <param name="modDate">Initial value of the ModDate property.</param>
+        public static CityMaster CreateCityMaster(global::System.String cityID, global::System.String cityName, global::System.String userID, global::System.DateTime modDate)
+        {
+            CityMaster cityMaster = new CityMaster();
+            cityMaster.CityID = cityID;
+            cityMaster.CityName = cityName;
+            cityMaster.UserID = userID;
+            cityMaster.ModDate = modDate;
+            return cityMaster;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CityID
+        {
+            get
+            {
+                return _CityID;
+            }
+            set
+            {
+                if (_CityID != value)
+                {
+                    OnCityIDChanging(value);
+                    ReportPropertyChanging("CityID");
+                    _CityID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("CityID");
+                    OnCityIDChanged();
+                }
+            }
+        }
+        private global::System.String _CityID;
+        partial void OnCityIDChanging(global::System.String value);
+        partial void OnCityIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CityName
+        {
+            get
+            {
+                return _CityName;
+            }
+            set
+            {
+                if (_CityName != value)
+                {
+                    OnCityNameChanging(value);
+                    ReportPropertyChanging("CityName");
+                    _CityName = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("CityName");
+                    OnCityNameChanged();
+                }
+            }
+        }
+        private global::System.String _CityName;
+        partial void OnCityNameChanging(global::System.String value);
+        partial void OnCityNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CountryID
+        {
+            get
+            {
+                return _CountryID;
+            }
+            set
+            {
+                OnCountryIDChanging(value);
+                ReportPropertyChanging("CountryID");
+                _CountryID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CountryID");
+                OnCountryIDChanged();
+            }
+        }
+        private global::System.String _CountryID;
+        partial void OnCountryIDChanging(global::System.String value);
+        partial void OnCountryIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserID
+        {
+            get
+            {
+                return _UserID;
+            }
+            set
+            {
+                if (_UserID != value)
+                {
+                    OnUserIDChanging(value);
+                    ReportPropertyChanging("UserID");
+                    _UserID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("UserID");
+                    OnUserIDChanged();
+                }
+            }
+        }
+        private global::System.String _UserID;
+        partial void OnUserIDChanging(global::System.String value);
+        partial void OnUserIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime ModDate
+        {
+            get
+            {
+                return _ModDate;
+            }
+            set
+            {
+                if (_ModDate != value)
+                {
+                    OnModDateChanging(value);
+                    ReportPropertyChanging("ModDate");
+                    _ModDate = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ModDate");
+                    OnModDateChanged();
+                }
+            }
+        }
+        private global::System.DateTime _ModDate;
+        partial void OnModDateChanging(global::System.DateTime value);
+        partial void OnModDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> H2H
+        {
+            get
+            {
+                return _H2H;
+            }
+            set
+            {
+                OnH2HChanging(value);
+                ReportPropertyChanging("H2H");
+                _H2H = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("H2H");
+                OnH2HChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _H2H;
+        partial void OnH2HChanging(Nullable<global::System.Int16> value);
+        partial void OnH2HChanged();
 
         #endregion
     

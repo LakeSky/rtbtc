@@ -52,26 +52,25 @@
      <p>
     <label>Mobile</label>
     <asp:TextBox ID="txtMobile" runat="server" MaxLength="300"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="rfvMobile" runat="server" 
-                    ControlToValidate="txtMobile" ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
   </p>
   <p>
     <label>Telephone</label>
     <asp:TextBox ID="txtTelephone" runat="server" MaxLength="300"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="rfvTelephone" runat="server" 
-                    ControlToValidate="txtTelephone" ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
   </p>
   <p>
     <label>City</label>
-    <asp:TextBox ID="txtCity" runat="server" MaxLength="300"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="rfvCity" runat="server" 
-                    ControlToValidate="txtCity" ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+    <asp:DropDownList ID="ddlCity" runat="server" AppendDataBoundItems="True" 
+          DataSourceID="SqlDataSource1" DataTextField="CityName" DataValueField="CityID">
+        <asp:ListItem Value="0">Select</asp:ListItem>
+      </asp:DropDownList>
+      <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+          ConnectionString="<%$ ConnectionStrings:meis007ConnectionString %>" 
+          SelectCommand="SELECT [CityID], [CityName] FROM [CityMaster]">
+      </asp:SqlDataSource>
   </p>
   <p>
     <label>Address 1</label>
     <asp:TextBox ID="txtAddress1" runat="server" MaxLength="300" TextMode="MultiLine"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="rfvtxtAddress1" runat="server" 
-                    ControlToValidate="txtAddress1" ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
   </p>
   <p>
     <label>Address 2</label>
