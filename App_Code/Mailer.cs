@@ -43,4 +43,11 @@ public class Mailer
         var body = "Hi " + _B2CCustomerinfo.PaxFirstName + "<br/>. Please <a href='"+href+"'>Confirm Account</a>";
         SendMailMessage(_B2CCustomerinfo.PaxEmail, "", "", "Confirm Account", body);
     }
+
+    public static void SendPasswordEmail(B2CCustomerinfo _B2CCustomerinfo, string host){
+        var href = host + CurrentUser.GetRootPath("/Account/Login.aspx");
+        string _decryptPassword = StringHelper.Decrypt(_B2CCustomerinfo.PaxPassword);
+        var body = "Hi " + _B2CCustomerinfo.PaxFirstName + " your password is "+_decryptPassword  +"<br/>. <a href='" + href + "'>Login</a>";
+        SendMailMessage(_B2CCustomerinfo.PaxEmail, "", "", "Password", body);
+    }
 }

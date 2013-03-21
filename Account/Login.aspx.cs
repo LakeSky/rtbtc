@@ -31,7 +31,7 @@ public partial class Account_Login : System.Web.UI.Page
         errorDiv.Visible = false;
         errorDivForInactiveUsers.Visible = false;
         _meis007Entities = new meis007Entities();
-        var encodedPassword = StringHelper.MD5Hash(txtPassword.Text);
+        var encodedPassword = StringHelper.Encrypt(txtPassword.Text);
         var user = _meis007Entities.B2CCustomerinfo.Where(x => x.PaxEmail == txtEmail.Text).Where(x => x.PaxPassword == encodedPassword).FirstOrDefault();
         if (user == null) {
             errorDiv.Visible = true;

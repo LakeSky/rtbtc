@@ -20,10 +20,10 @@ public partial class Account_Register : System.Web.UI.Page
         var user = _meis007Entities.B2CCustomerinfo.Where(x => x.PaxEmail == _email).FirstOrDefault();
         if (user != null && !string.IsNullOrEmpty(user.authenicationcode))
         {
-            Session["ErrorMEssage"] = "Email already taken! If you forgot your email please change your password!";
+            Session["ErrorMEssage"] = "Email already taken! If you forgot your email please click on forgot password!";
             return;
         }
-        var _password = StringHelper.MD5Hash(txtPassword.Text);
+        var _password = StringHelper.Encrypt(txtPassword.Text);
         var _sessionId = StringHelper.MD5Hash(_email);
         B2CCustomerinfo _toBeEMailedUser = new B2CCustomerinfo();
         if (user == null){
