@@ -17,16 +17,35 @@ public partial class Account_Register : System.Web.UI.Page
     {
         _meis007Entities = new meis007Entities();
         var _email = txtEmail.Text.Trim();
-        var count = _meis007Entities.B2CCustomerinfo.Where(x => x.PaxEmail == _email).Count();
-        if (count > 0){
-            Session["ErrorMEssage"] = "Email already taken!";
+        var user = _meis007Entities.B2CCustomerinfo.Where(x => x.PaxEmail == _email).FirstOrDefault();
+        if (user != null && user.InService == "1"){
+            Session["ErrorMEssage"] = "Email already taken! If you forgot your email please change your password!";
             return;
         }
         var _password = StringHelper.MD5Hash(txtPassword.Text);
         var _sessionId = Session.SessionID.ToString();
-        B2CCustomerinfo _b2CCustomerinfo = new B2CCustomerinfo { PaxEmail = _email, InService = "0", PaxFirstName = txtFirstName.Text, PaxMiddleName = txtMiddleName.Text, PaxLastName = txtLastName.Text, PaxmobileNo = txtMobile.Text, PaxTelNo = txtTelephone.Text, PaxCity = txtCity.Text, PaxPassword = _password, PaxAdd1 = txtAddress1.Text, PaxAdd2 = txtAddress2.Text, authenicationcode = _sessionId };
-        _meis007Entities.AddToB2CCustomerinfo(_b2CCustomerinfo);
+        B2CCustomerinfo _toBeEMailedUser = new B2CCustomerinfo();
+        if (user == null){
+            B2CCustomerinfo _b2CCustomerinfo = new B2CCustomerinfo { PaxEmail = _email, InService = "0", PaxFirstName = txtFirstName.Text, PaxMiddleName = txtMiddleName.Text, PaxLastName = txtLastName.Text, PaxmobileNo = txtMobile.Text, PaxTelNo = txtTelephone.Text, PaxCity = txtCity.Text, PaxPassword = _password, PaxAdd1 = txtAddress1.Text, PaxAdd2 = txtAddress2.Text, authenicationcode = _sessionId };
+            _meis007Entities.AddToB2CCustomerinfo(_b2CCustomerinfo);
+            _toBeEMailedUser = _b2CCustomerinfo;
+        }else{
+            user.PaxEmail = _email;
+            user.InService = "0";
+            user.PaxFirstName = txtFirstName.Text;
+            user.PaxMiddleName = txtMiddleName.Text;
+            user.PaxLastName = txtLastName.Text;
+            user.PaxmobileNo = txtMobile.Text; 
+            user.PaxTelNo = txtTelephone.Text;
+            user.PaxCity = txtCity.Text;
+            user.PaxPassword = _password;
+            user.PaxAdd1 = txtAddress1.Text;
+            user.PaxAdd2 = txtAddress2.Text;
+            user.authenicationcode = _sessionId;
+            _toBeEMailedUser = user;
+        }
         _meis007Entities.SaveChanges();
+        Mailer.SendRegistrationEmail(_toBeEMailedUser, Request.Url.Host);
         Session["NoticeMessage"] = "Successfully registered please check you email to confirm your account!";
         Response.Redirect(CurrentUser.GetRootPath("Home.aspx"));
     }

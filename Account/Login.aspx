@@ -7,8 +7,11 @@
       <legend>Log in</legend>
       <div>
       <div class="alert alert-danger" runat="server" id="errorDiv">
-    <h4>Invalid login !</h4>
-  </div>
+        <h4>Invalid login !</h4>
+      </div>
+      <div class="alert alert-danger" runat="server" id="errorDivForInactiveUsers">
+        <h4>Please confirm your account !</h4>
+      </div>
       <p>
           <asp:Label ID="lblErrorMsg" runat="server" ForeColor="#FF3300" Visible="False"></asp:Label>
       </p>

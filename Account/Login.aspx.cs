@@ -15,6 +15,7 @@ public partial class Account_Login : System.Web.UI.Page
         if (!IsPostBack)
         {
             errorDiv.Visible = false;
+            errorDivForInactiveUsers.Visible = false;
         }
         if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
         {
@@ -27,11 +28,17 @@ public partial class Account_Login : System.Web.UI.Page
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        errorDiv.Visible = false;
+        errorDivForInactiveUsers.Visible = false;
         _meis007Entities = new meis007Entities();
         var encodedPassword = StringHelper.MD5Hash(txtPassword.Text);
         var user = _meis007Entities.B2CCustomerinfo.Where(x => x.PaxEmail == txtEmail.Text).Where(x => x.PaxPassword == encodedPassword).FirstOrDefault();
         if (user == null) {
             errorDiv.Visible = true;
+            return;
+        }
+        if (user.InService == "0") {
+            errorDivForInactiveUsers.Visible = true;
             return;
         }
         FormsAuthentication.SetAuthCookie(user.PaxEmail, false);

@@ -5,7 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 <fieldset>
   <legend>Register</legend>
-  
   <p>
     <label>First Name</label>
     <asp:TextBox ID="txtFirstName" runat="server" MaxLength="300"></asp:TextBox>
@@ -80,10 +79,10 @@
   </p>
     <p></p>
     <p>
-      <asp:Button ID="btnSave" runat="server" onclick="btnSave_Click" Text="Save"  CssClass="btn btn-save btn-primary"/>
+      <asp:Button ID="btnSave" runat="server" onclick="btnSave_Click" Text="Register"  CssClass="btn btn-save btn-primary"/>
       &nbsp;&nbsp;&nbsp;
       <asp:Button ID="btnCancel" runat="server" CausesValidation="False" 
-                    onclick="btnCancel_Click" Text="Register"  CssClass="btn"/>
+                    onclick="btnCancel_Click" Text="Cancel"  CssClass="btn"/>
     </p>
   </fieldset>
 </asp:Content>
