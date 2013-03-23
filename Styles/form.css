@@ -1,4 +1,194 @@
-﻿.btn {
+﻿table {
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    max-width: 100%;
+}
+.table {
+    margin-bottom: 18px;
+    width: 100%;
+}
+.table th, .table td {
+    border-top: 1px solid #DDDDDD;
+    line-height: 18px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+.table th {
+    font-weight: bold;
+}
+.table thead th {
+    vertical-align: bottom;
+}
+.table colgroup + thead tr:first-child th, .table colgroup + thead tr:first-child td, .table thead:first-child tr:first-child th, .table thead:first-child tr:first-child td {
+    border-top: 0 none;
+}
+.table tbody + tbody {
+    border-top: 2px solid #DDDDDD;
+}
+.table-condensed th, .table-condensed td {
+    padding: 4px 5px;
+}
+.table-bordered {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-collapse: separate;
+    border-color: #DDDDDD #DDDDDD #DDDDDD -moz-use-text-color;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px 0;
+}
+.table-bordered th, .table-bordered td {
+    border-left: 1px solid #DDDDDD;
+}
+.table-bordered thead:first-child tr:first-child th, .table-bordered tbody:first-child tr:first-child th, .table-bordered tbody:first-child tr:first-child td {
+    border-top: 0 none;
+}
+.table-bordered thead:first-child tr:first-child th:first-child, .table-bordered tbody:first-child tr:first-child td:first-child {
+    border-radius: 4px 0 0 0;
+}
+.table-bordered thead:first-child tr:first-child th:last-child, .table-bordered tbody:first-child tr:first-child td:last-child {
+    border-radius: 0 4px 0 0;
+}
+.table-bordered thead:last-child tr:last-child th:first-child, .table-bordered tbody:last-child tr:last-child td:first-child {
+    border-radius: 0 0 0 4px;
+}
+.table-bordered thead:last-child tr:last-child th:last-child, .table-bordered tbody:last-child tr:last-child td:last-child {
+    border-radius: 0 0 4px 0;
+}
+.table-striped tbody tr:nth-child(2n+1) td, .table-striped tbody tr:nth-child(2n+1) th {
+    background-color: #F9F9F9;
+}
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: #F5F5F5;
+}
+table .span1 {
+    float: none;
+    margin-left: 0;
+    width: 44px;
+}
+table .span2 {
+    float: none;
+    margin-left: 0;
+    width: 124px;
+}
+table .span3 {
+    float: none;
+    margin-left: 0;
+    width: 204px;
+}
+table .span4 {
+    float: none;
+    margin-left: 0;
+    width: 284px;
+}
+table .span5 {
+    float: none;
+    margin-left: 0;
+    width: 364px;
+}
+table .span6 {
+    float: none;
+    margin-left: 0;
+    width: 444px;
+}
+table .span7 {
+    float: none;
+    margin-left: 0;
+    width: 524px;
+}
+table .span8 {
+    float: none;
+    margin-left: 0;
+    width: 604px;
+}
+table .span9 {
+    float: none;
+    margin-left: 0;
+    width: 684px;
+}
+table .span10 {
+    float: none;
+    margin-left: 0;
+    width: 764px;
+}
+table .span11 {
+    float: none;
+    margin-left: 0;
+    width: 844px;
+}
+table .span12 {
+    float: none;
+    margin-left: 0;
+    width: 924px;
+}
+table .span13 {
+    float: none;
+    margin-left: 0;
+    width: 1004px;
+}
+table .span14 {
+    float: none;
+    margin-left: 0;
+    width: 1084px;
+}
+table .span15 {
+    float: none;
+    margin-left: 0;
+    width: 1164px;
+}
+table .span16 {
+    float: none;
+    margin-left: 0;
+    width: 1244px;
+}
+table .span17 {
+    float: none;
+    margin-left: 0;
+    width: 1324px;
+}
+table .span18 {
+    float: none;
+    margin-left: 0;
+    width: 1404px;
+}
+table .span19 {
+    float: none;
+    margin-left: 0;
+    width: 1484px;
+}
+table .span20 {
+    float: none;
+    margin-left: 0;
+    width: 1564px;
+}
+table .span21 {
+    float: none;
+    margin-left: 0;
+    width: 1644px;
+}
+table .span22 {
+    float: none;
+    margin-left: 0;
+    width: 1724px;
+}
+table .span23 {
+    float: none;
+    margin-left: 0;
+    width: 1804px;
+}
+table .span24 {
+    float: none;
+    margin-left: 0;
+    width: 1884px;
+}
+
+
+.btn {
     -moz-border-bottom-colors: none;
     -moz-border-image: none;
     -moz-border-left-colors: none;

@@ -13,6 +13,21 @@
                     SetFocusOnError="True">*</asp:RequiredFieldValidator>
   </p>
   <p>
+    <label>Title</label>
+    <asp:DropDownList ID="ddlTitle" runat="server">
+        <asp:ListItem>Select</asp:ListItem>
+        <asp:ListItem>Mr</asp:ListItem>
+        <asp:ListItem>Mrs</asp:ListItem>
+        <asp:ListItem>Miss</asp:ListItem>
+        <asp:ListItem>Ms</asp:ListItem>
+        <asp:ListItem>Dr</asp:ListItem>
+        <asp:ListItem>Master</asp:ListItem>
+    </asp:DropDownList>
+    <asp:RequiredFieldValidator ID="rfvTitle" runat="server" 
+                    ControlToValidate="ddlTitle" ForeColor="#FF3300" 
+                    SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
+  </p>
+  <p>
     <label>Middle Name</label>
     <asp:TextBox ID="txtMiddleName" runat="server" MaxLength="300"></asp:TextBox>
   </p>

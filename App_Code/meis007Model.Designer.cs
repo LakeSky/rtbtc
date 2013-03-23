@@ -16,6 +16,11 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region EDM Relationship Metadata
+
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_B2CPaxinfo_B2CCustomerinfo1", "B2CCustomerinfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.B2CCustomerinfo), "B2CPaxinfo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.B2CPaxinfo), true)]
+
+#endregion
 
 namespace meis007Model
 {
@@ -561,6 +566,31 @@ namespace meis007Model
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_B2CPaxinfo_B2CCustomerinfo1", "B2CPaxinfo")]
+        public EntityCollection<B2CPaxinfo> B2CPaxinfo
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<B2CPaxinfo>("meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1", "B2CPaxinfo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<B2CPaxinfo>("meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1", "B2CPaxinfo", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -619,7 +649,31 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String CustomerId
+        public Nullable<global::System.Int64> ForeignCustomerSNo
+        {
+            get
+            {
+                return _ForeignCustomerSNo;
+            }
+            set
+            {
+                OnForeignCustomerSNoChanging(value);
+                ReportPropertyChanging("ForeignCustomerSNo");
+                _ForeignCustomerSNo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ForeignCustomerSNo");
+                OnForeignCustomerSNoChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _ForeignCustomerSNo;
+        partial void OnForeignCustomerSNoChanging(Nullable<global::System.Int64> value);
+        partial void OnForeignCustomerSNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> CustomerId
         {
             get
             {
@@ -629,13 +683,13 @@ namespace meis007Model
             {
                 OnCustomerIdChanging(value);
                 ReportPropertyChanging("CustomerId");
-                _CustomerId = StructuralObject.SetValidValue(value, true);
+                _CustomerId = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("CustomerId");
                 OnCustomerIdChanged();
             }
         }
-        private global::System.String _CustomerId;
-        partial void OnCustomerIdChanging(global::System.String value);
+        private Nullable<global::System.Int64> _CustomerId;
+        partial void OnCustomerIdChanging(Nullable<global::System.Int64> value);
         partial void OnCustomerIdChanged();
     
         /// <summary>
@@ -784,6 +838,47 @@ namespace meis007Model
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_B2CPaxinfo_B2CCustomerinfo1", "B2CCustomerinfo")]
+        public B2CCustomerinfo B2CCustomerinfo
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<B2CCustomerinfo>("meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1", "B2CCustomerinfo").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<B2CCustomerinfo>("meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1", "B2CCustomerinfo").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<B2CCustomerinfo> B2CCustomerinfoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<B2CCustomerinfo>("meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1", "B2CCustomerinfo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<B2CCustomerinfo>("meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1", "B2CCustomerinfo", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
