@@ -36,7 +36,7 @@
           <Key>
             <PropertyRef Name="CustomerSNo" />
           </Key>
-          <Property Name="CustomerSNo" Type="bigint" Nullable="false" />
+          <Property Name="CustomerSNo" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CustomerID" Type="nvarchar" MaxLength="50" />
           <Property Name="PaxEmail" Type="nvarchar" MaxLength="100" />
           <Property Name="PaxFirstName" Type="nvarchar" MaxLength="100" />
@@ -111,13 +111,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-      warning 6013: The table/view 'meis007.dbo.SysParameters' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="SysParameters">
-        <Property Name="ParameterName" Type="varchar" MaxLength="50" />
-        <Property Name="ParameterValue" Type="varchar" MaxLength="100" />
-      </EntityType>-->
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
@@ -137,7 +130,7 @@
           <Key>
             <PropertyRef Name="CustomerSNo" />
           </Key>
-          <Property Name="CustomerSNo" Type="Int64" Nullable="false" />
+          <Property Name="CustomerSNo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CustomerID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="PaxEmail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="PaxFirstName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />

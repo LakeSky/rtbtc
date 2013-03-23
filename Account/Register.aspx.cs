@@ -26,8 +26,10 @@ public partial class Account_Register : System.Web.UI.Page
         var _password = StringHelper.Encrypt(txtPassword.Text);
         var _sessionId = StringHelper.MD5Hash(_email);
         B2CCustomerinfo _toBeEMailedUser = new B2CCustomerinfo();
+        var _customerId = DbParameter.GetCustomerId();
+        B2CPaxinfo _B2CPaxinfo = new B2CPaxinfo { Title = ddlTitle.SelectedValue, PaxFirstName = txtFirstName.Text, PaxMiddleName = txtMiddleName.Text, PaxLastName = txtLastName.Text, CustomerId = 1 };
         if (user == null){
-            B2CCustomerinfo _b2CCustomerinfo = new B2CCustomerinfo { PaxEmail = _email, InService = "0", PaxFirstName = txtFirstName.Text, PaxMiddleName = txtMiddleName.Text, PaxLastName = txtLastName.Text, PaxmobileNo = txtMobile.Text, PaxTelNo = txtTelephone.Text, PaxCity = ddlCity.SelectedValue, PaxPassword = _password, PaxAdd1 = txtAddress1.Text, PaxAdd2 = txtAddress2.Text, authenicationcode = _sessionId };
+            B2CCustomerinfo _b2CCustomerinfo = new B2CCustomerinfo { PaxEmail = _email, InService = "0", PaxFirstName = txtFirstName.Text, PaxMiddleName = txtMiddleName.Text, PaxLastName = txtLastName.Text, PaxmobileNo = txtMobile.Text, PaxTelNo = txtTelephone.Text, PaxCity = ddlCity.SelectedValue, PaxPassword = _password, PaxAdd1 = txtAddress1.Text, PaxAdd2 = txtAddress2.Text, authenicationcode = _sessionId, CustomerID = _customerId };
             _meis007Entities.AddToB2CCustomerinfo(_b2CCustomerinfo);
             _toBeEMailedUser = _b2CCustomerinfo;
         }else{
@@ -43,8 +45,12 @@ public partial class Account_Register : System.Web.UI.Page
             user.PaxAdd1 = txtAddress1.Text;
             user.PaxAdd2 = txtAddress2.Text;
             user.authenicationcode = _sessionId;
+            user.CustomerID = _customerId;
             _toBeEMailedUser = user;
         }
+        _meis007Entities.SaveChanges();
+        _B2CPaxinfo.ForeignCustomerSNo = _toBeEMailedUser.CustomerSNo;
+        _meis007Entities.AddToB2CPaxinfo(_B2CPaxinfo);
         _meis007Entities.SaveChanges();
         Mailer.SendRegistrationEmail(_toBeEMailedUser, Request.Url.Host);
         Session["NoticeMessage"] = "Successfully registered please check you email to confirm your account!";

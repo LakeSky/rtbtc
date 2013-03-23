@@ -28,7 +28,7 @@ public class PassengerWebService : System.Web.Services.WebService {
         var customerSNO = long.Parse(id);
         var dobParsed = DateTimeHelper.ConvertToDate(dob);
         meis007Entities _meis007Entities = new meis007Entities();
-        var passenger = new B2CPaxinfo { Title = title, PaxFirstName = firstname, PaxMiddleName = middlename, PaxLastName = lastname, PaxDOB = dobParsed, Nationality = nationality, ForeignCustomerSNo = customerSNO };
+        var passenger = new B2CPaxinfo { Title = title, PaxFirstName = firstname, PaxMiddleName = middlename, PaxLastName = lastname, PaxDOB = dobParsed, Nationality = nationality, ForeignCustomerSNo = customerSNO, CustomerId = 0 };
         _meis007Entities.AddToB2CPaxinfo(passenger);
         _meis007Entities.SaveChanges();
         return passenger.CustomerSno.ToString();
@@ -47,7 +47,7 @@ public class PassengerWebService : System.Web.Services.WebService {
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public void EditPassenger(string id, string title, string firstname, string middlename, string lastname, string dob, string nationality)
+    public string EditPassenger(string id, string title, string firstname, string middlename, string lastname, string dob, string nationality)
     {
         var customerId = long.Parse(id);
         var dobParsed = DateTimeHelper.ConvertToDate(dob);
@@ -60,7 +60,7 @@ public class PassengerWebService : System.Web.Services.WebService {
         passenger.PaxDOB = dobParsed;
         passenger.Nationality = nationality;
         _meis007Entities.SaveChanges();
-        return;
+        return passenger.CustomerSno.ToString();
     }
 
     [WebMethod]
