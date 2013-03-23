@@ -8,7 +8,6 @@
             minSelectedDate.setDate(minSelectedDate.getDate());
             var maxDate = new Date(minSelectedDate);
             maxDate.setDate(maxDate.getDate() + 15);
-            console.log(maxDate);
             $(".end-date").datepicker('destroy');
             $(".end-date").datepicker({
                 constrainInput: true,

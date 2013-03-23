@@ -117,6 +117,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<CityMaster> _CityMasters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CountryMaster> CountryMasters
+        {
+            get
+            {
+                if ((_CountryMasters == null))
+                {
+                    _CountryMasters = base.CreateObjectSet<CountryMaster>("CountryMasters");
+                }
+                return _CountryMasters;
+            }
+        }
+        private ObjectSet<CountryMaster> _CountryMasters;
 
         #endregion
         #region AddTo Methods
@@ -143,6 +159,14 @@ namespace meis007Model
         public void AddToCityMasters(CityMaster cityMaster)
         {
             base.AddObject("CityMasters", cityMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CountryMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCountryMasters(CountryMaster countryMaster)
+        {
+            base.AddObject("CountryMasters", countryMaster);
         }
 
         #endregion
@@ -1041,6 +1065,167 @@ namespace meis007Model
         }
         private global::System.DateTime _ModDate;
         partial void OnModDateChanging(global::System.DateTime value);
+        partial void OnModDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> H2H
+        {
+            get
+            {
+                return _H2H;
+            }
+            set
+            {
+                OnH2HChanging(value);
+                ReportPropertyChanging("H2H");
+                _H2H = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("H2H");
+                OnH2HChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _H2H;
+        partial void OnH2HChanging(Nullable<global::System.Int16> value);
+        partial void OnH2HChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="meis007Model", Name="CountryMaster")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class CountryMaster : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new CountryMaster object.
+        /// </summary>
+        /// <param name="countryID">Initial value of the CountryID property.</param>
+        /// <param name="countryName">Initial value of the CountryName property.</param>
+        /// <param name="userID">Initial value of the UserID property.</param>
+        public static CountryMaster CreateCountryMaster(global::System.String countryID, global::System.String countryName, global::System.String userID)
+        {
+            CountryMaster countryMaster = new CountryMaster();
+            countryMaster.CountryID = countryID;
+            countryMaster.CountryName = countryName;
+            countryMaster.UserID = userID;
+            return countryMaster;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CountryID
+        {
+            get
+            {
+                return _CountryID;
+            }
+            set
+            {
+                if (_CountryID != value)
+                {
+                    OnCountryIDChanging(value);
+                    ReportPropertyChanging("CountryID");
+                    _CountryID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("CountryID");
+                    OnCountryIDChanged();
+                }
+            }
+        }
+        private global::System.String _CountryID;
+        partial void OnCountryIDChanging(global::System.String value);
+        partial void OnCountryIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CountryName
+        {
+            get
+            {
+                return _CountryName;
+            }
+            set
+            {
+                if (_CountryName != value)
+                {
+                    OnCountryNameChanging(value);
+                    ReportPropertyChanging("CountryName");
+                    _CountryName = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("CountryName");
+                    OnCountryNameChanged();
+                }
+            }
+        }
+        private global::System.String _CountryName;
+        partial void OnCountryNameChanging(global::System.String value);
+        partial void OnCountryNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserID
+        {
+            get
+            {
+                return _UserID;
+            }
+            set
+            {
+                if (_UserID != value)
+                {
+                    OnUserIDChanging(value);
+                    ReportPropertyChanging("UserID");
+                    _UserID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("UserID");
+                    OnUserIDChanged();
+                }
+            }
+        }
+        private global::System.String _UserID;
+        partial void OnUserIDChanging(global::System.String value);
+        partial void OnUserIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ModDate
+        {
+            get
+            {
+                return _ModDate;
+            }
+            set
+            {
+                OnModDateChanging(value);
+                ReportPropertyChanging("ModDate");
+                _ModDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ModDate");
+                OnModDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ModDate;
+        partial void OnModDateChanging(Nullable<global::System.DateTime> value);
         partial void OnModDateChanged();
     
         /// <summary>

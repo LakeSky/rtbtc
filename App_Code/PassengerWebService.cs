@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Script.Services;
 using meis007Model;
+using System.Dynamic;
 
 /// <summary>
 /// Summary description for PassengerWebService
@@ -35,12 +36,23 @@ public class PassengerWebService : System.Web.Services.WebService {
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public Passenger GetPassenger(string id)
+    {
+        var customerId = long.Parse(id);
+        meis007Entities _meis007Entities = new meis007Entities();
+        var passenger = _meis007Entities.B2CPaxinfo.Where(x => x.CustomerSno == customerId).First();
+        var customPassenger = new Passenger { title = passenger.Title, firstname = passenger.PaxFirstName, middlename = passenger.PaxMiddleName, lastname = passenger.PaxLastName, dob = DateTimeHelper.ConvertToString(passenger.PaxDOB.ToString()), nationality = passenger.Nationality, id = passenger.CustomerSno.ToString() };
+        return customPassenger;
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public void EditPassenger(string id, string title, string firstname, string middlename, string lastname, string dob, string nationality)
     {
         var customerId = long.Parse(id);
         var dobParsed = DateTimeHelper.ConvertToDate(dob);
         meis007Entities _meis007Entities = new meis007Entities();
-        var passenger = _meis007Entities.B2CPaxinfo.Where(x => x.CustomerId == customerId).First();
+        var passenger = _meis007Entities.B2CPaxinfo.Where(x => x.CustomerSno == customerId).First();
         passenger.Title = title;
         passenger.PaxFirstName = firstname;
         passenger.PaxMiddleName = middlename;
@@ -62,4 +74,14 @@ public class PassengerWebService : System.Web.Services.WebService {
         return;
     }
     
+}
+
+public class Passenger {
+    public string id { get; set; }
+    public string title { get; set; }
+    public string firstname { get; set; }
+    public string middlename { get; set; }
+    public string lastname { get; set; }
+    public string dob { get; set; }
+    public string nationality { get; set; }
 }

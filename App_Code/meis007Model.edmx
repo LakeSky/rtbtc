@@ -18,6 +18,15 @@
       [CityMaster].[H2H] AS [H2H]
       FROM [dbo].[CityMaster] AS [CityMaster]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="CountryMaster" EntityType="meis007Model.Store.CountryMaster" store:Type="Tables" store:Schema="dbo" store:Name="CountryMaster">
+            <DefiningQuery>SELECT 
+      [CountryMaster].[CountryID] AS [CountryID], 
+      [CountryMaster].[CountryName] AS [CountryName], 
+      [CountryMaster].[UserID] AS [UserID], 
+      [CountryMaster].[ModDate] AS [ModDate], 
+      [CountryMaster].[H2H] AS [H2H]
+      FROM [dbo].[CountryMaster] AS [CountryMaster]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_B2CPaxinfo_B2CCustomerinfo1" Association="meis007Model.Store.FK_B2CPaxinfo_B2CCustomerinfo1">
             <End Role="B2CCustomerinfo" EntitySet="B2CCustomerinfo" />
             <End Role="B2CPaxinfo" EntitySet="B2CPaxinfo" />
@@ -75,6 +84,21 @@
           <Property Name="ModDate" Type="smalldatetime" Nullable="false" />
           <Property Name="H2H" Type="smallint" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'meis007.dbo.CountryMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="CountryMaster">
+          <Key>
+            <PropertyRef Name="CountryID" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="CountryID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CountryName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ModDate" Type="smalldatetime" />
+          <Property Name="H2H" Type="smallint" />
+        </EntityType>
         <Association Name="FK_B2CPaxinfo_B2CCustomerinfo1">
           <End Role="B2CCustomerinfo" Type="meis007Model.Store.B2CCustomerinfo" Multiplicity="0..1" />
           <End Role="B2CPaxinfo" Type="meis007Model.Store.B2CPaxinfo" Multiplicity="*" />
@@ -87,6 +111,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'meis007.dbo.SysParameters' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="SysParameters">
+        <Property Name="ParameterName" Type="varchar" MaxLength="50" />
+        <Property Name="ParameterValue" Type="varchar" MaxLength="100" />
+      </EntityType>-->
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
@@ -96,6 +127,7 @@
           <EntitySet Name="B2CCustomerinfo" EntityType="meis007Model.B2CCustomerinfo" />
           <EntitySet Name="B2CPaxinfo" EntityType="meis007Model.B2CPaxinfo" />
           <EntitySet Name="CityMasters" EntityType="meis007Model.CityMaster" />
+          <EntitySet Name="CountryMasters" EntityType="meis007Model.CountryMaster" />
           <AssociationSet Name="FK_B2CPaxinfo_B2CCustomerinfo1" Association="meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1">
             <End Role="B2CCustomerinfo" EntitySet="B2CCustomerinfo" />
             <End Role="B2CPaxinfo" EntitySet="B2CPaxinfo" />
@@ -150,6 +182,18 @@
           <Property Name="CountryID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="ModDate" Type="DateTime" Nullable="false" />
+          <Property Name="H2H" Type="Int16" />
+        </EntityType>
+        <EntityType Name="CountryMaster">
+          <Key>
+            <PropertyRef Name="CountryID" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="CountryID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ModDate" Type="DateTime" />
           <Property Name="H2H" Type="Int16" />
         </EntityType>
         <Association Name="FK_B2CPaxinfo_B2CCustomerinfo1">
@@ -207,6 +251,13 @@
             <ScalarProperty Name="ModDate" ColumnName="ModDate" />
             <ScalarProperty Name="H2H" ColumnName="H2H" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CountryMasters"><EntityTypeMapping TypeName="meis007Model.CountryMaster"><MappingFragment StoreEntitySet="CountryMaster">
+            <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+            <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+            <ScalarProperty Name="H2H" ColumnName="H2H" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -231,6 +282,7 @@
         <EntityTypeShape EntityType="meis007Model.B2CCustomerinfo" Width="1.5" PointX="0.75" PointY="1" Height="4.2879036458333317" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.B2CPaxinfo" Width="1.5" PointX="3" PointY="1.75" Height="2.9417936197916656" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.CityMaster" Width="1.5" PointX="5.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.CountryMaster" Width="1.5" PointX="2.75" PointY="5.75" Height="1.9802864583333335" IsExpanded="true" />
         <AssociationConnector Association="meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="3.2208968098958328" />
           <ConnectorPoint PointX="3" PointY="3.2208968098958328" />

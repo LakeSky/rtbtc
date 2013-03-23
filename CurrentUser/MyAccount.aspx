@@ -19,22 +19,37 @@
             height: 650,
             modal: true,
             open: function () {
-                $("#title").val("Mr");
-                $("#firstName").val("");
-                $("#middleName").val("");
-                $("#lastName").val("");
-                $("#dob").val("");
-                $("#nationality").val("");
+                if ($("#action").val() == "new") {
+                    $("#title").val("Mr");
+                    $("#firstName").val("");
+                    $("#middleName").val("");
+                    $("#lastName").val("");
+                    $("#dob").val("");
+                    $("#nationality").val("");
+                } else {
+                    var passenger = window.passenger;
+                    $("#title").val(passenger.title);
+                    $("#firstName").val(passenger.firstname);
+                    $("#middleName").val(passenger.middlename);
+                    $("#lastName").val(passenger.lastname);
+                    $("#dob").val(passenger.dob);
+                    $("#nationality").val(passenger.nationality);
+                }
                 $("#add-passenger-div .alert h3").val("");
                 $("#add-passenger-div .alert").addClass("custom-hide");
             },
             buttons: {
                 Save: function () {
-                    console.log("posting")
                     var that = this;
                     var error = false;
-                    var id = '<%= CurrentUser.Id() %>';
-                    var title = $("#title").val(); ;
+                    if ($("#action").val() == "new") {
+                        var id = '<%= CurrentUser.Id() %>';
+                        var url = '<%=ResolveUrl("~/PassengerWebService.asmx/AddPassenger") %>';
+                    } else {
+                        var id = window.passenger.id;
+                        var url = '<%=ResolveUrl("~/PassengerWebService.asmx/EditPassenger") %>';
+                    }
+                    var title = $("#title").val();
                     var firstname = $("#firstName").val();
                     var middlename = $("#middleName").val();
                     var lastname = $("#lastName").val();
@@ -67,7 +82,7 @@
                     $.ajax({
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
-                        url: '<%=ResolveUrl("~/PassengerWebService.asmx/AddPassenger") %>',
+                        url: url,
                         data: "{'id': '" + id + "', 'title': '" + title + "', 'firstname': '" + firstname + "', 'middlename' : '" + middlename + "', 'lastname' : '" + lastname + "', 'dob' : '" + dob + "', 'nationality' : '" + nationality + "'}",
                         dataType: "json",
                         success: function (data) {
@@ -88,6 +103,7 @@
 
         $("#add-passenger").click(function (e) {
             e.preventDefault();
+            $("#action").val("new");
             $("#add-passenger-div").dialog("open");
         });
 
@@ -102,7 +118,33 @@
             });
         });
 
+        $("#middle-content").delegate('a.edit-passenger', 'click', function (e) {
+            e.preventDefault();
+            $("#action").val("edit");
+            var id = $(this).data('id');
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: '<%=ResolveUrl("~/PassengerWebService.asmx/GetPassenger") %>',
+                data: "{'id': '" + id + "'}",
+                dataType: "json",
+                success: function (data) {
+                    window.passenger = data.d;
+                    $("#action").val("edit");
+                    $("#add-passenger-div").dialog("open");
+                },
+                error: function (result) {
+                    console.log(result);
+                }
+            });
+
+        });
+
         function appendRow(id, title, firstname, middlename, lastname, dob, nationality) {
+            if ($("#action").val() != "new") {
+                $("tr#" + window.passenger.id).remove();
+            }
             var html = "<tr id='" + id + "'>";
             html = html + "<td>" + title + "</td>";
             html = html + "<td>" + firstname + "</td>";
@@ -110,11 +152,12 @@
             html = html + "<td>" + lastname + "</td>";
             html = html + "<td>" + dob + "</td>";
             html = html + "<td>" + nationality + "</td>";
-            html = html + "<td><a href='#' class='delete-passenger' data-id='"+id+"'>Delete</a></td>";
+            html = html + "<td><a href='#' class='edit-passenger' data-id='" + id + "'>Edit</a></td>";
+            html = html + "<td><a href='#' class='delete-passenger' data-id='" + id + "'>Delete</a></td>";
             html = html + "</tr>";
             $(".passenger-table").append(html);
         }
-
+        window.passenger = null;
     });
 </script>
 </asp:Content>
@@ -199,6 +242,8 @@
       <th>Last Name</th>
       <th>DOB</th>
       <th>Nationality</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
     <% foreach (var passenger in b2CCustomerinfo.B2CPaxinfo)
        { %>
@@ -210,6 +255,7 @@
         <td><%= passenger.PaxLastName %></td>
         <td><%= DateTimeHelper.ConvertToString(passenger.PaxDOB.ToString()) %></td>
         <td><%= passenger.Nationality %></td>
+        <td><a href="#" class="edit-passenger" data-id="<%= passenger.CustomerSno %>">Edit</a></td>
         <td><a href="#" class="delete-passenger" data-id="<%= passenger.CustomerSno %>">Delete</a></td>
        </tr>
     <%} %>
@@ -217,6 +263,7 @@
   <div id="add-passenger-div">
   <fieldset>
     <legend>Add Passenger</legend>
+    <input type="hidden" id="action" value="new" />
     <div class="alert alert-error custom-hide">
       <h3></h3>
     </div>

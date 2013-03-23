@@ -23,7 +23,7 @@
     void Session_Start(object sender, EventArgs e) 
     {
         // Code that runs when a new session is started
-
+        Session["CustomerId"] = DbParameter.GetCustomerId();
     }
 
     void Session_End(object sender, EventArgs e) 
