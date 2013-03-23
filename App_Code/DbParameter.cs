@@ -13,13 +13,13 @@ public static class DbParameter
     public static string GetCustomerId() {
         var _customerId = "";
         _customerId = (string)(HttpContext.Current.Session["CustomerId"]);
-        if (_customerId != null) {
+        if (_customerId != null && !string.IsNullOrEmpty(_customerId)) {
             return _customerId;
         }
         _customerId = "";
         SqlDataReader _sqlDataReader = GetData();
         while (_sqlDataReader.Read()) {
-            if (_sqlDataReader["ParameterName"] == "B2CCustomerID") {
+            if (_sqlDataReader["ParameterName"].ToString() == "B2CCustomerID"){
                 _customerId = _sqlDataReader["ParameterValue"].ToString();
             }
         }
