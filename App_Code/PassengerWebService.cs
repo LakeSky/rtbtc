@@ -41,7 +41,7 @@ public class PassengerWebService : System.Web.Services.WebService {
         var customerId = long.Parse(id);
         meis007Entities _meis007Entities = new meis007Entities();
         var passenger = _meis007Entities.B2CPaxinfo.Where(x => x.CustomerSno == customerId).First();
-        var customPassenger = new Passenger { title = passenger.Title, firstname = passenger.PaxFirstName, middlename = passenger.PaxMiddleName, lastname = passenger.PaxLastName, dob = DateTimeHelper.ConvertToString(passenger.PaxDOB.ToString()), nationality = passenger.Nationality, id = passenger.CustomerSno.ToString() };
+        var customPassenger = new Passenger { title = passenger.Title, firstname = passenger.PaxFirstName, middlename = passenger.PaxMiddleName, lastname = passenger.PaxLastName, dob = DateTimeHelper.ConvertToString(passenger.PaxDOB.ToString()), nationality = passenger.Nationality, id = passenger.CustomerSno.ToString(), customerid = passenger.CustomerId.ToString() };
         return customPassenger;
     }
 
@@ -84,4 +84,5 @@ public class Passenger {
     public string lastname { get; set; }
     public string dob { get; set; }
     public string nationality { get; set; }
+    public string customerid { get; set; }
 }

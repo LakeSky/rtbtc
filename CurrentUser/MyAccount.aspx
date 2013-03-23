@@ -25,7 +25,7 @@
                     $("#middleName").val("");
                     $("#lastName").val("");
                     $("#dob").val("");
-                    $("#nationality").val("");
+                    $("#ddlNationality").val("");
                 } else {
                     var passenger = window.passenger;
                     $("#title").val(passenger.title);
@@ -33,7 +33,7 @@
                     $("#middleName").val(passenger.middlename);
                     $("#lastName").val(passenger.lastname);
                     $("#dob").val(passenger.dob);
-                    $("#nationality").val(passenger.nationality);
+                    $("#ddlNationality").val(passenger.nationality);
                 }
                 $("#add-passenger-div .alert h3").val("");
                 $("#add-passenger-div .alert").addClass("custom-hide");
@@ -54,7 +54,8 @@
                     var middlename = $("#middleName").val();
                     var lastname = $("#lastName").val();
                     var dob = $("#dob").val();
-                    var nationality = $("#nationality").val();
+                    var nationality = $("#ddlNationality").val();
+                    var nationalitySelectedText = $("#ddlNationality option:selected").text();
                     var message = "";
 
                     if ($.trim(firstname) == "") {
@@ -69,7 +70,7 @@
                         error = true;
                         message = message + "DOB is required!<br/>";
                     }
-                    if ($.trim(nationality) == "") {
+                    if ($.trim(nationality) == "0") {
                         error = true;
                         message = message + "Nationality is required!";
                     }
@@ -87,7 +88,7 @@
                         dataType: "json",
                         success: function (data) {
                             var passengerid = data.d;
-                            appendRow(passengerid, title, firstname, middlename, lastname, dob, nationality);
+                            appendRow(passengerid, title, firstname, middlename, lastname, dob, nationalitySelectedText);
                             $(that).dialog("close");
                         },
                         error: function (result) {
@@ -142,8 +143,15 @@
         });
 
         function appendRow(id, title, firstname, middlename, lastname, dob, nationality) {
+            var allowDelete = true;
+            var replaceRow = false;
+            var trId = "";
             if ($("#action").val() != "new") {
-                $("tr#" + window.passenger.id).remove();
+                replaceRow = true;
+                trId = "tr#" + window.passenger.id;
+                if (window.passenger.customerid == "1") {
+                    allowDelete = false;
+                }
             }
             var html = "<tr id='" + id + "'>";
             html = html + "<td>" + title + "</td>";
@@ -153,9 +161,17 @@
             html = html + "<td>" + dob + "</td>";
             html = html + "<td>" + nationality + "</td>";
             html = html + "<td><a href='#' class='edit-passenger' data-id='" + id + "'>Edit</a></td>";
-            html = html + "<td><a href='#' class='delete-passenger' data-id='" + id + "'>Delete</a></td>";
+            html = html + "<td>"
+            if (allowDelete) {
+                html = html + "<a href='#' class='delete-passenger' data-id='" + id + "'>Delete</a>"
+            }
+            html = html + "</td>";
             html = html + "</tr>";
-            $(".passenger-table").append(html);
+            if (replaceRow) {
+                $(trId).replaceWith(html);
+            } else {
+                $(".passenger-table").append(html);
+            }
         }
         window.passenger = null;
     });
@@ -230,6 +246,7 @@
       <th>Edit</th>
       <th>Delete</th>
     </tr>
+    <% meis007Model.meis007Entities _meis007Entities = new meis007Model.meis007Entities();  %>
     <% foreach (var passenger in b2CCustomerinfo.B2CPaxinfo)
        { %>
 
@@ -239,7 +256,7 @@
         <td><%= passenger.PaxMiddleName %></td>
         <td><%= passenger.PaxLastName %></td>
         <td><%= DateTimeHelper.ConvertToString(passenger.PaxDOB.ToString()) %></td>
-        <td><%= passenger.Nationality %></td>
+        <td><%= QueryHelper.GetCountryName(_meis007Entities, passenger.Nationality) %></td>
         <td><a href="#" class="edit-passenger" data-id="<%= passenger.CustomerSno %>">Edit</a></td>
         <td>
           <% if(passenger.CustomerId != 1) {%>
@@ -285,7 +302,15 @@
     </p>
     <p>
       <label>Nationality</label>
-        <input id="nationality" type="text" />
+        <asp:DropDownList ID="ddlNationality" runat="server" ClientIDMode="Static" 
+            DataSourceID="SqlDataSource2" DataTextField="CountryName" 
+            DataValueField="CountryID">
+            <asp:ListItem Value="0">Select</asp:ListItem>
+        </asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:meis007ConnectionString %>" 
+            SelectCommand="SELECT [CountryID], [CountryName] FROM [CountryMaster]">
+        </asp:SqlDataSource>
     </p>
   </fieldset>
   </div>
