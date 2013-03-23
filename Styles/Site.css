@@ -173,9 +173,15 @@ body {
   margin: 20px 0 20px 125px;
 }   
 
-#subscribe-block .subscribe-wrapper{
+.div-wrapper{
   margin: 15px;
-  height: 55px;
+  
   padding-top: 17px;
 }
+
+#hotel-search{
+  width: 70%;
+  border: solid 1px #ccc;
+  margin: 20px 0 20px 125px;
+}   
 
