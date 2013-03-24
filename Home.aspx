@@ -81,6 +81,7 @@
             var roomId = "tr#room_" + $(this).data('id');
             $(roomId).remove();
             window.room_index = window.room_index - 1;
+            removeChildAgesRow(window.room_index);
             if (window.room_index != 2) {
                 var index = window.room_index - 1;
                 var button = _.template($("#add-remove-room-button-template").html(), { index: index });
@@ -88,6 +89,38 @@
                 $(roomId + " td:last").html(button);
             }
         });
+
+        $("#middle-content").delegate('.kids', 'change', function (e) {
+            e.preventDefault();
+            var index = $(this).data('id');
+            var val = parseInt($(this).val());
+            removeChildAgesRow(index);
+            if (val != 0) {
+                var roomId = "tr#room_" + index;
+                var childRow = _.template($("#add-child-ages-template").html(), { index: index });
+                $(roomId).after(childRow);
+                var childRowId = "tr#child_" + index;
+                var ageTd = _.template($("#child-age-dropdown-template").html(), { index: index, age_index: 1 });
+                $(childRowId + " .first").html(ageTd);
+                if (val > 1){
+                    ageTd = _.template($("#child-age-dropdown-template").html(), { index: index, age_index: 2 });
+                    $(childRowId + " .second").html(ageTd);
+                }
+                if (val > 2){
+                    ageTd = _.template($("#child-age-dropdown-template").html(), { index: index, age_index: 3 });
+                    $(childRowId + " .third").html(ageTd);
+                }
+                if (val > 3){
+                    ageTd = _.template($("#child-age-dropdown-template").html(), { index: index, age_index: 4 });
+                    $(childRowId + " .fourth").html(ageTd);
+                }
+            }
+        });
+
+        function removeChildAgesRow(index) {
+            var childId = "tr#child_" + index;
+            $(childId).remove();
+        }
 
     });
   </script>
@@ -129,10 +162,10 @@
         <th>Infants(0-1)</th>
         <th>&nbsp;</th>
       </tr>
-      <tr class="1">
+      <tr id="room_1">
         <td>Room 1</td>
         <td><select name="rooms[1][adult]" class="ddl-small"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select> </td>
-        <td><select name="rooms[1][kids]" class="ddl-small"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
+        <td><select name="rooms[1][kids]" class="ddl-small kids" data-id="1"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
         <td><select name="rooms[1][infants]" class="ddl-small"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
         <td></td>
       </tr>
@@ -168,10 +201,34 @@
 <tr id="room_{{index}}">
 <td>Room {{index}}</td>
 <td><select name="rooms[{{ index }}][adult]" class="ddl-small"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select> </td>
-<td><select name="rooms[{{ index }}][kids]" class="ddl-small"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
+<td><select name="rooms[{{ index }}][kids]" class="ddl-small kids" data-id="{{index}}"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></td>
 <td><select name="rooms[{{ index }}][infants]" class="ddl-small"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
 <td><input type="button" class="btn btn-danger remove-room" value="x" data-id="{{index}}" id="remove_room_{{index}}" /></td>
 </tr>
-</script>  
+</script>
+<script id='add-child-ages-template' type='text/html'>
+<tr id="child_{{index}}">
+<td>Child Ages</td>
+<td class="first"></td>
+<td class="second"></td>
+<td class="third"></td>
+<td class="fourth"></td>
+</tr>
+</script>
+<script id='child-age-dropdown-template' type='text/html'>
+<select name="rooms[{{ index }}][kids][age][{{age_index}}]" class="ddl-small" data-id="{{index}}">
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+  <option>6</option>
+  <option>7</option>
+  <option>8</option>
+  <option>9</option>
+  <option>10</option>
+  <option>11</option>
+  <option>12</option>
+</select> 
+</script>
 </asp:Content>
 
