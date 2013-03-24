@@ -37,27 +37,32 @@ public partial class Home : System.Web.UI.Page
         string childAge = "";
         var totalRooms = int.Parse(Request.Params["totalRooms"].ToString());
         var parms = Request.Params;
-        List<ShoppingHelper> list = new List<ShoppingHelper>();
-        ShoppingHelper _ShoppingHelper;
-        
+        ShoppingHelper _ShoppingHelper = new ShoppingHelper();
+        _ShoppingHelper.RoomDetails = new List<ShoppingRoomHelper>();
+        ShoppingRoomHelper _ShoppingRoomHelper;
+
+        _ShoppingHelper.CityName = txtCity.Text;
+        _ShoppingHelper.FromDate = txtStartDate.Text;
+        _ShoppingHelper.ToDate = txtEndDate.Text;
         for (int i = 0; i < totalRooms; i++ ){
             index = (i + 1).ToString();
-            _ShoppingHelper = new ShoppingHelper();
-            _ShoppingHelper.RoomName = "Room " + index;
-            _ShoppingHelper.Adults = int.Parse(parms["rooms[" + index + "][adults]"].ToString());
-            _ShoppingHelper.Kids = int.Parse(parms["rooms[" + index + "][kids]"].ToString());
-            _ShoppingHelper.Infants = int.Parse(parms["rooms[" + index + "][infants]"].ToString());
-            _ShoppingHelper.ChildAge = new List<int>();
+            _ShoppingRoomHelper = new ShoppingRoomHelper();
+            _ShoppingRoomHelper.RoomName = "Room " + index;
+            _ShoppingRoomHelper.Adults = int.Parse(parms["rooms[" + index + "][adults]"].ToString());
+            _ShoppingRoomHelper.Kids = int.Parse(parms["rooms[" + index + "][kids]"].ToString());
+            _ShoppingRoomHelper.Infants = int.Parse(parms["rooms[" + index + "][infants]"].ToString());
+            _ShoppingRoomHelper.ChildAge = new List<int>();
             for (int j = 1; j < 5; j++) {
               childAge = (string)(parms["rooms[" + index + "][kids][age]["+j.ToString()+"]"]);
               if (childAge == null) { 
                 break; 
               }
-              _ShoppingHelper.ChildAge.Add(int.Parse(childAge));
+              _ShoppingRoomHelper.ChildAge.Add(int.Parse(childAge));
             }
-            list.Add(_ShoppingHelper);
+            _ShoppingHelper.RoomDetails.Add(_ShoppingRoomHelper);
         }
-        Session["StoredShopping"] = list;
+
+        Session["StoredShopping"] = _ShoppingHelper;
         Response.Redirect("Choose.aspx");
     }
 }

@@ -7,13 +7,15 @@ using System.Web.UI.WebControls;
 
 public partial class Choose : System.Web.UI.Page
 {
-    public List<ShoppingHelper> ShoppingHelperList;
+    public ShoppingHelper shoppingHelper;
+    public List<ShoppingRoomHelper> ShoppingHelperList;
     protected void Page_Load(object sender, EventArgs e)
     {
-        ShoppingHelperList = (List<ShoppingHelper>)(Session["StoredShopping"]);
-        if (ShoppingHelperList == null) {
+        shoppingHelper = (ShoppingHelper)(Session["StoredShopping"]);
+        if (shoppingHelper == null) {
           Session["NoticeMessage"] = "Please Select below details!";
           Response.Redirect("Home.aspx");
         }
+        ShoppingHelperList = shoppingHelper.RoomDetails;
     }
 }

@@ -8,9 +8,8 @@ using System.Web;
 /// </summary>
 public class ShoppingHelper
 {
-    public string RoomName { get; set; }
-    public int Adults { get; set; }
-    public int Kids { get; set; }
-    public int Infants { get; set; }
-    public List<int> ChildAge { get; set; }
+    public string CityName { get; set; }
+    public string FromDate { get; set; }
+    public string ToDate { get; set; }
+    public List<ShoppingRoomHelper> RoomDetails { get; set; }
 }

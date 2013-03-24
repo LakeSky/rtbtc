@@ -6,9 +6,9 @@
   <h3>Select Hotels!</h3>
   <table class="table table-bordered">
     <tr>
-      <td><span>City: </span></td>
-      <td><span>From: </span></td>
-      <td><span>To: </span></td>
+      <td><span>City: <%= shoppingHelper.CityName %> </span></td>
+      <td><span>From: <%= shoppingHelper.FromDate %> </span></td>
+      <td><span>To: <%= shoppingHelper.ToDate %> </span></td>
     </tr>
   </table>
   <h3>Room Details</h3>
@@ -18,6 +18,7 @@
     <th>Adults</th>
     <th>Kids</th>
     <th>Infants</th>
+    <th>&nbsp;</th>
   </tr>
   <% foreach (var x in ShoppingHelperList)
      { %>
@@ -26,6 +27,7 @@
          <td><%= x.Adults %></td>
          <td><%= x.Kids %></td>
          <td><%= x.Infants %></td>
+         <td>&nbsp;</td>
        </tr>
        <% if (x.ChildAge.Count > 0)
           {%>
@@ -38,7 +40,7 @@
            <%} %>
            <% if ((4 - count) != 0)
               {%>
-             <%for (int k = 1; k < (4 - count); k++)
+             <%for (int k = 1; k <= (4 - count); k++)
                {%>
                <td>&nbsp;</td>
              <%} %>
