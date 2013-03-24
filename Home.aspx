@@ -41,6 +41,26 @@
         });
 
         $(".start-date, .end-date").attr("readonly", true);
+
+        $(".txtCity").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: '<%=ResolveUrl("~/ViewHelperWebService.asmx/CitySearch") %>',
+                    data: "{ 'q': '" + request.term + "'}",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data)
+                        response(data.d);
+                    },
+                    error: function (result) {
+                        console.log(result);
+                    }
+                });
+            }
+        });
+
     });
   </script>
 </asp:Content>
@@ -53,12 +73,25 @@
   <div class="div-wrapper">
     <h3>Hotel Search</h3>
     <label>Where do you want to go?</label>
-    <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
+    <asp:TextBox ID="txtCity" runat="server" CssClass="txtCity" 
+          ValidationGroup="search"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="rfvCity" runat="server" 
+                    ControlToValidate="txtCity" ForeColor="#FF3300" 
+                    SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
     <label>When do you want to go?</label>
-    <asp:TextBox ID="txtStartDate" runat="server" CssClass="start-date"></asp:TextBox>
-    <asp:TextBox ID="txtEndDate" runat="server" CssClass="end-date"></asp:TextBox>
+    <asp:TextBox ID="txtStartDate" runat="server" CssClass="start-date" 
+          ValidationGroup="search"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="rfvStartDate" runat="server" 
+                    ControlToValidate="txtStartDate" ForeColor="#FF3300" 
+                    SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+    <asp:TextBox ID="txtEndDate" runat="server" CssClass="end-date" 
+          ValidationGroup="search"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="rfvEndDate" runat="server" 
+                    ControlToValidate="txtEndDate" ForeColor="#FF3300" 
+                    SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
     <br />
-    <asp:Button ID="txtSearch" runat="server" Text="Search" CssClass="btn btn-success" CausesValidation="false"/>
+    <asp:Button ID="txtSearch" runat="server" Text="Search" 
+          CssClass="btn btn-success" ValidationGroup="search"/>
   </div>
 </div>
 <br />
@@ -69,11 +102,13 @@
         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvEmail" runat="server" 
                     ControlToValidate="txtEmail" ForeColor="#FF3300" 
-                    SetFocusOnError="True">*</asp:RequiredFieldValidator>
-        <asp:RegularExpressionValidator ID="revEmail" runat="server" ForeColor="#FF3300" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
-                    ControlToValidate="txtEmail" SetFocusOnError="True">Please enter valid email !</asp:RegularExpressionValidator>
+                    SetFocusOnError="True" ValidationGroup="subscribe">*</asp:RequiredFieldValidator>
+        <asp:RegularExpressionValidator ID="revEmail" runat="server" 
+            ForeColor="#FF3300" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+                    ControlToValidate="txtEmail" SetFocusOnError="True" 
+            ValidationGroup="subscribe">Please enter valid email !</asp:RegularExpressionValidator>
         <asp:Button ID="btnSubscribe" runat="server" Text="Subscribe" CssClass="btn btn-primary" 
-            onclick="btnSubscribe_Click" />
+            onclick="btnSubscribe_Click" ValidationGroup="subscribe" />
 
     </div>
   </div>
