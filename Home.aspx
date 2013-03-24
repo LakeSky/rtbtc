@@ -64,6 +64,9 @@
 
         $('.add-room').click(function (e) {
             e.preventDefault();
+            if (window.room_index == 6) {
+                return false;
+            }
             var row = _.template($("#add-room-template").html(), { index: window.room_index });
             $(".rooms-table").append(row);
             window.room_index = window.room_index + 1;
@@ -79,7 +82,6 @@
             $(roomId).remove();
             window.room_index = window.room_index - 1;
             if (window.room_index != 2) {
-                console.log(window.room_index);
                 var index = window.room_index - 1;
                 var button = _.template($("#add-remove-room-button-template").html(), { index: index });
                 roomId = "tr#room_" + index;
