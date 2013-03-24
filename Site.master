@@ -10,6 +10,8 @@
     <link href="~/Styles/custom.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/rtbtc/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/rtbtc/Scripts/jquery_ui.js"></script>
+    <script type="text/javascript" src="/rtbtc/Scripts/underscore.js"></script>
+    <script type="text/javascript" src="/rtbtc/Scripts/underscore-template-settings.js"></script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>

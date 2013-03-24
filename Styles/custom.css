@@ -82,3 +82,7 @@ legend
     font-weight: 600;
     padding: 2px 4px 8px 4px;
 }
+
+.ddl-small{
+  width: 45px;
+}
