@@ -69,6 +69,7 @@
             }
             var row = _.template($("#add-room-template").html(), { index: window.room_index });
             $(".rooms-table").append(row);
+            $("#totalRooms").val(window.room_index);
             window.room_index = window.room_index + 1;
             if (window.room_index != 3) {
                 var remove_button_id = "#remove_room_" + (window.room_index - 2);
@@ -81,6 +82,7 @@
             var roomId = "tr#room_" + $(this).data('id');
             $(roomId).remove();
             window.room_index = window.room_index - 1;
+            $("#totalRooms").val(window.room_index - 1);
             removeChildAgesRow(window.room_index);
             if (window.room_index != 2) {
                 var index = window.room_index - 1;
@@ -102,15 +104,15 @@
                 var childRowId = "tr#child_" + index;
                 var ageTd = _.template($("#child-age-dropdown-template").html(), { index: index, age_index: 1 });
                 $(childRowId + " .first").html(ageTd);
-                if (val > 1){
+                if (val > 1) {
                     ageTd = _.template($("#child-age-dropdown-template").html(), { index: index, age_index: 2 });
                     $(childRowId + " .second").html(ageTd);
                 }
-                if (val > 2){
+                if (val > 2) {
                     ageTd = _.template($("#child-age-dropdown-template").html(), { index: index, age_index: 3 });
                     $(childRowId + " .third").html(ageTd);
                 }
-                if (val > 3){
+                if (val > 3) {
                     ageTd = _.template($("#child-age-dropdown-template").html(), { index: index, age_index: 4 });
                     $(childRowId + " .fourth").html(ageTd);
                 }
@@ -164,15 +166,17 @@
       </tr>
       <tr id="room_1">
         <td>Room 1</td>
-        <td><select name="rooms[1][adult]" class="ddl-small"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select> </td>
+        <td><select name="rooms[1][adults]" class="ddl-small"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select> </td>
         <td><select name="rooms[1][kids]" class="ddl-small kids" data-id="1"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
         <td><select name="rooms[1][infants]" class="ddl-small"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
         <td></td>
       </tr>
     </table>
     <br />
+    <input type="hidden" value="1" id="totalRooms" name="totalRooms" />
     <asp:Button ID="txtSearch" runat="server" Text="Search" 
-          CssClass="btn btn-success" ValidationGroup="search"/>
+          CssClass="btn btn-success" ValidationGroup="search" 
+          onclick="txtSearch_Click"/>
   </div>
 </div>
 <br />
@@ -200,7 +204,7 @@
 <script id='add-room-template' type='text/html'>
 <tr id="room_{{index}}">
 <td>Room {{index}}</td>
-<td><select name="rooms[{{ index }}][adult]" class="ddl-small"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select> </td>
+<td><select name="rooms[{{ index }}][adults]" class="ddl-small"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select> </td>
 <td><select name="rooms[{{ index }}][kids]" class="ddl-small kids" data-id="{{index}}"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></td>
 <td><select name="rooms[{{ index }}][infants]" class="ddl-small"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
 <td><input type="button" class="btn btn-danger remove-room" value="x" data-id="{{index}}" id="remove_room_{{index}}" /></td>

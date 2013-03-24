@@ -31,4 +31,33 @@ public partial class Home : System.Web.UI.Page
         Session["NoticeMessage"] = "Successfully added for subscription!";
         Response.Redirect(CurrentUser.GetRootPath("/Home.aspx"));
     }
+    protected void txtSearch_Click(object sender, EventArgs e)
+    {
+        string index = "";
+        string childAge = "";
+        var totalRooms = int.Parse(Request.Params["totalRooms"].ToString());
+        var parms = Request.Params;
+        List<ShoppingHelper> list = new List<ShoppingHelper>();
+        ShoppingHelper _ShoppingHelper;
+        
+        for (int i = 0; i < totalRooms; i++ ){
+            index = (i + 1).ToString();
+            _ShoppingHelper = new ShoppingHelper();
+            _ShoppingHelper.RoomName = "Room " + index;
+            _ShoppingHelper.Adults = int.Parse(parms["rooms[" + index + "][adults]"].ToString());
+            _ShoppingHelper.Kids = int.Parse(parms["rooms[" + index + "][kids]"].ToString());
+            _ShoppingHelper.Infants = int.Parse(parms["rooms[" + index + "][infants]"].ToString());
+            _ShoppingHelper.ChildAge = new List<int>();
+            for (int j = 1; j < 5; j++) {
+              childAge = (string)(parms["rooms[" + index + "][kids][age]["+j.ToString()+"]"]);
+              if (childAge == null) { 
+                break; 
+              }
+              _ShoppingHelper.ChildAge.Add(int.Parse(childAge));
+            }
+            list.Add(_ShoppingHelper);
+        }
+        Session["StoredShopping"] = list;
+        Response.Redirect("Choose.aspx");
+    }
 }
