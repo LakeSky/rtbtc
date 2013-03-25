@@ -60,7 +60,7 @@
             }
         });
 
-        window.room_index = 2;
+        window.room_index = <%= RoomsCount + 1 %>;
 
         $('.add-room').click(function (e) {
             e.preventDefault();
@@ -103,18 +103,18 @@
                 $(roomId).after(childRow);
                 var childRowId = "tr#child_" + index;
                 var ageTd = _.template($("#child-age-dropdown-template").html(), { index: index, age_index: 1 });
-                $(childRowId + " .first").html(ageTd);
+                $(childRowId + " .td_1").html(ageTd);
                 if (val > 1) {
                     ageTd = _.template($("#child-age-dropdown-template").html(), { index: index, age_index: 2 });
-                    $(childRowId + " .second").html(ageTd);
+                    $(childRowId + " .td_2").html(ageTd);
                 }
                 if (val > 2) {
                     ageTd = _.template($("#child-age-dropdown-template").html(), { index: index, age_index: 3 });
-                    $(childRowId + " .third").html(ageTd);
+                    $(childRowId + " .td_3").html(ageTd);
                 }
                 if (val > 3) {
                     ageTd = _.template($("#child-age-dropdown-template").html(), { index: index, age_index: 4 });
-                    $(childRowId + " .fourth").html(ageTd);
+                    $(childRowId + " .td_4").html(ageTd);
                 }
             }
         });
@@ -123,6 +123,11 @@
             var childId = "tr#child_" + index;
             $(childId).remove();
         }
+
+        _.each($(".old-ddl"), function(ddl){
+          var val = $(ddl).data('value');
+          $(ddl).val(val);
+        });
 
     });
   </script>
@@ -164,6 +169,7 @@
         <th>Infants(0-1)</th>
         <th>&nbsp;</th>
       </tr>
+      <% if(ShoppingRoomsList == null){ %>
       <tr id="room_1">
         <td>Room 1</td>
         <td><select name="rooms[1][adults]" class="ddl-small"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select> </td>
@@ -171,9 +177,54 @@
         <td><select name="rooms[1][infants]" class="ddl-small"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
         <td></td>
       </tr>
+      <%}else{%>
+        <% int i = 1; %>
+        <%foreach (var room in ShoppingRoomsList)
+          { %>
+            <tr id="room_<%= i %>">
+              <td><%= room.RoomName %></td>
+              <td><select name="rooms[<%= i %>][adults]" class="ddl-small old-ddl" data-value="<%= room.Adults %>" ><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></td>
+              <td><select name="rooms[<%= i %>][kids]" class="ddl-small kids old-ddl" data-id="<%= i %>"  data-value="<%= room.Kids %>"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
+              <td><select name="rooms[<%= i %>][infants]" class="ddl-small old-ddl"  data-value="<%= room.Infants %>"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
+              <% if ((i != 1) && (RoomsCount == i))
+                 {%>
+                 <td><input type="button" class="btn btn-danger remove-room" value="x" data-id="<%= i %>" id="remove_room_<%= i %>" /></td>
+              <%}
+                 else
+                 { %>
+                   <td>&nbsp;</td>
+              <%} %>
+            </tr>
+            
+              <% var count = room.ChildAge.Count; %>
+              <% if (count > 0)
+                 { %>
+                 <tr  id="child_<%= i %>">
+                   <td>Child  Ages</td>
+                   <% int x = 1; %>
+                   <%foreach (var age in room.ChildAge)
+                     { %>
+                       <td class="td_<%= x %>">
+                         <select name="rooms[<%= i %>][kids][age][<%= x %>]" class="ddl-small old-ddl" data-value="<%= age %>" data-id="<%= i %>"><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select> 
+                       </td>
+                       <% x += 1; %>
+                   <%} %>
+                   <% if ((4 - count) != 0)
+                      {%>
+                        <%for (int k = 1; k <= (4 - count); k++)
+                          {%>
+                            <td class="td_<%= 4 + k - count %>">&nbsp;</td>
+                       <%} %>
+                   <%} %>
+                   </tr>
+              <%} %>
+            <% i += 1; %>
+        <%} %>
+
+      <%} %>
     </table>
     <br />
-    <input type="hidden" value="1" id="totalRooms" name="totalRooms" />
+    <input type="hidden" value="<%= RoomsCount %>" id="totalRooms" name="totalRooms" />
     <asp:Button ID="txtSearch" runat="server" Text="Search" 
           CssClass="btn btn-success" ValidationGroup="search" 
           onclick="txtSearch_Click"/>
@@ -213,10 +264,10 @@
 <script id='add-child-ages-template' type='text/html'>
 <tr id="child_{{index}}">
 <td>Child Ages</td>
-<td class="first"></td>
-<td class="second"></td>
-<td class="third"></td>
-<td class="fourth"></td>
+<td class="td_1"></td>
+<td class="td_2"></td>
+<td class="td_3"></td>
+<td class="td_4"></td>
 </tr>
 </script>
 <script id='child-age-dropdown-template' type='text/html'>

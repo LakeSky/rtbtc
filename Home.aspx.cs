@@ -9,10 +9,22 @@ using meis007Model;
 public partial class Home : System.Web.UI.Page
 {
     protected meis007Entities _meis007Entities;
+    public ShoppingHelper shoppingHelper;
+    public List<ShoppingRoomHelper> ShoppingRoomsList;
+    public int RoomsCount;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack) {
             errorDiv.Visible = false;
+        }
+        RoomsCount = 1;
+        shoppingHelper = (ShoppingHelper)(Session["StoredShopping"]);
+        if (shoppingHelper != null) {
+            ShoppingRoomsList = shoppingHelper.RoomDetails;
+            txtCity.Text = shoppingHelper.CityName;
+            txtStartDate.Text = shoppingHelper.FromDate;
+            txtEndDate.Text = shoppingHelper.ToDate;
+            RoomsCount = ShoppingRoomsList.Count;
         }
     }
 
