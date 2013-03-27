@@ -6,6 +6,7 @@
     <edmx:StorageModels>
       <Schema Namespace="meis007Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="meis007ModelStoreContainer">
+          <EntitySet Name="Amenities" EntityType="meis007Model.Store.Amenities" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="B2CCustomerinfo" EntityType="meis007Model.Store.B2CCustomerinfo" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="B2CPaxinfo" EntityType="meis007Model.Store.B2CPaxinfo" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CityMaster" EntityType="meis007Model.Store.CityMaster" store:Type="Tables" store:Schema="dbo" store:Name="CityMaster">
@@ -27,11 +28,63 @@
       [CountryMaster].[H2H] AS [H2H]
       FROM [dbo].[CountryMaster] AS [CountryMaster]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Facilities" EntityType="meis007Model.Store.Facilities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductAmenities" EntityType="meis007Model.Store.ProductAmenities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductFacilities" EntityType="meis007Model.Store.ProductFacilities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductImages" EntityType="meis007Model.Store.ProductImages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductMaster" EntityType="meis007Model.Store.ProductMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductRRC" EntityType="meis007Model.Store.ProductRRC" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoomTypeDetail" EntityType="meis007Model.Store.RoomTypeDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoomTypeHeader" EntityType="meis007Model.Store.RoomTypeHeader" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_B2CPaxinfo_B2CCustomerinfo1" Association="meis007Model.Store.FK_B2CPaxinfo_B2CCustomerinfo1">
             <End Role="B2CCustomerinfo" EntitySet="B2CCustomerinfo" />
             <End Role="B2CPaxinfo" EntitySet="B2CPaxinfo" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductAmenities_Amenities" Association="meis007Model.Store.FK_ProductAmenities_Amenities">
+            <End Role="Amenities" EntitySet="Amenities" />
+            <End Role="ProductAmenities" EntitySet="ProductAmenities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAmenities_ProductMaster" Association="meis007Model.Store.FK_ProductAmenities_ProductMaster">
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+            <End Role="ProductAmenities" EntitySet="ProductAmenities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFacilities_Facilities" Association="meis007Model.Store.FK_ProductFacilities_Facilities">
+            <End Role="Facilities" EntitySet="Facilities" />
+            <End Role="ProductFacilities" EntitySet="ProductFacilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFacilities_ProductRRC" Association="meis007Model.Store.FK_ProductFacilities_ProductRRC">
+            <End Role="ProductRRC" EntitySet="ProductRRC" />
+            <End Role="ProductFacilities" EntitySet="ProductFacilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductImages_ProductMaster" Association="meis007Model.Store.FK_ProductImages_ProductMaster">
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+            <End Role="ProductImages" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRRC_ProductMaster" Association="meis007Model.Store.FK_ProductRRC_ProductMaster">
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+            <End Role="ProductRRC" EntitySet="ProductRRC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRRC_RoomTypeDetail" Association="meis007Model.Store.FK_ProductRRC_RoomTypeDetail">
+            <End Role="RoomTypeDetail" EntitySet="RoomTypeDetail" />
+            <End Role="ProductRRC" EntitySet="ProductRRC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRRC_RoomTypeHeader" Association="meis007Model.Store.FK_ProductRRC_RoomTypeHeader">
+            <End Role="RoomTypeHeader" EntitySet="RoomTypeHeader" />
+            <End Role="ProductRRC" EntitySet="ProductRRC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomTypeDetail_RoomTypeHeader" Association="meis007Model.Store.FK_RoomTypeDetail_RoomTypeHeader">
+            <End Role="RoomTypeHeader" EntitySet="RoomTypeHeader" />
+            <End Role="RoomTypeDetail" EntitySet="RoomTypeDetail" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Amenities">
+          <Key>
+            <PropertyRef Name="AmenitiesID" />
+          </Key>
+          <Property Name="AmenitiesID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AmenitiesName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Amenitytype" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="B2CCustomerinfo">
           <Key>
             <PropertyRef Name="CustomerSNo" />
@@ -99,6 +152,99 @@
           <Property Name="ModDate" Type="smalldatetime" />
           <Property Name="H2H" Type="smallint" />
         </EntityType>
+        <EntityType Name="Facilities">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FacilityName" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ProductAmenities">
+          <Key>
+            <PropertyRef Name="ProductAmenityId" />
+          </Key>
+          <Property Name="ProductAmenityId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="productID" Type="bigint" />
+          <Property Name="AmenitiesId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ProductFacilities">
+          <Key>
+            <PropertyRef Name="ProductFacilityId" />
+          </Key>
+          <Property Name="ProductFacilityId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RRCID" Type="bigint" Nullable="false" />
+          <Property Name="FID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ProductImages">
+          <Key>
+            <PropertyRef Name="ProductImageId" />
+          </Key>
+          <Property Name="ProductImageId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="bigint" />
+          <Property Name="ImageAddress" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="ProductMaster">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="bigint" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="ServiceID" Type="int" Nullable="false" />
+          <Property Name="ClsID" Type="int" />
+          <Property Name="LocID" Type="int" />
+          <Property Name="CityID" Type="nvarchar" MaxLength="100" />
+          <Property Name="CountryID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CheckInTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="CheckOutTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoofRooms" Type="int" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="WebSite" Type="nvarchar" MaxLength="200" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="30" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="30" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="ContactPerson" Type="nvarchar" MaxLength="100" />
+          <Property Name="CurID" Type="nvarchar" MaxLength="10" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsSupplier" Type="bit" />
+          <Property Name="ThumbnailPath" Type="nvarchar" MaxLength="300" />
+          <Property Name="HotelChain" Type="nvarchar" MaxLength="200" />
+          <Property Name="NearestAirport" Type="nvarchar" MaxLength="200" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ModDate" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductRRC">
+          <Key>
+            <PropertyRef Name="RRCID" />
+          </Key>
+          <Property Name="RRCID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="productID" Type="bigint" />
+          <Property Name="RCID" Type="bigint" />
+          <Property Name="RoomTHID" Type="bigint" />
+          <Property Name="RoomTDID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="RoomTypeDetail">
+          <Key>
+            <PropertyRef Name="RoomTDID" />
+          </Key>
+          <Property Name="RoomTDID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoomTDName" Type="nvarchar" MaxLength="100" />
+          <Property Name="RoomTHID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="RoomTypeHeader">
+          <Key>
+            <PropertyRef Name="RoomTHID" />
+          </Key>
+          <Property Name="RoomTHID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoomTHName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ServiceID" Type="int" />
+          <Property Name="RCID" Type="int" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModDate" Type="smalldatetime" />
+        </EntityType>
         <Association Name="FK_B2CPaxinfo_B2CCustomerinfo1">
           <End Role="B2CCustomerinfo" Type="meis007Model.Store.B2CCustomerinfo" Multiplicity="0..1" />
           <End Role="B2CPaxinfo" Type="meis007Model.Store.B2CPaxinfo" Multiplicity="*" />
@@ -111,21 +257,183 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductAmenities_Amenities">
+          <End Role="Amenities" Type="meis007Model.Store.Amenities" Multiplicity="0..1" />
+          <End Role="ProductAmenities" Type="meis007Model.Store.ProductAmenities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Amenities">
+              <PropertyRef Name="AmenitiesID" />
+            </Principal>
+            <Dependent Role="ProductAmenities">
+              <PropertyRef Name="AmenitiesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductAmenities_ProductMaster">
+          <End Role="ProductMaster" Type="meis007Model.Store.ProductMaster" Multiplicity="0..1" />
+          <End Role="ProductAmenities" Type="meis007Model.Store.ProductAmenities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaster">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductAmenities">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFacilities_Facilities">
+          <End Role="Facilities" Type="meis007Model.Store.Facilities" Multiplicity="0..1" />
+          <End Role="ProductFacilities" Type="meis007Model.Store.ProductFacilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facilities">
+              <PropertyRef Name="FID" />
+            </Principal>
+            <Dependent Role="ProductFacilities">
+              <PropertyRef Name="FID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFacilities_ProductRRC">
+          <End Role="ProductRRC" Type="meis007Model.Store.ProductRRC" Multiplicity="1" />
+          <End Role="ProductFacilities" Type="meis007Model.Store.ProductFacilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductRRC">
+              <PropertyRef Name="RRCID" />
+            </Principal>
+            <Dependent Role="ProductFacilities">
+              <PropertyRef Name="RRCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductImages_ProductMaster">
+          <End Role="ProductMaster" Type="meis007Model.Store.ProductMaster" Multiplicity="0..1" />
+          <End Role="ProductImages" Type="meis007Model.Store.ProductImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaster">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductImages">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRRC_ProductMaster">
+          <End Role="ProductMaster" Type="meis007Model.Store.ProductMaster" Multiplicity="0..1" />
+          <End Role="ProductRRC" Type="meis007Model.Store.ProductRRC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaster">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductRRC">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRRC_RoomTypeDetail">
+          <End Role="RoomTypeDetail" Type="meis007Model.Store.RoomTypeDetail" Multiplicity="0..1" />
+          <End Role="ProductRRC" Type="meis007Model.Store.ProductRRC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomTypeDetail">
+              <PropertyRef Name="RoomTDID" />
+            </Principal>
+            <Dependent Role="ProductRRC">
+              <PropertyRef Name="RoomTDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRRC_RoomTypeHeader">
+          <End Role="RoomTypeHeader" Type="meis007Model.Store.RoomTypeHeader" Multiplicity="0..1" />
+          <End Role="ProductRRC" Type="meis007Model.Store.ProductRRC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomTypeHeader">
+              <PropertyRef Name="RoomTHID" />
+            </Principal>
+            <Dependent Role="ProductRRC">
+              <PropertyRef Name="RoomTHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomTypeDetail_RoomTypeHeader">
+          <End Role="RoomTypeHeader" Type="meis007Model.Store.RoomTypeHeader" Multiplicity="0..1" />
+          <End Role="RoomTypeDetail" Type="meis007Model.Store.RoomTypeDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomTypeHeader">
+              <PropertyRef Name="RoomTHID" />
+            </Principal>
+            <Dependent Role="RoomTypeDetail">
+              <PropertyRef Name="RoomTHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="meis007Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="meis007Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Amenities" EntityType="meis007Model.Amenity" />
           <EntitySet Name="B2CCustomerinfo" EntityType="meis007Model.B2CCustomerinfo" />
           <EntitySet Name="B2CPaxinfo" EntityType="meis007Model.B2CPaxinfo" />
           <EntitySet Name="CityMasters" EntityType="meis007Model.CityMaster" />
           <EntitySet Name="CountryMasters" EntityType="meis007Model.CountryMaster" />
+          <EntitySet Name="Facilities" EntityType="meis007Model.Facility" />
+          <EntitySet Name="ProductAmenities" EntityType="meis007Model.ProductAmenity" />
+          <EntitySet Name="ProductFacilities" EntityType="meis007Model.ProductFacility" />
+          <EntitySet Name="ProductImages" EntityType="meis007Model.ProductImage" />
+          <EntitySet Name="ProductMasters" EntityType="meis007Model.ProductMaster" />
+          <EntitySet Name="ProductRRCs" EntityType="meis007Model.ProductRRC" />
+          <EntitySet Name="RoomTypeDetails" EntityType="meis007Model.RoomTypeDetail" />
+          <EntitySet Name="RoomTypeHeaders" EntityType="meis007Model.RoomTypeHeader" />
+          <AssociationSet Name="FK_ProductAmenities_Amenities" Association="meis007Model.FK_ProductAmenities_Amenities">
+            <End Role="Amenities" EntitySet="Amenities" />
+            <End Role="ProductAmenities" EntitySet="ProductAmenities" />
+          </AssociationSet>
           <AssociationSet Name="FK_B2CPaxinfo_B2CCustomerinfo1" Association="meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1">
             <End Role="B2CCustomerinfo" EntitySet="B2CCustomerinfo" />
             <End Role="B2CPaxinfo" EntitySet="B2CPaxinfo" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductFacilities_Facilities" Association="meis007Model.FK_ProductFacilities_Facilities">
+            <End Role="Facilities" EntitySet="Facilities" />
+            <End Role="ProductFacilities" EntitySet="ProductFacilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAmenities_ProductMaster" Association="meis007Model.FK_ProductAmenities_ProductMaster">
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
+            <End Role="ProductAmenities" EntitySet="ProductAmenities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFacilities_ProductRRC" Association="meis007Model.FK_ProductFacilities_ProductRRC">
+            <End Role="ProductRRC" EntitySet="ProductRRCs" />
+            <End Role="ProductFacilities" EntitySet="ProductFacilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductImages_ProductMaster" Association="meis007Model.FK_ProductImages_ProductMaster">
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
+            <End Role="ProductImages" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRRC_ProductMaster" Association="meis007Model.FK_ProductRRC_ProductMaster">
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
+            <End Role="ProductRRC" EntitySet="ProductRRCs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRRC_RoomTypeDetail" Association="meis007Model.FK_ProductRRC_RoomTypeDetail">
+            <End Role="RoomTypeDetail" EntitySet="RoomTypeDetails" />
+            <End Role="ProductRRC" EntitySet="ProductRRCs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRRC_RoomTypeHeader" Association="meis007Model.FK_ProductRRC_RoomTypeHeader">
+            <End Role="RoomTypeHeader" EntitySet="RoomTypeHeaders" />
+            <End Role="ProductRRC" EntitySet="ProductRRCs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomTypeDetail_RoomTypeHeader" Association="meis007Model.FK_RoomTypeDetail_RoomTypeHeader">
+            <End Role="RoomTypeHeader" EntitySet="RoomTypeHeaders" />
+            <End Role="RoomTypeDetail" EntitySet="RoomTypeDetails" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Amenity">
+          <Key>
+            <PropertyRef Name="AmenitiesID" />
+          </Key>
+          <Property Name="AmenitiesID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AmenitiesName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Amenitytype" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ProductAmenities" Relationship="meis007Model.FK_ProductAmenities_Amenities" FromRole="Amenities" ToRole="ProductAmenities" />
+        </EntityType>
         <EntityType Name="B2CCustomerinfo">
           <Key>
             <PropertyRef Name="CustomerSNo" />
@@ -189,6 +497,128 @@
           <Property Name="ModDate" Type="DateTime" />
           <Property Name="H2H" Type="Int16" />
         </EntityType>
+        <EntityType Name="Facility">
+          <Key>
+            <PropertyRef Name="FID" />
+          </Key>
+          <Property Name="FID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacilityName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ProductFacilities" Relationship="meis007Model.FK_ProductFacilities_Facilities" FromRole="Facilities" ToRole="ProductFacilities" />
+        </EntityType>
+        <EntityType Name="ProductAmenity">
+          <Key>
+            <PropertyRef Name="ProductAmenityId" />
+          </Key>
+          <Property Name="ProductAmenityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productID" Type="Int64" />
+          <Property Name="AmenitiesId" Type="Int64" />
+          <NavigationProperty Name="Amenity" Relationship="meis007Model.FK_ProductAmenities_Amenities" FromRole="ProductAmenities" ToRole="Amenities" />
+          <NavigationProperty Name="ProductMaster" Relationship="meis007Model.FK_ProductAmenities_ProductMaster" FromRole="ProductAmenities" ToRole="ProductMaster" />
+        </EntityType>
+        <EntityType Name="ProductFacility">
+          <Key>
+            <PropertyRef Name="ProductFacilityId" />
+          </Key>
+          <Property Name="ProductFacilityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RRCID" Type="Int64" Nullable="false" />
+          <Property Name="FID" Type="Int64" />
+          <NavigationProperty Name="Facility" Relationship="meis007Model.FK_ProductFacilities_Facilities" FromRole="ProductFacilities" ToRole="Facilities" />
+          <NavigationProperty Name="ProductRRC" Relationship="meis007Model.FK_ProductFacilities_ProductRRC" FromRole="ProductFacilities" ToRole="ProductRRC" />
+        </EntityType>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="ProductImageId" />
+          </Key>
+          <Property Name="ProductImageId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int64" />
+          <Property Name="ImageAddress" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ProductMaster" Relationship="meis007Model.FK_ProductImages_ProductMaster" FromRole="ProductImages" ToRole="ProductMaster" />
+        </EntityType>
+        <EntityType Name="ProductMaster">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int64" Nullable="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ServiceID" Type="Int32" Nullable="false" />
+          <Property Name="ClsID" Type="Int32" />
+          <Property Name="LocID" Type="Int32" />
+          <Property Name="CityID" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="CountryID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CheckInTime" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CheckOutTime" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="NoofRooms" Type="Int32" />
+          <Property Name="ShortDescription" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="Longitude" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Latitude" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="WebSite" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Tel" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Fax" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ContactPerson" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="CurID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="AccountCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsSupplier" Type="Boolean" />
+          <Property Name="ThumbnailPath" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="HotelChain" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="NearestAirport" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ModDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="ProductAmenities" Relationship="meis007Model.FK_ProductAmenities_ProductMaster" FromRole="ProductMaster" ToRole="ProductAmenities" />
+          <NavigationProperty Name="ProductImages" Relationship="meis007Model.FK_ProductImages_ProductMaster" FromRole="ProductMaster" ToRole="ProductImages" />
+          <NavigationProperty Name="ProductRRCs" Relationship="meis007Model.FK_ProductRRC_ProductMaster" FromRole="ProductMaster" ToRole="ProductRRC" />
+        </EntityType>
+        <EntityType Name="ProductRRC">
+          <Key>
+            <PropertyRef Name="RRCID" />
+          </Key>
+          <Property Name="RRCID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productID" Type="Int64" />
+          <Property Name="RCID" Type="Int64" />
+          <Property Name="RoomTHID" Type="Int64" />
+          <Property Name="RoomTDID" Type="Int64" />
+          <NavigationProperty Name="ProductFacilities" Relationship="meis007Model.FK_ProductFacilities_ProductRRC" FromRole="ProductRRC" ToRole="ProductFacilities" />
+          <NavigationProperty Name="ProductMaster" Relationship="meis007Model.FK_ProductRRC_ProductMaster" FromRole="ProductRRC" ToRole="ProductMaster" />
+          <NavigationProperty Name="RoomTypeDetail" Relationship="meis007Model.FK_ProductRRC_RoomTypeDetail" FromRole="ProductRRC" ToRole="RoomTypeDetail" />
+          <NavigationProperty Name="RoomTypeHeader" Relationship="meis007Model.FK_ProductRRC_RoomTypeHeader" FromRole="ProductRRC" ToRole="RoomTypeHeader" />
+        </EntityType>
+        <EntityType Name="RoomTypeDetail">
+          <Key>
+            <PropertyRef Name="RoomTDID" />
+          </Key>
+          <Property Name="RoomTDID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomTDName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="RoomTHID" Type="Int64" />
+          <NavigationProperty Name="ProductRRCs" Relationship="meis007Model.FK_ProductRRC_RoomTypeDetail" FromRole="RoomTypeDetail" ToRole="ProductRRC" />
+          <NavigationProperty Name="RoomTypeHeader" Relationship="meis007Model.FK_RoomTypeDetail_RoomTypeHeader" FromRole="RoomTypeDetail" ToRole="RoomTypeHeader" />
+        </EntityType>
+        <EntityType Name="RoomTypeHeader">
+          <Key>
+            <PropertyRef Name="RoomTHID" />
+          </Key>
+          <Property Name="RoomTHID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomTHName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ServiceID" Type="Int32" />
+          <Property Name="RCID" Type="Int32" />
+          <Property Name="UserID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ModDate" Type="DateTime" />
+          <NavigationProperty Name="ProductRRCs" Relationship="meis007Model.FK_ProductRRC_RoomTypeHeader" FromRole="RoomTypeHeader" ToRole="ProductRRC" />
+          <NavigationProperty Name="RoomTypeDetails" Relationship="meis007Model.FK_RoomTypeDetail_RoomTypeHeader" FromRole="RoomTypeHeader" ToRole="RoomTypeDetail" />
+        </EntityType>
+        <Association Name="FK_ProductAmenities_Amenities">
+          <End Role="Amenities" Type="meis007Model.Amenity" Multiplicity="0..1" />
+          <End Role="ProductAmenities" Type="meis007Model.ProductAmenity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Amenities">
+              <PropertyRef Name="AmenitiesID" />
+            </Principal>
+            <Dependent Role="ProductAmenities">
+              <PropertyRef Name="AmenitiesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_B2CPaxinfo_B2CCustomerinfo1">
           <End Role="B2CCustomerinfo" Type="meis007Model.B2CCustomerinfo" Multiplicity="0..1" />
           <End Role="B2CPaxinfo" Type="meis007Model.B2CPaxinfo" Multiplicity="*" />
@@ -201,12 +631,113 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductFacilities_Facilities">
+          <End Role="Facilities" Type="meis007Model.Facility" Multiplicity="0..1" />
+          <End Role="ProductFacilities" Type="meis007Model.ProductFacility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facilities">
+              <PropertyRef Name="FID" />
+            </Principal>
+            <Dependent Role="ProductFacilities">
+              <PropertyRef Name="FID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductAmenities_ProductMaster">
+          <End Role="ProductMaster" Type="meis007Model.ProductMaster" Multiplicity="0..1" />
+          <End Role="ProductAmenities" Type="meis007Model.ProductAmenity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaster">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductAmenities">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFacilities_ProductRRC">
+          <End Role="ProductRRC" Type="meis007Model.ProductRRC" Multiplicity="1" />
+          <End Role="ProductFacilities" Type="meis007Model.ProductFacility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductRRC">
+              <PropertyRef Name="RRCID" />
+            </Principal>
+            <Dependent Role="ProductFacilities">
+              <PropertyRef Name="RRCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductImages_ProductMaster">
+          <End Role="ProductMaster" Type="meis007Model.ProductMaster" Multiplicity="0..1" />
+          <End Role="ProductImages" Type="meis007Model.ProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaster">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductImages">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRRC_ProductMaster">
+          <End Role="ProductMaster" Type="meis007Model.ProductMaster" Multiplicity="0..1" />
+          <End Role="ProductRRC" Type="meis007Model.ProductRRC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaster">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductRRC">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRRC_RoomTypeDetail">
+          <End Role="RoomTypeDetail" Type="meis007Model.RoomTypeDetail" Multiplicity="0..1" />
+          <End Role="ProductRRC" Type="meis007Model.ProductRRC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomTypeDetail">
+              <PropertyRef Name="RoomTDID" />
+            </Principal>
+            <Dependent Role="ProductRRC">
+              <PropertyRef Name="RoomTDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRRC_RoomTypeHeader">
+          <End Role="RoomTypeHeader" Type="meis007Model.RoomTypeHeader" Multiplicity="0..1" />
+          <End Role="ProductRRC" Type="meis007Model.ProductRRC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomTypeHeader">
+              <PropertyRef Name="RoomTHID" />
+            </Principal>
+            <Dependent Role="ProductRRC">
+              <PropertyRef Name="RoomTHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomTypeDetail_RoomTypeHeader">
+          <End Role="RoomTypeHeader" Type="meis007Model.RoomTypeHeader" Multiplicity="0..1" />
+          <End Role="RoomTypeDetail" Type="meis007Model.RoomTypeDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomTypeHeader">
+              <PropertyRef Name="RoomTHID" />
+            </Principal>
+            <Dependent Role="RoomTypeDetail">
+              <PropertyRef Name="RoomTHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="meis007ModelStoreContainer" CdmEntityContainer="meis007Entities">
+          <EntitySetMapping Name="Amenities"><EntityTypeMapping TypeName="meis007Model.Amenity"><MappingFragment StoreEntitySet="Amenities">
+            <ScalarProperty Name="AmenitiesID" ColumnName="AmenitiesID" />
+            <ScalarProperty Name="AmenitiesName" ColumnName="AmenitiesName" />
+            <ScalarProperty Name="Amenitytype" ColumnName="Amenitytype" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="B2CCustomerinfo"><EntityTypeMapping TypeName="meis007Model.B2CCustomerinfo"><MappingFragment StoreEntitySet="B2CCustomerinfo">
             <ScalarProperty Name="CustomerSNo" ColumnName="CustomerSNo" />
             <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -251,6 +782,75 @@
             <ScalarProperty Name="ModDate" ColumnName="ModDate" />
             <ScalarProperty Name="H2H" ColumnName="H2H" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Facilities"><EntityTypeMapping TypeName="meis007Model.Facility"><MappingFragment StoreEntitySet="Facilities">
+            <ScalarProperty Name="FID" ColumnName="FID" />
+            <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ProductAmenities"><EntityTypeMapping TypeName="meis007Model.ProductAmenity"><MappingFragment StoreEntitySet="ProductAmenities">
+            <ScalarProperty Name="ProductAmenityId" ColumnName="ProductAmenityId" />
+            <ScalarProperty Name="productID" ColumnName="productID" />
+            <ScalarProperty Name="AmenitiesId" ColumnName="AmenitiesId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ProductFacilities"><EntityTypeMapping TypeName="meis007Model.ProductFacility"><MappingFragment StoreEntitySet="ProductFacilities">
+            <ScalarProperty Name="ProductFacilityId" ColumnName="ProductFacilityId" />
+            <ScalarProperty Name="RRCID" ColumnName="RRCID" />
+            <ScalarProperty Name="FID" ColumnName="FID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ProductImages"><EntityTypeMapping TypeName="meis007Model.ProductImage"><MappingFragment StoreEntitySet="ProductImages">
+            <ScalarProperty Name="ProductImageId" ColumnName="ProductImageId" />
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            <ScalarProperty Name="ImageAddress" ColumnName="ImageAddress" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ProductMasters"><EntityTypeMapping TypeName="meis007Model.ProductMaster"><MappingFragment StoreEntitySet="ProductMaster">
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+            <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+            <ScalarProperty Name="ClsID" ColumnName="ClsID" />
+            <ScalarProperty Name="LocID" ColumnName="LocID" />
+            <ScalarProperty Name="CityID" ColumnName="CityID" />
+            <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+            <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+            <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+            <ScalarProperty Name="NoofRooms" ColumnName="NoofRooms" />
+            <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+            <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+            <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+            <ScalarProperty Name="Tel" ColumnName="Tel" />
+            <ScalarProperty Name="Fax" ColumnName="Fax" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+            <ScalarProperty Name="CurID" ColumnName="CurID" />
+            <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+            <ScalarProperty Name="IsSupplier" ColumnName="IsSupplier" />
+            <ScalarProperty Name="ThumbnailPath" ColumnName="ThumbnailPath" />
+            <ScalarProperty Name="HotelChain" ColumnName="HotelChain" />
+            <ScalarProperty Name="NearestAirport" ColumnName="NearestAirport" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ProductRRCs"><EntityTypeMapping TypeName="meis007Model.ProductRRC"><MappingFragment StoreEntitySet="ProductRRC">
+            <ScalarProperty Name="RRCID" ColumnName="RRCID" />
+            <ScalarProperty Name="productID" ColumnName="productID" />
+            <ScalarProperty Name="RCID" ColumnName="RCID" />
+            <ScalarProperty Name="RoomTHID" ColumnName="RoomTHID" />
+            <ScalarProperty Name="RoomTDID" ColumnName="RoomTDID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="RoomTypeDetails"><EntityTypeMapping TypeName="meis007Model.RoomTypeDetail"><MappingFragment StoreEntitySet="RoomTypeDetail">
+            <ScalarProperty Name="RoomTDID" ColumnName="RoomTDID" />
+            <ScalarProperty Name="RoomTDName" ColumnName="RoomTDName" />
+            <ScalarProperty Name="RoomTHID" ColumnName="RoomTHID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="RoomTypeHeaders"><EntityTypeMapping TypeName="meis007Model.RoomTypeHeader"><MappingFragment StoreEntitySet="RoomTypeHeader">
+            <ScalarProperty Name="RoomTHID" ColumnName="RoomTHID" />
+            <ScalarProperty Name="RoomTHName" ColumnName="RoomTHName" />
+            <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+            <ScalarProperty Name="RCID" ColumnName="RCID" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -272,13 +872,71 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="meis007Model">
-        <EntityTypeShape EntityType="meis007Model.B2CCustomerinfo" Width="1.5" PointX="0.75" PointY="1" Height="4.2879036458333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.B2CPaxinfo" Width="1.5" PointX="3" PointY="1.75" Height="2.9417936197916656" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.CityMaster" Width="1.5" PointX="5.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.CountryMaster" Width="1.5" PointX="2.75" PointY="5.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.Amenity" Width="1.5" PointX="0.75" PointY="11.375" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.B2CCustomerinfo" Width="1.5" PointX="5.75" PointY="8" Height="4.2879036458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.B2CPaxinfo" Width="1.5" PointX="8" PointY="8.75" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.CityMaster" Width="1.5" PointX="2.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.CountryMaster" Width="1.5" PointX="8.75" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.Facility" Width="1.5" PointX="6" PointY="1.375" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductAmenity" Width="1.5" PointX="3" PointY="4.25" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductFacility" Width="1.5" PointX="8.25" PointY="4.25" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductImage" Width="1.5" PointX="3" PointY="7.125" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductMaster" Width="1.5" PointX="0.75" PointY="1.75" Height="6.9801236979166665" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductRRC" Width="1.5" PointX="6" PointY="3.875" Height="2.7494921875000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.RoomTypeDetail" Width="1.5" PointX="3.75" PointY="14.25" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.RoomTypeHeader" Width="1.5" PointX="1.5" PointY="14" Height="2.5571907552083388" IsExpanded="true" />
+        <AssociationConnector Association="meis007Model.FK_ProductAmenities_Amenities" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="11.376152846153847" />
+          <ConnectorPoint PointX="2.625" PointY="11.001152846153847" />
+          <ConnectorPoint PointX="2.625" PointY="5.2401432291666659" />
+          <ConnectorPoint PointX="3" PointY="5.2401432291666659" />
+        </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="3.2208968098958328" />
-          <ConnectorPoint PointX="3" PointY="3.2208968098958328" />
+          <ConnectorPoint PointX="7.25" PointY="10.220896809895834" />
+          <ConnectorPoint PointX="7.322916666666667" PointY="10.220896809895834" />
+          <ConnectorPoint PointX="7.489583333333333" PointY="10.220896809895834" />
+          <ConnectorPoint PointX="8" PointY="10.220896809895834" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK_ProductFacilities_Facilities" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="2.8817350260416656" />
+          <ConnectorPoint PointX="8.46875" PointY="2.8817350260416656" />
+          <ConnectorPoint PointX="8.46875" PointY="4.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK_ProductAmenities_ProductMaster" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.6825716145833329" />
+          <ConnectorPoint PointX="3" PointY="4.6825716145833329" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK_ProductFacilities_ProductRRC" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="5.2401432291666659" />
+          <ConnectorPoint PointX="8.25" PointY="5.2401432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK_ProductImages_ProductMaster" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7.9275618489583337" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="7.9275618489583328" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="7.9275618489583337" />
+          <ConnectorPoint PointX="3" PointY="7.9275618489583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK_ProductRRC_ProductMaster" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.4586393229166674" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="6.4586393229166665" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="6.4586393229166674" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="6.4586393229166665" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="6.4586393229166674" />
+          <ConnectorPoint PointX="6" PointY="6.4586393229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK_ProductRRC_RoomTypeDetail" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.90625" PointY="14.25" />
+          <ConnectorPoint PointX="4.90625" PointY="4.03125" />
+          <ConnectorPoint PointX="6" PointY="4.03125" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK_ProductRRC_RoomTypeHeader" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="16.424988606770835" />
+          <ConnectorPoint PointX="7.40625" PointY="16.424988606770835" />
+          <ConnectorPoint PointX="7.40625" PointY="6.6244921875000031" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK_RoomTypeDetail_RoomTypeHeader" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="15.240143229166666" />
+          <ConnectorPoint PointX="3.75" PointY="15.240143229166666" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
