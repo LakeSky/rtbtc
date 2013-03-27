@@ -180,57 +180,86 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 <fieldset>
   <legend>My Account</legend>
-  <p>
-    <label>First Name</label>
-    <asp:TextBox ID="txtFirstName" runat="server" MaxLength="300"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" 
+  <table style="width:100%;">
+    <tr>
+      <td style="width:45%">
+        <p>
+          <label>First Name</label>
+          <asp:TextBox ID="txtFirstName" runat="server" MaxLength="300"></asp:TextBox>
+          <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" 
                     ControlToValidate="txtFirstName" ForeColor="#FF3300" 
                     SetFocusOnError="True">*</asp:RequiredFieldValidator>
-  </p>
-  <p>
-    <label>Middle Name</label>
-    <asp:TextBox ID="txtMiddleName" runat="server" MaxLength="300"></asp:TextBox>
-  </p>
-  <p>
-    <label>Last Name</label>
-    <asp:TextBox ID="txtLastName" runat="server" MaxLength="300"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="rfvLastName" runat="server" 
+        </p>
+      </td>
+      <td>
+        <p>
+          <label>Middle Name</label>
+          <asp:TextBox ID="txtMiddleName" runat="server" MaxLength="300"></asp:TextBox>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <label>Last Name</label>
+          <asp:TextBox ID="txtLastName" runat="server" MaxLength="300"></asp:TextBox>
+          <asp:RequiredFieldValidator ID="rfvLastName" runat="server" 
                     ControlToValidate="txtLastName" ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
-  </p>
-  <p>
-    <label>Mobile</label>
-    <asp:TextBox ID="txtMobile" runat="server" MaxLength="300"></asp:TextBox>
-  </p>
-  <p>
-    <label>Telephone</label>
-    <asp:TextBox ID="txtTelephone" runat="server" MaxLength="300"></asp:TextBox>
-  </p>
-  <p>
-    <label>City</label>
-    <asp:DropDownList ID="ddlCity" runat="server" AppendDataBoundItems="True" 
+        </p>
+      </td>
+      <td>
+        <p>
+          <label>Mobile</label>
+          <asp:TextBox ID="txtMobile" runat="server" MaxLength="300"></asp:TextBox>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <label>Telephone</label>
+          <asp:TextBox ID="txtTelephone" runat="server" MaxLength="300"></asp:TextBox>
+        </p>
+      </td>
+      <td>
+        <p>
+          <label>City</label>
+          <asp:DropDownList ID="ddlCity" runat="server" AppendDataBoundItems="True" 
           DataSourceID="SqlDataSource1" DataTextField="CityName" DataValueField="CityID">
-        <asp:ListItem Value="0">Select</asp:ListItem>
-      </asp:DropDownList>
-      <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+          <asp:ListItem Value="0">Select</asp:ListItem>
+          </asp:DropDownList>
+          <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
           ConnectionString="<%$ ConnectionStrings:meis007ConnectionString %>" 
           SelectCommand="SELECT [CityID], [CityName] FROM [CityMaster]">
-      </asp:SqlDataSource>
-  </p>
-  <p>
-    <label>Address 1</label>
-    <asp:TextBox ID="txtAddress1" runat="server" MaxLength="300" TextMode="MultiLine"></asp:TextBox>
-  </p>
-  <p>
-    <label>Address 2</label>
-    <asp:TextBox ID="txtAddress2" runat="server" MaxLength="300" TextMode="MultiLine"></asp:TextBox>
-  </p>
-    <p></p>
-    <p>
-      <asp:Button ID="btnSave" runat="server" onclick="btnSave_Click" Text="Save"  CssClass="btn btn-save btn-primary"/>
-      &nbsp;&nbsp;&nbsp;
-      <asp:Button ID="btnCancel" runat="server" CausesValidation="False" 
+          </asp:SqlDataSource>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <label>Address 1</label>
+          <asp:TextBox ID="txtAddress1" runat="server" MaxLength="300" TextMode="MultiLine"></asp:TextBox>
+        </p>
+      </td>
+      <td>
+        <p>
+          <label>Address 2</label>
+          <asp:TextBox ID="txtAddress2" runat="server" MaxLength="300" TextMode="MultiLine"></asp:TextBox>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p>
+          <asp:Button ID="btnSave" runat="server" onclick="btnSave_Click" Text="Save"  CssClass="btn btn-save btn-primary"/>
+          &nbsp;&nbsp;&nbsp;
+          <asp:Button ID="btnCancel" runat="server" CausesValidation="False" 
                     onclick="btnCancel_Click" Text="Cancel"  CssClass="btn"/>
-    </p>
+        </p>
+      </td>
+    </tr>
+  </table>
   </fieldset>
   <input id="add-passenger" type="button" value="Add Passenger" class="btn btn-primary" />
   <br />
