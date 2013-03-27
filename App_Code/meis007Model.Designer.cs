@@ -82,6 +82,22 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<AmadeusTable> AmadeusTables
+        {
+            get
+            {
+                if ((_AmadeusTables == null))
+                {
+                    _AmadeusTables = base.CreateObjectSet<AmadeusTable>("AmadeusTables");
+                }
+                return _AmadeusTables;
+            }
+        }
+        private ObjectSet<AmadeusTable> _AmadeusTables;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Amenity> Amenities
         {
             get
@@ -291,6 +307,14 @@ namespace meis007Model
         #region AddTo Methods
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the AmadeusTables EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAmadeusTables(AmadeusTable amadeusTable)
+        {
+            base.AddObject("AmadeusTables", amadeusTable);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Amenities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToAmenities(Amenity amenity)
@@ -401,6 +425,159 @@ namespace meis007Model
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="meis007Model", Name="AmadeusTable")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AmadeusTable : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new AmadeusTable object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="airportCode">Initial value of the AirportCode property.</param>
+        public static AmadeusTable CreateAmadeusTable(global::System.Int32 id, global::System.String airportCode)
+        {
+            AmadeusTable amadeusTable = new AmadeusTable();
+            amadeusTable.Id = id;
+            amadeusTable.AirportCode = airportCode;
+            return amadeusTable;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CityName
+        {
+            get
+            {
+                return _CityName;
+            }
+            set
+            {
+                OnCityNameChanging(value);
+                ReportPropertyChanging("CityName");
+                _CityName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CityName");
+                OnCityNameChanged();
+            }
+        }
+        private global::System.String _CityName;
+        partial void OnCityNameChanging(global::System.String value);
+        partial void OnCityNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String StateName
+        {
+            get
+            {
+                return _StateName;
+            }
+            set
+            {
+                OnStateNameChanging(value);
+                ReportPropertyChanging("StateName");
+                _StateName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("StateName");
+                OnStateNameChanged();
+            }
+        }
+        private global::System.String _StateName;
+        partial void OnStateNameChanging(global::System.String value);
+        partial void OnStateNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CountryName
+        {
+            get
+            {
+                return _CountryName;
+            }
+            set
+            {
+                OnCountryNameChanging(value);
+                ReportPropertyChanging("CountryName");
+                _CountryName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CountryName");
+                OnCountryNameChanged();
+            }
+        }
+        private global::System.String _CountryName;
+        partial void OnCountryNameChanging(global::System.String value);
+        partial void OnCountryNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String AirportCode
+        {
+            get
+            {
+                return _AirportCode;
+            }
+            set
+            {
+                OnAirportCodeChanging(value);
+                ReportPropertyChanging("AirportCode");
+                _AirportCode = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("AirportCode");
+                OnAirportCodeChanged();
+            }
+        }
+        private global::System.String _AirportCode;
+        partial void OnAirportCodeChanging(global::System.String value);
+        partial void OnAirportCodeChanged();
+
+        #endregion
+    
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
