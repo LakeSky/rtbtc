@@ -36,14 +36,16 @@ public class ViewHelperWebService : System.Web.Services.WebService {
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public List<string> AmedeusSearch(string q)
+    public List<string> AmadeusSearch(string q)
     {
         meis007Entities _meis007Entities = new meis007Entities();
-        var data = from city in _meis007Entities.CityMasters join country in _meis007Entities.CountryMasters on city.CountryID equals country.CountryID where city.CityName.Contains(q) select new { text = city.CityName + ", " + country.CountryName, Id = city.CityID };
+        var data = _meis007Entities.AmadeusTables.Where(x => x.CityName.Contains(q)).ToList();
         List<string> list = new List<string>();
+        string text = "";
         foreach (var x in data)
         {
-            list.Add(x.text);
+            text = x.CityName + " - " + x.StateName + " - " + x.CountryName + " - " + x.AirportCode + "#" + x.AirportCode;
+            list.Add(text);
         }
         return list;
     }

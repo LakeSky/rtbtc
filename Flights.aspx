@@ -42,12 +42,12 @@
 
         $(".start-date, .end-date").attr("readonly", true);
 
-        $(".txtCity").autocomplete({
+        $("#departure, #arrival").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
-                    url: '<%=ResolveUrl("~/ViewHelperWebService.asmx/AmedeusSearch") %>',
+                    url: '<%=ResolveUrl("~/ViewHelperWebService.asmx/AmadeusSearch") %>',
                     data: "{ 'q': '" + request.term + "'}",
                     dataType: "json",
                     success: function (data) {
@@ -64,12 +64,13 @@
                     },
                     error: function (result) {
                         console.log(result);
-                    },
-                    select: function (e, ui) {
-                        console.log($(this));
-                        console.log(ui.item.id);
                     }
                 });
+            },
+            select: function (e, ui) {
+                var inputId = "#" + $(this).data('id');
+                $(inputId).val(ui.item.id);
+                console.log($(inputId).val())
             }
         });
 
@@ -79,7 +80,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <fieldset>
     <legend>Search Flights</legend>
-  <form id="flightsearch"  target="_top" action="http://staging.amadeusepower.com/artksa/portals/artksa/flightfaresearch.aspx" method="get" >
+    <form action="http://staging.amadeusepower.com/artksa/portals/artksa/flightfaresearch.aspx" method="get" >
     <input type="hidden" value="true" name="IsExternalAccess" /> 
     <input   type="hidden"   id="External_FlightFareSearch_From"   name="External_FlightFareSearch_From"/>
     <input type="hidden" value="4tLHLmdkTxRadijjpqQyTCWwpVkz" name="h1h" />
@@ -112,11 +113,11 @@
       </tr>
       <tr>
         <td>Departure</td>
-        <td><input  id="departure"  name="External_FlightFareSearch_DepartureAirport" /></td>
+        <td><input  id="departure"  name="External_FlightFareSearch_DepartureAirport" data-id="External_FlightFareSearch_From" /></td>
       </tr>
       <tr>
         <td>Arrival</td>
-        <td><input  id="arrival"  name="External_FlightFareSearch_ArrivalAirport" /></td>
+        <td><input  id="arrival"  name="External_FlightFareSearch_ArrivalAirport" data-id="External_FlightFareSearch_To" /></td>
       </tr>
       <tr>
         <td>From</td>
