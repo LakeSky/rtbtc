@@ -33,5 +33,19 @@ public class ViewHelperWebService : System.Web.Services.WebService {
         }
         return list;
     }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public List<string> AmedeusSearch(string q)
+    {
+        meis007Entities _meis007Entities = new meis007Entities();
+        var data = from city in _meis007Entities.CityMasters join country in _meis007Entities.CountryMasters on city.CountryID equals country.CountryID where city.CityName.Contains(q) select new { text = city.CityName + ", " + country.CountryName, Id = city.CityID };
+        List<string> list = new List<string>();
+        foreach (var x in data)
+        {
+            list.Add(x.text);
+        }
+        return list;
+    }
     
 }

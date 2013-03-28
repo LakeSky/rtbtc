@@ -1,6 +1,11 @@
 ﻿.inline{
   display: inline;
 }
+
+.inline-block{
+  display: inline-block;
+}
+
 .alert {
   padding: 8px 35px 8px 14px;
   margin-bottom: 20px;
@@ -134,6 +139,10 @@ legend
 
 .margin10{
   margin: 10px 0;
+}
+
+.marginR10{
+  margin-right: 10px;
 }
 
 
