@@ -138,7 +138,7 @@
             if (directFlights) {
                 url = url + "&External_FlightFareSearch_OnlyDirectFlights=ON";
             }
-            url = encodeURI(url);
+            url = escape(url);
             url = amadeusUrl + url;
             testwindow = window.open(url, target = "_top", "online", "resizable=1,toolbar=1,status=1,menubar=1,titlebar=1");
         });
