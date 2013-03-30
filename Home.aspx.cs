@@ -6,24 +6,26 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using meis007Model;
 
-public partial class Home : System.Web.UI.Page
+public partial class Home : PublicApplicationPage
 {
     protected meis007Entities _meis007Entities;
     public ShoppingHelper shoppingHelper;
     public List<ShoppingRoomHelper> ShoppingRoomsList;
     public int RoomsCount;
+    public ShoppingHotelHelper shoppingHotel;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack) {
             errorDiv.Visible = false;
         }
         RoomsCount = 1;
-        shoppingHelper = (ShoppingHelper)(Session["StoredShopping"]);
-        if (shoppingHelper != null) {
-            ShoppingRoomsList = shoppingHelper.RoomDetails;
-            txtCity.Text = shoppingHelper.CityName;
-            txtStartDate.Text = shoppingHelper.FromDate;
-            txtEndDate.Text = shoppingHelper.ToDate;
+        shoppingHelper = GetShoppingHelperObject();
+        if (shoppingHelper != null && shoppingHelper.HotelDetails != null) {
+            shoppingHotel = shoppingHelper.HotelDetails;
+            ShoppingRoomsList = shoppingHotel.RoomDetails;
+            txtCity.Text = shoppingHotel.CityName;
+            txtStartDate.Text = shoppingHotel.FromDate;
+            txtEndDate.Text = shoppingHotel.ToDate;
             RoomsCount = ShoppingRoomsList.Count;
         }
     }
@@ -49,13 +51,13 @@ public partial class Home : System.Web.UI.Page
         string childAge = "";
         var totalRooms = int.Parse(Request.Params["totalRooms"].ToString());
         var parms = Request.Params;
-        ShoppingHelper _ShoppingHelper = new ShoppingHelper();
-        _ShoppingHelper.RoomDetails = new List<ShoppingRoomHelper>();
+        ShoppingHelper _ShoppingHelper = GetShoppingHelperObject(true);
+        shoppingHotel = new ShoppingHotelHelper();
+        ShoppingRoomsList = new List<ShoppingRoomHelper>();
         ShoppingRoomHelper _ShoppingRoomHelper;
-
-        _ShoppingHelper.CityName = txtCity.Text;
-        _ShoppingHelper.FromDate = txtStartDate.Text;
-        _ShoppingHelper.ToDate = txtEndDate.Text;
+        shoppingHotel.CityName = txtCity.Text;
+        shoppingHotel.FromDate = txtStartDate.Text;
+        shoppingHotel.ToDate = txtEndDate.Text;
         for (int i = 0; i < totalRooms; i++ ){
             index = (i + 1).ToString();
             _ShoppingRoomHelper = new ShoppingRoomHelper();
@@ -71,9 +73,10 @@ public partial class Home : System.Web.UI.Page
               }
               _ShoppingRoomHelper.ChildAge.Add(int.Parse(childAge));
             }
-            _ShoppingHelper.RoomDetails.Add(_ShoppingRoomHelper);
+            ShoppingRoomsList.Add(_ShoppingRoomHelper);
         }
-
+        shoppingHotel.RoomDetails = ShoppingRoomsList;
+        _ShoppingHelper.HotelDetails = shoppingHotel;
         Session["StoredShopping"] = _ShoppingHelper;
         Response.Redirect("Choose.aspx");
     }

@@ -8,9 +8,6 @@ using System.Web;
 /// </summary>
 public class ShoppingHelper
 {
-    public string CityName { get; set; }
-    public string FromDate { get; set; }
-    public string ToDate { get; set; }
-    public List<ShoppingRoomHelper> RoomDetails { get; set; }
-    public ShoppingCarHelper CarDeatils { get; set; }
+    public ShoppingHotelHelper HotelDetails { get; set; }
+    public ShoppingCarHelper CarDetails { get; set; }
 }

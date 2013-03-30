@@ -3,12 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
+  <%if(shoppingHotel != null){%>
   <h3>Select Hotels!</h3>
   <table class="table table-bordered">
     <tr>
-      <td><span>City: <%= shoppingHelper.CityName %> </span></td>
-      <td><span>From: <%= shoppingHelper.FromDate %> </span></td>
-      <td><span>To: <%= shoppingHelper.ToDate %> </span></td>
+      <td><span>City: <%= shoppingHotel.CityName %> </span></td>
+      <td><span>From: <%= shoppingHotel.FromDate%> </span></td>
+      <td><span>To: <%= shoppingHotel.ToDate%> </span></td>
     </tr>
   </table>
   <h3>Room Details</h3>
@@ -49,5 +50,22 @@
        <%}%>
    <%} %>
   </table>
+  <%}%>
+  <%if(shoppingCar != null){%>
+    <h3>Car Details</h3>
+    <table class="table table-bordered">
+      <tr>
+        <td><span>Pickup Country: </span><%= CountryName %></td>
+        <td><span>Pickup Location: </span><%= CityName %></td>
+      </tr>
+      <tr>
+        <td><span>Pickup Date & time: </span><%= shoppingCar.PickupDateTime %></td>
+        <td><span>Dropoff Date & time: </span><%= shoppingCar.DropoffDateTime %></td>
+      </tr>
+      <tr>
+        <td colspan="2"><span>Car Type: </span><%= shoppingCar.CarType %></td>
+      </tr>
+    </table>
+  <%} %>
 </asp:Content>
 
