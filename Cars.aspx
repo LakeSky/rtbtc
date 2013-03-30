@@ -95,7 +95,7 @@
                     ControlToValidate="txtPickupDate" ForeColor="#FF3300" 
                     SetFocusOnError="True" >*</asp:RequiredFieldValidator>
       <asp:DropDownList ID="ddlPickuptime" runat="server" AppendDataBoundItems="True" CssClass="ddl-small">
-          <asp:ListItem>12</asp:ListItem>
+          <asp:ListItem>00</asp:ListItem>
           <asp:ListItem>01</asp:ListItem>
           <asp:ListItem>02</asp:ListItem>
           <asp:ListItem>03</asp:ListItem>
@@ -128,7 +128,7 @@
                     ControlToValidate="txtDropoffDate" ForeColor="#FF3300" 
                     SetFocusOnError="True" >*</asp:RequiredFieldValidator>
       <asp:DropDownList ID="ddlDropoffTime" runat="server" AppendDataBoundItems="True" CssClass="ddl-small">
-          <asp:ListItem>12</asp:ListItem>
+          <asp:ListItem>00</asp:ListItem>
           <asp:ListItem>01</asp:ListItem>
           <asp:ListItem>02</asp:ListItem>
           <asp:ListItem>03</asp:ListItem>
