@@ -12,4 +12,5 @@ public class ShoppingHelper
     public string FromDate { get; set; }
     public string ToDate { get; set; }
     public List<ShoppingRoomHelper> RoomDetails { get; set; }
+    public ShoppingCarHelper CarDeatils { get; set; }
 }

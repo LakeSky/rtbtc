@@ -60,4 +60,16 @@ public static class DateTimeHelper
     public static string To24Hours(DateTime dateTime) {
         return dateTime.ToString("dd-MM-yyyy hh:mm tt");
     }
+
+    public static DateTime ConvertToDateAndTimeWithoutNull(string inputDateTime, string format = null)
+    {
+        DateTime outputDateTime;
+        var parseFormat = format == null ? "dd-MM-yyyy HH:mm:ss" : format;
+        outputDateTime =  DateTime.ParseExact(inputDateTime, parseFormat, System.Globalization.CultureInfo.InvariantCulture);
+        return outputDateTime;
+    }
+
+    public static string ExtractTime(DateTime inputDateTime) {
+        return inputDateTime.ToString("HH");
+    }
 }
