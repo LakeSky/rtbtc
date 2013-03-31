@@ -29,7 +29,7 @@ public class Mailer
         mMailMessage.Priority = MailPriority.Normal;
         SmtpClient mSmtpClient = new SmtpClient {
                Host = "smtp.gmail.com",
-               Port = 25,
+               Port = 587,
                EnableSsl = true,
                DeliveryMethod = SmtpDeliveryMethod.Network,
                UseDefaultCredentials = false,

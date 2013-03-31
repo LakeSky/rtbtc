@@ -90,6 +90,18 @@
                 <span>|</span>
               </li>
               <li>
+                <a href="<%= rootPath + "Hotels/Details.aspx?id=11211589" %>">Hotels</a>
+                <span>|</span>
+              </li>
+              <li>
+                <a href="<%= rootPath + "Flights.aspx" %>">Flights</a>
+                <span>|</span>
+              </li>
+              <li>
+                <a href="<%= rootPath + "Cars.aspx" %>">Cars</a>
+                <span>|</span>
+              </li>
+              <li>
                 <a href="<%= rootPath + "About.aspx" %>">About Us</a>
                 <span>|</span>
               </li>
