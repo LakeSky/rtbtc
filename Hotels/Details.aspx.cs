@@ -10,8 +10,13 @@ public partial class Hotels_Details : System.Web.UI.Page
 {
     protected meis007Entities _meis007Entities;
     public ProductMaster productMaster;
+    public string address;
     public string cityName;
     public string countryName;
+    public string latitude;
+    public string longitude;
+    public string hotelName;
+    public string starsImagePath;
     protected void Page_Load(object sender, EventArgs e)
     {
         _meis007Entities = new meis007Entities();
@@ -23,6 +28,16 @@ public partial class Hotels_Details : System.Web.UI.Page
             if (productMaster != null){
                 cityName = QueryHelper.GetCityName(_meis007Entities, productMaster.CityID);
                 countryName = QueryHelper.GetCountryName(_meis007Entities, productMaster.CountryID);
+                address = productMaster.Address;
+                latitude = string.IsNullOrEmpty(productMaster.Latitude) ? "24.711666" : productMaster.Latitude;
+                longitude = string.IsNullOrEmpty(productMaster.Longitude) ? "46.724166" : productMaster.Longitude;
+                hotelName = productMaster.ProductName;
+                if (productMaster.ClsID == null){
+                    var classification = _meis007Entities.Classifications.Where(x => x.ClsName == "1").First();
+                    starsImagePath = classification.ImagePath;
+                }else {
+                    starsImagePath = productMaster.Classification.ImagePath;
+                }
                 found = true;
             }
         }

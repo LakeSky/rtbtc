@@ -12,14 +12,46 @@
     });
   });
 </script>
+<script type="text/javascript">
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(parseFloat("<%= latitude %>"),parseFloat("<%= longitude %>"));
+        var mapOptions = {
+            zoom: 16,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(document.getElementById("gmap"), mapOptions);
+        var contentString = '<div id="content"><div id="siteNotice"></div>' + '<h2 id="firstHeading" class="firstHeading"><%= hotelName %>&nbsp;<img src="<%= starsImagePath %>"></h2>' + '<div id="bodyContent">' + '<p><%= address %>, <%= cityName %>, <%= countryName %></p></div></div>';
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "<%= hotelName %>"
+        });
+        google.maps.event.addListener(marker, 'click', function () {
+            infowindow.open(map, marker);
+        });
+    }
+
+    function loadScript() {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAgRF5oG3fdfkCADHZLPyXMBu3WjUkn8GY&sensor=false&callback=initialize";
+        document.body.appendChild(script);
+    }
+
+    window.onload = loadScript;
+</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-  <h3 style="margin-bottom:15px;"><%= productMaster.ProductName %>
-    <%if(!string.IsNullOrEmpty(productMaster.Classification.ImagePath)){%>
-      <img src="<%= productMaster.Classification.ImagePath %>"/>
-    <%} %>
+  <h3 style="margin-bottom:15px;">
+    <%= hotelName %>
+    &nbsp;
+    <img src="<%= starsImagePath %>"/>
   </h3>
-  <div class="slider-wrapper theme-default" style="width:200px">
+  <div class="slider-wrapper theme-default left" style="width:200px">
     <div id="slider" class="nivoSlider" style="width:200px">
       <%foreach (var x in productMaster.ProductImages)
       {%>
@@ -29,8 +61,12 @@
       <%}%>
     </div>          
   </div>
+  <div class="right" id="gmap">
+  </div>
+  <div class="clear"></div>
+  <br />
   <p class="small-font">
-    <%= productMaster.Address %>,&nbsp;
+    <%= address %>,&nbsp;
     <%= cityName %>,&nbsp;
     <%= countryName %>
   </p>
