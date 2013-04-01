@@ -1,6 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Details.aspx.cs" Inherits="Hotels_Details" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
+<link rel="stylesheet" href="/rtbtc/Styles/slider_default.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/rtbtc/Styles/slider.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/rtbtc/Scripts/slider.js"></script>
+<script type="text/javascript">
+  $(function(){
+    $('#slider').nivoSlider({
+      controlNav: false,
+      effect: 'fold'
+    });
+  });
+</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <h3 style="margin-bottom:15px;"><%= productMaster.ProductName %>
@@ -8,7 +19,16 @@
       <img src="<%= productMaster.Classification.ImagePath %>"/>
     <%} %>
   </h3>
-  <img src="http://totalstay.ivector.co.uk/content/DataObjects/ThirdPartyProperty/Image/ext781/image_780138_v1.jpg" width="950px" height="243px" class="media-image"/>
+  <div class="slider-wrapper theme-default" style="width:200px">
+    <div id="slider" class="nivoSlider" style="width:200px">
+      <%foreach (var x in productMaster.ProductImages)
+      {%>
+        <%if(!string.IsNullOrEmpty(x.ImageAddress)){%>
+          <img src="<%= x.ImageAddress %>"/>
+        <%}%>
+      <%}%>
+    </div>          
+  </div>
   <p class="small-font">
     <%= productMaster.Address %>,&nbsp;
     <%= cityName %>,&nbsp;
