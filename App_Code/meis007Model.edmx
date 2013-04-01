@@ -20,6 +20,7 @@
       [CityMaster].[H2H] AS [H2H]
       FROM [dbo].[CityMaster] AS [CityMaster]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Classifications" EntityType="meis007Model.Store.Classifications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CountryMaster" EntityType="meis007Model.Store.CountryMaster" store:Type="Tables" store:Schema="dbo" store:Name="CountryMaster">
             <DefiningQuery>SELECT 
       [CountryMaster].[CountryID] AS [CountryID], 
@@ -60,6 +61,10 @@
           <AssociationSet Name="FK_ProductImages_ProductMaster" Association="meis007Model.Store.FK_ProductImages_ProductMaster">
             <End Role="ProductMaster" EntitySet="ProductMaster" />
             <End Role="ProductImages" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductMaster_Classifications" Association="meis007Model.Store.FK_ProductMaster_Classifications">
+            <End Role="Classifications" EntitySet="Classifications" />
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductRRC_ProductMaster" Association="meis007Model.Store.FK_ProductRRC_ProductMaster">
             <End Role="ProductMaster" EntitySet="ProductMaster" />
@@ -147,6 +152,18 @@
           <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="ModDate" Type="smalldatetime" Nullable="false" />
           <Property Name="H2H" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Classifications">
+          <Key>
+            <PropertyRef Name="ClsID" />
+          </Key>
+          <Property Name="ClsID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClsName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ServiceID" Type="int" Nullable="false" />
+          <Property Name="DisplayOrder" Type="tinyint" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ModDate" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'meis007.dbo.CountryMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -328,6 +345,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductMaster_Classifications">
+          <End Role="Classifications" Type="meis007Model.Store.Classifications" Multiplicity="0..1" />
+          <End Role="ProductMaster" Type="meis007Model.Store.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classifications">
+              <PropertyRef Name="ClsID" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="ClsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductRRC_ProductMaster">
           <End Role="ProductMaster" Type="meis007Model.Store.ProductMaster" Multiplicity="0..1" />
           <End Role="ProductRRC" Type="meis007Model.Store.ProductRRC" Multiplicity="*" />
@@ -376,16 +405,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-      warning 6013: The table/view 'meis007.dbo.ContinentMaster' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="ContinentMaster">
-        <Property Name="ContinentID" Type="nvarchar" MaxLength="50" />
-        <Property Name="ContinentName" Type="nvarchar" MaxLength="150" />
-        <Property Name="UserID" Type="nvarchar" MaxLength="50" />
-        <Property Name="ModDate" Type="smalldatetime" />
-        <Property Name="H2H" Type="smallint" />
-      </EntityType>-->
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
@@ -397,6 +416,7 @@
           <EntitySet Name="B2CCustomerinfo" EntityType="meis007Model.B2CCustomerinfo" />
           <EntitySet Name="B2CPaxinfo" EntityType="meis007Model.B2CPaxinfo" />
           <EntitySet Name="CityMasters" EntityType="meis007Model.CityMaster" />
+          <EntitySet Name="Classifications" EntityType="meis007Model.Classification" />
           <EntitySet Name="CountryMasters" EntityType="meis007Model.CountryMaster" />
           <EntitySet Name="Facilities" EntityType="meis007Model.Facility" />
           <EntitySet Name="ProductAmenities" EntityType="meis007Model.ProductAmenity" />
@@ -413,6 +433,10 @@
           <AssociationSet Name="FK_B2CPaxinfo_B2CCustomerinfo1" Association="meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1">
             <End Role="B2CCustomerinfo" EntitySet="B2CCustomerinfo" />
             <End Role="B2CPaxinfo" EntitySet="B2CPaxinfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductMaster_Classifications" Association="meis007Model.FK_ProductMaster_Classifications">
+            <End Role="Classifications" EntitySet="Classifications" />
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductFacilities_Facilities" Association="meis007Model.FK_ProductFacilities_Facilities">
             <End Role="Facilities" EntitySet="Facilities" />
@@ -517,6 +541,19 @@
           <Property Name="ModDate" Type="DateTime" Nullable="false" />
           <Property Name="H2H" Type="Int16" />
         </EntityType>
+        <EntityType Name="Classification">
+          <Key>
+            <PropertyRef Name="ClsID" />
+          </Key>
+          <Property Name="ClsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClsName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ServiceID" Type="Int32" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Byte" />
+          <Property Name="ImagePath" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ModDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="ProductMasters" Relationship="meis007Model.FK_ProductMaster_Classifications" FromRole="Classifications" ToRole="ProductMaster" />
+        </EntityType>
         <EntityType Name="CountryMaster">
           <Key>
             <PropertyRef Name="CountryID" />
@@ -598,6 +635,7 @@
           <Property Name="NearestAirport" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="ModDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Classification" Relationship="meis007Model.FK_ProductMaster_Classifications" FromRole="ProductMaster" ToRole="Classifications" />
           <NavigationProperty Name="ProductAmenities" Relationship="meis007Model.FK_ProductAmenities_ProductMaster" FromRole="ProductMaster" ToRole="ProductAmenities" />
           <NavigationProperty Name="ProductImages" Relationship="meis007Model.FK_ProductImages_ProductMaster" FromRole="ProductMaster" ToRole="ProductImages" />
           <NavigationProperty Name="ProductRRCs" Relationship="meis007Model.FK_ProductRRC_ProductMaster" FromRole="ProductMaster" ToRole="ProductRRC" />
@@ -660,6 +698,18 @@
             </Principal>
             <Dependent Role="B2CPaxinfo">
               <PropertyRef Name="ForeignCustomerSNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductMaster_Classifications">
+          <End Role="Classifications" Type="meis007Model.Classification" Multiplicity="0..1" />
+          <End Role="ProductMaster" Type="meis007Model.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classifications">
+              <PropertyRef Name="ClsID" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="ClsID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -814,6 +864,15 @@
             <ScalarProperty Name="ModDate" ColumnName="ModDate" />
             <ScalarProperty Name="H2H" ColumnName="H2H" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Classifications"><EntityTypeMapping TypeName="meis007Model.Classification"><MappingFragment StoreEntitySet="Classifications">
+            <ScalarProperty Name="ClsID" ColumnName="ClsID" />
+            <ScalarProperty Name="ClsName" ColumnName="ClsName" />
+            <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+            <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+            <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="CountryMasters"><EntityTypeMapping TypeName="meis007Model.CountryMaster"><MappingFragment StoreEntitySet="CountryMaster">
             <ScalarProperty Name="CountryID" ColumnName="CountryID" />
             <ScalarProperty Name="CountryName" ColumnName="CountryName" />
@@ -911,76 +970,74 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="meis007Model">
-        <EntityTypeShape EntityType="meis007Model.AmadeusTable" Width="1.5" PointX="2.75" PointY="0.75" Height="1.9802864583333331" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.Amenity" Width="1.5" PointX="0.75" PointY="11.375" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.B2CCustomerinfo" Width="1.5" PointX="5.75" PointY="8" Height="4.2879036458333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.B2CPaxinfo" Width="1.5" PointX="8" PointY="8.75" Height="2.9417936197916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.CityMaster" Width="1.5" PointX="8.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.CountryMaster" Width="1.5" PointX="2.75" PointY="9.75" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.Facility" Width="1.5" PointX="6" PointY="1.375" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.ProductAmenity" Width="1.5" PointX="3" PointY="4.25" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.ProductFacility" Width="1.5" PointX="8.25" PointY="4.25" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.ProductImage" Width="1.5" PointX="3" PointY="7.125" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.ProductMaster" Width="1.5" PointX="0.75" PointY="1.75" Height="6.9801236979166665" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.ProductRRC" Width="1.5" PointX="6" PointY="3.875" Height="2.7494921875000031" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.RoomTypeDetail" Width="1.5" PointX="3.75" PointY="14.25" Height="1.9802864583333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.RoomTypeHeader" Width="1.5" PointX="1.5" PointY="14" Height="2.5571907552083388" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.AmadeusTable" Width="1.5" PointX="7.75" PointY="0.75" Height="1.9802864583333333" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.Amenity" Width="1.5" PointX="3" PointY="18.5" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.B2CCustomerinfo" Width="1.5" PointX="7.75" PointY="8" Height="4.2879036458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.B2CPaxinfo" Width="1.5" PointX="10" PointY="8.75" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.CityMaster" Width="1.5" PointX="9.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.Classification" Width="1.5" PointX="0.75" PointY="12.125" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.CountryMaster" Width="1.5" PointX="9.75" PointY="3.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.Facility" Width="1.5" PointX="5.25" PointY="1.625" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductAmenity" Width="1.5" PointX="5.25" PointY="12.5" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductFacility" Width="1.5" PointX="7.5" PointY="4.5" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductImage" Width="1.5" PointX="5.25" PointY="15.25" Height="1.7879850260416692" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductMaster" Width="1.5" PointX="3" PointY="9.875" Height="7.1724251302083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductRRC" Width="1.5" PointX="5.25" PointY="4.125" Height="2.7494921875000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.RoomTypeDetail" Width="1.5" PointX="3" PointY="6.375" Height="1.9802864583333397" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.RoomTypeHeader" Width="1.5" PointX="0.75" PointY="2.5" Height="2.5571907552083388" IsExpanded="true" />
         <AssociationConnector Association="meis007Model.FK_ProductAmenities_Amenities" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="11.375" />
-          <ConnectorPoint PointX="1.5" PointY="8.9801236979166674" />
-          <ConnectorPoint PointX="2.5" PointY="8.9801236979166674" />
-          <ConnectorPoint PointX="2.5" PointY="5.2401432291666659" />
-          <ConnectorPoint PointX="3" PointY="5.2401432291666659" />
+          <ConnectorPoint PointX="4.5" PointY="18.501152846153843" />
+          <ConnectorPoint PointX="4.875" PointY="18.126152846153843" />
+          <ConnectorPoint PointX="4.875" PointY="13.490143229166666" />
+          <ConnectorPoint PointX="5.25" PointY="13.490143229166666" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.25" PointY="10.220896809895834" />
-          <ConnectorPoint PointX="7.322916666666667" PointY="10.220896809895834" />
-          <ConnectorPoint PointX="7.489583333333333" PointY="10.220896809895834" />
-          <ConnectorPoint PointX="8" PointY="10.220896809895834" />
+          <ConnectorPoint PointX="9.25" PointY="10.220896809895834" />
+          <ConnectorPoint PointX="10" PointY="10.220896809895834" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK_ProductMaster_Classifications" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="13.403595377604166" />
+          <ConnectorPoint PointX="3" PointY="13.403595377604166" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductFacilities_Facilities" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="2.9706835937499996" />
-          <ConnectorPoint PointX="7.875" PointY="3.3456835937499996" />
-          <ConnectorPoint PointX="7.875" PointY="5.2401432291666659" />
-          <ConnectorPoint PointX="8.25" PointY="5.2401432291666659" />
+          <ConnectorPoint PointX="6.75" PointY="3.0067350260416665" />
+          <ConnectorPoint PointX="7.59375" PointY="3.0067350260416665" />
+          <ConnectorPoint PointX="7.59375" PointY="4.5" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductAmenities_ProductMaster" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="4.6825716145833329" />
-          <ConnectorPoint PointX="3" PointY="4.6825716145833329" />
+          <ConnectorPoint PointX="4.5" PointY="12.932571614583333" />
+          <ConnectorPoint PointX="5.25" PointY="12.932571614583333" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductFacilities_ProductRRC" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="4.6825716145833329" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="4.682571614583332" />
-          <ConnectorPoint PointX="7.958333333333333" PointY="4.6825716145833329" />
-          <ConnectorPoint PointX="8.25" PointY="4.6825716145833329" />
+          <ConnectorPoint PointX="6.75" PointY="5.4901432291666659" />
+          <ConnectorPoint PointX="7.5" PointY="5.4901432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductImages_ProductMaster" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="7.9275618489583337" />
-          <ConnectorPoint PointX="2.4166666666666665" PointY="7.9275618489583328" />
-          <ConnectorPoint PointX="2.5833333333333335" PointY="7.9275618489583337" />
-          <ConnectorPoint PointX="3" PointY="7.9275618489583337" />
+          <ConnectorPoint PointX="4.5" PointY="16.143992513020834" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="16.143992513020834" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="16.143992513020834" />
+          <ConnectorPoint PointX="5.25" PointY="16.143992513020834" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductRRC_ProductMaster" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="6.4586393229166674" />
-          <ConnectorPoint PointX="2.4166666666666665" PointY="6.4586393229166665" />
-          <ConnectorPoint PointX="2.5833333333333335" PointY="6.4586393229166674" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="6.4586393229166665" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="6.4586393229166674" />
-          <ConnectorPoint PointX="6" PointY="6.4586393229166674" />
+          <ConnectorPoint PointX="4.5" PointY="9.8761528461538468" />
+          <ConnectorPoint PointX="4.875" PointY="9.5011528461538468" />
+          <ConnectorPoint PointX="4.875" PointY="5.4997460937500016" />
+          <ConnectorPoint PointX="5.25" PointY="5.4997460937500016" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductRRC_RoomTypeDetail" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.90625" PointY="14.25" />
-          <ConnectorPoint PointX="4.90625" PointY="4.03125" />
-          <ConnectorPoint PointX="6" PointY="4.03125" />
+          <ConnectorPoint PointX="4.5" PointY="6.6247460937500016" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="6.6247460937500007" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="6.6247460937500016" />
+          <ConnectorPoint PointX="5.25" PointY="6.6247460937500016" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductRRC_RoomTypeHeader" ManuallyRouted="false">
-          <ConnectorPoint PointX="3" PointY="16.424988606770839" />
-          <ConnectorPoint PointX="7.40625" PointY="16.424988606770839" />
-          <ConnectorPoint PointX="7.40625" PointY="6.6244921875000031" />
+          <ConnectorPoint PointX="2.25" PointY="4.5910953776041694" />
+          <ConnectorPoint PointX="5.25" PointY="4.5910953776041694" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_RoomTypeDetail_RoomTypeHeader" ManuallyRouted="false">
-          <ConnectorPoint PointX="3" PointY="15.240143229166669" />
-          <ConnectorPoint PointX="3.75" PointY="15.240143229166669" />
+          <ConnectorPoint PointX="1.5" PointY="5.0571907552083388" />
+          <ConnectorPoint PointX="1.5" PointY="7.3651432291666694" />
+          <ConnectorPoint PointX="3" PointY="7.3651432291666694" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

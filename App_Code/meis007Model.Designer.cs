@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductAmenities_Amenities", "Amenities", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Amenity), "ProductAmenities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductAmenity), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_B2CPaxinfo_B2CCustomerinfo1", "B2CCustomerinfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.B2CCustomerinfo), "B2CPaxinfo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.B2CPaxinfo), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductMaster_Classifications", "Classifications", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Classification), "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductMaster), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductFacilities_Facilities", "Facilities", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Facility), "ProductFacilities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductFacility), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductAmenities_ProductMaster", "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.ProductMaster), "ProductAmenities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductAmenity), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductFacilities_ProductRRC", "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.ProductRRC), "ProductFacilities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductFacility), true)]
@@ -158,6 +159,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<CityMaster> _CityMasters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Classification> Classifications
+        {
+            get
+            {
+                if ((_Classifications == null))
+                {
+                    _Classifications = base.CreateObjectSet<Classification>("Classifications");
+                }
+                return _Classifications;
+            }
+        }
+        private ObjectSet<Classification> _Classifications;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -344,6 +361,14 @@ namespace meis007Model
         public void AddToCityMasters(CityMaster cityMaster)
         {
             base.AddObject("CityMasters", cityMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Classifications EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToClassifications(Classification classification)
+        {
+            base.AddObject("Classifications", classification);
         }
     
         /// <summary>
@@ -1625,6 +1650,238 @@ namespace meis007Model
 
         #endregion
     
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="meis007Model", Name="Classification")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Classification : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Classification object.
+        /// </summary>
+        /// <param name="clsID">Initial value of the ClsID property.</param>
+        /// <param name="clsName">Initial value of the ClsName property.</param>
+        /// <param name="serviceID">Initial value of the ServiceID property.</param>
+        /// <param name="userID">Initial value of the UserID property.</param>
+        /// <param name="modDate">Initial value of the ModDate property.</param>
+        public static Classification CreateClassification(global::System.Int32 clsID, global::System.String clsName, global::System.Int32 serviceID, global::System.String userID, global::System.DateTime modDate)
+        {
+            Classification classification = new Classification();
+            classification.ClsID = clsID;
+            classification.ClsName = clsName;
+            classification.ServiceID = serviceID;
+            classification.UserID = userID;
+            classification.ModDate = modDate;
+            return classification;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ClsID
+        {
+            get
+            {
+                return _ClsID;
+            }
+            set
+            {
+                if (_ClsID != value)
+                {
+                    OnClsIDChanging(value);
+                    ReportPropertyChanging("ClsID");
+                    _ClsID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ClsID");
+                    OnClsIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ClsID;
+        partial void OnClsIDChanging(global::System.Int32 value);
+        partial void OnClsIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ClsName
+        {
+            get
+            {
+                return _ClsName;
+            }
+            set
+            {
+                OnClsNameChanging(value);
+                ReportPropertyChanging("ClsName");
+                _ClsName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ClsName");
+                OnClsNameChanged();
+            }
+        }
+        private global::System.String _ClsName;
+        partial void OnClsNameChanging(global::System.String value);
+        partial void OnClsNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ServiceID
+        {
+            get
+            {
+                return _ServiceID;
+            }
+            set
+            {
+                OnServiceIDChanging(value);
+                ReportPropertyChanging("ServiceID");
+                _ServiceID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ServiceID");
+                OnServiceIDChanged();
+            }
+        }
+        private global::System.Int32 _ServiceID;
+        partial void OnServiceIDChanging(global::System.Int32 value);
+        partial void OnServiceIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> DisplayOrder
+        {
+            get
+            {
+                return _DisplayOrder;
+            }
+            set
+            {
+                OnDisplayOrderChanging(value);
+                ReportPropertyChanging("DisplayOrder");
+                _DisplayOrder = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DisplayOrder");
+                OnDisplayOrderChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _DisplayOrder;
+        partial void OnDisplayOrderChanging(Nullable<global::System.Byte> value);
+        partial void OnDisplayOrderChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ImagePath
+        {
+            get
+            {
+                return _ImagePath;
+            }
+            set
+            {
+                OnImagePathChanging(value);
+                ReportPropertyChanging("ImagePath");
+                _ImagePath = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ImagePath");
+                OnImagePathChanged();
+            }
+        }
+        private global::System.String _ImagePath;
+        partial void OnImagePathChanging(global::System.String value);
+        partial void OnImagePathChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserID
+        {
+            get
+            {
+                return _UserID;
+            }
+            set
+            {
+                OnUserIDChanging(value);
+                ReportPropertyChanging("UserID");
+                _UserID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("UserID");
+                OnUserIDChanged();
+            }
+        }
+        private global::System.String _UserID;
+        partial void OnUserIDChanging(global::System.String value);
+        partial void OnUserIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime ModDate
+        {
+            get
+            {
+                return _ModDate;
+            }
+            set
+            {
+                OnModDateChanging(value);
+                ReportPropertyChanging("ModDate");
+                _ModDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ModDate");
+                OnModDateChanged();
+            }
+        }
+        private global::System.DateTime _ModDate;
+        partial void OnModDateChanging(global::System.DateTime value);
+        partial void OnModDateChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductMaster_Classifications", "ProductMaster")]
+        public EntityCollection<ProductMaster> ProductMasters
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProductMaster>("meis007Model.FK_ProductMaster_Classifications", "ProductMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductMaster>("meis007Model.FK_ProductMaster_Classifications", "ProductMaster", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -3114,6 +3371,44 @@ namespace meis007Model
         #endregion
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductMaster_Classifications", "Classifications")]
+        public Classification Classification
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Classification>("meis007Model.FK_ProductMaster_Classifications", "Classifications").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Classification>("meis007Model.FK_ProductMaster_Classifications", "Classifications").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Classification> ClassificationReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Classification>("meis007Model.FK_ProductMaster_Classifications", "Classifications");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Classification>("meis007Model.FK_ProductMaster_Classifications", "Classifications", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.

@@ -3,7 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-  <h3 style="margin-bottom:15px;"><%= productMaster.ProductName %></h3>
+  <h3 style="margin-bottom:15px;"><%= productMaster.ProductName %>
+    <%if(!string.IsNullOrEmpty(productMaster.Classification.ImagePath)){%>
+      <img src="<%= productMaster.Classification.ImagePath %>"/>
+    <%} %>
+  </h3>
   <img src="http://totalstay.ivector.co.uk/content/DataObjects/ThirdPartyProperty/Image/ext781/image_780138_v1.jpg" width="950px" height="243px" class="media-image"/>
   <p class="small-font">
     <%= productMaster.Address %>,&nbsp;
@@ -12,8 +16,6 @@
   </p>
   <br />
   <p>
-    <span class="bold-font">Contact Person:</span> <%= productMaster.ContactPerson %>
-    &nbsp;|&nbsp;
     <span class="bold-font">Check in Time:</span> <%= productMaster.CheckInTime %>
     &nbsp;|&nbsp;
     <span class="bold-font">Check out Time:</span> <%= productMaster.CheckOutTime %>

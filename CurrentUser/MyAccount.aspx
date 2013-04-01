@@ -4,11 +4,15 @@
 <script type="text/javascript">
     $(function () {
 
+        var minDate = new Date();
+        minDate.setFullYear(minDate.getFullYear() - 83);
         $("#dob").datepicker({
             constrainInput: true,
             dateFormat: "dd-mm-yy",
             changeMonth: true,
-            changeYear: true
+            changeYear: true,
+            minDate: minDate,
+            maxDate: 0
         });
 
         $("#dob").attr("readonly", true);
