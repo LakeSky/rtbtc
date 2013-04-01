@@ -28,6 +28,7 @@
         var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
+            animation: google.maps.Animation.DROP,
             title: "<%= hotelName %>"
         });
         google.maps.event.addListener(marker, 'click', function () {
