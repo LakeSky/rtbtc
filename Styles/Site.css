@@ -185,7 +185,69 @@ body {
   border: solid 1px #ccc;
   margin: 20px 0 20px 125px;
 }   
-.custom-hide
-{
-    display: none;
-    }
+
+.custom-hide{
+  display: none;
+}
+
+#hotelsListMain #searchCriteria{
+  width: 30%;
+  float: left;
+  margin-right: 10px;
+}
+
+#hotelsListMain #hotelsList{
+  width: 67%;
+  float: right;
+}
+
+#hotelsListMain #searchCriteria #mainSearch{
+  border: solid 1px #ccc;
+}
+
+#hotelsListMain #searchCriteria #mainSearch .start-date, #hotelsListMain #searchCriteria #mainSearch .end-date{
+  width: 77px;   
+}
+
+#hotelsListMain #searchCriteria #mainSearch .txtCity{
+ width: 177px;
+}
+
+#hotelsListMain #searchCriteria .div-wrapper{
+ margin: 0;
+ padding-top : 17px;
+ padding-left : 5px;
+ padding-right : 5px;
+}
+
+#searchCriteria{
+  width: 30%;
+  float: left;
+  margin-right: 10px;
+}
+
+#hotelsList{
+  width: 67%;
+  float: right;
+}
+
+#searchCriteria #mainSearch{
+
+}
+
+#searchCriteria #mainSearch .start-date, #searchCriteria #mainSearch .end-date{
+  width: 77px;   
+}
+
+#searchCriteria #mainSearch .txtCity{
+ width: 177px;
+}
+
+#searchCriteria .div-wrapper{
+ margin: 0;
+ padding-top : 17px;
+ padding-left : 5px;
+ padding-right : 5px;
+ border: solid 1px #ccc;
+ margin-top: 20px;
+}

@@ -78,6 +78,6 @@ public partial class Home : PublicApplicationPage
         _ShoppingHotel.RoomDetails = ShoppingRoomsList;
         _ShoppingHelper.HotelDetails = _ShoppingHotel;
         Session["StoredShopping"] = _ShoppingHelper;
-        Response.Redirect("Choose.aspx");
+        Response.Redirect(CurrentUser.GetRootPath("Hotels/Index.aspx"));
     }
 }
