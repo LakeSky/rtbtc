@@ -17,6 +17,7 @@ public class SupplierHotelObjectHelper
     string starsImagePath;
     string xmlHotelId;
     string imagePath;
+    decimal price;
     List<int> supplierHotelIds;
     List<SupplierHotelHelper> supplierHotels;
     SupplierHotelHelper supplierHotelHelper;
@@ -67,7 +68,11 @@ public class SupplierHotelObjectHelper
                                 imagePath = productMaster.ProductImages.First().ImageAddress;
                             }
                             supplierHotelRoomId = int.Parse(x.RoomID.ToString());
-                            supplierHotelRoomHelper = new SupplierHotelRoomHelper { HotelInfoId = x.HotelInfoID, RoomId = supplierHotelRoomId, RoomName = x.RoomName, RoomType = x.RoomType, Price = x.LCAP };
+                            price = decimal.Parse("0.0");
+                            if (x.LCAP != null) {
+                                price = Math.Floor(decimal.Parse(x.LCAP.ToString()) / int.Parse(x.NumOfPassengers.ToString())); 
+                            }
+                            supplierHotelRoomHelper = new SupplierHotelRoomHelper { HotelInfoId = x.HotelInfoID, RoomId = supplierHotelRoomId, RoomName = x.RoomName, RoomType = x.RoomType, Price = price };
                             if (supplierHotelIds.Contains(supplierHotelId))
                             {
                                 supplierHotelHelper = supplierHotels.Where(p => p.SupplierHotelId == supplierHotelId).First();

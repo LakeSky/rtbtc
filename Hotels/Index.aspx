@@ -147,11 +147,29 @@
             <img src="<%# Eval("ProductImagePath")%>" />
           </div>
           <div class="clear"></div>
+          <div class="margin10"></div>
           <asp:Repeater ID="Repeater2" runat="server" DataSource='<%# Eval("Rooms") %>'>
+            <HeaderTemplate>
+              <table class="table table-bordered">
+                <tr>
+                  <th>Room type</th>
+                  <th>Room Name</th>
+                  <th>Price</th>
+                  <th></th>
+                </tr>
+            </HeaderTemplate>
             <ItemTemplate>
-              <%# Eval("RoomId")%>
+              <tr>
+                <td><%# Eval("RoomType") %></td>
+                <td><%# Eval("RoomName") %></td>
+                <td>SR. <%# Eval("Price") %></td>
+                <% var path = CurrentUser.GetRootPath("Hotels/book.aspx"); %>
+                <td><a href="<%= path %>?id=<%# Eval("HotelInfoId")%>" class="btn btn-success">Book</a></td>
+              </tr>
             </ItemTemplate>
-            <SeparatorTemplate>,</SeparatorTemplate>
+            <FooterTemplate>
+              </table>
+            </FooterTemplate>
           </asp:Repeater>
         </div>
       </ItemTemplate>
