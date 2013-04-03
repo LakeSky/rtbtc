@@ -39,6 +39,7 @@
         <table>
           <tr>
             <th>Id</th>
+            <th>Basic Price</th>
             <th></th>
           </tr>
       </HeaderTemplate>
@@ -46,6 +47,8 @@
       <tr>
       <td>
         <%# Eval("ProductName")%>
+        </td>
+        <td><%# Eval("BasicPrice")%>
         </td>
         <td>
         <asp:Repeater ID="Repeater2" runat="server" DataSource='<%# Eval("Rooms") %>'>
