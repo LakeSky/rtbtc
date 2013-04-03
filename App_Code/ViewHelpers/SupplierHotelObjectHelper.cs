@@ -94,6 +94,7 @@ public class SupplierHotelObjectHelper
         }
         foreach (var x in supplierHotels) {
             x.BasicPrice = Math.Floor(decimal.Parse(x.Rooms.Where(y => y.Price != null).OrderBy(y => y.Price).First().Price.ToString())).ToString();
+            x.Rooms = x.Rooms.OrderBy(y => y.RoomName).ToList();
         }
         return supplierHotels;
     }

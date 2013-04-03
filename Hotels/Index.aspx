@@ -135,9 +135,17 @@
         <div class="hotel-div">
           <div class="hotel-content">
             <h3><%# Eval("ProductName")%></h3>
-            <img src="<%# Eval("ProductStarsImagePath")%>" />
-            <br />
-            <h4><%# Eval("City") %></h4>
+            <div class="left">
+              <img src="<%# Eval("ProductStarsImagePath")%>" />
+              <br />
+              <h4><%# Eval("City") %></h4>
+            </div>
+            <% var path = CurrentUser.GetRootPath("Hotels/Details.aspx"); %>
+            <div class="right paddingT10">
+              <a href="<%= path %>?id=<%# Eval("ProductMasterId")%>" class="btn btn-primary">More Info ></a>
+            </div>
+            <div class="clear"></div>
+            <div class="margin10"></div>
             <%# Eval("ProdcutDescription")%>
           </div>      
           <div class="hotel-image">
