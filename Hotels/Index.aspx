@@ -116,18 +116,17 @@
           <%= x.ClsName %>
         </label>
     <%} %>
-    <br/>
-    <h3>Hotel Amenities</h3>
-    <%foreach(var x in amenities){%>
-      <label>
-        <input type="checkbox" id="amenities_<%= x.AmenitiesID %>" value="<%=  x.AmenitiesName %>" style="display:inline-block;" />
-        <%= x.AmenitiesName %>
-      </label>
-    <%}%>
     </div>
   </div>
   </div>
   <div id="hotelsList">
+    <asp:DropDownList ID="ddlSort" runat="server" AutoPostBack="True" 
+          onselectedindexchanged="ddlSort_SelectedIndexChanged">
+        <asp:ListItem Value="plf">Price - Lowest First</asp:ListItem>
+        <asp:ListItem Value="phf">Price - Highest First</asp:ListItem>
+        <asp:ListItem Value="aa">Alphabets - Ascending</asp:ListItem>
+        <asp:ListItem Value="ad">Alphabets - Descending</asp:ListItem>
+    </asp:DropDownList>
     <asp:Repeater ID="Repeater3" runat="server">
       <HeaderTemplate>
       </HeaderTemplate>

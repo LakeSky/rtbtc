@@ -16,7 +16,7 @@ public class SupplierHotelHelper
     public string ProductStarsImagePath { get; set; }
     public string ProductImagePath { get; set; }
     public string City { get; set; }
-    public string BasicPrice { get; set; }
+    public int BasicPrice { get; set; }
     public string SessionId { get; set; }
     public string SupplierId { get; set; }
     public List<SupplierHotelRoomHelper> Rooms { get; set; }

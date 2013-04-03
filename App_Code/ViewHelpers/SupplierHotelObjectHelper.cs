@@ -18,6 +18,7 @@ public class SupplierHotelObjectHelper
     string xmlHotelId;
     string imagePath;
     decimal price;
+    string sortBy;
     List<int> supplierHotelIds;
     List<SupplierHotelHelper> supplierHotels;
     SupplierHotelHelper supplierHotelHelper;
@@ -27,11 +28,12 @@ public class SupplierHotelObjectHelper
     XMLHotel xmlHotel;
     ProductMaster productMaster;
 
-	public SupplierHotelObjectHelper()
+	public SupplierHotelObjectHelper(string _sortBy = "plf")
 	{
         supplierHotelIds = new List<int>();
         supplierHotels = new List<SupplierHotelHelper>();
         _meis007Entities = new meis007Entities();
+        sortBy = _sortBy;
 	}
 
     public List<SupplierHotelHelper> GetHotels()
@@ -93,9 +95,25 @@ public class SupplierHotelObjectHelper
             }
         }
         foreach (var x in supplierHotels) {
-            x.BasicPrice = Math.Floor(decimal.Parse(x.Rooms.Where(y => y.Price != null).OrderBy(y => y.Price).First().Price.ToString())).ToString();
+            x.BasicPrice = int.Parse(Math.Floor(decimal.Parse(x.Rooms.Where(y => y.Price != null).OrderBy(y => y.Price).First().Price.ToString())).ToString());
             x.Rooms = x.Rooms.OrderBy(y => y.RoomName).ToList();
         }
+        supplierHotels = Sort();
         return supplierHotels;
+    }
+
+    protected List<SupplierHotelHelper> Sort() {
+        List<SupplierHotelHelper> sortedList;
+        if(sortBy == "phf") {
+            sortedList = supplierHotels.OrderByDescending(x => x.BasicPrice).ToList();
+        }
+        else if (sortBy == "aa") {
+            sortedList = supplierHotels.OrderBy(x => x.ProductName).ToList();
+        } else if (sortBy == "ad") {
+            sortedList = supplierHotels.OrderByDescending(x => x.ProductName).ToList();
+        } else {
+            sortedList = supplierHotels.OrderBy(x => x.BasicPrice).ToList();
+        }
+        return sortedList;
     }
 }
