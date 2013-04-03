@@ -7,4 +7,58 @@
     <h2>
         About Us
     </h2>
+    <asp:Repeater ID="Repeater1" runat="server">
+      <HeaderTemplate>
+        <table>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th></th>
+          </tr>
+      </HeaderTemplate>
+    <ItemTemplate>
+      <tr>
+        <td><%# Eval("CustomerSNo")%></td>
+        <td><%# Eval("PaxFirstName")%></td>
+        <td>
+        <asp:Repeater ID="Repeater2" runat="server" DataSource='<%# Eval("B2CPaxinfo") %>'>
+          <ItemTemplate>
+            <%# Eval("PaxFirstName")%>
+          </ItemTemplate>
+          <SeparatorTemplate>,</SeparatorTemplate>
+          </asp:Repeater>
+          </td>
+      </tr>
+    </ItemTemplate>
+    <FooterTemplate>
+    </table>
+    </FooterTemplate>
+  </asp:Repeater>
+      <asp:Repeater ID="Repeater3" runat="server">
+      <HeaderTemplate>
+        <table>
+          <tr>
+            <th>Id</th>
+            <th></th>
+          </tr>
+      </HeaderTemplate>
+    <ItemTemplate>
+      <tr>
+      <td>
+        <%# Eval("SupplierHotelId")%>
+        </td>
+        <td>
+        <asp:Repeater ID="Repeater2" runat="server" DataSource='<%# Eval("Rooms") %>'>
+          <ItemTemplate>
+            <%# Eval("RoomId")%>
+          </ItemTemplate>
+          <SeparatorTemplate>,</SeparatorTemplate>
+          </asp:Repeater>
+          </td>
+          </tr>
+    </ItemTemplate>
+    <FooterTemplate>
+    </table>
+    </FooterTemplate>
+  </asp:Repeater>
 </asp:Content>
