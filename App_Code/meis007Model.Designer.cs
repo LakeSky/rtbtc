@@ -335,6 +335,38 @@ namespace meis007Model
             }
         }
         private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<XMLHotel> XMLHotels
+        {
+            get
+            {
+                if ((_XMLHotels == null))
+                {
+                    _XMLHotels = base.CreateObjectSet<XMLHotel>("XMLHotels");
+                }
+                return _XMLHotels;
+            }
+        }
+        private ObjectSet<XMLHotel> _XMLHotels;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<XMLSupplier> XMLSuppliers
+        {
+            get
+            {
+                if ((_XMLSuppliers == null))
+                {
+                    _XMLSuppliers = base.CreateObjectSet<XMLSupplier>("XMLSuppliers");
+                }
+                return _XMLSuppliers;
+            }
+        }
+        private ObjectSet<XMLSupplier> _XMLSuppliers;
 
         #endregion
         #region AddTo Methods
@@ -465,6 +497,22 @@ namespace meis007Model
         public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
         {
             base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the XMLHotels EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToXMLHotels(XMLHotel xMLHotel)
+        {
+            base.AddObject("XMLHotels", xMLHotel);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the XMLSuppliers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToXMLSuppliers(XMLSupplier xMLSupplier)
+        {
+            base.AddObject("XMLSuppliers", xMLSupplier);
         }
 
         #endregion
@@ -4711,6 +4759,380 @@ namespace meis007Model
         private Nullable<global::System.DateTime> _ModDate;
         partial void OnModDateChanging(Nullable<global::System.DateTime> value);
         partial void OnModDateChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="meis007Model", Name="XMLHotel")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class XMLHotel : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new XMLHotel object.
+        /// </summary>
+        /// <param name="sno">Initial value of the Sno property.</param>
+        public static XMLHotel CreateXMLHotel(global::System.Int64 sno)
+        {
+            XMLHotel xMLHotel = new XMLHotel();
+            xMLHotel.Sno = sno;
+            return xMLHotel;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Sno
+        {
+            get
+            {
+                return _Sno;
+            }
+            set
+            {
+                if (_Sno != value)
+                {
+                    OnSnoChanging(value);
+                    ReportPropertyChanging("Sno");
+                    _Sno = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Sno");
+                    OnSnoChanged();
+                }
+            }
+        }
+        private global::System.Int64 _Sno;
+        partial void OnSnoChanging(global::System.Int64 value);
+        partial void OnSnoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LocHotelid
+        {
+            get
+            {
+                return _LocHotelid;
+            }
+            set
+            {
+                OnLocHotelidChanging(value);
+                ReportPropertyChanging("LocHotelid");
+                _LocHotelid = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LocHotelid");
+                OnLocHotelidChanged();
+            }
+        }
+        private global::System.String _LocHotelid;
+        partial void OnLocHotelidChanging(global::System.String value);
+        partial void OnLocHotelidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String XMLhotelid
+        {
+            get
+            {
+                return _XMLhotelid;
+            }
+            set
+            {
+                OnXMLhotelidChanging(value);
+                ReportPropertyChanging("XMLhotelid");
+                _XMLhotelid = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("XMLhotelid");
+                OnXMLhotelidChanged();
+            }
+        }
+        private global::System.String _XMLhotelid;
+        partial void OnXMLhotelidChanging(global::System.String value);
+        partial void OnXMLhotelidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String XMLHotelName
+        {
+            get
+            {
+                return _XMLHotelName;
+            }
+            set
+            {
+                OnXMLHotelNameChanging(value);
+                ReportPropertyChanging("XMLHotelName");
+                _XMLHotelName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("XMLHotelName");
+                OnXMLHotelNameChanged();
+            }
+        }
+        private global::System.String _XMLHotelName;
+        partial void OnXMLHotelNameChanging(global::System.String value);
+        partial void OnXMLHotelNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String XMLSupplierID
+        {
+            get
+            {
+                return _XMLSupplierID;
+            }
+            set
+            {
+                OnXMLSupplierIDChanging(value);
+                ReportPropertyChanging("XMLSupplierID");
+                _XMLSupplierID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("XMLSupplierID");
+                OnXMLSupplierIDChanged();
+            }
+        }
+        private global::System.String _XMLSupplierID;
+        partial void OnXMLSupplierIDChanging(global::System.String value);
+        partial void OnXMLSupplierIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> InService
+        {
+            get
+            {
+                return _InService;
+            }
+            set
+            {
+                OnInServiceChanging(value);
+                ReportPropertyChanging("InService");
+                _InService = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("InService");
+                OnInServiceChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _InService;
+        partial void OnInServiceChanging(Nullable<global::System.Int32> value);
+        partial void OnInServiceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ModDate
+        {
+            get
+            {
+                return _ModDate;
+            }
+            set
+            {
+                OnModDateChanging(value);
+                ReportPropertyChanging("ModDate");
+                _ModDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ModDate");
+                OnModDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ModDate;
+        partial void OnModDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnModDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ModUserid
+        {
+            get
+            {
+                return _ModUserid;
+            }
+            set
+            {
+                OnModUseridChanging(value);
+                ReportPropertyChanging("ModUserid");
+                _ModUserid = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ModUserid");
+                OnModUseridChanged();
+            }
+        }
+        private global::System.String _ModUserid;
+        partial void OnModUseridChanging(global::System.String value);
+        partial void OnModUseridChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="meis007Model", Name="XMLSupplier")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class XMLSupplier : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new XMLSupplier object.
+        /// </summary>
+        /// <param name="sno">Initial value of the Sno property.</param>
+        public static XMLSupplier CreateXMLSupplier(global::System.Int32 sno)
+        {
+            XMLSupplier xMLSupplier = new XMLSupplier();
+            xMLSupplier.Sno = sno;
+            return xMLSupplier;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Sno
+        {
+            get
+            {
+                return _Sno;
+            }
+            set
+            {
+                if (_Sno != value)
+                {
+                    OnSnoChanging(value);
+                    ReportPropertyChanging("Sno");
+                    _Sno = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Sno");
+                    OnSnoChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Sno;
+        partial void OnSnoChanging(global::System.Int32 value);
+        partial void OnSnoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SupplierID
+        {
+            get
+            {
+                return _SupplierID;
+            }
+            set
+            {
+                OnSupplierIDChanging(value);
+                ReportPropertyChanging("SupplierID");
+                _SupplierID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SupplierID");
+                OnSupplierIDChanged();
+            }
+        }
+        private global::System.String _SupplierID;
+        partial void OnSupplierIDChanging(global::System.String value);
+        partial void OnSupplierIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SupplierName
+        {
+            get
+            {
+                return _SupplierName;
+            }
+            set
+            {
+                OnSupplierNameChanging(value);
+                ReportPropertyChanging("SupplierName");
+                _SupplierName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SupplierName");
+                OnSupplierNameChanged();
+            }
+        }
+        private global::System.String _SupplierName;
+        partial void OnSupplierNameChanging(global::System.String value);
+        partial void OnSupplierNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> InService
+        {
+            get
+            {
+                return _InService;
+            }
+            set
+            {
+                OnInServiceChanging(value);
+                ReportPropertyChanging("InService");
+                _InService = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("InService");
+                OnInServiceChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _InService;
+        partial void OnInServiceChanging(Nullable<global::System.Int32> value);
+        partial void OnInServiceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String InternalSupplierID
+        {
+            get
+            {
+                return _InternalSupplierID;
+            }
+            set
+            {
+                OnInternalSupplierIDChanging(value);
+                ReportPropertyChanging("InternalSupplierID");
+                _InternalSupplierID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("InternalSupplierID");
+                OnInternalSupplierIDChanged();
+            }
+        }
+        private global::System.String _InternalSupplierID;
+        partial void OnInternalSupplierIDChanging(global::System.String value);
+        partial void OnInternalSupplierIDChanged();
 
         #endregion
     

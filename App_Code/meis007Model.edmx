@@ -39,6 +39,19 @@
           <EntitySet Name="RoomTypeDetail" EntityType="meis007Model.Store.RoomTypeDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoomTypeHeader" EntityType="meis007Model.Store.RoomTypeHeader" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SuppliersHotelsInfo" EntityType="meis007Model.Store.SuppliersHotelsInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="XMLHotels" EntityType="meis007Model.Store.XMLHotels" store:Type="Tables" store:Schema="dbo" store:Name="XMLHotels">
+            <DefiningQuery>SELECT 
+      [XMLHotels].[Sno] AS [Sno], 
+      [XMLHotels].[LocHotelid] AS [LocHotelid], 
+      [XMLHotels].[XMLhotelid] AS [XMLhotelid], 
+      [XMLHotels].[XMLHotelName] AS [XMLHotelName], 
+      [XMLHotels].[XMLSupplierID] AS [XMLSupplierID], 
+      [XMLHotels].[InService] AS [InService], 
+      [XMLHotels].[ModDate] AS [ModDate], 
+      [XMLHotels].[ModUserid] AS [ModUserid]
+      FROM [dbo].[XMLHotels] AS [XMLHotels]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="XMLSuppliers" EntityType="meis007Model.Store.XMLSuppliers" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_B2CPaxinfo_B2CCustomerinfo1" Association="meis007Model.Store.FK_B2CPaxinfo_B2CCustomerinfo1">
             <End Role="B2CCustomerinfo" EntitySet="B2CCustomerinfo" />
             <End Role="B2CPaxinfo" EntitySet="B2CPaxinfo" />
@@ -300,6 +313,32 @@
           <Property Name="Address" Type="varchar(max)" />
           <Property Name="ModDate" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'meis007.dbo.XMLHotels' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="XMLHotels">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LocHotelid" Type="nvarchar" MaxLength="50" />
+          <Property Name="XMLhotelid" Type="nvarchar" MaxLength="50" />
+          <Property Name="XMLHotelName" Type="nvarchar" MaxLength="100" />
+          <Property Name="XMLSupplierID" Type="nvarchar" MaxLength="10" />
+          <Property Name="InService" Type="int" />
+          <Property Name="ModDate" Type="smalldatetime" />
+          <Property Name="ModUserid" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="XMLSuppliers">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierID" Type="nvarchar" MaxLength="10" />
+          <Property Name="SupplierName" Type="nvarchar" MaxLength="200" />
+          <Property Name="InService" Type="int" />
+          <Property Name="InternalSupplierID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_B2CPaxinfo_B2CCustomerinfo1">
           <End Role="B2CCustomerinfo" Type="meis007Model.Store.B2CCustomerinfo" Multiplicity="0..1" />
           <End Role="B2CPaxinfo" Type="meis007Model.Store.B2CPaxinfo" Multiplicity="*" />
@@ -454,6 +493,8 @@
           <EntitySet Name="RoomTypeDetails" EntityType="meis007Model.RoomTypeDetail" />
           <EntitySet Name="RoomTypeHeaders" EntityType="meis007Model.RoomTypeHeader" />
           <EntitySet Name="SuppliersHotelsInfoes" EntityType="meis007Model.SuppliersHotelsInfo" />
+          <EntitySet Name="XMLHotels" EntityType="meis007Model.XMLHotel" />
+          <EntitySet Name="XMLSuppliers" EntityType="meis007Model.XMLSupplier" />
           <AssociationSet Name="FK_ProductAmenities_Amenities" Association="meis007Model.FK_ProductAmenities_Amenities">
             <End Role="Amenities" EntitySet="Amenities" />
             <End Role="ProductAmenities" EntitySet="ProductAmenities" />
@@ -730,6 +771,29 @@
           <Property Name="CountryID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="Address" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="ModDate" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="XMLHotel">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocHotelid" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="XMLhotelid" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="XMLHotelName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="XMLSupplierID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="InService" Type="Int32" />
+          <Property Name="ModDate" Type="DateTime" />
+          <Property Name="ModUserid" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="XMLSupplier">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="SupplierName" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="InService" Type="Int32" />
+          <Property Name="InternalSupplierID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
         </EntityType>
         <Association Name="FK_ProductAmenities_Amenities">
           <End Role="Amenities" Type="meis007Model.Amenity" Multiplicity="0..1" />
@@ -1026,6 +1090,23 @@
             <ScalarProperty Name="Address" ColumnName="Address" />
             <ScalarProperty Name="ModDate" ColumnName="ModDate" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="XMLHotels"><EntityTypeMapping TypeName="meis007Model.XMLHotel"><MappingFragment StoreEntitySet="XMLHotels">
+            <ScalarProperty Name="Sno" ColumnName="Sno" />
+            <ScalarProperty Name="LocHotelid" ColumnName="LocHotelid" />
+            <ScalarProperty Name="XMLhotelid" ColumnName="XMLhotelid" />
+            <ScalarProperty Name="XMLHotelName" ColumnName="XMLHotelName" />
+            <ScalarProperty Name="XMLSupplierID" ColumnName="XMLSupplierID" />
+            <ScalarProperty Name="InService" ColumnName="InService" />
+            <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+            <ScalarProperty Name="ModUserid" ColumnName="ModUserid" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="XMLSuppliers"><EntityTypeMapping TypeName="meis007Model.XMLSupplier"><MappingFragment StoreEntitySet="XMLSuppliers">
+            <ScalarProperty Name="Sno" ColumnName="Sno" />
+            <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+            <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+            <ScalarProperty Name="InService" ColumnName="InService" />
+            <ScalarProperty Name="InternalSupplierID" ColumnName="InternalSupplierID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1063,6 +1144,8 @@
         <EntityTypeShape EntityType="meis007Model.RoomTypeDetail" Width="1.5" PointX="3" PointY="6.375" Height="1.9802864583333397" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.RoomTypeHeader" Width="1.5" PointX="0.75" PointY="2.5" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="11.75" PointY="0.75" Height="5.0571093750000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.XMLHotel" Width="1.5" PointX="12.75" PointY="6.75" Height="2.5571907552083388" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.XMLSupplier" Width="1.5" PointX="9.75" PointY="12.75" Height="1.9802864583333388" IsExpanded="true" />
         <AssociationConnector Association="meis007Model.FK_ProductAmenities_Amenities" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="18.501152846153843" />
           <ConnectorPoint PointX="4.875" PointY="18.126152846153843" />

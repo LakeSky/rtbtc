@@ -45,7 +45,7 @@
     <ItemTemplate>
       <tr>
       <td>
-        <%# Eval("SupplierHotelId")%>
+        <%# Eval("ProductName")%>
         </td>
         <td>
         <asp:Repeater ID="Repeater2" runat="server" DataSource='<%# Eval("Rooms") %>'>
