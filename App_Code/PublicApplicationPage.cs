@@ -16,4 +16,5 @@ public class PublicApplicationPage : System.Web.UI.Page
         }
         return (ShoppingHelper)(Session["StoredShopping"]);
     }
+
 }

@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Index.aspx.cs" Inherits="Hotels_Index" %>
-
+<%@ Register Src="/rtbtc/Pager.ascx" TagName="Pager" TagPrefix="userControl" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
   <style type="text/css">
       #container{min-height: 1200px;}
@@ -120,13 +120,21 @@
   </div>
   </div>
   <div id="hotelsList">
-    <asp:DropDownList ID="ddlSort" runat="server" AutoPostBack="True" 
+    <div class="left">
+      <userControl:Pager ID="Pager" runat="server" Separator=" | " FirstText="First"
+        PreviousText="<" NextText=">" LastText="Last" PageSize="2" NumberOfPages="3"
+        ShowGoTo="True" OnChange="Pager_Changed" />
+    </div>
+    <div class="right">
+      <asp:DropDownList ID="ddlSort" runat="server" AutoPostBack="True" 
           onselectedindexchanged="ddlSort_SelectedIndexChanged">
         <asp:ListItem Value="plf">Price - Lowest First</asp:ListItem>
         <asp:ListItem Value="phf">Price - Highest First</asp:ListItem>
         <asp:ListItem Value="aa">Alphabets - Ascending</asp:ListItem>
         <asp:ListItem Value="ad">Alphabets - Descending</asp:ListItem>
-    </asp:DropDownList>
+      </asp:DropDownList>
+    </div>
+    <div class="clear"></div>
     <asp:Repeater ID="Repeater3" runat="server">
       <HeaderTemplate>
       </HeaderTemplate>
@@ -151,7 +159,7 @@
             <div class="price">
               SR. <%# Eval("BasicPrice")%>
             </div>
-            <img src="<%# Eval("ProductImagePath")%>" />
+            <img src="<%# Eval("ProductImagePath")%>" class="media-image" />
           </div>
           <div class="clear"></div>
           <div class="margin10"></div>

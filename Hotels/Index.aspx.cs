@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using meis007Model;
+using PagerWebControls;
 
 public partial class Hotels_Index : PublicApplicationPage
 {
@@ -30,14 +31,10 @@ public partial class Hotels_Index : PublicApplicationPage
             RoomsCount = ShoppingRoomsList.Count;
         }
         _meis007Entities = new meis007Entities();
-        amenities = _meis007Entities.Amenities.OrderBy(x => x.AmenitiesName).ToList();
         classifications = _meis007Entities.Classifications.OrderBy(x => x.ClsName).ToList();
-        productMasters = _meis007Entities.ProductMasters.Take(10).ToList();
         if (!IsPostBack)
         {
-            var supplierHotelObjectHelper = new SupplierHotelObjectHelper();
-            Repeater3.DataSource = supplierHotelObjectHelper.GetHotels();
-            Repeater3.DataBind();
+            PopulateDataSource(1, this.Pager.PageSize);
         }
     }
 
@@ -47,8 +44,23 @@ public partial class Hotels_Index : PublicApplicationPage
 
     protected void ddlSort_SelectedIndexChanged(object sender, EventArgs e)
     {
-        var supplierHotelObjectHelper = new SupplierHotelObjectHelper(ddlSort.SelectedValue.ToString());
-        Repeater3.DataSource = supplierHotelObjectHelper.GetHotels();
-        Repeater3.DataBind();
+        PopulateDataSource(1, this.Pager.PageSize);
     }
+
+    protected void Pager_Changed(object sender, PagerEventArgs e)
+    {
+        PopulateDataSource(e.Number, e.PageSize);
+    }
+
+    private void PopulateDataSource(int page, int pageSize)
+    {
+        var supplierHotelObjectHelper = new SupplierHotelObjectHelper(ddlSort.SelectedValue);
+        var data = supplierHotelObjectHelper.GetHotels();
+        Repeater3.DataSource = data.Skip((page - 1) * pageSize).Take(pageSize);
+        Repeater3.DataBind();
+        this.Pager.TotalPages =
+             (data.Count / pageSize) + (data.Count % pageSize > 0 ? 1 : 0);
+        this.Pager.GenerateLinks();
+    }
+
 }
