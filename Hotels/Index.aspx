@@ -128,15 +128,36 @@
   </div>
   </div>
   <div id="hotelsList">
-    <%foreach (var x in productMasters){%>
-      <h3 style="margin-bottom:15px;">
-        <%= x.ProductName %>
-        &nbsp;
-        <img src="<%= x.Classification.ImagePath %>"/>
-      </h3>
-      <p><%= x.ShortDescription %></p>
-      <hr />
-    <%} %>
+    <asp:Repeater ID="Repeater3" runat="server">
+      <HeaderTemplate>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <div class="hotel-div">
+          <div class="hotel-content">
+            <h3><%# Eval("ProductName")%></h3>
+            <img src="<%# Eval("ProductStarsImagePath")%>" />
+            <br />
+            <h4><%# Eval("City") %></h4>
+            <%# Eval("ProdcutDescription")%>
+          </div>      
+          <div class="hotel-image">
+            <div class="price">
+              SR. <%# Eval("BasicPrice")%>
+            </div>
+            <img src="<%# Eval("ProductImagePath")%>" />
+          </div>
+          <div class="clear"></div>
+          <asp:Repeater ID="Repeater2" runat="server" DataSource='<%# Eval("Rooms") %>'>
+            <ItemTemplate>
+              <%# Eval("RoomId")%>
+            </ItemTemplate>
+            <SeparatorTemplate>,</SeparatorTemplate>
+          </asp:Repeater>
+        </div>
+      </ItemTemplate>
+      <FooterTemplate>
+      </FooterTemplate>
+  </asp:Repeater>
   </div>
 <!-- </div> -->
 <script id='add-remove-room-button-template' type='text/html'>

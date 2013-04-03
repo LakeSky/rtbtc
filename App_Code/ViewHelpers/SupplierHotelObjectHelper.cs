@@ -61,7 +61,7 @@ public class SupplierHotelObjectHelper
                             {
                                 starsImagePath = productMaster.Classification.ImagePath;
                             }
-                            imagePath = "";
+                            imagePath = _meis007Entities.ProductImages.First().ImageAddress;
                             if (productMaster.ProductImages.Count > 0)
                             {
                                 imagePath = productMaster.ProductImages.First().ImageAddress;

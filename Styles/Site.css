@@ -191,13 +191,13 @@ body {
 }
 
 #hotelsListMain #searchCriteria{
-  width: 30%;
+  width: 250px;
   float: left;
   margin-right: 10px;
 }
 
 #hotelsListMain #hotelsList{
-  width: 67%;
+  width: 670px;
   float: right;
 }
 
@@ -221,13 +221,13 @@ body {
 }
 
 #searchCriteria{
-  width: 30%;
+  width: 250px;
   float: left;
   margin-right: 10px;
 }
 
 #hotelsList{
-  width: 67%;
+  width: 670px;
   float: right;
 }
 
@@ -250,4 +250,26 @@ body {
  padding-right : 5px;
  border: solid 1px #ccc;
  margin-top: 20px;
+}
+
+#hotelsList .hotel-div{
+  margin: 10px 0;
+  border-bottom: solid 1px #ccc;
+  padding-bottom: 10px;
+}
+
+#hotelsList .hotel-content{
+  width: 420px;
+  float: left;
+}
+
+#hotelsList .hotel-image{
+  width: 210px;
+  float: right;
+}
+
+#hotelsList .hotel-image .price{
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
 }

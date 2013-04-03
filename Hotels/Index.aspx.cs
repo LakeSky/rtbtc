@@ -33,6 +33,10 @@ public partial class Hotels_Index : PublicApplicationPage
         amenities = _meis007Entities.Amenities.OrderBy(x => x.AmenitiesName).ToList();
         classifications = _meis007Entities.Classifications.OrderBy(x => x.ClsName).ToList();
         productMasters = _meis007Entities.ProductMasters.Take(10).ToList();
+
+        var ob = new SupplierHotelObjectHelper();
+        Repeater3.DataSource = ob.GetHotels();
+        Repeater3.DataBind();
     }
 
     protected void txtSearch_Click(object sender, EventArgs e)
