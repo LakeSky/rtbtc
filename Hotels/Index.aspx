@@ -11,6 +11,7 @@
   <script type="text/javascript" src="/rtbtc/Scripts/hotel_search.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
+  <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 <!-- <div id="hotelsListMain"> -->
   <div id="searchCriteria">
     <div id="mainSearch">
@@ -120,77 +121,81 @@
   </div>
   </div>
   <div id="hotelsList">
-    <div class="left">
-      <userControl:Pager ID="Pager" runat="server" Separator=" | " FirstText="First"
-        PreviousText="<" NextText=">" LastText="Last" PageSize="2" NumberOfPages="3"
-        ShowGoTo="True" OnChange="Pager_Changed" />
-    </div>
-    <div class="right">
-      <asp:DropDownList ID="ddlSort" runat="server" AutoPostBack="True" 
-          onselectedindexchanged="ddlSort_SelectedIndexChanged">
-        <asp:ListItem Value="plf">Price - Lowest First</asp:ListItem>
-        <asp:ListItem Value="phf">Price - Highest First</asp:ListItem>
-        <asp:ListItem Value="aa">Alphabets - Ascending</asp:ListItem>
-        <asp:ListItem Value="ad">Alphabets - Descending</asp:ListItem>
-      </asp:DropDownList>
-    </div>
-    <div class="clear"></div>
-    <asp:Repeater ID="Repeater3" runat="server">
-      <HeaderTemplate>
-      </HeaderTemplate>
-      <ItemTemplate>
-        <div class="hotel-div">
-          <div class="hotel-content">
-            <h3><%# Eval("ProductName")%></h3>
-            <div class="left">
-              <img src="<%# Eval("ProductStarsImagePath")%>" />
-              <br />
-              <h4><%# Eval("City") %></h4>
-            </div>
-            <% var path = CurrentUser.GetRootPath("Hotels/Details.aspx"); %>
-            <div class="right paddingT10">
-              <a href="<%= path %>?id=<%# Eval("ProductMasterId")%>" class="btn btn-primary">More Info ></a>
-            </div>
-            <div class="clear"></div>
-            <div class="margin10"></div>
-            <%# Eval("ProdcutDescription")%>
-          </div>      
-          <div class="hotel-image">
-            <div class="price">
-              SR. <%# Eval("BasicPrice")%>
-            </div>
-            <img src="<%# Eval("ProductImagePath")%>" class="media-image" />
-          </div>
-          <div class="clear"></div>
-          <div class="margin10"></div>
-          <asp:Repeater ID="Repeater2" runat="server" DataSource='<%# Eval("Rooms") %>'>
-            <HeaderTemplate>
-              <table class="table table-bordered">
-                <tr>
-                  <th>Room type</th>
-                  <th>Room Name</th>
-                  <th>Price</th>
-                  <th></th>
-                </tr>
-            </HeaderTemplate>
-            <ItemTemplate>
-              <tr>
-                <td><%# Eval("RoomType") %></td>
-                <td><%# Eval("RoomName") %></td>
-                <td>SR. <%# Eval("Price") %></td>
-                <% var path = CurrentUser.GetRootPath("Hotels/book.aspx"); %>
-                <td><a href="<%= path %>?id=<%# Eval("HotelInfoId")%>" class="btn btn-success">Book</a></td>
-              </tr>
-            </ItemTemplate>
-            <FooterTemplate>
-              </table>
-            </FooterTemplate>
-          </asp:Repeater>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+      <ContentTemplate>
+        <div class="left">
+          <userControl:Pager ID="Pager" runat="server" Separator=" | " FirstText="First"
+            PreviousText="<" NextText=">" LastText="Last" PageSize="2" NumberOfPages="3"
+            ShowGoTo="True" OnChange="Pager_Changed" />
         </div>
-      </ItemTemplate>
-      <FooterTemplate>
-      </FooterTemplate>
-  </asp:Repeater>
+        <div class="right">
+          <asp:DropDownList ID="ddlSort" runat="server" AutoPostBack="True" 
+            onselectedindexchanged="ddlSort_SelectedIndexChanged">
+            <asp:ListItem Value="plf">Price - Lowest First</asp:ListItem>
+            <asp:ListItem Value="phf">Price - Highest First</asp:ListItem>
+            <asp:ListItem Value="aa">Alphabets - Ascending</asp:ListItem>
+            <asp:ListItem Value="ad">Alphabets - Descending</asp:ListItem>
+          </asp:DropDownList>
+        </div>
+        <div class="clear"></div>
+        <asp:Repeater ID="rptrHotels" runat="server">
+          <HeaderTemplate>
+          </HeaderTemplate>
+          <ItemTemplate>
+            <div class="hotel-div">
+              <div class="hotel-content">
+                <h3><%# Eval("ProductName")%></h3>
+                <div class="left">
+                  <img src="<%# Eval("ProductStarsImagePath")%>" />
+                  <br />
+                  <h4><%# Eval("City") %></h4>
+                </div>
+                <% var path = CurrentUser.GetRootPath("Hotels/Details.aspx"); %>
+                <div class="right paddingT10">
+                  <a href="<%= path %>?id=<%# Eval("ProductMasterId")%>" class="btn btn-primary">More Info ></a>
+                </div>
+                <div class="clear"></div>
+                <div class="margin10"></div>
+                <%# Eval("ProdcutDescription")%>
+              </div>      
+              <div class="hotel-image">
+                <div class="price">
+                  SR. <%# Eval("BasicPrice")%>
+                </div>
+                <img src="<%# Eval("ProductImagePath")%>" class="media-image" />
+              </div>
+              <div class="clear"></div>
+              <div class="margin10"></div>
+              <asp:Repeater ID="rptrRooms" runat="server" DataSource='<%# Eval("Rooms") %>'>
+                <HeaderTemplate>
+                  <table class="table table-bordered">
+                    <tr>
+                      <th>Room type</th>
+                      <th>Room Name</th>
+                      <th>Price</th>
+                      <th></th>
+                    </tr>
+                </HeaderTemplate>
+                <ItemTemplate>
+                  <tr>
+                    <td><%# Eval("RoomType") %></td>
+                    <td><%# Eval("RoomName") %></td>
+                    <td>SR. <%# Eval("Price") %></td>
+                    <% var path = CurrentUser.GetRootPath("Hotels/book.aspx"); %>
+                    <td><a href="<%= path %>?id=<%# Eval("HotelInfoId")%>" class="btn btn-success">Book</a></td>
+                  </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                  </table>
+                </FooterTemplate>
+              </asp:Repeater>
+            </div>
+          </ItemTemplate>
+          <FooterTemplate>
+          </FooterTemplate>
+      </asp:Repeater>
+    </ContentTemplate>
+  </asp:UpdatePanel>
   </div>
 <!-- </div> -->
 <script id='add-remove-room-button-template' type='text/html'>

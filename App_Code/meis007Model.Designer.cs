@@ -4357,6 +4357,30 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int64> LocHotelID
+        {
+            get
+            {
+                return _LocHotelID;
+            }
+            set
+            {
+                OnLocHotelIDChanging(value);
+                ReportPropertyChanging("LocHotelID");
+                _LocHotelID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LocHotelID");
+                OnLocHotelIDChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _LocHotelID;
+        partial void OnLocHotelIDChanging(Nullable<global::System.Int64> value);
+        partial void OnLocHotelIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Int32> HotelID
         {
             get

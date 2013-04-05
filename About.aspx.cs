@@ -19,5 +19,6 @@ public partial class About : System.Web.UI.Page
         var ob = new SupplierHotelObjectHelper();
         Repeater3.DataSource = ob.GetHotels();
         Repeater3.DataBind();
+
     }
 }

@@ -56,8 +56,8 @@ public partial class Hotels_Index : PublicApplicationPage
     {
         var supplierHotelObjectHelper = new SupplierHotelObjectHelper(ddlSort.SelectedValue);
         var data = supplierHotelObjectHelper.GetHotels();
-        Repeater3.DataSource = data.Skip((page - 1) * pageSize).Take(pageSize);
-        Repeater3.DataBind();
+        rptrHotels.DataSource = data.Skip((page - 1) * pageSize).Take(pageSize);
+        rptrHotels.DataBind();
         this.Pager.TotalPages =
              (data.Count / pageSize) + (data.Count % pageSize > 0 ? 1 : 0);
         this.Pager.GenerateLinks();
