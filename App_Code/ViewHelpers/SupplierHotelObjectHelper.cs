@@ -18,7 +18,6 @@ public class SupplierHotelObjectHelper
     string xmlHotelId;
     string imagePath;
     decimal price;
-    string sortBy;
     string defaultImagePath;
     List<long> productMasterIds;
     List<SupplierHotelHelper> supplierHotels;
@@ -29,12 +28,11 @@ public class SupplierHotelObjectHelper
     XMLHotel xmlHotel;
     ProductMaster productMaster;
 
-    public SupplierHotelObjectHelper(string _sortBy = "plf")
+    public SupplierHotelObjectHelper()
     {
         productMasterIds = new List<long>();
         supplierHotels = new List<SupplierHotelHelper>();
         _meis007Entities = new meis007Entities();
-        sortBy = _sortBy;
     }
 
     public List<SupplierHotelHelper> GetHotels()
@@ -47,7 +45,7 @@ public class SupplierHotelObjectHelper
                    on pm.CityID equals ci.CityID
                    join cl in _meis007Entities.Classifications
                    on pm.ClsID equals cl.ClsID
-                   select new { HotelInfoId = shi.HotelInfoID, RoomId = shi.RoomID, RoomName = shi.RoomName, RoomType = shi.RoomType, Price = shi.LCAP, SupplierHotelId = shi.HotelID, SessionId = shi.SessionID, SupplierId = shi.SupplierID, NoOfPassengers = shi.NumOfPassengers, ProductName = pm.ProductName, City = ci.CityName, ProductDescription = pm.ShortDescription, ProductMaterId = pm.ProductID, ProductStartsImagePath = cl.ImagePath, ImagesCount = pm.ProductImages.Count, ProductMaster = pm };
+                   select new { HotelInfoId = shi.HotelInfoID, RoomId = shi.RoomID, RoomName = shi.RoomName, RoomType = shi.RoomType, Price = shi.LCAP, SupplierHotelId = shi.HotelID, SessionId = shi.SessionID, SupplierId = shi.SupplierID, NoOfPassengers = shi.NumOfPassengers, ProductName = pm.ProductName, City = ci.CityName, ProductDescription = pm.ShortDescription, ProductMaterId = pm.ProductID, ProductStarsName = cl.ClsName, ProductStartsImagePath = cl.ImagePath, ImagesCount = pm.ProductImages.Count, ProductMaster = pm };
         foreach (var x in data)
         {
             supplierHotelRoomId = int.Parse(x.RoomId.ToString());
@@ -66,7 +64,7 @@ public class SupplierHotelObjectHelper
             else
             {
                 imagePath = x.ImagesCount > 0 ? x.ProductMaster.ProductImages.First().ImageAddress : defaultImagePath;
-                supplierHotelHelper = new SupplierHotelHelper { Id = x.HotelInfoId, SessionId = x.SessionId, SupplierId = x.SupplierId, ProductName = x.ProductName, City = x.City, ProdcutDescription = x.ProductDescription, ProductMasterId = x.ProductMaterId, ProductStarsImagePath = x.ProductStartsImagePath, ProductImagePath = imagePath };
+                supplierHotelHelper = new SupplierHotelHelper { Id = x.HotelInfoId, SessionId = x.SessionId, SupplierId = x.SupplierId, ProductName = x.ProductName, City = x.City, ProdcutDescription = x.ProductDescription, ProductMasterId = x.ProductMaterId, ProductStarsName = x.ProductStarsName, ProductStarsImagePath = x.ProductStartsImagePath, ProductImagePath = imagePath };
                 var rooms = new List<SupplierHotelRoomHelper>();
                 rooms.Add(supplierHotelRoomHelper);
                 supplierHotelHelper.Rooms = rooms;
@@ -79,11 +77,13 @@ public class SupplierHotelObjectHelper
             x.BasicPrice = int.Parse(Math.Floor(decimal.Parse(x.Rooms.Where(z => z.Price != null).OrderBy(z => z.Price).First().Price.ToString())).ToString());
             x.Rooms = x.Rooms.OrderBy(z => z.RoomName).ToList();
         }
-        supplierHotels = Sort();
         return supplierHotels;
     }
+}
 
-    protected List<SupplierHotelHelper> Sort()
+public static class  SupplierHotelObjectSortHelper
+{
+    public static List<SupplierHotelHelper> Sort(List<SupplierHotelHelper> supplierHotels, string sortBy)
     {
         List<SupplierHotelHelper> sortedList;
         if (sortBy == "phf")
@@ -104,4 +104,5 @@ public class SupplierHotelObjectHelper
         }
         return sortedList;
     }
+
 }

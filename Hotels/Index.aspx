@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
   <style type="text/css">
       #container{min-height: 1200px;}
+      .stars{display:inline-block;}
   </style>
   <script type="text/javascript">
       window.city_autocomplete_url = '<%=ResolveUrl("~/ViewHelperWebService.asmx/CitySearch") %>';
@@ -110,31 +111,60 @@
   <div id="otherCriterias">
     <div class="div-wrapper">
     <h3>Star Ratings</h3>
-    <%foreach (var x in classifications)
-      {%>
-        <label>
-          <input type="checkbox" id="ratings_<%=  x.ClsID %>" value="<%=  x.ClsName %>" style="display:inline-block;" />
-          <%= x.ClsName %>
-        </label>
-    <%} %>
+      <label>
+        <asp:CheckBox ID="chkBox1S" runat="server" runat="server" CssClass="stars" AutoPostBack="True" OnCheckedChanged="CheckBox_Changed" Enabled="false"/>
+        1
+      </label>
+      <label>
+        <asp:CheckBox ID="chkBox15S" runat="server" runat="server" CssClass="stars" AutoPostBack="True" OnCheckedChanged="CheckBox_Changed"  Enabled="false" />
+        1.5
+      </label>
+      <label>
+        <asp:CheckBox ID="chkBox2S" runat="server" runat="server" CssClass="stars" AutoPostBack="True" OnCheckedChanged="CheckBox_Changed" Enabled="false" />
+        2
+      </label>
+      <label>
+        <asp:CheckBox ID="chkBox25S" runat="server" runat="server" CssClass="stars" AutoPostBack="True" OnCheckedChanged="CheckBox_Changed"  Enabled="false" />
+        2.5
+      </label>
+      <label>
+        <asp:CheckBox ID="chkBox3S" runat="server" runat="server" CssClass="stars" AutoPostBack="True" OnCheckedChanged="CheckBox_Changed" Enabled="false" />
+        3
+      </label>
+      <label>
+        <asp:CheckBox ID="chkBox35S" runat="server" runat="server" CssClass="stars" AutoPostBack="True" OnCheckedChanged="CheckBox_Changed" Enabled="false" />
+        3.5
+      </label>
+      <label>
+        <asp:CheckBox ID="chkBox37S" runat="server" runat="server" CssClass="stars" AutoPostBack="True" OnCheckedChanged="CheckBox_Changed"  Enabled="false"/>
+        3.7
+      </label>
+      <label>
+        <asp:CheckBox ID="chkBox4S" runat="server" runat="server" CssClass="stars" AutoPostBack="True" OnCheckedChanged="CheckBox_Changed" Enabled="false" />
+        4
+      </label>
+      <label>
+        <asp:CheckBox ID="chkBox45S" runat="server" runat="server" CssClass="stars" AutoPostBack="True" OnCheckedChanged="CheckBox_Changed"  Enabled="false"/>
+        4.5
+      </label>
+      <label>
+        <asp:CheckBox ID="chkBox5S" runat="server" runat="server" CssClass="stars"  AutoPostBack="True" OnCheckedChanged="CheckBox_Changed"  Enabled="false"/>
+        5
+      </label>
+      <label>
+        <asp:CheckBox ID="chkBox6S" runat="server" runat="server" CssClass="stars"  AutoPostBack="True" OnCheckedChanged="CheckBox_Changed"  Enabled="false"/>
+        6
+      </label>
+      <label>
+        <asp:CheckBox ID="chkBox75S" runat="server" runat="server" CssClass="stars"  AutoPostBack="True" OnCheckedChanged="CheckBox_Changed" Enabled="false" />
+        7.5
+      </label>
     </div>
-    <asp:Repeater ID="Repeater1" runat="server">
-          <HeaderTemplate>
-          </HeaderTemplate>
-          <ItemTemplate>
-            <label>
-              <input type="checkbox" id="xx" value="<%# Eval("ClsName") %>" style="display:inline-block;" />
-              <%# Eval("ClsName") %>
-            </label>
-          </ItemTemplate>
-          <FooterTemplate>
-          </FooterTemplate>
-      </asp:Repeater>
   </div>
   </div>
   <div id="hotelsList">
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-      <ContentTemplate>
+     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+       <ContentTemplate>
         <div class="left">
           <userControl:Pager ID="Pager" runat="server" Separator=" | " FirstText="First"
             PreviousText="<" NextText=">" LastText="Last" PageSize="2" NumberOfPages="3"
