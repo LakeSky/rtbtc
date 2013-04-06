@@ -118,6 +118,18 @@
         </label>
     <%} %>
     </div>
+    <asp:Repeater ID="Repeater1" runat="server">
+          <HeaderTemplate>
+          </HeaderTemplate>
+          <ItemTemplate>
+            <label>
+              <input type="checkbox" id="xx" value="<%# Eval("ClsName") %>" style="display:inline-block;" />
+              <%# Eval("ClsName") %>
+            </label>
+          </ItemTemplate>
+          <FooterTemplate>
+          </FooterTemplate>
+      </asp:Repeater>
   </div>
   </div>
   <div id="hotelsList">

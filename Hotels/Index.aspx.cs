@@ -14,7 +14,6 @@ public partial class Hotels_Index : PublicApplicationPage
     protected ShoppingHotelHelper _ShoppingHotel;
     public List<ShoppingRoomHelper> ShoppingRoomsList;
     public int RoomsCount;
-    public List<Amenity> amenities;
     public List<Classification> classifications;
     public List<ProductMaster> productMasters;
     protected void Page_Load(object sender, EventArgs e)
@@ -54,8 +53,12 @@ public partial class Hotels_Index : PublicApplicationPage
 
     private void PopulateDataSource(int page, int pageSize)
     {
-        var supplierHotelObjectHelper = new SupplierHotelObjectHelper(ddlSort.SelectedValue);
+        //var supplierHotelObjectHelper = new SupplierHotelObjectHelper(ddlSort.SelectedValue);
+        //var data = supplierHotelObjectHelper.GetHotels();
+        var supplierHotelObjectHelper = new SupplierHotelObjectHelperTest(ddlSort.SelectedValue);
         var data = supplierHotelObjectHelper.GetHotels();
+        Repeater1.DataSource = classifications;
+        Repeater1.DataBind();
         rptrHotels.DataSource = data.Skip((page - 1) * pageSize).Take(pageSize);
         rptrHotels.DataBind();
         this.Pager.TotalPages =
