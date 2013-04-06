@@ -58,10 +58,10 @@ public partial class Hotels_Index : PublicApplicationPage
 
     private void PopulateDataSource(int page, int pageSize)
     {
-        var supplierHotelObjectHelper = new SupplierHotelObjectHelper();
-        var data = supplierHotelObjectHelper.GetHotels();
-        //var supplierHotelObjectHelper = new SupplierHotelObjectHelperTest(ddlSort.SelectedValue);
+        //var supplierHotelObjectHelper = new SupplierHotelObjectHelper();
         //var data = supplierHotelObjectHelper.GetHotels();
+        var supplierHotelObjectHelper = new SupplierHotelObjectHelperTest(ddlSort.SelectedValue);
+        var data = supplierHotelObjectHelper.GetHotels();
         //Repeater1.DataSource = classifications;
         //Repeater1.DataBind();
         UpdateStars(data);
