@@ -29,11 +29,13 @@ public partial class Hotels_Index : PublicApplicationPage
             txtEndDate.Text = _ShoppingHotel.ToDate;
             RoomsCount = ShoppingRoomsList.Count;
         }
-        _meis007Entities = new meis007Entities();
-        classifications = _meis007Entities.Classifications.OrderBy(x => x.ClsName).ToList();
         if (!IsPostBack)
         {
-            PopulateDataSource(1, this.Pager.PageSize);
+            var supplierHotelObjectHelper = new SupplierHotelObjectHelper();
+            var data = supplierHotelObjectHelper.GetHotels();
+            BindStarRatingsRepeater();
+            EnableOrDisableStarRatingCheckBoxes(data);
+            PopulateDataSource(1, this.Pager.PageSize, data);
         }
     }
 
@@ -57,15 +59,14 @@ public partial class Hotels_Index : PublicApplicationPage
         PopulateDataSource(e.Number, e.PageSize);
     }
 
-    private void PopulateDataSource(int page, int pageSize)
+    private void PopulateDataSource(int page, int pageSize, List<SupplierHotelHelper> data = null)
     {
-        var supplierHotelObjectHelper = new SupplierHotelObjectHelper();
-        var data = supplierHotelObjectHelper.GetHotels();
+        if (data == null){
+            var supplierHotelObjectHelper = new SupplierHotelObjectHelper();
+            data = supplierHotelObjectHelper.GetHotels();
+        }
         //var supplierHotelObjectHelper = new SupplierHotelObjectHelperTest(ddlSort.SelectedValue);
         //var data = supplierHotelObjectHelper.GetHotels();
-        //Repeater1.DataSource = classifications;
-        //Repeater1.DataBind();
-        UpdateStars(data);
         data = FilterByStars(data);
         data = SupplierHotelObjectSortHelper.Sort(data, ddlSort.SelectedValue);
         rptrHotels.DataSource = data.Skip((page - 1) * pageSize).Take(pageSize);
@@ -75,153 +76,39 @@ public partial class Hotels_Index : PublicApplicationPage
         this.Pager.GenerateLinks();
     }
 
-    protected void UpdateStars(List<SupplierHotelHelper> data) {
-        List<string> starNames = new List<string>();
-        foreach (var x in data) {
-            if (!starNames.Contains(x.ProductStarsName)) {
-                starNames.Add(x.ProductStarsName);
-            }
-        }
-        foreach (var name in starNames) {
-            if (name == "1") {
-                chkBox1S.Enabled = true;
-                if(!IsPostBack)
-                  chkBox1S.Checked = true;
-            }
-            else if (name == "1.5") {
-                chkBox15S.Enabled = true;
-                if (!IsPostBack)
-                  chkBox15S.Checked = true;
-            }
-            else if (name == "2")
-            {
-                chkBox2S.Enabled = true;
-                if (!IsPostBack)
-                  chkBox2S.Checked = true;
-            }
-            else if (name == "2.5")
-            {
-                chkBox25S.Enabled = true;
-                if (!IsPostBack)
-                  chkBox25S.Checked = true;
-            }
-            else if (name == "3")
-            {
-                chkBox3S.Enabled = true;
-                if (!IsPostBack)
-                  chkBox3S.Checked = true;
-            }
-            else if (name == "3.5")
-            {
-                chkBox35S.Enabled = true;
-                if (!IsPostBack)
-                  chkBox35S.Checked = true;
-            }
-            else if (name == "3.7")
-            {
-                chkBox37S.Enabled = true;
-                if (!IsPostBack)
-                  chkBox37S.Checked = true;
-            }
-            else if (name == "4")
-            {
-                chkBox4S.Enabled = true;
-                if (!IsPostBack)
-                  chkBox4S.Checked = true;
-            }
-            else if (name == "4.5")
-            {
-                chkBox45S.Enabled = true;
-                if (!IsPostBack)
-                  chkBox45S.Checked = true;
-            }
-            else if (name == "5")
-            {
-                chkBox5S.Enabled = true;
-                if (!IsPostBack)
-                  chkBox5S.Checked = true;
-            }
-            else if (name == "6")
-            {
-                chkBox6S.Enabled = true;
-                if (!IsPostBack)
-                  chkBox6S.Checked = true;
-            }
-            else if (name == "7.5")
-            {
-                chkBox75S.Enabled = true;
-                if (!IsPostBack)
-                  chkBox75S.Checked = true;
-            }
+    protected void BindStarRatingsRepeater() {
+        _meis007Entities = new meis007Entities();
+        rptrStarRatings.DataSource = _meis007Entities.Classifications.OrderBy(x => x.ClsName).ToList();
+        rptrStarRatings.DataBind();
+    }
+
+    protected void EnableOrDisableStarRatingCheckBoxes(List<SupplierHotelHelper> data) {
+        foreach (RepeaterItem item in rptrStarRatings.Items){
+          var chkBox = item.FindControl("chkBoxStar") as CheckBox;
+          var hotel = data.Where(x => x.ProductStarsName == chkBox.Text).FirstOrDefault();
+          chkBox.Enabled = hotel == null ? false : true;
+          chkBox.Checked = hotel == null ? false : true;
         }
     }
 
     protected List<SupplierHotelHelper> FilterByStars(List<SupplierHotelHelper> data)
     {
         List<SupplierHotelHelper> filteredData = new List<SupplierHotelHelper>();
-        if (chkBox1S.Checked)
+        foreach (RepeaterItem item in rptrStarRatings.Items)
         {
-            filteredData = StarFilter(data, filteredData, "1");
-        }
-        if (chkBox15S.Checked)
-        {
-            filteredData = StarFilter(data, filteredData, "1.5");
-        }
-        if (chkBox2S.Checked)
-        {
-            filteredData = StarFilter(data, filteredData, "2");
-        }
-        if (chkBox25S.Checked)
-        {
-            filteredData = StarFilter(data, filteredData, "2.5");
-        }
-        if (chkBox3S.Checked)
-        {
-            filteredData = StarFilter(data, filteredData, "3");
-        }
-        if (chkBox35S.Checked)
-        {
-            filteredData = StarFilter(data, filteredData, "3.5");    
-        }
-        if (chkBox37S.Checked)
-        {
-            filteredData = StarFilter(data, filteredData, "3.7");
-        }
-        if (chkBox4S.Checked)
-        {
-            filteredData = StarFilter(data, filteredData, "4");
-        }
-        if (chkBox45S.Checked)
-        {
-            filteredData = StarFilter(data, filteredData, "4.5");
-        }
-        if (chkBox5S.Checked)
-        {
-            filteredData = StarFilter(data, filteredData, "5");
-        }
-        else if (chkBox6S.Checked)
-        {
-            filteredData = StarFilter(data, filteredData, "6");
-        }
-        else if (chkBox75S.Checked)
-        {
-            filteredData = StarFilter(data, filteredData, "7.5");
-        }
-        return filteredData;
-    }
-
-    protected List<SupplierHotelHelper> StarFilter(List<SupplierHotelHelper> data, List<SupplierHotelHelper> returnData, string starName)
-    {
-        var filteredData = new List<SupplierHotelHelper>();
-        foreach (var x in data) {
-            if (x.ProductStarsName == starName) {
-                filteredData.Add(x);
+            var chkBox = item.FindControl("chkBoxStar") as CheckBox;
+            if (chkBox.Checked)
+            {
+                foreach (var x in data)
+                {
+                    if (x.ProductStarsName == chkBox.Text)
+                    {
+                        filteredData.Add(x);
+                    }
+                }
             }
         }
-        foreach (var x in filteredData) {
-            returnData.Add(x);
-        }
-        return returnData;
+        return filteredData;
     }
 
 }
