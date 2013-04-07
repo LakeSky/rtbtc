@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using meis007Model;
+using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
 
 /// <summary>
 /// Summary description for BookingObjectHelper
@@ -13,50 +16,59 @@ public static class BookingObjectHelper
     {
         var NoOfPassengers = 0;
         decimal price = decimal.Parse("0");
+        SqlConnection _sqlConnection;
+        SqlCommand _sqlCommand;
+        SqlDataReader _sqlDataReader;
         List<BookingGuestDetails> bookingGuestDetails = BookingObjectHelper.GetGuests(_shoppingHelper);
+        BookingHotelDetails bookingHotelDetails = new BookingHotelDetails();
         var defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
 
-        var data = (from pm in _meis007Entities.ProductMasters
-                   join shi in _meis007Entities.SuppliersHotelsInfoes on pm.ProductID equals shi.LocHotelID
-                   join ci in _meis007Entities.CityMasters on pm.CityID equals ci.CityID
-                   join cl in _meis007Entities.Classifications on pm.ClsID equals cl.ClsID
-                   //join pi in _meis007Entities.ProductImages on pm.ProductID equals pi.ProductID into productImages
-                   //from pi in productImages.DefaultIfEmpty()
-                   where shi.HotelInfoID == supplierHotelInfoId
-                   select new
-                   {
-                       HotelInfoId = shi.HotelInfoID,
-                       ProductName = pm.ProductName,
-                       City = ci.CityName,
-                       ProductStarsImagePath = cl.ImagePath,
-                       ProductDefaultImagePath = "",
-                       Price = shi.LCAP,
-                       NoOfPassengers = shi.NumOfPassengers,
-                       RoomType = shi.RoomType,
-                       RoomName = shi.RoomName
-                   }).First();
+        _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
+        _sqlConnection.Open();
+        _sqlCommand = new SqlCommand("spProductMasterTest", _sqlConnection);
+        _sqlCommand.CommandType = CommandType.StoredProcedure;
+        _sqlCommand.Parameters.AddWithValue("@Trans", "SearchSingle");
+        _sqlCommand.Parameters.AddWithValue("@HotelInfoId", supplierHotelInfoId);
+        _sqlDataReader = _sqlCommand.ExecuteReader();
+        while (_sqlDataReader.Read())
+        {
 
-        if(data.NoOfPassengers != null){
-            NoOfPassengers = int.Parse(data.NoOfPassengers.ToString());
-        }else{
-            NoOfPassengers = bookingGuestDetails.Where(x => x.type != "Infants").Count();
+            if (!string.IsNullOrEmpty(_sqlDataReader["NumOfPassengers"].ToString())){
+                NoOfPassengers = int.Parse(_sqlDataReader["NumOfPassengers"].ToString());
+            } else{
+                NoOfPassengers = bookingGuestDetails.Where(x => x.type != "Infants").Count();
+            }
+
+            if (!string.IsNullOrEmpty(_sqlDataReader["LCAP"].ToString())){
+                price = Math.Floor(decimal.Parse(_sqlDataReader["LCAP"].ToString()) / NoOfPassengers);
+            }
+
+            var guests = bookingGuestDetails.Where(x => x.type == "Adult").Count().ToString() + " Adults "
+                + bookingGuestDetails.Where(x => x.type == "Children").Count().ToString()
+                + " Children " + bookingGuestDetails.Where(x => x.type == "Infant").Count().ToString() + " Infants";
+
+            var totalPrice = price * (bookingGuestDetails.Where(x => x.type == "Adult").Count() + bookingGuestDetails.Where(x => x.type == "Children").Count());
+            defaultImagePath = string.IsNullOrEmpty(_sqlDataReader["DefaultImagePath"].ToString()) ? defaultImagePath : _sqlDataReader["DefaultImagePath"].ToString();
+
+            bookingHotelDetails = new BookingHotelDetails
+            {
+                hotelInfoId = supplierHotelInfoId,
+                productName = _sqlDataReader["ProductName"].ToString(),
+                cityName = _sqlDataReader["CityName"].ToString(),
+                productStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
+                productDefaultImagePath = defaultImagePath,
+                pricePerPassenger = price,
+                stay = (_shoppingHelper.HotelDetails.FromDate + " to " + _shoppingHelper.HotelDetails.ToDate),
+                guests = guests,
+                room = _sqlDataReader["RoomType"].ToString() + " - " + _sqlDataReader["RoomName"].ToString(),
+                guestDetails = bookingGuestDetails,
+                totalPrice = totalPrice,
+                fromDate = _shoppingHelper.HotelDetails.FromDate,
+                toDate = _shoppingHelper.HotelDetails.ToDate
+            };            
         }
+        _sqlConnection.Close();
 
-        if(data.Price != null){
-          price = Math.Floor(decimal.Parse(data.Price.ToString())/NoOfPassengers);
-        }
-
-        var guests = bookingGuestDetails.Where(x => x.type == "Adult").Count().ToString() + " Adults "
-            + bookingGuestDetails.Where(x => x.type == "Children").Count().ToString()
-            + " Children " + bookingGuestDetails.Where(x => x.type == "Infant").Count().ToString() + " Infants";
-
-        var totalPrice = price * (bookingGuestDetails.Where(x => x.type == "Adult").Count() + bookingGuestDetails.Where(x => x.type == "Children").Count());
-        defaultImagePath = string.IsNullOrEmpty(data.ProductDefaultImagePath) ? defaultImagePath : data.ProductDefaultImagePath;
-        BookingHotelDetails bookingHotelDetails = new BookingHotelDetails { hotelInfoId = supplierHotelInfoId, productName = data.ProductName, cityName = data.City, 
-            productStarsImagePath = data.ProductStarsImagePath, productDefaultImagePath = defaultImagePath, pricePerPassenger = price,
-            stay = (_shoppingHelper.HotelDetails.FromDate + " to " + _shoppingHelper.HotelDetails.ToDate), guests = guests, room = data.RoomType + " - " + data.RoomName,
-            guestDetails = bookingGuestDetails, totalPrice = totalPrice, fromDate = _shoppingHelper.HotelDetails.FromDate, toDate = _shoppingHelper.HotelDetails.ToDate  };
-        
         return bookingHotelDetails;
     }
 
