@@ -55,7 +55,7 @@ public static class BookingObjectHelper
         BookingHotelDetails bookingHotelDetails = new BookingHotelDetails { hotelInfoId = supplierHotelInfoId, productName = data.ProductName, cityName = data.City, 
             productStarsImagePath = data.ProductStarsImagePath, productDefaultImagePath = defaultImagePath, pricePerPassenger = price,
             stay = (_shoppingHelper.HotelDetails.FromDate + " to " + _shoppingHelper.HotelDetails.ToDate), guests = guests, room = data.RoomType + " - " + data.RoomName,
-            guestDetails = bookingGuestDetails, totalPrice = totalPrice  };
+            guestDetails = bookingGuestDetails, totalPrice = totalPrice, fromDate = _shoppingHelper.HotelDetails.FromDate, toDate = _shoppingHelper.HotelDetails.ToDate  };
         
         return bookingHotelDetails;
     }

@@ -50,6 +50,7 @@ public class SupplierHotelObjectHelperTest
         _sqlConnection.Open();
         _sqlCommand = new SqlCommand("spProductMasterTest", _sqlConnection);
         _sqlCommand.CommandType = CommandType.StoredProcedure;
+        _sqlCommand.Parameters.AddWithValue("@Trans", "SearchMultiple");
         _sqlDataReader = _sqlCommand.ExecuteReader();
         while (_sqlDataReader.Read())
         {

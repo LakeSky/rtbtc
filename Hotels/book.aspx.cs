@@ -39,12 +39,24 @@ public partial class Hotels_book : PublicApplicationPage
 
     protected void btnAddToBasket_Click(object sender, EventArgs e)
     {
+        List<BasketHotelGuestDetails> basketHotelGuestDetailsList = new List<BasketHotelGuestDetails>();
+        BasketHotelGuestDetails basketHotelGuestDetails;
         foreach (RepeaterItem item in rptrBookingGuests.Items)
         {
-            var chkBox = item.FindControl("chkBoxStar") as CheckBox;
-            //var hotel = data.Where(x => x.ProductStarsName == chkBox.Text).FirstOrDefault();
-            //chkBox.Enabled = hotel == null ? false : true;
-            //chkBox.Checked = hotel == null ? false : true;
+            var ddlTitle = item.FindControl("ddlTitle") as DropDownList;
+            var txtFirstName = item.FindControl("txtFirstName") as TextBox;
+            var txtLastName = item.FindControl("txtLastName") as TextBox;
+            var hdnFldType = item.FindControl("hdnFldType") as HiddenField;
+            var hdnFldAge = item.FindControl("hdnFldAge") as HiddenField;
+            basketHotelGuestDetails = new BasketHotelGuestDetails
+            {
+                title = ddlTitle.SelectedValue,
+                firstName = txtFirstName.Text,
+                lastName = txtLastName.Text,
+                type = hdnFldType.Value,
+                age = hdnFldAge.Value
+            };
+            basketHotelGuestDetailsList.Add(basketHotelGuestDetails);
         }
     }
     

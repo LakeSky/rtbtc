@@ -7,8 +7,11 @@ public class BasketObjectHelper
 {
 	public BasketObjectHelper()
 	{
-		//
-		// TODO: Add constructor logic here
-		//
+		
 	}
+
+    public void CreateBasketHotel(string hotelInfoId, string fromDate, string toDate, List<BasketHotelDetails> basketHotelDetailsList) {
+
+        BasketHotelDetails basketHotelDetails = new BasketHotelDetails();
+    }
 }

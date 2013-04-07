@@ -11,15 +11,8 @@
   <div class="hotel-div">
     <div class="hotel-content">
       <asp:HiddenField ID="hdnFldHotelInfoId" runat="server" Value='<%= bookingHotelDetails.hotelInfoId %>' />
-      <asp:HiddenField ID="hdnFldProductName" runat="server" Value='<%= bookingHotelDetails.productName %>' />
-      <asp:HiddenField ID="hdnFldCityName" runat="server" Value='<%= bookingHotelDetails.cityName %>' />
-      <asp:HiddenField ID="hdnFldProductStarsImagePath" runat="server" Value='<%= bookingHotelDetails.productStarsImagePath %>' />
-      <asp:HiddenField ID="hdnFldProductDefaultImagePath" runat="server" Value='<%= bookingHotelDetails.productDefaultImagePath %>' />
-      <asp:HiddenField ID="hdnFldStay" runat="server" Value='<%= bookingHotelDetails.stay %>' />
-      <asp:HiddenField ID="hdnFldRoom" runat="server" Value='<%= bookingHotelDetails.room %>' />
-      <asp:HiddenField ID="hdnFldGuest" runat="server" Value='<%= bookingHotelDetails.guests %>' />
-      <asp:HiddenField ID="hdnFldPricePerPassenger" runat="server" Value='<%= bookingHotelDetails.pricePerPassenger %>' />
-      <asp:HiddenField ID="hdnFldTotalPrice" runat="server" Value='<%= bookingHotelDetails.totalPrice %>' />
+      <asp:HiddenField ID="hdnFldFromDate" runat="server" Value='<%= bookingHotelDetails.fromDate %>' />
+      <asp:HiddenField ID="hfnFldToDate" runat="server" Value='<%= bookingHotelDetails.toDate %>' />
       <h3><%= bookingHotelDetails.productName %></h3>
       <img src="<%= bookingHotelDetails.productStarsImagePath %>" />
       <br />
