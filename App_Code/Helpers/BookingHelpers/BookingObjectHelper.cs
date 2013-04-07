@@ -53,7 +53,7 @@ public static class BookingObjectHelper
         var totalPrice = price * (bookingGuestDetails.Where(x => x.type == "Adult").Count() + bookingGuestDetails.Where(x => x.type == "Children").Count());
         defaultImagePath = string.IsNullOrEmpty(data.ProductDefaultImagePath) ? defaultImagePath : data.ProductDefaultImagePath;
         BookingHotelDetails bookingHotelDetails = new BookingHotelDetails { hotelInfoId = supplierHotelInfoId, productName = data.ProductName, cityName = data.City, 
-            productStarsImagePath = data.ProductStarsImagePath, productDefaultImagePath = defaultImagePath, pricePerPerson = price,
+            productStarsImagePath = data.ProductStarsImagePath, productDefaultImagePath = defaultImagePath, pricePerPassenger = price,
             stay = (_shoppingHelper.HotelDetails.FromDate + " to " + _shoppingHelper.HotelDetails.ToDate), guests = guests, room = data.RoomType + " - " + data.RoomName,
             guestDetails = bookingGuestDetails, totalPrice = totalPrice  };
         

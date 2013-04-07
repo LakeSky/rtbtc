@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-/// <summary>
-/// Summary description for BookingHotelDetails
-/// </summary>
-public class BookingHotelDetails
+public class BasketHotelDetails
 {
     public long hotelInfoId { get; set; }
     public string productName { get; set; }
@@ -18,5 +15,5 @@ public class BookingHotelDetails
     public string guests { get; set; }
     public decimal pricePerPassenger { get; set; }
     public decimal totalPrice { get; set; }
-    public List<BookingGuestDetails> guestDetails { get; set; }
+    public List<BasketHotelGuestDetails> guestDetails { get; set; }
 }
