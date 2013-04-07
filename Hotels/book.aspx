@@ -29,7 +29,7 @@
     <div class="clear"></div>
   </div>
   <div class="margin10"></div>
-  <asp:Repeater ID="rptrHotels" runat="server">
+  <asp:Repeater ID="rptrBookingGuests" runat="server">
     <HeaderTemplate>
       <table class="table">
         <tr>
@@ -42,7 +42,10 @@
     </HeaderTemplate>
     <ItemTemplate>
       <tr>
-        <td><%# Eval("type") %>
+        <td>
+          <asp:HiddenField ID="hdnFldType" runat="server" Value='<%# Eval("type") %>' />
+          <asp:HiddenField ID="hdnFldAge" runat="server" Value='<%# Eval("age") %>' />
+          <%# Eval("type") %>
         </td>
         <td>
           <asp:DropDownList ID="ddlTitle" runat="server">
@@ -60,9 +63,15 @@
         </td>
         <td>
           <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
+          <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" 
+                      ControlToValidate="txtFirstName" ForeColor="#FF3300" 
+                    SetFocusOnError="True">*</asp:RequiredFieldValidator>
         </td>
         <td>
           <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
+          <asp:RequiredFieldValidator ID="rfvLastName" runat="server" 
+                      ControlToValidate="txtLastName" ForeColor="#FF3300" 
+                    SetFocusOnError="True">*</asp:RequiredFieldValidator>
         </td>
         <td>
           <%# Eval("age")%>
@@ -72,7 +81,7 @@
     <FooterTemplate>
         <tr>
           <td colspan="5">
-            <asp:Button ID="btnAddToBasket" runat="server" Text="Add to Basket" CssClass="btn btn-success" />
+            <asp:Button ID="btnAddToBasket" runat="server" Text="Add to Basket" CssClass="btn btn-success" OnClick="btnAddToBasket_Click" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnCheckOut" runat="server" Text="Check Out" CssClass="btn btn-primary" Enabled="false" />
           </td>
