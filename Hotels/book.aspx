@@ -10,9 +10,9 @@
 <div id="hotelsList" style="width:100%;">
   <div class="hotel-div">
     <div class="hotel-content">
-      <asp:HiddenField ID="hdnFldHotelInfoId" runat="server" Value='<%= bookingHotelDetails.hotelInfoId %>' />
-      <asp:HiddenField ID="hdnFldFromDate" runat="server" Value='<%= bookingHotelDetails.fromDate %>' />
-      <asp:HiddenField ID="hfnFldToDate" runat="server" Value='<%= bookingHotelDetails.toDate %>' />
+      <asp:HiddenField ID="hdnFldHotelInfoId" runat="server" />
+      <asp:HiddenField ID="hdnFldFromDate" runat="server" />
+      <asp:HiddenField ID="hdnFldToDate" runat="server" />
       <h3><%= bookingHotelDetails.productName %></h3>
       <img src="<%= bookingHotelDetails.productStarsImagePath %>" />
       <br />

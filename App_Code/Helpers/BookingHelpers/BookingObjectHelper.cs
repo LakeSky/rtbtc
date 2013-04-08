@@ -36,7 +36,7 @@ public static class BookingObjectHelper
             if (!string.IsNullOrEmpty(_sqlDataReader["NumOfPassengers"].ToString())){
                 NoOfPassengers = int.Parse(_sqlDataReader["NumOfPassengers"].ToString());
             } else{
-                NoOfPassengers = bookingGuestDetails.Where(x => x.type != "Infants").Count();
+                NoOfPassengers = bookingGuestDetails.Where(x => x.type != "Infant").Count();
             }
 
             if (!string.IsNullOrEmpty(_sqlDataReader["LCAP"].ToString())){

@@ -32,6 +32,9 @@ public partial class Hotels_book : PublicApplicationPage
                 return;
             }
             bookingHotelDetails = BookingObjectHelper.GetHotelDetails(_meis007Entities, supplierHotelInfoId, _shoppingHelper);
+            hdnFldHotelInfoId.Value = bookingHotelDetails.hotelInfoId.ToString();
+            hdnFldFromDate.Value = bookingHotelDetails.fromDate;
+            hdnFldToDate.Value = bookingHotelDetails.toDate;
             rptrBookingGuests.DataSource = bookingHotelDetails.guestDetails;
             rptrBookingGuests.DataBind();
         }
@@ -58,6 +61,12 @@ public partial class Hotels_book : PublicApplicationPage
             };
             basketHotelGuestDetailsList.Add(basketHotelGuestDetails);
         }
+        BasketObjectHelper basketObjectHelper = new BasketObjectHelper();
+        var basketHelper = GetBasketHelperObject(true);
+        Session["Basket"] = basketObjectHelper.CreateBasketHotel(new meis007Entities(), basketHelper, hdnFldHotelInfoId.Value, hdnFldFromDate.Value, hdnFldToDate.Value, basketHotelGuestDetailsList);
+        Session["NoticeMessage"] = "Succesfully added to the basket!";
+        DisposeHotelDetails();
+        Response.Redirect(CurrentUser.GetRootPath("Home.aspx"));
     }
     
 
