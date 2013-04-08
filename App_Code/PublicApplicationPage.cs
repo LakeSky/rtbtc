@@ -31,4 +31,15 @@ public class PublicApplicationPage : System.Web.UI.Page
         Session["StoredShopping"] = shoppingHelper;
     }
 
+    protected bool hasBasketItems(BasketHelper basketHelper){
+        if (basketHelper == null) {
+            return false;
+        }
+        return countHotelsInBasket(basketHelper) > 0;
+    }
+
+    protected int countHotelsInBasket(BasketHelper basketHelper) {
+        return basketHelper.hotelDetails.Count;
+    }
+
 }

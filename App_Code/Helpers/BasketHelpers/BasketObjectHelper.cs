@@ -71,7 +71,10 @@ public class BasketObjectHelper
             };
         }
         _sqlConnection.Close();
-        basketHelper.hotelDetails = basketHotelDetails;
+        if (basketHelper.hotelDetails == null) {
+            basketHelper.hotelDetails = new List<BasketHotelDetails>();
+        }
+        basketHelper.hotelDetails.Add(basketHotelDetails);
         return basketHelper;
     }
 }

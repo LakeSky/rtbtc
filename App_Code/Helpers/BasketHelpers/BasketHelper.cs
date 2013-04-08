@@ -8,5 +8,5 @@ using System.Web;
 /// </summary>
 public class BasketHelper
 {
-    public BasketHotelDetails hotelDetails { get; set; }
+    public List<BasketHotelDetails> hotelDetails { get; set; }
 }

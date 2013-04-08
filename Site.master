@@ -47,7 +47,7 @@
             <div class="clear"></div>
             <div class="navigation">
               <% var rootPath = CurrentUser.GetRootPath(""); %>
-              <ul>
+              <ul class="left">
                 <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/Home.aspx" ? "active" : "" %>"><a href="<%= rootPath + "Home.aspx" %>">Home</a></li>
                 <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/Hotels/Details.aspx" ? "active" : "" %>"><a href="<%= rootPath + "Hotels/Details.aspx?id=11211589" %>">Hotels</a></li>
                 <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/Flights.aspx" ? "active" : "" %>"><a href="<%= rootPath + "Flights.aspx" %>">Flights</a></li>
@@ -55,6 +55,11 @@
                 <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/About.aspx" ? "active" : "" %>"><a href="<%= rootPath + "About.aspx" %>">About Us</a></li>
                 <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/Contact.aspx" ? "active" : "" %>"><a href="<%= rootPath + "Contact.aspx" %>">Contact Us</a></li>
               </ul>
+              <ul class="right">
+              <% var klass = hasBasketItems ? "has-basket-items" : "no-basket-items"; %>
+                <li><a href="<%= CurrentUser.GetRootPath("basket/show.aspx") %>" class="basket-items <%= klass %>">Basket (<%= basketItemsCount %>)</a></li>
+              </ul>
+              <div class="clear"></div>
             </div>
             <div class="clear"></div>
           </div>
