@@ -93,5 +93,6 @@
     </FooterTemplate>
   </asp:Repeater>
 </div>
+ <div class="clear"></div>
 </asp:Content>
 

@@ -1,6 +1,35 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="show.aspx.cs" Inherits="basket_show" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
+<script type="text/javascript">
+    $(function () {
+        $(".remove-basket-item").click(function (e) {
+            e.preventDefault();
+            if (!confirm("Are you sure?")) {
+                return false;
+            }
+            var id = $(this).data('id');
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: '<%=ResolveUrl("~/BasketWebService.asmx/RemoveItem") %>',
+                data: "{'id': '" + id + "'}",
+                dataType: "json",
+                success: function (data) {
+                    var array = data.d.split('#');
+                    if (array[0] == 'False') {
+                        window.location = "/rtbtc/home.aspx";
+                    }
+                    $("#basket-items-count").text(array[1]);
+                    $("#" + id).remove();
+                },
+                error: function (result) {
+                    console.log(result);
+                }
+            });
+        });
+    });
+</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <div id="hotelsList" style="width:100%;">
@@ -8,8 +37,8 @@
       <HeaderTemplate>
       </HeaderTemplate>
       <ItemTemplate>
-        <div class="hotel-div">
-          <div class="hotel-content">
+        <div class="hotel-div" id='<%# Eval("hotelInfoId") %>'>
+          <div class="hotel-content" style="width:710px;">
             <h3><%# Eval("ProductName")%></h3>
             <div class="left">
               <img src="<%# Eval("productStarsImagePath")%>" />
@@ -18,7 +47,7 @@
             </div>
             <% var path = CurrentUser.GetRootPath("Hotels/Details.aspx"); %>
             <div class="right paddingT10">
-              <a href="<%= path %>?id=<%# Eval("cityName")%>" class="btn btn-primary">More Info ></a>
+              <a href="<%= path %>?id=<%# Eval("productId")%>" class="btn btn-primary">More Info ></a>
             </div>
             <div class="clear"></div>
             <div class="margin10"></div>
@@ -26,7 +55,9 @@
           </div>      
           <div class="hotel-image">
             <div class="price">
-              SR. <%# Eval("pricePerPassenger")%>
+              <span class="left">SR. <%# Eval("pricePerPassenger")%> / pax</span>
+              <a  href="#" title="Remove from basket." class="btn btn-danger right remove-basket-item" data-id='<%# Eval("hotelInfoId") %>'>X</a>
+              <div class="clear"></div>
             </div>
             <img src="<%# Eval("productDefaultImagePath")%>" class="media-image" />
           </div>
@@ -61,5 +92,6 @@
       </FooterTemplate>
     </asp:Repeater>
   </div>
+  <div class="clear"></div>
 </asp:Content>
 

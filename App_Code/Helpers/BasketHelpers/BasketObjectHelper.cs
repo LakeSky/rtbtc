@@ -56,6 +56,7 @@ public class BasketObjectHelper
             basketHotelDetails = new BasketHotelDetails
             {
                 hotelInfoId = supplierHotelInfoId,
+                productId = long.Parse(_sqlDataReader["ProductID"].ToString()),
                 productName = _sqlDataReader["ProductName"].ToString(),
                 cityName = _sqlDataReader["CityName"].ToString(),
                 productStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),

@@ -57,7 +57,7 @@
               </ul>
               <ul class="right">
               <% var klass = hasBasketItems ? "has-basket-items" : "no-basket-items"; %>
-                <li><a href="<%= CurrentUser.GetRootPath("basket/show.aspx") %>" class="basket-items <%= klass %>">Basket (<%= basketItemsCount %>)</a></li>
+                <li><a href="<%= CurrentUser.GetRootPath("basket/show.aspx") %>" class="basket-items <%= klass %>">Basket (<span id="basket-items-count"><%= basketItemsCount %></span>)</a></li>
               </ul>
               <div class="clear"></div>
             </div>

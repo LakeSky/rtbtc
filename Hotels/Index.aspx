@@ -2,7 +2,6 @@
 <%@ Register Src="/rtbtc/Pager.ascx" TagName="Pager" TagPrefix="userControl" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
   <style type="text/css">
-      #container{min-height: 1200px;}
       #otherCriterias .div-wrapper label {
         display:inline-block;
         margin-left: 5px;
@@ -204,7 +203,8 @@
     </ContentTemplate>
   </asp:UpdatePanel>
   </div>
-<!-- </div> -->
+  <div class="clear"></div>
+  <!-- </div> -->
 <script id='add-remove-room-button-template' type='text/html'>
 <input type="button" class="btn btn-danger remove-room" value="x" data-id="{{index}}" id="remove_room_{{index}}" />
 </script>
