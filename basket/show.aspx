@@ -51,7 +51,10 @@
             </div>
             <div class="clear"></div>
             <div class="margin10"></div>
-            <%# Eval("cityName")%>
+            <h4>Stay: <%# Eval("stay") %></h4>
+            <h4>Room: <%# Eval("room") %></h4>
+            <h4>Guest: <%# Eval("guests") %></h4>
+            <h4>Total Price SR.<%# Eval("totalPrice") %></h4>
           </div>      
           <div class="hotel-image">
             <div class="price">

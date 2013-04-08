@@ -16,7 +16,7 @@ public class BasketHotelDetails
     public string guests { get; set; }
     public decimal pricePerPassenger { get; set; }
     public decimal totalPrice { get; set; }
-    public string fromDate { get; set; }
-    public string toDate { get; set; }
+    public DateTime fromDate { get; set; }
+    public DateTime toDate { get; set; }
     public List<BasketHotelGuestDetails> guestDetails { get; set; }
 }

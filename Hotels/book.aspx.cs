@@ -33,8 +33,8 @@ public partial class Hotels_book : PublicApplicationPage
             }
             bookingHotelDetails = BookingObjectHelper.GetHotelDetails(_meis007Entities, supplierHotelInfoId, _shoppingHelper);
             hdnFldHotelInfoId.Value = bookingHotelDetails.hotelInfoId.ToString();
-            hdnFldFromDate.Value = bookingHotelDetails.fromDate;
-            hdnFldToDate.Value = bookingHotelDetails.toDate;
+            hdnFldFromDate.Value = bookingHotelDetails.fromDate.ToString("dd-MM-yyyy");
+            hdnFldToDate.Value = bookingHotelDetails.toDate.ToString("dd-MM-yyyy");
             rptrBookingGuests.DataSource = bookingHotelDetails.guestDetails;
             rptrBookingGuests.DataBind();
         }

@@ -5,7 +5,7 @@
     $(function () {
 
         function updateDatePickerOfToDate(minSelectedDate) {
-            minSelectedDate.setDate(minSelectedDate.getDate());
+            minSelectedDate.setDate(minSelectedDate.getDate() + 1);
             var maxDate = new Date(minSelectedDate);
             maxDate.setFullYear(maxDate.getFullYear() + 1);
             $(".end-date").datepicker('destroy');

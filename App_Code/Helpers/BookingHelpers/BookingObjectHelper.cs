@@ -22,6 +22,9 @@ public static class BookingObjectHelper
         List<BookingGuestDetails> bookingGuestDetails = BookingObjectHelper.GetGuests(_shoppingHelper);
         BookingHotelDetails bookingHotelDetails = new BookingHotelDetails();
         var defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
+        DateTime fromDate = DateTimeHelper.customFormat(_shoppingHelper.HotelDetails.FromDate);
+        DateTime toDate = DateTimeHelper.customFormat(_shoppingHelper.HotelDetails.ToDate);
+        string differenceDays = (toDate - fromDate).Days.ToString();
 
         _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
@@ -59,13 +62,13 @@ public static class BookingObjectHelper
                 productStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
                 productDefaultImagePath = defaultImagePath,
                 pricePerPassenger = price,
-                stay = (_shoppingHelper.HotelDetails.FromDate + " to " + _shoppingHelper.HotelDetails.ToDate),
+                stay = (fromDate.ToString("dd MMM yy") + " to " + toDate.ToString("dd MMM yy") + " (" + differenceDays+ " Nights)"),
                 guests = guests,
                 room = _sqlDataReader["RoomType"].ToString() + " - " + _sqlDataReader["RoomName"].ToString(),
                 guestDetails = bookingGuestDetails,
                 totalPrice = totalPrice,
-                fromDate = _shoppingHelper.HotelDetails.FromDate,
-                toDate = _shoppingHelper.HotelDetails.ToDate
+                fromDate = fromDate,
+                toDate = toDate
             };            
         }
         _sqlConnection.Close();

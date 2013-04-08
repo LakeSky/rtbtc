@@ -24,6 +24,9 @@ public class BasketObjectHelper
         BasketHotelDetails basketHotelDetails = new BasketHotelDetails();
         int NoOfPassengers = 0;
         var defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
+        DateTime fromDateParsed = DateTimeHelper.customFormat(fromDate);
+        DateTime toDateParsed = DateTimeHelper.customFormat(toDate);
+        string differenceDays = (toDateParsed - fromDateParsed).Days.ToString();
 
         _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
@@ -62,13 +65,13 @@ public class BasketObjectHelper
                 productStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
                 productDefaultImagePath = defaultImagePath,
                 pricePerPassenger = price,
-                stay = (fromDate + " to " + toDate),
+                stay = (fromDateParsed.ToString("dd MMM yy") + " to " + toDateParsed.ToString("dd MMM yy") + " (" + differenceDays + " Nights)"),
                 guests = guests,
                 room = _sqlDataReader["RoomType"].ToString() + " - " + _sqlDataReader["RoomName"].ToString(),
                 guestDetails = basketHotelGuestDetailsList,
                 totalPrice = totalPrice,
-                fromDate = fromDate,
-                toDate = toDate
+                fromDate = fromDateParsed,
+                toDate = toDateParsed
             };
         }
         _sqlConnection.Close();

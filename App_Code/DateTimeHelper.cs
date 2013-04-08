@@ -72,4 +72,10 @@ public static class DateTimeHelper
     public static string ExtractTime(DateTime inputDateTime) {
         return inputDateTime.ToString("HH");
     }
+
+    public static DateTime customFormat(string input, string format = "dd-MM-yyyy") {
+        DateTime output;
+        DateTime.TryParseExact(input, format, null, DateTimeStyles.None, out output);
+        return output;
+    }
 }
