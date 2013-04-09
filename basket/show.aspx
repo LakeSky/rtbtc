@@ -66,6 +66,12 @@
           </div>
           <div class="clear"></div>
           <div class="margin10"></div>
+          <h3 class="custom-h3 blue-font">Cancellation Policy</h3>
+          <div class="div-default div-bordered">
+            Cancellation Policy Text
+          </div>
+          <div class="margin10"></div>
+          <hr />
           <h3>Guest Details</h3>
           <asp:Repeater ID="rptrGuests" runat="server" DataSource='<%# Eval("guestDetails") %>'>
             <HeaderTemplate>

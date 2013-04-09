@@ -155,4 +155,10 @@ legend
   padding-top: 10px;
 }
 
+.div-bordered{
+  border: solid 1px #ccc;
+  padding: 5px;
+  margin-top: 10px;
+}
+
 

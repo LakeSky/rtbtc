@@ -122,6 +122,11 @@
       <%}%>
     </tbody>
   </table>
+  <div class="margin10"></div>
+  <h3 class="custom-h3 blue-font">Cancellation Policy</h3>
+  <div class="div-default div-bordered">
+    Cancellation Policy Text
+  </div>
   </div>
   <div class="right">
     <%foreach (var x in productMaster.ProductImages)

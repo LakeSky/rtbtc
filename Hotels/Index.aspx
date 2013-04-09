@@ -181,6 +181,7 @@
                       <th>Room type</th>
                       <th>Room Name</th>
                       <th>Price</th>
+                      <th>Cancellation Policy</th>
                       <th></th>
                     </tr>
                 </HeaderTemplate>
@@ -189,6 +190,7 @@
                     <td><%# Eval("RoomType") %></td>
                     <td><%# Eval("RoomName") %></td>
                     <td>SR. <%# Eval("Price") %></td>
+                    <td><a href="#" class="btn btn-small btn-warning" title="View Cancellation Policy">!</a></td>
                     <% var path = CurrentUser.GetRootPath("Hotels/book.aspx"); %>
                     <td><a href="<%= path %>?id=<%# Eval("HotelInfoId")%>" class="btn btn-success">Book</a></td>
                   </tr>
