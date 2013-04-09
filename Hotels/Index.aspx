@@ -38,6 +38,8 @@
                     ControlToValidate="txtEndDate" ForeColor="#FF3300" 
                     SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
         <br />
+        <span class="difference-nights"></span>
+        <br />
         <input type="button" class="btn btn-success right add-room" value="Add Room" />
         <div class="clear"></div>
         <br />
