@@ -8,6 +8,7 @@ public class BasketHotelGuestDetails
     public string type { get; set; }
     public string title { get; set; }
     public string firstName { get; set; }
+    public string middleName { get; set; }
     public string lastName { get; set; }
     public string age { get; set; }
 }

@@ -45,6 +45,7 @@
           <th>Guest Type</th>
           <th>Title</th>
           <th>First Name</th>
+          <th>Middle Name</th>
           <th>Last Name</th>
           <th>Age</th>
         </tr>  
@@ -57,7 +58,7 @@
           <%# Eval("type") %>
         </td>
         <td>
-          <asp:DropDownList ID="ddlTitle" runat="server">
+          <asp:DropDownList ID="ddlTitle" runat="server"  CssClass="input-small">
             <asp:ListItem Value="0">Select</asp:ListItem>
             <asp:ListItem>Mr</asp:ListItem>
             <asp:ListItem>Mrs</asp:ListItem>
@@ -71,13 +72,16 @@
                     SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
         </td>
         <td>
-          <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
+          <asp:TextBox ID="txtFirstName" runat="server" CssClass="input-small"></asp:TextBox>
           <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" 
                       ControlToValidate="txtFirstName" ForeColor="#FF3300" 
                     SetFocusOnError="True">*</asp:RequiredFieldValidator>
         </td>
         <td>
-          <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
+          <asp:TextBox ID="txtMiddleName" runat="server" CssClass="input-small"></asp:TextBox>
+        </td>
+        <td>
+          <asp:TextBox ID="txtLastName" runat="server" CssClass="input-small"></asp:TextBox>
           <asp:RequiredFieldValidator ID="rfvLastName" runat="server" 
                       ControlToValidate="txtLastName" ForeColor="#FF3300" 
                     SetFocusOnError="True">*</asp:RequiredFieldValidator>

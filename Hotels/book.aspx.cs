@@ -48,6 +48,7 @@ public partial class Hotels_book : PublicApplicationPage
         {
             var ddlTitle = item.FindControl("ddlTitle") as DropDownList;
             var txtFirstName = item.FindControl("txtFirstName") as TextBox;
+            var txtMiddleName = item.FindControl("txtMiddleName") as TextBox;
             var txtLastName = item.FindControl("txtLastName") as TextBox;
             var hdnFldType = item.FindControl("hdnFldType") as HiddenField;
             var hdnFldAge = item.FindControl("hdnFldAge") as HiddenField;
@@ -55,6 +56,7 @@ public partial class Hotels_book : PublicApplicationPage
             {
                 title = ddlTitle.SelectedValue,
                 firstName = txtFirstName.Text,
+                middleName = txtMiddleName.Text,
                 lastName = txtLastName.Text,
                 type = hdnFldType.Value,
                 age = hdnFldAge.Value

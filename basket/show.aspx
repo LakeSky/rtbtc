@@ -79,6 +79,7 @@
                 <tr>
                   <th>Guest Type</th>
                   <th>First Name</th>
+                  <th>Middle Name</th>
                   <th>Last Name</th>
                   <th>Age</th>
                 </tr>
@@ -87,6 +88,7 @@
               <tr>
                 <td><%# Eval("type") %></td>
                 <td><%# Eval("title") %>. <%# Eval("firstName") %></td>
+                <td><%# Eval("middleName") %></td>
                 <td><%# Eval("lastName") %></td>
                 <td><%# Eval("age") %></td>
               </tr>
