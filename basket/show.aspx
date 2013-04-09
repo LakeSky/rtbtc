@@ -33,6 +33,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <div id="hotelsList" style="width:100%;">
+    <h3 class="custom-h3 blue-font">Total Amount SR. <%= totalPrice %></h3>
+    <hr />
     <asp:Repeater ID="rptrHotels" runat="server">
       <HeaderTemplate>
       </HeaderTemplate>

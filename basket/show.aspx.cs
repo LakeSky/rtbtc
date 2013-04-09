@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 public partial class basket_show : PublicApplicationPage
 {
     public BasketHelper basketHelper;
+    public decimal totalPrice;
     protected void Page_Load(object sender, EventArgs e)
     {
         basketHelper = GetBasketHelperObject();
@@ -17,5 +18,6 @@ public partial class basket_show : PublicApplicationPage
         }
         rptrHotels.DataSource = basketHelper.hotelDetails;
         rptrHotels.DataBind();
+        totalPrice = basketHelper.totalPrice;
     }
 }

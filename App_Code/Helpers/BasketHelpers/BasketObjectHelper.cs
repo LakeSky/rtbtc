@@ -79,6 +79,7 @@ public class BasketObjectHelper
             basketHelper.hotelDetails = new List<BasketHotelDetails>();
         }
         basketHelper.hotelDetails.Add(basketHotelDetails);
+        basketHelper.calculateTotalPrice();
         return basketHelper;
     }
 }
