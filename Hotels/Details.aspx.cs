@@ -5,8 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using meis007Model;
+using System.Dynamic;
 
-public partial class Hotels_Details : System.Web.UI.Page
+public partial class Hotels_Details : PublicApplicationPage
 {
     protected meis007Entities _meis007Entities;
     public ProductMaster productMaster;
@@ -17,12 +18,14 @@ public partial class Hotels_Details : System.Web.UI.Page
     public string longitude;
     public string hotelName;
     public string starsImagePath;
+    public string requestFrom;
     protected void Page_Load(object sender, EventArgs e)
     {
         _meis007Entities = new meis007Entities();
         var id = (string)(Request.QueryString["id"]);
         var found = false;
-        if (id != null){
+        dynamic expando = CheckRequestFromValid();
+        if ( expando.valid && id != null){
             var productId = int.Parse(id);
             productMaster = _meis007Entities.ProductMasters.Where(x => x.ProductID == productId).FirstOrDefault();
             if (productMaster != null){
@@ -39,6 +42,14 @@ public partial class Hotels_Details : System.Web.UI.Page
                     starsImagePath = productMaster.Classification.ImagePath;
                 }
                 found = true;
+                List<SupplierHotelRoomHelper> data;
+                if (requestFrom == "search"){
+                    data = RoomObjectHelper.GetHotelRooms(expando.hotelInfoId, _meis007Entities, null);
+                }else {
+                    data = RoomObjectHelper.GetHotelRooms(expando.hotelInfoId, null, expando.basketHelper);
+                }
+                rptrRooms.DataSource = data;
+                rptrRooms.DataBind();
             }
         }
         if (!found) {
@@ -46,5 +57,28 @@ public partial class Hotels_Details : System.Web.UI.Page
             Response.Redirect(CurrentUser.GetRootPath("Home.aspx"));
             return;
         }
+    }
+
+    protected dynamic CheckRequestFromValid() {
+        requestFrom = (string)Request.QueryString["from"];
+        long hotelInfoId ;
+        long.TryParse(Request.QueryString["sid"], out hotelInfoId);
+        dynamic expando = new ExpandoObject();
+        if (hotelInfoId != null && requestFrom != "search" && requestFrom != "basket") {
+            expando.valid = false;
+            return expando;
+        }
+        expando.hotelInfoId = hotelInfoId;
+        expando.valid = true;
+        if (requestFrom == "search") {
+            return expando;
+        }
+        BasketHelper basketHelper = GetBasketHelperObject();
+        if (basketHelper == null || basketHelper.hotelDetails == null) {
+            expando.valid = false;
+            return expando;
+        }
+        expando.basketHelper = basketHelper;
+        return expando;
     }
 }

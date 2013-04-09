@@ -6,6 +6,13 @@ using System.Web;
 public class BasketHotelDetails
 {
     public long hotelInfoId { get; set; }
+    public string sessionId { get; set; }
+    public string supplierId { get; set; }
+    public int supplierHotelId { get; set; }
+    public int supplierRoomId { get; set; }
+    public int NoOfNights { get; set; }
+    public int NoOfPassengers { get; set; }
+    public int NoOfChildren { get; set; }
     public long productId { get; set; }
     public string productName { get; set; }
     public string cityName { get; set; }

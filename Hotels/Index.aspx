@@ -158,9 +158,9 @@
                   <br />
                   <h4><%# Eval("City") %></h4>
                 </div>
-                <% var path = CurrentUser.GetRootPath("Hotels/Details.aspx"); %>
+                <% var path = CurrentUser.GetRootPath("Hotels/Details.aspx?from=search"); %>
                 <div class="right paddingT10">
-                  <a href="<%= path %>?id=<%# Eval("ProductMasterId")%>" class="btn btn-primary">More Info ></a>
+                  <a href="<%= path %>&sid=<%# Eval("Id") %>&id=<%# Eval("ProductMasterId")%>" class="btn btn-primary">More Info ></a>
                 </div>
                 <div class="clear"></div>
                 <div class="margin10"></div>

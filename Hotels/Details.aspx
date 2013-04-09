@@ -123,6 +123,37 @@
     </tbody>
   </table>
   <div class="margin10"></div>
+  <h3 class="custom-h3 blue-font">Rooms Detail Prices</h3>
+  <asp:Repeater ID="rptrRooms" runat="server">
+    <HeaderTemplate>
+      <table class="table table-bordered">
+        <tr>
+          <th>Room type</th>
+          <th>Room Name</th>
+          <th>Price</th>
+          <th>Cancellation Policy</th>
+          <% if(requestFrom == "search") {%>
+            <th></th>
+          <%} %>
+        </tr>
+    </HeaderTemplate>
+    <ItemTemplate>
+      <tr>
+        <td><%# Eval("RoomType") %></td>
+        <td><%# Eval("RoomName") %></td>
+        <td>SR. <%# Eval("Price") %></td>
+        <td><a href="#" class="btn btn-small btn-warning" title="View Cancellation Policy">!</a></td>
+        <% if (requestFrom == "search"){%>
+          <% var path = CurrentUser.GetRootPath("Hotels/book.aspx"); %>
+          <td><a href="<%= path %>?id=<%# Eval("HotelInfoId")%>" class="btn btn-success">Book</a></td>
+        <%} %>
+      </tr>
+    </ItemTemplate>
+    <FooterTemplate>
+      </table>
+    </FooterTemplate>
+  </asp:Repeater>
+  <div class="margin10"></div>
   <h3 class="custom-h3 blue-font">Cancellation Policy</h3>
   <div class="div-default div-bordered">
     Cancellation Policy Text
