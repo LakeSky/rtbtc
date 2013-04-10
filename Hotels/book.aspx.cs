@@ -70,8 +70,7 @@ public partial class Hotels_book : PublicApplicationPage
         Session["NoticeMessage"] = "Succesfully added to the basket!";
         DisposeHotelDetails();
         Response.Redirect(CurrentUser.GetRootPath("Home.aspx"));
-    }
-    
+    }  
 
     void Redirect(string message, string path = null) {
         Session["ErrorMessage"] = message;

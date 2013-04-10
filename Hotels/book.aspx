@@ -4,7 +4,20 @@
     #container {
       min-height: 900px;
     }
+    td label{
+        display: inline-block;
+        margin-left: 5px;
+    }
   </style>
+  <script type = "text/javascript">
+      function ValidateCheckBox(sender, args) {
+        if (document.getElementById("ckbAgree").checked == true) {
+          args.IsValid = true;
+        } else {
+          args.IsValid = false;
+        }
+      }
+  </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 <div id="hotelsList" style="width:100%;">
@@ -107,6 +120,12 @@
       </tr>
     </ItemTemplate>
     <FooterTemplate>
+        <tr>
+          <td colspan="5">
+              <asp:CheckBox ID="ckbAgree" runat="server" Text="I have read and  agree cancellation policy!" ClientIDMode="Static" />
+              <asp:CustomValidator ID="CustomValidator" runat="server" ErrorMessage="" ClientValidationFunction = "ValidateCheckBox" Text="*"  ForeColor="#FF3300"></asp:CustomValidator>
+          </td>
+        </tr>
         <tr>
           <td colspan="5">
             <asp:Button ID="btnAddToBasket" runat="server" Text="Add to Basket" CssClass="btn btn-success" OnClick="btnAddToBasket_Click" />
