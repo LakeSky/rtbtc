@@ -21,7 +21,7 @@ public partial class Hotels_book : PublicApplicationPage
             }
             string id = (string)Request.QueryString["id"];
             if (string.IsNullOrEmpty(id)){
-                Redirect("Please choose hotel and romm!");
+                Redirect("Please choose hotel and room!");
                 return;
             }
             var supplierHotelInfoId = long.Parse(id);

@@ -38,6 +38,20 @@
   </div>
   <div class="margin10"></div>
   <hr />
+  <div class="margin10"></div>
+  <h3 class="custom-h3 blue-font">
+    <span class="left">Guest Details</span>
+    <% if(!User.Identity.IsAuthenticated) {%>
+      <% var path = CurrentUser.GetRootPath("account"); %>
+      <% var bookingId = Request.QueryString["id"]; %>
+      <span class="right">
+        <a href="<%= path %>/login.aspx?bookingid=<%= bookingId %>">Login</a>
+        |
+        <a href="<%= path %>/register.aspx?bookingid=<%= bookingId %>">Register</a>
+      </span>
+    <%} %>
+    <div class="clear"></div>
+  </h3>
   <asp:Repeater ID="rptrBookingGuests" runat="server">
     <HeaderTemplate>
       <table class="table">

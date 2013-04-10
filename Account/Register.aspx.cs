@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using meis007Model;
+using System.Web.Security;
 
 public partial class Account_Register : System.Web.UI.Page
 {
@@ -53,8 +54,29 @@ public partial class Account_Register : System.Web.UI.Page
         _meis007Entities.AddToB2CPaxinfo(_B2CPaxinfo);
         _meis007Entities.SaveChanges();
         Mailer.SendRegistrationEmail(_toBeEMailedUser, Request.Url.Host);
+        var path = CurrentUser.GetRootPath("home.aspx");
+        if (Request.QueryString["bookingid"] != null)
+        {
+            FormsAuthentication.SetAuthCookie(_toBeEMailedUser.PaxEmail, false);
+            FormsAuthenticationTicket ticket1 =
+               new FormsAuthenticationTicket(
+                    1,                                   // version
+                    _toBeEMailedUser.PaxEmail,   // get username  from the form
+                    DateTime.Now,                        // issue time is now
+                    DateTime.Now.AddHours(11),         // expires in 10 minutes
+                    false,      // cookie is not persistent
+                    _toBeEMailedUser.CustomerSNo.ToString() + "#"    // role assignment is stored
+                    );
+            HttpCookie cookie1 = new HttpCookie(
+              FormsAuthentication.FormsCookieName,
+              FormsAuthentication.Encrypt(ticket1));
+            Response.Cookies.Add(cookie1);
+            _toBeEMailedUser.PaxLastLogDatetime = DateTime.Now;
+            _meis007Entities.SaveChanges();
+            path = CurrentUser.GetRootPath("hotels/book.aspx?id=" + Request.QueryString["bookingid"]);
+        }
         Session["NoticeMessage"] = "Successfully registered please check you email to confirm your account!";
-        Response.Redirect(CurrentUser.GetRootPath("Home.aspx"));
+        Response.Redirect(path);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
