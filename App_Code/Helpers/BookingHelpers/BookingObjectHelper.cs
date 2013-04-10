@@ -6,20 +6,21 @@ using meis007Model;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Dynamic;
 
 /// <summary>
 /// Summary description for BookingObjectHelper
 /// </summary>
 public static class BookingObjectHelper
 {
-    public static BookingHotelDetails GetHotelDetails(meis007Entities _meis007Entities, long supplierHotelInfoId, ShoppingHelper _shoppingHelper)
+    public static BookingHotelDetails GetHotelDetails(meis007Entities _meis007Entities, long supplierHotelInfoId, ShoppingHelper _shoppingHelper, int? currentUserId)
     {
         var NoOfPassengers = 0;
         decimal price = decimal.Parse("0");
         SqlConnection _sqlConnection;
         SqlCommand _sqlCommand;
         SqlDataReader _sqlDataReader;
-        List<BookingGuestDetails> bookingGuestDetails = BookingObjectHelper.GetGuests(_shoppingHelper);
+        List<BookingGuestDetails> bookingGuestDetails = BookingObjectHelper.GetGuests(_shoppingHelper, _meis007Entities, currentUserId);
         BookingHotelDetails bookingHotelDetails = new BookingHotelDetails();
         var defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
         DateTime fromDate = DateTimeHelper.customFormat(_shoppingHelper.HotelDetails.FromDate);
@@ -76,47 +77,98 @@ public static class BookingObjectHelper
         return bookingHotelDetails;
     }
 
-    public static List<BookingGuestDetails> GetGuests(ShoppingHelper _shoppingHelper)
+    public static List<BookingGuestDetails> GetGuests(ShoppingHelper _shoppingHelper, meis007Entities _meis007Entities, int? currentUserId)
     {
+        dynamic obj = new ExpandoObject();
+        var childAgeMin = DateTime.Now.AddYears(-2);
+        var childAgeMax = DateTime.Now.AddYears(-12);
+        long userId;
+        if (currentUserId != null) { 
+            userId = long.Parse(currentUserId.ToString());
+            var data = _meis007Entities.B2CPaxinfo.Where(x => x.ForeignCustomerSNo == userId);
+            var t = data.Count();
+            var k = data.Where(x => x.PaxDOB <= childAgeMax || x.PaxDOB == null).OrderBy(x => x.CustomerSno).Count();
+            obj.adultsArray = data.Where(x => x.PaxDOB <= childAgeMax || x.PaxDOB == null).OrderBy(x => x.CustomerSno).ToArray();
+            obj.childArray = data.Where(x => x.PaxDOB <= childAgeMin && x.PaxDOB >= childAgeMax).OrderBy(x => x.CustomerSno).ToArray();
+            obj.infantArray = data.Where(x => x.PaxDOB >= childAgeMin).OrderBy(x => x.CustomerSno).ToArray();
+        }
         List<BookingGuestDetails> bookingGuestDetails = new List<BookingGuestDetails>();
-        BookingGuestDetails bookingGuestDetail;
         int[] childAges;
-
         TempGuestType tempGuestType;
         List<TempGuestType> tempGuestTypeList = new List<TempGuestType>(); ;
+
         foreach (var x in _shoppingHelper.HotelDetails.RoomDetails)
         {
-            if (x.Adults != null)
-            {
-                for (int i = 0; i < x.Adults; i++)
-                {
+            if (x.Adults != null){
+                for (int i = 0; i < x.Adults; i++){
                     tempGuestType = new TempGuestType { type = "Adult", age = "-" };
                     tempGuestTypeList.Add(tempGuestType);
                 }
             }
-            if (x.Kids != null)
-            {
+            if (x.Kids != null){
                 childAges = x.ChildAge.ToArray();
-                for (int i = 0; i < x.Kids; i++)
-                {
+                for (int i = 0; i < x.Kids; i++){
                     tempGuestType = new TempGuestType { type = "Children", age = childAges[i].ToString() };
                     tempGuestTypeList.Add(tempGuestType);
                 }
             }
 
-            if (x.Infants != null)
-            {
+            if (x.Infants != null){
                 childAges = x.ChildAge.ToArray();
-                for (int i = 0; i < x.Infants; i++)
-                {
+                for (int i = 0; i < x.Infants; i++){
                     tempGuestType = new TempGuestType { type = "Infant", age = "-" };
                     tempGuestTypeList.Add(tempGuestType);
                 }
             }
         }
-        foreach (var x in tempGuestTypeList.OrderBy(g => g.type)) {
-            bookingGuestDetail = new BookingGuestDetails { type = x.type, age = x.age };
+        int adultsCount = tempGuestTypeList.Where(x => x.type == "Adult").Count();
+        int childrenCount = tempGuestTypeList.Where(x => x.type == "Children").Count();
+        int infantsCount = tempGuestTypeList.Where(x => x.type == "Infant").Count();
+        int objAdultCount = 0;
+        int objChildCount = 0;
+        int objInfantCount = 0;
+        if (currentUserId != null) {
+            objAdultCount = obj.adultsArray.Length;
+            objChildCount = obj.childArray.Length;
+            objInfantCount = obj.infantArray.Length;
+        }
+        bookingGuestDetails = AppendData(bookingGuestDetails, tempGuestTypeList, "Adult", adultsCount, objAdultCount, obj, currentUserId);
+        bookingGuestDetails = AppendData(bookingGuestDetails, tempGuestTypeList, "Children", childrenCount, objChildCount, obj, currentUserId);
+        bookingGuestDetails = AppendData(bookingGuestDetails, tempGuestTypeList, "Infant", infantsCount, objInfantCount, obj, currentUserId);
+        
+        return bookingGuestDetails;
+    }
+
+    public static List<BookingGuestDetails> AppendData(List<BookingGuestDetails> bookingGuestDetails, List<TempGuestType> tempGuestTypeList, string type, int count, int objCount, dynamic obj, int? currentUserId)
+    {
+        string title, firstName, middleName, lastName, age;
+        int index = 0;
+        BookingGuestDetails bookingGuestDetail;
+        foreach (var x in tempGuestTypeList.Where(g => g.type == type)){
+            title = firstName = middleName = lastName = "";
+            age = "-";
+            if (currentUserId != null && objCount != 0 && index < objCount)
+            {
+                var paxObj = new B2CPaxinfo();
+                if (type == "Adult"){
+                    paxObj = obj.adultsArray[index];
+                }else if (type == "Children"){
+                    paxObj = obj.childArray[index];
+                }
+                else {
+                    paxObj = obj.infantArray[index];
+                }
+                title = paxObj.Title;
+                firstName = paxObj.PaxFirstName;
+                middleName = paxObj.PaxMiddleName;
+                lastName = paxObj.PaxLastName;
+                if (paxObj.PaxDOB != null){
+                    age = (DateTime.Now.Year - (DateTimeHelper.customFormat(paxObj.PaxDOB.Value.ToString("dd-MM-yyyy")).Year)).ToString();
+                }
+            }
+            bookingGuestDetail = new BookingGuestDetails { type = x.type, age = age, firstName = firstName, middleName = middleName, lastName = lastName, title = title };
             bookingGuestDetails.Add(bookingGuestDetail);
+            index += 1;
         }
         return bookingGuestDetails;
     }

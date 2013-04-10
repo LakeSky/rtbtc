@@ -19,6 +19,8 @@ public partial class Hotels_Details : PublicApplicationPage
     public string hotelName;
     public string starsImagePath;
     public string requestFrom;
+    public dynamic shoppingHotelDetailDynamic;
+    public BasketHotelDetails basketHotelDetailsObj;
     protected void Page_Load(object sender, EventArgs e)
     {
         _meis007Entities = new meis007Entities();
@@ -45,6 +47,7 @@ public partial class Hotels_Details : PublicApplicationPage
                 List<SupplierHotelRoomHelper> data;
                 if (requestFrom == "search"){
                     data = RoomObjectHelper.GetHotelRooms(expando.hotelInfoId, _meis007Entities, null);
+                    shoppingHotelDetailDynamic = expando.shoppingHotelDetails.formattedSearchText();
                 }else {
                     data = RoomObjectHelper.GetHotelRooms(expando.hotelInfoId, null, expando.basketHelper);
                 }
@@ -71,14 +74,21 @@ public partial class Hotels_Details : PublicApplicationPage
         expando.hotelInfoId = hotelInfoId;
         expando.valid = true;
         if (requestFrom == "search") {
+            var obj = GetShoppingHotelDetailsObject();
+            if (!obj.valid) {
+                expando.valid = false;
+                return expando;
+            }
+            expando.shoppingHotelDetails = obj.shoppingHotelDetails;
             return expando;
         }
         BasketHelper basketHelper = GetBasketHelperObject();
-        if (basketHelper == null || basketHelper.hotelDetails == null) {
+        if (!hasHotelsInBasket(basketHelper)) {
             expando.valid = false;
             return expando;
         }
         expando.basketHelper = basketHelper;
+        basketHotelDetailsObj = basketHelper.hotelDetails.Where(x => x.hotelInfoId == hotelInfoId).First();
         return expando;
     }
 }

@@ -85,6 +85,25 @@
     <span class="bold-font">Website:</span> <%= productMaster.WebSite %>
   </p>
   <hr class="margin10" />
+  <div class="div-bordered">
+    <h3 class="custom-h3 blue-font">Current Search</h3>
+    <% if(requestFrom == "search") {%>
+      <span class="bold-font">City:</span> <%= shoppingHotelDetailDynamic.city %>
+      <br />
+      <span class="bold-font">Date:</span> <%= shoppingHotelDetailDynamic.dates %> ( <%= shoppingHotelDetailDynamic.nights %> )
+      <br />
+      <span class="bold-font">Guest:</span> <%= shoppingHotelDetailDynamic.guestDetails %>
+    <%}else{ %>
+      <span class="bold-font">Stay:</span> <%= basketHotelDetailsObj.stay %>
+      <br />
+      <span class="bold-font">Room:</span> <%= basketHotelDetailsObj.room%>
+      <br />
+      <span class="bold-font">Guest:</span> <%= basketHotelDetailsObj.guests %>
+      <br />
+      <span class="bold-font">Total Price</span> SR.<%= basketHotelDetailsObj.totalPrice %>
+    <%} %>
+  </div>
+  <hr class="margin10" />
   <div class="left" style="width:70%;">
     <h3 class="custom-h3 blue-font">Description</h3>
     <p>
@@ -154,10 +173,6 @@
     </FooterTemplate>
   </asp:Repeater>
   <div class="margin10"></div>
-  <h3 class="custom-h3 blue-font">Cancellation Policy</h3>
-  <div class="div-default div-bordered">
-    Cancellation Policy Text
-  </div>
   </div>
   <div class="right">
     <%foreach (var x in productMaster.ProductImages)

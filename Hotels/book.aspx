@@ -55,6 +55,7 @@
         <td>
           <asp:HiddenField ID="hdnFldType" runat="server" Value='<%# Eval("type") %>' />
           <asp:HiddenField ID="hdnFldAge" runat="server" Value='<%# Eval("age") %>' />
+          <asp:HiddenField ID="hdnFldTitle" runat="server" Value='<%# Eval("title") %>' />
           <%# Eval("type") %>
         </td>
         <td>
@@ -72,16 +73,16 @@
                     SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
         </td>
         <td>
-          <asp:TextBox ID="txtFirstName" runat="server" CssClass="input-small"></asp:TextBox>
+          <asp:TextBox ID="txtFirstName" runat="server" CssClass="input-small" Text='<%# Eval("firstName") %>'></asp:TextBox>
           <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" 
                       ControlToValidate="txtFirstName" ForeColor="#FF3300" 
                     SetFocusOnError="True">*</asp:RequiredFieldValidator>
         </td>
         <td>
-          <asp:TextBox ID="txtMiddleName" runat="server" CssClass="input-small"></asp:TextBox>
+          <asp:TextBox ID="txtMiddleName" runat="server" CssClass="input-small" Text='<%# Eval("middleName") %>'></asp:TextBox>
         </td>
         <td>
-          <asp:TextBox ID="txtLastName" runat="server" CssClass="input-small"></asp:TextBox>
+          <asp:TextBox ID="txtLastName" runat="server" CssClass="input-small" Text='<%# Eval("lastName") %>'></asp:TextBox>
           <asp:RequiredFieldValidator ID="rfvLastName" runat="server" 
                       ControlToValidate="txtLastName" ForeColor="#FF3300" 
                     SetFocusOnError="True">*</asp:RequiredFieldValidator>

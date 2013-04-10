@@ -31,12 +31,13 @@ public partial class Hotels_book : PublicApplicationPage
                 Redirect("Sorry but the hotel you selected is not found!");
                 return;
             }
-            bookingHotelDetails = BookingObjectHelper.GetHotelDetails(_meis007Entities, supplierHotelInfoId, _shoppingHelper);
+            bookingHotelDetails = BookingObjectHelper.GetHotelDetails(_meis007Entities, supplierHotelInfoId, _shoppingHelper, CheckAndGetCurrentUserId());
             hdnFldHotelInfoId.Value = bookingHotelDetails.hotelInfoId.ToString();
             hdnFldFromDate.Value = bookingHotelDetails.fromDate.ToString("dd-MM-yyyy");
             hdnFldToDate.Value = bookingHotelDetails.toDate.ToString("dd-MM-yyyy");
             rptrBookingGuests.DataSource = bookingHotelDetails.guestDetails;
             rptrBookingGuests.DataBind();
+            AssignDropDown();
         }
     }
 
@@ -76,6 +77,14 @@ public partial class Hotels_book : PublicApplicationPage
         Session["ErrorMessage"] = message;
         path = path == null ? CurrentUser.GetRootPath("hotels/index.aspx") : path;
         Response.Redirect(path);
+    }
+
+    protected void AssignDropDown() {
+        foreach (RepeaterItem item in rptrBookingGuests.Items){
+            var hdnFldTitle = item.FindControl("hdnFldTitle") as HiddenField;
+            var ddlTitle = item.FindControl("ddlTitle") as DropDownList;
+            ddlTitle.SelectedValue = hdnFldTitle.Value;
+        }
     }
     
 }
