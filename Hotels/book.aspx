@@ -45,9 +45,9 @@
       <% var path = CurrentUser.GetRootPath("account"); %>
       <% var bookingId = Request.QueryString["id"]; %>
       <span class="right">
-        <a href="<%= path %>/login.aspx?bookingid=<%= bookingId %>">Login</a>
+        <a href="<%= path %>/login.aspx?bookingid=<%= bookingId %>">Existing Account</a>
         |
-        <a href="<%= path %>/register.aspx?bookingid=<%= bookingId %>">Register</a>
+        <a href="<%= path %>/register.aspx?bookingid=<%= bookingId %>">New Account</a>
       </span>
     <%} %>
     <div class="clear"></div>

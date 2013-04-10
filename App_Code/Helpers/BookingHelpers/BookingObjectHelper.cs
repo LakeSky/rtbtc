@@ -48,10 +48,10 @@ public static class BookingObjectHelper
             }
 
             var guests = bookingGuestDetails.Where(x => x.type == "Adult").Count().ToString() + " Adults "
-                + bookingGuestDetails.Where(x => x.type == "Children").Count().ToString()
-                + " Children " + bookingGuestDetails.Where(x => x.type == "Infant").Count().ToString() + " Infants";
+                + bookingGuestDetails.Where(x => x.type == "Kid").Count().ToString()
+                + " Kids " + bookingGuestDetails.Where(x => x.type == "Infant").Count().ToString() + " Infants";
 
-            var totalPrice = price * (bookingGuestDetails.Where(x => x.type == "Adult").Count() + bookingGuestDetails.Where(x => x.type == "Children").Count());
+            var totalPrice = price * (bookingGuestDetails.Where(x => x.type == "Adult").Count() + bookingGuestDetails.Where(x => x.type == "Kid").Count());
             defaultImagePath = string.IsNullOrEmpty(_sqlDataReader["DefaultImagePath"].ToString()) ? defaultImagePath : _sqlDataReader["DefaultImagePath"].ToString();
 
             bookingHotelDetails = new BookingHotelDetails
@@ -108,7 +108,7 @@ public static class BookingObjectHelper
             if (x.Kids != null){
                 childAges = x.ChildAge.ToArray();
                 for (int i = 0; i < x.Kids; i++){
-                    tempGuestType = new TempGuestType { type = "Children", age = childAges[i].ToString() };
+                    tempGuestType = new TempGuestType { type = "Kid", age = childAges[i].ToString() };
                     tempGuestTypeList.Add(tempGuestType);
                 }
             }
@@ -122,7 +122,7 @@ public static class BookingObjectHelper
             }
         }
         int adultsCount = tempGuestTypeList.Where(x => x.type == "Adult").Count();
-        int childrenCount = tempGuestTypeList.Where(x => x.type == "Children").Count();
+        int childrenCount = tempGuestTypeList.Where(x => x.type == "Kid").Count();
         int infantsCount = tempGuestTypeList.Where(x => x.type == "Infant").Count();
         int objAdultCount = 0;
         int objChildCount = 0;
@@ -133,7 +133,7 @@ public static class BookingObjectHelper
             objInfantCount = obj.infantArray.Length;
         }
         bookingGuestDetails = AppendData(bookingGuestDetails, tempGuestTypeList, "Adult", adultsCount, objAdultCount, obj, currentUserId);
-        bookingGuestDetails = AppendData(bookingGuestDetails, tempGuestTypeList, "Children", childrenCount, objChildCount, obj, currentUserId);
+        bookingGuestDetails = AppendData(bookingGuestDetails, tempGuestTypeList, "Kid", childrenCount, objChildCount, obj, currentUserId);
         bookingGuestDetails = AppendData(bookingGuestDetails, tempGuestTypeList, "Infant", infantsCount, objInfantCount, obj, currentUserId);
         
         return bookingGuestDetails;
@@ -152,7 +152,7 @@ public static class BookingObjectHelper
                 var paxObj = new B2CPaxinfo();
                 if (type == "Adult"){
                     paxObj = obj.adultsArray[index];
-                }else if (type == "Children"){
+                }else if (type == "Kid"){
                     paxObj = obj.childArray[index];
                 }
                 else {

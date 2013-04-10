@@ -26,7 +26,7 @@ public class ShoppingHotelHelper
             children += x.Kids;
             infants += x.Infants;
         }
-        obj.guestDetails = adults.ToString() + " Adults, " + children.ToString() + " Children, " + infants.ToString() + " Infants";
+        obj.guestDetails = adults.ToString() + " Adults, " + children.ToString() + " Kids, " + infants.ToString() + " Infants";
         obj.nights = (DateTimeHelper.customFormat(ToDate) - DateTimeHelper.customFormat(FromDate)).Days.ToString() + " Night(s)";
         return obj;
     }

@@ -50,10 +50,10 @@ public class BasketObjectHelper
             }
 
             var guests = basketHotelGuestDetailsList.Where(x => x.type == "Adult").Count().ToString() + " Adults "
-                + basketHotelGuestDetailsList.Where(x => x.type == "Children").Count().ToString()
-                + " Children " + basketHotelGuestDetailsList.Where(x => x.type == "Infant").Count().ToString() + " Infants";
+                + basketHotelGuestDetailsList.Where(x => x.type == "Kid").Count().ToString()
+                + " Kids " + basketHotelGuestDetailsList.Where(x => x.type == "Infant").Count().ToString() + " Infants";
 
-            var totalPrice = price * (basketHotelGuestDetailsList.Where(x => x.type == "Adult").Count() + basketHotelGuestDetailsList.Where(x => x.type == "Children").Count());
+            var totalPrice = price * (basketHotelGuestDetailsList.Where(x => x.type == "Adult").Count() + basketHotelGuestDetailsList.Where(x => x.type == "Kid").Count());
             defaultImagePath = string.IsNullOrEmpty(_sqlDataReader["DefaultImagePath"].ToString()) ? defaultImagePath : _sqlDataReader["DefaultImagePath"].ToString();
 
             basketHotelDetails = new BasketHotelDetails
