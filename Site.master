@@ -48,12 +48,12 @@
             <div class="navigation">
               <% var rootPath = CurrentUser.GetRootPath(""); %>
               <ul class="left">
-                <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/Home.aspx" ? "active" : "" %>"><a href="<%= rootPath + "Home.aspx" %>">Home</a></li>
-                <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/Hotels/Details.aspx" ? "active" : "" %>"><a href="<%= rootPath + "Hotels/Details.aspx?id=11211589" %>">Hotels</a></li>
-                <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/Flights.aspx" ? "active" : "" %>"><a href="<%= rootPath + "Flights.aspx" %>">Flights</a></li>
-                <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/Cars.aspx" ? "active" : "" %>"><a href="<%= rootPath + "Cars.aspx" %>">Cars</a></li>
-                <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/About.aspx" ? "active" : "" %>"><a href="<%= rootPath + "About.aspx" %>">About Us</a></li>
-                <li  class="<%= Request.Url.AbsolutePath == "/rtbtc/Contact.aspx" ? "active" : "" %>"><a href="<%= rootPath + "Contact.aspx" %>">Contact Us</a></li>
+                <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/home.aspx" ? "active" : "" %>"><a href="<%= rootPath + "home.aspx" %>">Home</a></li>
+                <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/hotels/index.aspx" ? "active" : "" %>"><a href="<%= rootPath + "hotels/index.aspx" %>">Hotels</a></li>
+                <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/flights.aspx" ? "active" : "" %>"><a href="<%= rootPath + "flights.aspx" %>">Flights</a></li>
+                <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/cars.aspx" ? "active" : "" %>"><a href="<%= rootPath + "cars.aspx" %>">Cars</a></li>
+                <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/about.aspx" ? "active" : "" %>"><a href="<%= rootPath + "about.aspx" %>">About Us</a></li>
+                <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/contact.aspx" ? "active" : "" %>"><a href="<%= rootPath + "contact.aspx" %>">Contact Us</a></li>
               </ul>
               <ul class="right">
               <% var klass = hasBasketItems ? "has-basket-items" : "no-basket-items"; %>
@@ -91,26 +91,26 @@
           <div class="footer-navigation">
             <ul>
               <li>
-                <a href="<%= rootPath + "Home.aspx" %>">Home</a>
+                <a href="<%= rootPath + "home.aspx" %>">Home</a>
                 <span>|</span>
               </li>
               <li>
-                <a href="<%= rootPath + "Hotels/Details.aspx?id=11211589" %>">Hotels</a>
+                <a href="<%= rootPath + "hotels/index.aspx?id=11211589" %>">Hotels</a>
                 <span>|</span>
               </li>
               <li>
-                <a href="<%= rootPath + "Flights.aspx" %>">Flights</a>
+                <a href="<%= rootPath + "flights.aspx" %>">Flights</a>
                 <span>|</span>
               </li>
               <li>
-                <a href="<%= rootPath + "Cars.aspx" %>">Cars</a>
+                <a href="<%= rootPath + "cars.aspx" %>">Cars</a>
                 <span>|</span>
               </li>
               <li>
-                <a href="<%= rootPath + "About.aspx" %>">About Us</a>
+                <a href="<%= rootPath + "about.aspx" %>">About Us</a>
                 <span>|</span>
               </li>
-              <li><a href="<%= rootPath + "Contact.aspx" %>">Contact Us</a></li>
+              <li><a href="<%= rootPath + "contact.aspx" %>">Contact Us</a></li>
               <div class="clear"></div>
             </ul>
           </div>

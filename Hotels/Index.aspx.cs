@@ -20,15 +20,18 @@ public partial class Hotels_Index : PublicApplicationPage
     {
         RoomsCount = 1;
         _ShoppingHelper = GetShoppingHelperObject();
-        if (_ShoppingHelper != null && _ShoppingHelper.HotelDetails != null)
-        {
-            _ShoppingHotel = _ShoppingHelper.HotelDetails;
-            ShoppingRoomsList = _ShoppingHotel.RoomDetails;
-            txtCity.Text = _ShoppingHotel.CityName;
-            txtStartDate.Text = _ShoppingHotel.FromDate;
-            txtEndDate.Text = _ShoppingHotel.ToDate;
-            RoomsCount = ShoppingRoomsList.Count;
+        if (_ShoppingHelper == null || _ShoppingHelper.HotelDetails == null)
+        { 
+            Session["ErrorMessage"] = "Please provide hotel search details!";
+            Response.Redirect(CurrentUser.GetRootPath("home.aspx"));
+            return;
         }
+        _ShoppingHotel = _ShoppingHelper.HotelDetails;
+        ShoppingRoomsList = _ShoppingHotel.RoomDetails;
+        txtCity.Text = _ShoppingHotel.CityName;
+        txtStartDate.Text = _ShoppingHotel.FromDate;
+        txtEndDate.Text = _ShoppingHotel.ToDate;
+        RoomsCount = ShoppingRoomsList.Count;
         if (!IsPostBack)
         {
             var supplierHotelObjectHelper = new SupplierHotelObjectHelper();

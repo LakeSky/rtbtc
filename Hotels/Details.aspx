@@ -150,7 +150,7 @@
           <th>Room type</th>
           <th>Room Name</th>
           <th>Price</th>
-          <th>Cancellation Policy</th>
+          <th></th>
           <% if(requestFrom == "search") {%>
             <th></th>
           <%} %>
