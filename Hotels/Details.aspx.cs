@@ -19,6 +19,7 @@ public partial class Hotels_Details : PublicApplicationPage
     public string hotelName;
     public string starsImagePath;
     public string requestFrom;
+    public string roomName = "";
     public dynamic shoppingHotelDetailDynamic;
     public BasketHotelDetails basketHotelDetailsObj;
     protected void Page_Load(object sender, EventArgs e)
@@ -50,6 +51,7 @@ public partial class Hotels_Details : PublicApplicationPage
                     shoppingHotelDetailDynamic = expando.shoppingHotelDetails.formattedSearchText();
                 }else {
                     data = RoomObjectHelper.GetHotelRooms(expando.hotelInfoId, null, expando.basketHelper);
+                    roomName = data.First().RoomName;
                 }
                 rptrRooms.DataSource = data;
                 rptrRooms.DataBind();

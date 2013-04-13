@@ -128,16 +128,19 @@
     </thead>
     <tbody>
       <%foreach(var x in productMaster.ProductRRCs){%>
-        <tr>
-          <td><%= x.RoomTypeHeader.RoomTHName %></td>
-          <td><%= x.RoomTypeDetail.RoomTDName  %></td>
-          <td>
-            <%foreach (var z in x.ProductFacilities){%>
-              <%= z.Facility.FacilityName %>
-              |
-            <%} %>
-          </td>
-        </tr>
+        <%if (roomName == "" || roomName == x.RoomTypeHeader.RoomTHName){%>
+          <tr>
+            <td><%= x.RoomTypeHeader.RoomTHName%></td>
+            <td><%= x.RoomTypeDetail.RoomTDName%></td>
+            <td>
+              <%foreach (var z in x.ProductFacilities)
+                {%>
+                <%= z.Facility.FacilityName%>
+                |
+              <%} %>
+            </td>
+          </tr>
+        <%} %>
       <%}%>
     </tbody>
   </table>

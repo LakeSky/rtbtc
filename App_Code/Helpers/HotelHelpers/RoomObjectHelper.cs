@@ -23,6 +23,7 @@ public static class RoomObjectHelper
         int nights;
         int passengers;
         int children;
+        int roomId = -1;
         if (basketHelper == null){
             var supplierHotelInfo = _meis007Model.SuppliersHotelsInfoes.Where(x => x.HotelInfoID == supplierHotelInfoId).First();
             sessionId = supplierHotelInfo.SessionID;
@@ -39,6 +40,7 @@ public static class RoomObjectHelper
             nights = basketHotelDetails.NoOfNights;
             passengers = basketHotelDetails.NoOfPassengers;
             children = basketHotelDetails.NoOfChildren;
+            roomId = basketHotelDetails.supplierRoomId;
         }
 
         var _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
@@ -55,18 +57,23 @@ public static class RoomObjectHelper
         var _sqlDataReader = _sqlCommand.ExecuteReader();
         while (_sqlDataReader.Read())
         {
-            price = decimal.Parse("0.0");
-            if (!string.IsNullOrEmpty(_sqlDataReader["LCAP"].ToString())) {
-                price = Math.Floor(decimal.Parse(_sqlDataReader["LCAP"].ToString()) / passengers);
+            if (basketHelper == null || (roomId == int.Parse(_sqlDataReader["RoomID"].ToString())))
+            {
+                price = decimal.Parse("0.0");
+                if (!string.IsNullOrEmpty(_sqlDataReader["LCAP"].ToString()))
+                {
+                    price = Math.Floor(decimal.Parse(_sqlDataReader["LCAP"].ToString()) / passengers);
+                }
+                supplierHotelRoomHelper = new SupplierHotelRoomHelper
+                {
+                    HotelInfoId = long.Parse(_sqlDataReader["HotelInfoID"].ToString()),
+                    RoomId = int.Parse(_sqlDataReader["RoomID"].ToString()),
+                    RoomName = _sqlDataReader["RoomName"].ToString(),
+                    RoomType = _sqlDataReader["RoomType"].ToString(),
+                    Price = price
+                };
+                roomsList.Add(supplierHotelRoomHelper);
             }
-            supplierHotelRoomHelper = new SupplierHotelRoomHelper {
-                HotelInfoId = long.Parse(_sqlDataReader["HotelInfoID"].ToString()),
-                RoomId = int.Parse(_sqlDataReader["RoomID"].ToString()),
-                RoomName = _sqlDataReader["RoomName"].ToString(),
-                RoomType = _sqlDataReader["RoomType"].ToString(),
-                Price = price
-            };
-            roomsList.Add(supplierHotelRoomHelper);
         }
         _sqlConnection.Close();
         roomsList = roomsList.OrderBy(x => x.RoomName).ToList();
