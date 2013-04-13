@@ -58,6 +58,7 @@
       <% var path = CurrentUser.GetRootPath("account"); %>
       <% var bookingId = Request.QueryString["id"]; %>
       <span class="right">
+        To Book or add to basket use
         <a href="<%= path %>/login.aspx?bookingid=<%= bookingId %>">Existing Account</a>
         |
         <a href="<%= path %>/register.aspx?bookingid=<%= bookingId %>">New Account</a>
@@ -122,15 +123,19 @@
     <FooterTemplate>
         <tr>
           <td colspan="5">
+            <% if (User.Identity.IsAuthenticated){%>
               <asp:CheckBox ID="ckbAgree" runat="server" Text="I have read and  agree cancellation policy!" ClientIDMode="Static" />
               <asp:CustomValidator ID="CustomValidator" runat="server" ErrorMessage="" ClientValidationFunction = "ValidateCheckBox" Text="*"  ForeColor="#FF3300"></asp:CustomValidator>
+            <%} %>
           </td>
         </tr>
         <tr>
           <td colspan="5">
-            <asp:Button ID="btnAddToBasket" runat="server" Text="Add to Basket" CssClass="btn btn-success" OnClick="btnAddToBasket_Click" />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnCheckOut" runat="server" Text="Check Out" CssClass="btn btn-primary" Enabled="false" />
+            <% if (User.Identity.IsAuthenticated){%>
+              <asp:Button ID="btnAddToBasket" runat="server" Text="Add to Basket" CssClass="btn btn-success" OnClick="btnAddToBasket_Click" />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <asp:Button ID="btnCheckOut" runat="server" Text="Check Out" CssClass="btn btn-primary" Enabled="false" />
+            <%} %>
           </td>
         </tr>    
       </table>
