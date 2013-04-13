@@ -49,7 +49,7 @@
               <% var rootPath = CurrentUser.GetRootPath(""); %>
               <ul class="left">
                 <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/home.aspx" ? "active" : "" %>"><a href="<%= rootPath + "home.aspx" %>">Home</a></li>
-                <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/hotels/index.aspx" ? "active" : "" %>"><a href="<%= rootPath + "hotels/index.aspx" %>">Hotels</a></li>
+                <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/hotels/search.aspx" ? "active" : "" %>"><a href="<%= rootPath + "hotels/search.aspx" %>">Hotels</a></li>
                 <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/flights.aspx" ? "active" : "" %>"><a href="<%= rootPath + "flights.aspx" %>">Flights</a></li>
                 <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/cars.aspx" ? "active" : "" %>"><a href="<%= rootPath + "cars.aspx" %>">Cars</a></li>
                 <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/about.aspx" ? "active" : "" %>"><a href="<%= rootPath + "about.aspx" %>">About Us</a></li>

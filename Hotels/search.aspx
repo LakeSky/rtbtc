@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Index.aspx.cs" Inherits="Hotels_Index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="search.aspx.cs" Inherits="Hotels_Index" %>
 <%@ Register Src="/rtbtc/Pager.ascx" TagName="Pager" TagPrefix="userControl" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
   <style type="text/css">
@@ -158,7 +158,7 @@
                   <br />
                   <h4><%# Eval("City") %></h4>
                 </div>
-                <% var path = CurrentUser.GetRootPath("Hotels/Details.aspx?from=search"); %>
+                <% var path = CurrentUser.GetRootPath("hotels/show.aspx?from=search"); %>
                 <div class="right paddingT10">
                   <a href="<%= path %>&sid=<%# Eval("Id") %>&id=<%# Eval("ProductMasterId")%>" class="btn btn-primary">More Info ></a>
                 </div>

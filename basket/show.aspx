@@ -47,7 +47,7 @@
               <br />
               <h4><%# Eval("cityName") %></h4>
             </div>
-             <% var path = CurrentUser.GetRootPath("Hotels/Details.aspx?from=basket"); %>
+             <% var path = CurrentUser.GetRootPath("hotels/show.aspx?from=basket"); %>
             <div class="right paddingT10">
               <a href="<%= path %>&sid=<%# Eval("hotelInfoId") %>&id=<%# Eval("productId")%>" class="btn btn-primary">More Info ></a>
             </div>

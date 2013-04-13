@@ -43,7 +43,7 @@ public partial class Home : PublicApplicationPage
         _meis007Entities.AddToB2CCustomerinfo(_b2CCustomerinfo);
         _meis007Entities.SaveChanges();
         Session["NoticeMessage"] = "Successfully added for subscription!";
-        Response.Redirect(CurrentUser.GetRootPath("/Home.aspx"));
+        Response.Redirect(CurrentUser.GetRootPath("/home.aspx"));
     }
     protected void txtSearch_Click(object sender, EventArgs e)
     {
@@ -78,6 +78,6 @@ public partial class Home : PublicApplicationPage
         _ShoppingHotel.RoomDetails = ShoppingRoomsList;
         _ShoppingHelper.HotelDetails = _ShoppingHotel;
         Session["StoredShopping"] = _ShoppingHelper;
-        Response.Redirect(CurrentUser.GetRootPath("Hotels/Index.aspx"));
+        Response.Redirect(CurrentUser.GetRootPath("hotels/search.aspx"));
     }
 }
