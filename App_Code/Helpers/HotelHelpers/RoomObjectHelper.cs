@@ -69,7 +69,7 @@ public static class RoomObjectHelper
             roomsList.Add(supplierHotelRoomHelper);
         }
         _sqlConnection.Close();
-        roomsList = roomsList.OrderBy(x => x.RoomType).ToList();
+        roomsList = roomsList.OrderBy(x => x.RoomName).ToList();
         return roomsList;
     }
 }
