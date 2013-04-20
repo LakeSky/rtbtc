@@ -31,6 +31,13 @@
       FROM [dbo].[CountryMaster] AS [CountryMaster]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Facilities" EntityType="meis007Model.Store.Facilities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PackageDescription" EntityType="meis007Model.Store.PackageDescription" store:Type="Tables" store:Schema="dbo" store:Name="PackageDescription">
+            <DefiningQuery>SELECT 
+      [PackageDescription].[PacDesID] AS [PacDesID], 
+      [PackageDescription].[PacId] AS [PacId], 
+      [PackageDescription].[PacDes] AS [PacDes]
+      FROM [dbo].[PackageDescription] AS [PackageDescription]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="PackageHeader" EntityType="meis007Model.Store.PackageHeader" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PackageImages" EntityType="meis007Model.Store.PackageImages" store:Type="Tables" store:Schema="dbo" store:Name="PackageImages">
             <DefiningQuery>SELECT 
@@ -208,6 +215,19 @@
           </Key>
           <Property Name="FID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="FacilityName" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'meis007.dbo.PackageDescription' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="PackageDescription">
+          <Key>
+            <PropertyRef Name="PacDesID" />
+            <PropertyRef Name="PacId" />
+            <PropertyRef Name="PacDes" />
+          </Key>
+          <Property Name="PacDesID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PacId" Type="bigint" Nullable="false" />
+          <Property Name="PacDes" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="PackageHeader">
           <Key>
@@ -525,6 +545,7 @@
           <EntitySet Name="Classifications" EntityType="meis007Model.Classification" />
           <EntitySet Name="CountryMasters" EntityType="meis007Model.CountryMaster" />
           <EntitySet Name="Facilities" EntityType="meis007Model.Facility" />
+          <EntitySet Name="PackageDescriptions" EntityType="meis007Model.PackageDescription" />
           <EntitySet Name="PackageHeaders" EntityType="meis007Model.PackageHeader" />
           <EntitySet Name="PackageImages" EntityType="meis007Model.PackageImage" />
           <EntitySet Name="ProductAmenities" EntityType="meis007Model.ProductAmenity" />
@@ -684,6 +705,16 @@
           <Property Name="FID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FacilityName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="ProductFacilities" Relationship="meis007Model.FK_ProductFacilities_Facilities" FromRole="Facilities" ToRole="ProductFacilities" />
+        </EntityType>
+        <EntityType Name="PackageDescription">
+          <Key>
+            <PropertyRef Name="PacDesID" />
+            <PropertyRef Name="PacId" />
+            <PropertyRef Name="PacDes" />
+          </Key>
+          <Property Name="PacDesID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PacId" Type="Int64" Nullable="false" />
+          <Property Name="PacDes" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="PackageHeader">
           <Key>
@@ -1073,6 +1104,11 @@
             <ScalarProperty Name="FID" ColumnName="FID" />
             <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PackageDescriptions"><EntityTypeMapping TypeName="meis007Model.PackageDescription"><MappingFragment StoreEntitySet="PackageDescription">
+            <ScalarProperty Name="PacDesID" ColumnName="PacDesID" />
+            <ScalarProperty Name="PacId" ColumnName="PacId" />
+            <ScalarProperty Name="PacDes" ColumnName="PacDes" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="PackageHeaders"><EntityTypeMapping TypeName="meis007Model.PackageHeader"><MappingFragment StoreEntitySet="PackageHeader">
             <ScalarProperty Name="PacId" ColumnName="PacId" />
             <ScalarProperty Name="PacName" ColumnName="PacName" />
@@ -1228,23 +1264,24 @@
         <EntityTypeShape EntityType="meis007Model.Classification" Width="1.5" PointX="0.75" PointY="12.125" Height="2.5571907552083317" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.CountryMaster" Width="1.5" PointX="9.75" PointY="3.75" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.Facility" Width="1.5" PointX="5.25" PointY="1.625" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.PackageHeader" Width="1.5" PointX="11.75" PointY="0.75" Height="3.5186979166666674" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.PackageImage" Width="1.5" PointX="11.75" PointY="5.75" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.ProductAmenity" Width="1.5" PointX="5.25" PointY="12.5" Height="1.9802864583333353" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.ProductFacility" Width="1.5" PointX="7.5" PointY="4.5" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.PackageDescription" Width="1.5" PointX="11.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.PackageHeader" Width="1.5" PointX="11.75" PointY="3.75" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.PackageImage" Width="1.5" PointX="12.75" PointY="8.75" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductAmenity" Width="1.5" PointX="5.25" PointY="12.5" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductFacility" Width="1.5" PointX="7.5" PointY="4.5" Height="1.9802864583333388" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.ProductImage" Width="1.5" PointX="5.25" PointY="15.25" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.ProductMaster" Width="1.5" PointX="3" PointY="9.875" Height="7.1724251302083317" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.ProductRRC" Width="1.5" PointX="5.25" PointY="4.125" Height="2.7494921875000031" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.RoomTypeDetail" Width="1.5" PointX="3" PointY="6.375" Height="1.9802864583333397" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.RoomTypeHeader" Width="1.5" PointX="0.75" PointY="2.5" Height="2.5571907552083388" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="12.75" PointY="8.75" Height="5.2494108072916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.XMLHotel" Width="1.5" PointX="9.75" PointY="12.75" Height="2.5571907552083388" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="9.75" PointY="12.75" Height="5.2494108072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.XMLHotel" Width="1.5" PointX="12.75" PointY="11.75" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.XMLSupplier" Width="1.5" PointX="13.75" PointY="0.75" Height="1.9802864583333388" IsExpanded="true" />
         <AssociationConnector Association="meis007Model.FK_ProductAmenities_Amenities" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="18.501152846153843" />
           <ConnectorPoint PointX="4.875" PointY="18.126152846153843" />
-          <ConnectorPoint PointX="4.875" PointY="13.490143229166668" />
-          <ConnectorPoint PointX="5.25" PointY="13.490143229166668" />
+          <ConnectorPoint PointX="4.875" PointY="13.490143229166666" />
+          <ConnectorPoint PointX="5.25" PointY="13.490143229166666" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1" ManuallyRouted="false">
           <ConnectorPoint PointX="9.25" PointY="10.220896809895834" />
@@ -1260,12 +1297,12 @@
           <ConnectorPoint PointX="7.59375" PointY="4.5" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductAmenities_ProductMaster" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="12.932571614583335" />
-          <ConnectorPoint PointX="5.25" PointY="12.932571614583335" />
+          <ConnectorPoint PointX="4.5" PointY="12.932571614583333" />
+          <ConnectorPoint PointX="5.25" PointY="12.932571614583333" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductFacilities_ProductRRC" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="5.4901432291666659" />
-          <ConnectorPoint PointX="7.5" PointY="5.4901432291666659" />
+          <ConnectorPoint PointX="6.75" PointY="5.4901432291666694" />
+          <ConnectorPoint PointX="7.5" PointY="5.4901432291666694" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductImages_ProductMaster" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="16.143992513020834" />

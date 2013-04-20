@@ -211,6 +211,22 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<PackageDescription> PackageDescriptions
+        {
+            get
+            {
+                if ((_PackageDescriptions == null))
+                {
+                    _PackageDescriptions = base.CreateObjectSet<PackageDescription>("PackageDescriptions");
+                }
+                return _PackageDescriptions;
+            }
+        }
+        private ObjectSet<PackageDescription> _PackageDescriptions;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<PackageHeader> PackageHeaders
         {
             get
@@ -465,6 +481,14 @@ namespace meis007Model
         public void AddToFacilities(Facility facility)
         {
             base.AddObject("Facilities", facility);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PackageDescriptions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPackageDescriptions(PackageDescription packageDescription)
+        {
+            base.AddObject("PackageDescriptions", packageDescription);
         }
     
         /// <summary>
@@ -2267,6 +2291,119 @@ namespace meis007Model
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="meis007Model", Name="PackageDescription")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PackageDescription : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PackageDescription object.
+        /// </summary>
+        /// <param name="pacDesID">Initial value of the PacDesID property.</param>
+        /// <param name="pacId">Initial value of the PacId property.</param>
+        /// <param name="pacDes">Initial value of the PacDes property.</param>
+        public static PackageDescription CreatePackageDescription(global::System.Int64 pacDesID, global::System.Int64 pacId, global::System.String pacDes)
+        {
+            PackageDescription packageDescription = new PackageDescription();
+            packageDescription.PacDesID = pacDesID;
+            packageDescription.PacId = pacId;
+            packageDescription.PacDes = pacDes;
+            return packageDescription;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 PacDesID
+        {
+            get
+            {
+                return _PacDesID;
+            }
+            set
+            {
+                if (_PacDesID != value)
+                {
+                    OnPacDesIDChanging(value);
+                    ReportPropertyChanging("PacDesID");
+                    _PacDesID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PacDesID");
+                    OnPacDesIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _PacDesID;
+        partial void OnPacDesIDChanging(global::System.Int64 value);
+        partial void OnPacDesIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 PacId
+        {
+            get
+            {
+                return _PacId;
+            }
+            set
+            {
+                if (_PacId != value)
+                {
+                    OnPacIdChanging(value);
+                    ReportPropertyChanging("PacId");
+                    _PacId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PacId");
+                    OnPacIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _PacId;
+        partial void OnPacIdChanging(global::System.Int64 value);
+        partial void OnPacIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PacDes
+        {
+            get
+            {
+                return _PacDes;
+            }
+            set
+            {
+                if (_PacDes != value)
+                {
+                    OnPacDesChanging(value);
+                    ReportPropertyChanging("PacDes");
+                    _PacDes = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("PacDes");
+                    OnPacDesChanged();
+                }
+            }
+        }
+        private global::System.String _PacDes;
+        partial void OnPacDesChanging(global::System.String value);
+        partial void OnPacDesChanged();
+
+        #endregion
+    
     }
     
     /// <summary>
