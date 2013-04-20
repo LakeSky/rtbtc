@@ -65,9 +65,9 @@ public class SupplierHotelObjectHelper
             productMasterId = long.Parse(_sqlDataReader["ProductID"].ToString());
             price = decimal.Parse("0.0");
             hotelInfoId = long.Parse(_sqlDataReader["HotelInfoID"].ToString());
-            if (_sqlDataReader["LCAP"] != null && _sqlDataReader["NumOfPassengers"] != null)
+            if (_sqlDataReader["LCAP"] != null && _sqlDataReader["NumOfPassengers"] != null && _sqlDataReader["NumOfPassengers"].ToString() != "0")
             {
-                price = Math.Floor(decimal.Parse(_sqlDataReader["LCAP"].ToString())) ;/// int.Parse(_sqlDataReader["NumOfPassengers"].ToString()));
+                price = Math.Floor(decimal.Parse(_sqlDataReader["LCAP"].ToString()) / int.Parse(_sqlDataReader["NumOfPassengers"].ToString()));
             }
             supplierHotelRoomHelper = new SupplierHotelRoomHelper { HotelInfoId = hotelInfoId, RoomId = supplierHotelRoomId, RoomName = _sqlDataReader["RoomName"].ToString(), RoomType = _sqlDataReader["RoomType"].ToString(), Price = price };
             if (productMasterIds.Contains(productMasterId))
@@ -110,7 +110,7 @@ public class SupplierHotelObjectHelper
         int[] ages =  lstAges.Count == 0 ? null : lstAges.ToArray();
         _search.ChildCount = lstAges.Count;
         _search.ChildAges = ages;
-        _search.CustomerID = DbParameter.GetCustomerId();
+        _search.CustomerID = "1015";//DbParameter.GetCustomerId();
         status = string.Empty;
         RepositoryFactory supplierFactory = new RepositoryFactory(_search, shoppingHotelHelper.SessionId);
         return supplierFactory.GetSuppliersHotelsInfo(out status);
