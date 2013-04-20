@@ -22,22 +22,35 @@ public class BasketWebService : System.Web.Services.WebService {
 
     [WebMethod(EnableSession = true)]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string RemoveItem(string id)
+    public string RemoveItem(string id, string type)
     {
         var basketHelper = (BasketHelper)(Session["Basket"]);
         var hasBasketItems = false;
         var count = 0;
-        if (basketHelper != null && basketHelper.hotelDetails != null)
+        if (basketHelper != null)
         {
-            var hotelDetail = basketHelper.hotelDetails.Where(x => x.hotelInfoId == long.Parse(id)).FirstOrDefault();
-            if (hotelDetail != null)
+            if (type == "hotel")
             {
-                basketHelper.hotelDetails.Remove(hotelDetail);
+                var hotelDetail = basketHelper.hotelDetails.Where(x => x.hotelInfoId == long.Parse(id)).FirstOrDefault();
+                if (hotelDetail != null)
+                {
+                    basketHelper.hotelDetails.Remove(hotelDetail);
+                }
             }
-            count = basketHelper.hotelDetails.Count;
+            else
+            {
+                var packageDetail = basketHelper.packageDetails.Where(x => x.Id == int.Parse(id)).FirstOrDefault();
+                if (packageDetail != null)
+                {
+                    basketHelper.packageDetails.Remove(packageDetail);
+                }
+            }
+            count = basketHelper.TotalItemsCount();
             hasBasketItems = count != 0;
         }
-        return hasBasketItems.ToString() + "#" + count.ToString();
+        Session["Basket"] = basketHelper;
+        basketHelper.calculateTotalPrice();
+        return hasBasketItems.ToString() + "#" + count.ToString() + "#" + basketHelper.totalPrice.ToString();
     }
     
 }

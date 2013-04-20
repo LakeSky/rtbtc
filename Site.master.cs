@@ -14,9 +14,10 @@ public partial class SiteMaster : System.Web.UI.MasterPage
         hasBasketItems = false;
         basketItemsCount = 0;
         var basketHelper = (BasketHelper)(Session["Basket"]);
-        if (basketHelper != null && basketHelper.hotelDetails != null && basketHelper.hotelDetails.Count > 0) {
+        if (basketHelper != null) {
             hasBasketItems = true;
             basketItemsCount = basketHelper.hotelDetails.Count();
+            basketItemsCount += basketHelper.packageDetails.Count;
         }
     }
 

@@ -252,18 +252,18 @@ body {
  margin-top: 20px;
 }
 
-#hotelsList .hotel-div{
+#hotelsList .hotel-div, #hotels .hotel-div{
   margin: 10px 0;
   border-bottom: solid 1px #ccc;
   padding-bottom: 10px;
 }
 
-#hotelsList .hotel-content{
+#hotelsList .hotel-content, #hotels .hotel-content{
   width: 420px;
   float: left;
 }
 
-#hotelsList .hotel-image{
+#hotelsList .hotel-image, #hotels .hotel-image{
   width: 210px;
   float: right;
 }

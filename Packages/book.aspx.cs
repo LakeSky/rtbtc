@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using meis007Model;
 
-public partial class Packages_book : System.Web.UI.Page
+public partial class Packages_book : PublicApplicationPage
 {
     meis007Entities _meis007Entities;
     public PackageHeader packageHeader;
@@ -34,43 +34,43 @@ public partial class Packages_book : System.Web.UI.Page
 
     protected void btnAddToBasket_Click(object sender, EventArgs e)
     {
-        //string index = "";
-        //var totalPassengers = int.Parse(Request.Params["passengers_count"].ToString());
-        //var parms = Request.Params;
-        //var packageId = long.Parse(hdnFldPackageId.Value);
-        //var basketHelper = GetBasketHelperObject(true);
-        //_meis007Entities = new meis007Entities();
-        //var packageHeader = _meis007Entities.PackageHeaders.Where(x => x.PacId == packageId).First();
-        //var basketPackageDetails = new BasketPackageDetails
-        //{
-        //    Id = basketHelper.GetNextPackageId(),
-        //    PackageId = packageId,
-        //    PackageName = packageHeader.PacName,
-        //    From = DateTimeHelper.customFormat(txtFromDate.Text),
-        //    ValidFrom = packageHeader.Validfrom,
-        //    ValidTo = packageHeader.Validto,
-        //    DisplayImage = packageHeader.DisplayImage
-        //};
-        //var basketPackagePassengersDetailsList = new List<BasketPackagePassengersDetails>();
-        //BasketPackagePassengersDetails basketPackagePassengersDetails;
-        //for (int i = 0; i < totalPassengers; i++)
-        //{
-        //    index = (i + 1).ToString();
-        //    basketPackagePassengersDetails = new BasketPackagePassengersDetails();
-        //    basketPackagePassengersDetails.Title = parms["passengers[" + index + "][title]"].ToString();
-        //    basketPackagePassengersDetails.FirstName = parms["passengers[" + index + "][firstname]"].ToString();
-        //    basketPackagePassengersDetails.MiddleName = parms["passengers[" + index + "][middlename]"].ToString();
-        //    basketPackagePassengersDetails.LastName = parms["passengers[" + index + "][lastname]"].ToString();
-        //    basketPackagePassengersDetailsList.Add(basketPackagePassengersDetails);
-        //}
-        //basketPackageDetails.Passengers = basketPackagePassengersDetailsList;
-        //basketPackageDetails.PricePerPerson = PackageHelper.FormattedMarkupPrice(packageHeader.Pacvalue);
-        //basketPackageDetails.calculateTotalPrice();
-        //basketHelper.packageDetails.Add(basketPackageDetails);
-        //basketHelper.calculateTotalPrice();
-        //Session["Basket"] = basketHelper;
-        //Session["NoticeMessage"] = "Successfully added to basket! ";
-        //Response.Redirect(Route.GetRootPath("packages/index.aspx"));
+        string index = "";
+        var totalPassengers = int.Parse(Request.Params["passengers_count"].ToString());
+        var parms = Request.Params;
+        var packageId = long.Parse(hdnFldPackageId.Value);
+        var basketHelper = GetBasketHelperObject(true);
+        _meis007Entities = new meis007Entities();
+        var packageHeader = _meis007Entities.PackageHeaders.Where(x => x.PacId == packageId).First();
+        var basketPackageDetails = new BasketPackageDetails
+        {
+            Id = basketHelper.GetNextPackageId(),
+            PackageId = packageId,
+            PackageName = packageHeader.PacName,
+            From = DateTimeHelper.customFormat(txtFromDate.Text),
+            ValidFrom = packageHeader.Validfrom,
+            ValidTo = packageHeader.Validto,
+            DisplayImage = packageHeader.DisplayImage
+        };
+        var basketPackagePassengersDetailsList = new List<BasketPackagePassengersDetails>();
+        BasketPackagePassengersDetails basketPackagePassengersDetails;
+        for (int i = 0; i < totalPassengers; i++)
+        {
+            index = (i + 1).ToString();
+            basketPackagePassengersDetails = new BasketPackagePassengersDetails();
+            basketPackagePassengersDetails.Title = parms["passengers[" + index + "][title]"].ToString();
+            basketPackagePassengersDetails.FirstName = parms["passengers[" + index + "][firstname]"].ToString();
+            basketPackagePassengersDetails.MiddleName = parms["passengers[" + index + "][middlename]"].ToString();
+            basketPackagePassengersDetails.LastName = parms["passengers[" + index + "][lastname]"].ToString();
+            basketPackagePassengersDetailsList.Add(basketPackagePassengersDetails);
+        }
+        basketPackageDetails.Passengers = basketPackagePassengersDetailsList;
+        basketPackageDetails.PricePerPerson = packageHeader.Pacvalue;
+        basketPackageDetails.calculateTotalPrice();
+        basketHelper.packageDetails.Add(basketPackageDetails);
+        basketHelper.calculateTotalPrice();
+        Session["Basket"] = basketHelper;
+        Session["NoticeMessage"] = "Successfully added to basket! ";
+        Response.Redirect(CurrentUser.GetRootPath("packages/index.aspx"));
     }
 
     protected void Redirect()

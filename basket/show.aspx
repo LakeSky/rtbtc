@@ -3,17 +3,34 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 <script type="text/javascript">
     $(function () {
+
+        function removePackagesDiv() {
+            if ($("#packages .package-div").length == 0) {
+                $("#packages").remove();
+            }
+        }
+
+        function removeHotelsDiv() {
+            if ($("#hotels .hotel-div").length == 0) {
+                $("#hotels").remove();
+            }
+        }
+
+        removePackagesDiv();
+        removeHotelsDiv();
+
         $(".remove-basket-item").click(function (e) {
             e.preventDefault();
             if (!confirm("Are you sure?")) {
                 return false;
             }
             var id = $(this).data('id');
+            var type = $(this).data('type');
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
                 url: '<%=ResolveUrl("~/BasketWebService.asmx/RemoveItem") %>',
-                data: "{'id': '" + id + "'}",
+                data: "{'id': '" + id + "', 'type': '" + type + "'}",
                 dataType: "json",
                 success: function (data) {
                     var array = data.d.split('#');
@@ -21,7 +38,10 @@
                         window.location = "/rtbtc/home.aspx";
                     }
                     $("#basket-items-count").text(array[1]);
-                    $("#" + id).remove();
+                    $(".total-price").html(array[2]);
+                    $("#" + type + "_" + id).remove();
+                    removeHotelsDiv();
+                    removePackagesDiv();
                 },
                 error: function (result) {
                     console.log(result);
@@ -33,13 +53,88 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <div id="hotelsList" style="width:100%;">
-    <h3 class="custom-h3 blue-font">Total Amount SR. <%= totalPrice %></h3>
+    <h3 class="custom-h3 blue-font">Total Amount SR. <span class="total-price"><%= totalPrice %></h3>
     <hr />
-    <asp:Repeater ID="rptrHotels" runat="server">
+
+    <asp:Repeater ID="rptrPackages" runat="server">
       <HeaderTemplate>
+        <div id="packages">
+          <h3 class="package_heading"> Packages</h3>
       </HeaderTemplate>
       <ItemTemplate>
-        <div class="hotel-div" id='<%# Eval("hotelInfoId") %>'>
+        <div class="package-div" id='package_<%# Eval("Id") %>'>
+          <div class="span9 left">
+            <h3 class="custom-h3"><%# Eval("PackageName") %></h3>
+            <span class="bold-font"> Package Start Date: </span>
+            <%# ((DateTime)Eval("ValidFrom")).ToString("dd MMM yyyy") %>
+            <br />
+            <span class="bold-font"> Package End Date: </span>
+            <%# ((DateTime)Eval("ValidTo")).ToString("dd MMM yyyy") %>
+            <br />
+            <span class="bold-font">Travelling From: </span>
+            <%# ((DateTime)Eval("From")).ToString("dd MMM yyyy") %>
+            <br />
+            <span class="bold-font">Price Per Person SR. </span>
+            <%# Eval("PricePerPerson") %>
+            <br />
+            <span class="bold-font">Total Price SR. </span>
+            <%# Eval("TotalPrice") %>
+            <br />
+            <% var path = CurrentUser.GetRootPath("packages/show.aspx"); %>
+            <a class="btn btn-primary" href="<%= path %>?id=<%# Eval("PackageId")%>&from=basket">More Info</a>
+          </div>
+          <div class="span3 right">
+            <div class="price">
+              <span class="left">Price Per Person SR. <%# Eval("PricePerPerson") %></span>
+              <a  href="#" title="Remove from basket." class="btn btn-danger right remove-basket-item" data-id='<%# Eval("Id")%>' data-type="package">X</a>
+              <div class="clear"></div>
+            </div>
+            <img src="<%# Eval("DisplayImage") %>" alt="" class="media-image" style="width:200px; height:200px"/>
+          </div>
+          <div class="clear"></div>
+        <asp:Repeater ID="rptrPackagePassengers" runat="server"  DataSource='<%# Eval("Passengers") %>'>
+          <HeaderTemplate>
+            <div class="span12" style="margin-left:0;">
+              <h3 class="custom-h3 left" >Passenger Details</h3>
+              <br />
+              <table class="table table-bordered">
+                <tr>
+                  <th>Title</th>
+                 <th>First Name</th>
+                  <th>Middle Name</th>
+                  <th>Last Name</th>
+                </tr>
+          </HeaderTemplate>
+          <ItemTemplate>
+            <tr>
+              <td><%# Eval("Title") %></td>
+              <td><%# Eval("FirstName") %></td>
+              <td><%# Eval("MiddleName") %></td>
+              <td><%# Eval("LastName") %></td>
+            </tr>
+          </ItemTemplate>
+          <FooterTemplate>
+              </table>
+            </div>
+            <hr />
+          </FooterTemplate>
+        </asp:Repeater>
+      </ItemTemplate>
+      <FooterTemplate>
+          </div>
+        </div>
+        <hr />
+      </FooterTemplate>
+    </asp:Repeater>
+
+
+    <asp:Repeater ID="rptrHotels" runat="server">
+      <HeaderTemplate>
+       <div id="hotels">
+          <h3 class="hotel_heading">Hotels</h3>
+      </HeaderTemplate>
+      <ItemTemplate>
+        <div class="hotel-div" id='hotel_<%# Eval("hotelInfoId") %>'>
           <div class="hotel-content" style="width:710px;">
             <h3><%# Eval("ProductName")%></h3>
             <div class="left">
@@ -61,10 +156,10 @@
           <div class="hotel-image">
             <div class="price">
               <span class="left">SR. <%# Eval("pricePerPassenger")%> / pax</span>
-              <a  href="#" title="Remove from basket." class="btn btn-danger right remove-basket-item" data-id='<%# Eval("hotelInfoId") %>'>X</a>
+              <a  href="#" title="Remove from basket." class="btn btn-danger right remove-basket-item" data-id='<%# Eval("hotelInfoId") %>' data-type="hotel">X</a>
               <div class="clear"></div>
             </div>
-            <img src="<%# Eval("productDefaultImagePath")%>" class="media-image" />
+            <img src="<%# Eval("productDefaultImagePath")%>" alt="" class="media-image" style="width:200px; height:200px" />
           </div>
           <div class="clear"></div>
           <div class="margin10"></div>
@@ -102,6 +197,7 @@
         </div>
       </ItemTemplate>
       <FooterTemplate>
+        </div>
       </FooterTemplate>
     </asp:Repeater>
   </div>

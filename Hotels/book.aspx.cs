@@ -69,7 +69,7 @@ public partial class Hotels_book : PublicApplicationPage
         Session["Basket"] = basketObjectHelper.CreateBasketHotel(new meis007Entities(), basketHelper, hdnFldHotelInfoId.Value, hdnFldFromDate.Value, hdnFldToDate.Value, basketHotelGuestDetailsList);
         Session["NoticeMessage"] = "Succesfully added to the basket!";
         DisposeHotelDetails();
-        Response.Redirect(CurrentUser.GetRootPath("Home.aspx"));
+        Response.Redirect(CurrentUser.GetRootPath("home.aspx"));
     }  
 
     void Redirect(string message, string path = null) {

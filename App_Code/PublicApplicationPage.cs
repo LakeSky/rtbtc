@@ -51,7 +51,7 @@ public class PublicApplicationPage : System.Web.UI.Page
         if (basketHelper == null) {
             return false;
         }
-        return countHotelsInBasket(basketHelper) > 0;
+        return countHotelsInBasket(basketHelper) > 0 || countPackagesInBasket(basketHelper) > 0;
     }
 
     protected bool hasHotelsInBasket(BasketHelper basketHelper){
@@ -63,6 +63,11 @@ public class PublicApplicationPage : System.Web.UI.Page
 
     protected int countHotelsInBasket(BasketHelper basketHelper) {
         return basketHelper.hotelDetails.Count;
+    }
+
+    protected int countPackagesInBasket(BasketHelper basketHelper)
+    {
+        return basketHelper.packageDetails.Count;
     }
 
     protected void DisposeHotelDetails(){

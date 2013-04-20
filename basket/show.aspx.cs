@@ -18,6 +18,9 @@ public partial class basket_show : PublicApplicationPage
         }
         rptrHotels.DataSource = basketHelper.hotelDetails;
         rptrHotels.DataBind();
+        rptrPackages.DataSource = basketHelper.packageDetails;
+        rptrPackages.DataBind();
+        basketHelper.calculateTotalPrice();
         totalPrice = basketHelper.totalPrice;
     }
 }

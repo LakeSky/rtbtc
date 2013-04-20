@@ -42,7 +42,14 @@
   <div id="content-2" class="row-fluid">
     <%= description %>
     <div class="margin10"></div>
-    <a class="btn btn-success" href="book.aspx?id=<%= packageHeader.PacId %>">Book</a>
+    <%if (Request.QueryString["from"] == "basket"){ %>
+      <% var path = CurrentUser.GetRootPath("basket/show.aspx"); %>
+      <a class="btn btn-primary" href="<%= path %>">Back To Basket</a>
+    <%}else{%>
+      <a class="btn btn-success" href="book.aspx?id=<%= packageHeader.PacId %>">Book</a>
+      &nbsp;&nbsp;&nbsp;
+      <a class="btn btn-primary" href="index.aspx">View More Packages</a>
+    <%} %>
   </div>
 </asp:Content>
 
