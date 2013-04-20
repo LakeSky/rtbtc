@@ -1,10 +1,13 @@
 ﻿<%@ Page Title="Riyadh Travels | Home" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
+  <link href="/rtbtc/Styles/packages_slider.css" rel="stylesheet" type="text/css" />
+  <link href="/rtbtc/Styles/home_page.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript">
       window.city_autocomplete_url = '<%=ResolveUrl("~/ViewHelperWebService.asmx/CitySearch") %>';
       window.room_index = <%= RoomsCount + 1 %>;
   </script>
+  <script type="text/javascript" src="/rtbtc/Scripts/packages_slider.js"></script>
   <script type="text/javascript" src="/rtbtc/Scripts/hotel_search.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
@@ -126,6 +129,32 @@
     </div>
   </div>
 </div>
+<div id="content-3" class="row-fluid">
+  <div class="span9">
+    <asp:Repeater ID="rptrPackages" runat="server">
+      <HeaderTemplate>
+        <div id="carouselh">
+      </HeaderTemplate>
+      <ItemTemplate>
+        <div data-url="?id=<%# Eval("PacId") %>">
+          <img alt="" src="<%# Eval("DisplayImage") %>" /><br />
+          <span class="thumbnail-text"><%# PackageHelper.FormattedPackageName(Eval("PacName"), 15)%></span>
+        </div>
+      </ItemTemplate>
+      <FooterTemplate>
+        </div>
+      </FooterTemplate>
+    </asp:Repeater>
+  </div>
+  <div class="span3">
+    <h3 class="blue-font">
+      <% var path = CurrentUser.GetRootPath("packages/index.aspx"); %>
+      <a href="<%= path %>">View More</a>
+    </h3>
+  </div>
+  <div class="clear"></div>
+</div>
+
 <script id='add-remove-room-button-template' type='text/html'>
 <input type="button" class="btn btn-danger remove-room" value="x" data-id="{{index}}" id="remove_room_{{index}}" />
 </script>

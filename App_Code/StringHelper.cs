@@ -113,4 +113,13 @@ public static class StringHelper
         }
         return output;
     }
+
+    public static string SubString(string input, int length)
+    {
+        if (input.Length <= length)
+        {
+            return input;
+        }
+        return input.Substring(0, 15);
+    }
 }

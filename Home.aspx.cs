@@ -28,6 +28,10 @@ public partial class Home : PublicApplicationPage
             txtEndDate.Text = _ShoppingHotel.ToDate;
             RoomsCount = ShoppingRoomsList.Count;
         }
+        _meis007Entities = new meis007Entities();
+        var data = _meis007Entities.PackageHeaders.Where(x => x.InService == true).OrderBy(x => x.DisplaySeq).ToList();
+        rptrPackages.DataSource = data;
+        rptrPackages.DataBind();
     }
 
     protected void btnSubscribe_Click(object sender, EventArgs e)
