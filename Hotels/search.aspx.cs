@@ -68,8 +68,6 @@ public partial class Hotels_Index : PublicApplicationPage
             var supplierHotelObjectHelper = new SupplierHotelObjectHelper();
             data = supplierHotelObjectHelper.GetHotels();
         }
-        //var supplierHotelObjectHelper = new SupplierHotelObjectHelperTest(ddlSort.SelectedValue);
-        //var data = supplierHotelObjectHelper.GetHotels();
         data = FilterByStars(data);
         data = SupplierHotelObjectSortHelper.Sort(data, ddlSort.SelectedValue);
         rptrHotels.DataSource = data.Skip((page - 1) * pageSize).Take(pageSize);

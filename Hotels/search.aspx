@@ -170,7 +170,7 @@
                 <div class="price">
                   SR. <%# Eval("BasicPrice")%>
                 </div>
-                <img src="<%# Eval("ProductImagePath")%>" class="media-image" />
+                <img src="<%# Eval("ProductImagePath")%>" class="media-image" style="width:200px;height:200px;" />
               </div>
               <div class="clear"></div>
               <div class="margin10"></div>

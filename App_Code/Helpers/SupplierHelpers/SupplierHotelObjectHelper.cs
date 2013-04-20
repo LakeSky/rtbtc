@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using meis007Model;
+using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
 
 /// <summary>
 /// Summary description for SupplierHotelObjectHelper
@@ -18,7 +21,9 @@ public class SupplierHotelObjectHelper
     string xmlHotelId;
     string imagePath;
     decimal price;
+    string sortBy;
     string defaultImagePath;
+    long hotelInfoId;
     List<long> productMasterIds;
     List<SupplierHotelHelper> supplierHotels;
     SupplierHotelHelper supplierHotelHelper;
@@ -27,7 +32,9 @@ public class SupplierHotelObjectHelper
     XMLSupplier xmlSupplier;
     XMLHotel xmlHotel;
     ProductMaster productMaster;
-
+    SqlConnection _sqlConnection;
+    SqlCommand _sqlCommand;
+    SqlDataReader _sqlDataReader;
     public SupplierHotelObjectHelper()
     {
         productMasterIds = new List<long>();
@@ -38,40 +45,43 @@ public class SupplierHotelObjectHelper
     public List<SupplierHotelHelper> GetHotels()
     {
         defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
-        var data = from shi in _meis007Entities.SuppliersHotelsInfoes
-                   join pm in _meis007Entities.ProductMasters
-                   on shi.LocHotelID equals pm.ProductID
-                   join ci in _meis007Entities.CityMasters
-                   on pm.CityID equals ci.CityID
-                   join cl in _meis007Entities.Classifications
-                   on pm.ClsID equals cl.ClsID
-                   select new { HotelInfoId = shi.HotelInfoID, RoomId = shi.RoomID, RoomName = shi.RoomName, RoomType = shi.RoomType, Price = shi.LCAP, SupplierHotelId = shi.HotelID, SessionId = shi.SessionID, SupplierId = shi.SupplierID, NoOfPassengers = shi.NumOfPassengers, ProductName = pm.ProductName, City = ci.CityName, ProductDescription = pm.ShortDescription, ProductMaterId = pm.ProductID, ProductStarsName = cl.ClsName, ProductStartsImagePath = cl.ImagePath, ImagesCount = pm.ProductImages.Count, ProductMaster = pm };
-        foreach (var x in data)
+        _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
+        _sqlConnection.Open();
+        _sqlCommand = new SqlCommand("spProductMasterTest", _sqlConnection);
+        _sqlCommand.CommandType = CommandType.StoredProcedure;
+        _sqlCommand.Parameters.AddWithValue("@Trans", "SearchMultiple");
+        _sqlDataReader = _sqlCommand.ExecuteReader();
+        while (_sqlDataReader.Read())
         {
-            supplierHotelRoomId = int.Parse(x.RoomId.ToString());
-            supplierHotelId = int.Parse(x.SupplierHotelId.ToString());
+            
+            var t = _sqlDataReader["ProductName"];
+            supplierHotelRoomId = int.Parse(_sqlDataReader["RoomID"].ToString());
+            supplierHotelId = int.Parse(_sqlDataReader["HotelID"].ToString());
+            productMasterId = long.Parse(_sqlDataReader["ProductID"].ToString());
             price = decimal.Parse("0.0");
-            if (x.Price != null)
+            hotelInfoId = long.Parse(_sqlDataReader["HotelInfoID"].ToString());
+            if (_sqlDataReader["LCAP"] != null && _sqlDataReader["NumOfPassengers"] != null)
             {
-                price = Math.Floor(decimal.Parse(x.Price.ToString()) / int.Parse(x.NoOfPassengers.ToString()));
+                price = Math.Floor(decimal.Parse(_sqlDataReader["LCAP"].ToString())) ;/// int.Parse(_sqlDataReader["NumOfPassengers"].ToString()));
             }
-            supplierHotelRoomHelper = new SupplierHotelRoomHelper { HotelInfoId = x.HotelInfoId, RoomId = supplierHotelRoomId, RoomName = x.RoomName, RoomType = x.RoomType, Price = price };
-            if (productMasterIds.Contains(x.ProductMaterId))
+            supplierHotelRoomHelper = new SupplierHotelRoomHelper { HotelInfoId = hotelInfoId, RoomId = supplierHotelRoomId, RoomName = _sqlDataReader["RoomName"].ToString(), RoomType = _sqlDataReader["RoomType"].ToString(), Price = price };
+            if (productMasterIds.Contains(productMasterId))
             {
-                supplierHotelHelper = supplierHotels.Where(p => p.ProductMasterId == x.ProductMaterId).First();
+                supplierHotelHelper = supplierHotels.Where(p => p.ProductMasterId == productMasterId).First();
                 supplierHotelHelper.Rooms.Add(supplierHotelRoomHelper);
             }
             else
             {
-                imagePath = x.ImagesCount > 0 ? x.ProductMaster.ProductImages.First().ImageAddress : defaultImagePath;
-                supplierHotelHelper = new SupplierHotelHelper { Id = x.HotelInfoId, SessionId = x.SessionId, SupplierId = x.SupplierId, ProductName = x.ProductName, City = x.City, ProdcutDescription = x.ProductDescription, ProductMasterId = x.ProductMaterId, ProductStarsName = x.ProductStarsName, ProductStarsImagePath = x.ProductStartsImagePath, ProductImagePath = imagePath };
+                imagePath = string.IsNullOrEmpty(_sqlDataReader["DefaultImagePath"].ToString()) ? defaultImagePath : _sqlDataReader["DefaultImagePath"].ToString();
+                supplierHotelHelper = new SupplierHotelHelper { Id = hotelInfoId, SessionId = _sqlDataReader["SessionID"].ToString(), SupplierId = _sqlDataReader["SupplierID"].ToString(), ProductName = _sqlDataReader["ProductName"].ToString(), City = _sqlDataReader["CityName"].ToString(), ProdcutDescription = _sqlDataReader["ShortDescription"].ToString(), ProductMasterId = productMasterId, ProductStarsName = _sqlDataReader["ClsName"].ToString(), ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(), ProductImagePath = imagePath };
                 var rooms = new List<SupplierHotelRoomHelper>();
                 rooms.Add(supplierHotelRoomHelper);
                 supplierHotelHelper.Rooms = rooms;
                 supplierHotels.Add(supplierHotelHelper);
-                productMasterIds.Add(x.ProductMaterId);
+                productMasterIds.Add(productMasterId);
             }
         }
+        _sqlConnection.Close();
         foreach (var x in supplierHotels)
         {
             x.BasicPrice = int.Parse(Math.Floor(decimal.Parse(x.Rooms.Where(z => z.Price != null).OrderBy(z => z.Price).First().Price.ToString())).ToString());
@@ -79,9 +89,10 @@ public class SupplierHotelObjectHelper
         }
         return supplierHotels;
     }
+
 }
 
-public static class  SupplierHotelObjectSortHelper
+public static class SupplierHotelObjectSortHelper
 {
     public static List<SupplierHotelHelper> Sort(List<SupplierHotelHelper> supplierHotels, string sortBy)
     {

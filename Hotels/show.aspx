@@ -182,7 +182,7 @@
       {%>
         <%if(!string.IsNullOrEmpty(x.ImageAddress)){%>
           <div class="media-image">
-            <img src="<%= x.ImageAddress %>" />
+            <img src="<%= x.ImageAddress %>" alt="" style="width:200px;height:200px;" />
           </div>
           <br/>
         <%} %>
