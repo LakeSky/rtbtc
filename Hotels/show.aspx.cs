@@ -67,9 +67,9 @@ public partial class Hotels_Details : PublicApplicationPage
     protected dynamic CheckRequestFromValid() {
         requestFrom = (string)Request.QueryString["from"];
         long hotelInfoId ;
-        long.TryParse(Request.QueryString["sid"], out hotelInfoId);
         dynamic expando = new ExpandoObject();
-        if (hotelInfoId != null && requestFrom != "search" && requestFrom != "basket") {
+        if (!long.TryParse(Request.QueryString["sid"], out hotelInfoId) || (requestFrom != "search" && requestFrom != "basket"))
+        {
             expando.valid = false;
             return expando;
         }

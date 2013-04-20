@@ -62,6 +62,7 @@ public partial class Home : PublicApplicationPage
         _ShoppingHotel.CityName = txtCity.Text;
         _ShoppingHotel.FromDate = txtStartDate.Text;
         _ShoppingHotel.ToDate = txtEndDate.Text;
+        _ShoppingHotel.SessionId = Session.SessionID;
         for (int i = 0; i < totalRooms; i++ ){
             index = (i + 1).ToString();
             _ShoppingRoomHelper = new ShoppingRoomHelper();

@@ -34,7 +34,7 @@ public partial class Hotels_Index : PublicApplicationPage
         RoomsCount = ShoppingRoomsList.Count;
         if (!IsPostBack)
         {
-            var supplierHotelObjectHelper = new SupplierHotelObjectHelper();
+            var supplierHotelObjectHelper = new SupplierHotelObjectHelper(_ShoppingHotel);
             var data = supplierHotelObjectHelper.GetHotels();
             BindStarRatingsRepeater();
             EnableOrDisableStarRatingCheckBoxes(data);
@@ -65,7 +65,8 @@ public partial class Hotels_Index : PublicApplicationPage
     private void PopulateDataSource(int page, int pageSize, List<SupplierHotelHelper> data = null)
     {
         if (data == null){
-            var supplierHotelObjectHelper = new SupplierHotelObjectHelper();
+            _ShoppingHelper = GetShoppingHelperObject();
+            var supplierHotelObjectHelper = new SupplierHotelObjectHelper(_ShoppingHelper.HotelDetails);
             data = supplierHotelObjectHelper.GetHotels();
         }
         data = FilterByStars(data);

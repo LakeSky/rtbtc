@@ -9,6 +9,9 @@ using System.Web;
 public class SupplierHotelHelper
 {
     public long Id { get; set; }
+    public string SessionId { get; set; }
+    public int SearchId { get; set; }
+    public string CityCode { get; set; }
     public long ProductMasterId { get; set; }
     public string ProductName { get; set; }
     public string ProdcutDescription { get; set; }
@@ -17,7 +20,6 @@ public class SupplierHotelHelper
     public string ProductImagePath { get; set; }
     public string City { get; set; }
     public int BasicPrice { get; set; }
-    public string SessionId { get; set; }
     public string SupplierId { get; set; }
     public List<SupplierHotelRoomHelper> Rooms { get; set; }
 }
