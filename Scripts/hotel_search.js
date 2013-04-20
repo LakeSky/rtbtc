@@ -168,10 +168,6 @@ $(function () {
 
     $(".jscarousal-contents-horizontal div div").click(function (e) {
         e.preventDefault();
-        if (window.userLoggedIn == "False") {
-            $('#popup').modal('show');
-            return false;
-        }
         window.location = $(this).data('url');
     });
 

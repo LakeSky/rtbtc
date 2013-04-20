@@ -59,9 +59,9 @@
       <% var bookingId = Request.QueryString["id"]; %>
       <span class="right">
         To Book or add to basket use
-        <a href="<%= path %>/login.aspx?bookingid=<%= bookingId %>">Existing Account</a>
+        <a href="<%= path %>/login.aspx?bookingtype=hotel&bookingid=<%= bookingId %>">Existing Account</a>
         |
-        <a href="<%= path %>/register.aspx?bookingid=<%= bookingId %>">New Account</a>
+        <a href="<%= path %>/register.aspx?bookingtype=hotel&bookingid=<%= bookingId %>">New Account</a>
       </span>
     <%} %>
     <div class="clear"></div>

@@ -55,7 +55,7 @@ public partial class Account_Register : System.Web.UI.Page
         _meis007Entities.SaveChanges();
         Mailer.SendRegistrationEmail(_toBeEMailedUser, Request.Url.Host);
         var path = CurrentUser.GetRootPath("home.aspx");
-        if (Request.QueryString["bookingid"] != null)
+        if (Request.QueryString["bookingid"] != null && (Request.QueryString["bookingtype"] == "hotel" || Request.QueryString["bookingtype"] == "package"))
         {
             FormsAuthentication.SetAuthCookie(_toBeEMailedUser.PaxEmail, false);
             FormsAuthenticationTicket ticket1 =
@@ -73,7 +73,13 @@ public partial class Account_Register : System.Web.UI.Page
             Response.Cookies.Add(cookie1);
             _toBeEMailedUser.PaxLastLogDatetime = DateTime.Now;
             _meis007Entities.SaveChanges();
-            path = CurrentUser.GetRootPath("hotels/book.aspx?id=" + Request.QueryString["bookingid"]);
+            if (Request.QueryString["bookingtype"] == "hotel")
+            {
+                path = CurrentUser.GetRootPath("hotels/book.aspx?id=" + Request.QueryString["bookingid"]);
+            }
+            else {
+                path = CurrentUser.GetRootPath("packages/book.aspx?id=" + Request.QueryString["bookingid"]);
+            }
         }
         Session["NoticeMessage"] = "Successfully registered please check you email to confirm your account!";
         Response.Redirect(path);

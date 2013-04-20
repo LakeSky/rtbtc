@@ -58,11 +58,20 @@ public partial class Account_Login : System.Web.UI.Page
         user.PaxLastLogDatetime = DateTime.Now;
         _meis007Entities.SaveChanges();
         String returnUrl1 = "";
-        if (Request.QueryString["bookingid"] != null) {
+        if (Request.QueryString["bookingid"] != null && Request.QueryString["bookingtype"] == "hotel")
+        {
             returnUrl1 = CurrentUser.GetRootPath("hotels/book.aspx?id=" + Request.QueryString["bookingid"]);
-        }else if (Request.QueryString["ReturnUrl"] != null){
+        }
+        else if (Request.QueryString["bookingid"] != null && Request.QueryString["bookingtype"] == "package")
+        {
+            returnUrl1 = CurrentUser.GetRootPath("packages/book.aspx?id=" + Request.QueryString["bookingid"]);
+        }
+        else if (Request.QueryString["ReturnUrl"] != null)
+        {
             returnUrl1 = Request.QueryString["ReturnUrl"];
-        }else{
+        }
+        else
+        {
             returnUrl1 = CurrentUser.GetRedirectPath();
         }
         Session["NoticeMessage"] = "Successfully logged in !";

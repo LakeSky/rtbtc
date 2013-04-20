@@ -136,7 +136,7 @@
         <div id="carouselh">
       </HeaderTemplate>
       <ItemTemplate>
-        <div data-url="?id=<%# Eval("PacId") %>">
+        <div data-url="/rtbtc/packages/show.aspx?id=<%# Eval("PacId") %>">
           <img alt="" src="<%# Eval("DisplayImage") %>" /><br />
           <span class="thumbnail-text"><%# PackageHelper.FormattedPackageName(Eval("PacName"), 15)%></span>
         </div>
