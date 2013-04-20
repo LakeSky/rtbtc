@@ -34,11 +34,11 @@ public partial class Hotels_Index : PublicApplicationPage
         RoomsCount = ShoppingRoomsList.Count;
         if (!IsPostBack)
         {
-            var supplierHotelObjectHelper = new SupplierHotelObjectHelper(_ShoppingHotel);
+            var supplierHotelObjectHelper = new SupplierHotelObjectHelper(_ShoppingHotel, true);
             var data = supplierHotelObjectHelper.GetHotels();
             BindStarRatingsRepeater();
             EnableOrDisableStarRatingCheckBoxes(data);
-            PopulateDataSource(1, this.Pager.PageSize, data);
+            PopulateDataSource(1, this.Pager.PageSize, true, data);
         }
     }
 
@@ -48,25 +48,26 @@ public partial class Hotels_Index : PublicApplicationPage
 
     protected void CheckBox_Changed(object sender, EventArgs e)
     {
-        PopulateDataSource(1, this.Pager.PageSize);
+        PopulateDataSource(1, this.Pager.PageSize, false);
         UpdatePanelHotelList.Update();
     }
 
     protected void ddlSort_SelectedIndexChanged(object sender, EventArgs e)
     {
-        PopulateDataSource(1, this.Pager.PageSize);
+        PopulateDataSource(1, this.Pager.PageSize, false);
     }
 
     protected void Pager_Changed(object sender, PagerEventArgs e)
     {
-        PopulateDataSource(e.Number, e.PageSize);
+        PopulateDataSource(e.Number, e.PageSize, false);
     }
 
-    private void PopulateDataSource(int page, int pageSize, List<SupplierHotelHelper> data = null)
+    private void PopulateDataSource(int page, int pageSize, bool newSearch, List<SupplierHotelHelper> data = null)
     {
-        if (data == null){
-            _ShoppingHelper = GetShoppingHelperObject();
-            var supplierHotelObjectHelper = new SupplierHotelObjectHelper(_ShoppingHelper.HotelDetails);
+        _ShoppingHelper = GetShoppingHelperObject();
+        if (data == null)
+        {
+            var supplierHotelObjectHelper = new SupplierHotelObjectHelper(_ShoppingHelper.HotelDetails, newSearch);
             data = supplierHotelObjectHelper.GetHotels();
         }
         data = FilterByStars(data);

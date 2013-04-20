@@ -18,11 +18,12 @@ public class SupplierHotelObjectHelper
     int supplierHotelId;
     int supplierHotelRoomId;
     long productMasterId;
+    long hotelInfoId;
     string status;
     string imagePath;
     decimal price;
     string defaultImagePath;
-    long hotelInfoId;
+    bool searchNew;
     List<long> productMasterIds;
     ShoppingHotelHelper shoppingHotelHelper;
     List<SupplierHotelHelper> supplierHotels;
@@ -32,18 +33,19 @@ public class SupplierHotelObjectHelper
     SqlConnection _sqlConnection;
     SqlCommand _sqlCommand;
     SqlDataReader _sqlDataReader;
-    public SupplierHotelObjectHelper(ShoppingHotelHelper obj)
+    public SupplierHotelObjectHelper(ShoppingHotelHelper obj, bool newSearch)
     {
         productMasterIds = new List<long>();
         supplierHotels = new List<SupplierHotelHelper>();
         _meis007Entities = new meis007Entities();
         shoppingHotelHelper = obj;
+        searchNew = newSearch;
     }
 
     public List<SupplierHotelHelper> GetHotels()
     {
         searchId = shoppingHotelHelper.SearchId;
-        if (string.IsNullOrEmpty(shoppingHotelHelper.SearchId.ToString()) || shoppingHotelHelper.SearchId == 0) {
+        if (searchNew || string.IsNullOrEmpty(shoppingHotelHelper.SearchId.ToString()) || shoppingHotelHelper.SearchId == 0) {
             searchId = GetSearchId();
             shoppingHotelHelper.SearchId = searchId;
         }
@@ -58,8 +60,6 @@ public class SupplierHotelObjectHelper
         _sqlDataReader = _sqlCommand.ExecuteReader();
         while (_sqlDataReader.Read())
         {
-            
-            var t = _sqlDataReader["ProductName"];
             supplierHotelRoomId = int.Parse(_sqlDataReader["RoomID"].ToString());
             supplierHotelId = int.Parse(_sqlDataReader["HotelID"].ToString());
             productMasterId = long.Parse(_sqlDataReader["ProductID"].ToString());
@@ -78,7 +78,7 @@ public class SupplierHotelObjectHelper
             else
             {
                 imagePath = string.IsNullOrEmpty(_sqlDataReader["DefaultImagePath"].ToString()) ? defaultImagePath : _sqlDataReader["DefaultImagePath"].ToString();
-                supplierHotelHelper = new SupplierHotelHelper { Id = hotelInfoId, SessionId = _sqlDataReader["SessionID"].ToString(), SupplierId = _sqlDataReader["SupplierID"].ToString(), ProductName = _sqlDataReader["ProductName"].ToString(), City = _sqlDataReader["CityName"].ToString(), ProdcutDescription = _sqlDataReader["ShortDescription"].ToString(), ProductMasterId = productMasterId, ProductStarsName = _sqlDataReader["ClsName"].ToString(), ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(), ProductImagePath = imagePath };
+                supplierHotelHelper = new SupplierHotelHelper { Id = hotelInfoId, SessionId = _sqlDataReader["SessionID"].ToString(), SearchId = searchId, SupplierId = _sqlDataReader["SupplierID"].ToString(), ProductName = _sqlDataReader["ProductName"].ToString(), City = _sqlDataReader["CityName"].ToString(), ProdcutDescription = _sqlDataReader["ShortDescription"].ToString(), ProductMasterId = productMasterId, ProductStarsName = _sqlDataReader["ClsName"].ToString(), ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(), ProductImagePath = imagePath };
                 var rooms = new List<SupplierHotelRoomHelper>();
                 rooms.Add(supplierHotelRoomHelper);
                 supplierHotelHelper.Rooms = rooms;
@@ -101,15 +101,16 @@ public class SupplierHotelObjectHelper
         _search.CheckIn = DateTimeHelper.customFormat(shoppingHotelHelper.FromDate);
         _search.CheckOut = DateTimeHelper.customFormat(shoppingHotelHelper.ToDate);
         _search.AdultCount = shoppingHotelHelper.RoomDetails.Select(x => x.Adults).Sum();
-        //_search.ChildCount = shoppingHotelHelper.RoomDetails.Select(x => x.Kids).Sum(); 
-        //_search.ChildCount = 0;
-        //int[] ages = new int[] { };
-        //for (int i = 0; i < _search.ChildCount; i++) {
-        //    ages[i] = i;
-        //}
-        int[] ages = null;
+        List<int> lstAges = new List<int>();
+        foreach (var x in shoppingHotelHelper.RoomDetails) {
+            foreach (var y in x.ChildAge) {
+                lstAges.Add(y);
+            }
+        }
+        int[] ages =  lstAges.Count == 0 ? null : lstAges.ToArray();
+        _search.ChildCount = lstAges.Count;
         _search.ChildAges = ages;
-        _search.CustomerID = "1015";
+        _search.CustomerID = DbParameter.GetCustomerId();
         status = string.Empty;
         RepositoryFactory supplierFactory = new RepositoryFactory(_search, shoppingHotelHelper.SessionId);
         return supplierFactory.GetSuppliersHotelsInfo(out status);
