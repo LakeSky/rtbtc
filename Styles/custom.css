@@ -165,4 +165,8 @@ legend
   margin-top: 10px;
 }
 
-
+#hotel-search-dialog .loading-image
+{
+    text-align: center;
+    margin-top: 35px;
+}

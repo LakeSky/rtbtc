@@ -9,6 +9,18 @@
   </script>
   <script type="text/javascript" src="/rtbtc/Scripts/packages_slider.js"></script>
   <script type="text/javascript" src="/rtbtc/Scripts/hotel_search.js"></script>
+  <style type="text/css">
+      .no-close .ui-dialog-titlebar-close {display: none }
+  </style>
+  <script type = "text/javascript">
+       function ShowDialogBox() {
+           setTimeout(function () {
+               if (Page_IsValid) {
+                   $("#hotel-search-dialog").dialog('open');
+               }
+           }, 500);
+       }
+  </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 <div class="alert alert-danger" runat="server" id="errorDiv">Email already taken!</div>
@@ -106,8 +118,18 @@
     <br />
     <input type="hidden" value="<%= RoomsCount %>" id="totalRooms" name="totalRooms" />
     <asp:Button ID="btnSearch" runat="server" Text="Search" 
-          CssClass="btn btn-success" ValidationGroup="search" 
-          onclick="btnSearch_Click"/>
+          CssClass="btn btn-success hotel-search-btn" ValidationGroup="search" 
+          onclick="btnSearch_Click" OnClientClick="ShowDialogBox();"/>
+
+    <div id="hotel-search-dialog">
+      <h3 class="blue-font">
+        We are now searching hundreds of offers to find you the very best prices. This should only take a few seconds...
+      </h3>
+      <% var path = CurrentUser.GetRootPath("Images/ajax-loader.gif"); %>
+      <div class="loading-image">
+        <img alt="" src="<%= path %>" />
+      </div>
+    </div>
   </div>
 </div>
 <br />
@@ -148,7 +170,7 @@
   </div>
   <div class="span3">
     <h3 class="blue-font">
-      <% var path = CurrentUser.GetRootPath("packages/index.aspx"); %>
+      <% path = CurrentUser.GetRootPath("packages/index.aspx"); %>
       <a href="<%= path %>">View More</a>
     </h3>
   </div>

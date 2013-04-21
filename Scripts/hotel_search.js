@@ -174,4 +174,13 @@ $(function () {
         });
     }
 
+    $("#hotel-search-dialog").dialog({
+        dialogClass: 'no-close',
+        closeOnEscape: false,
+        autoOpen: false,
+        width: 550,
+        height: 400,
+        modal: true
+    });
+
 });

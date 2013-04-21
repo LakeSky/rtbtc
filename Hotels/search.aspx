@@ -6,12 +6,22 @@
         display:inline-block;
         margin-left: 5px;
       }
+      .no-close .ui-dialog-titlebar-close {display: none}
   </style>
   <script type="text/javascript">
       window.city_autocomplete_url = '<%=ResolveUrl("~/ViewHelperWebService.asmx/CitySearch") %>';
       window.room_index = <%= RoomsCount + 1 %>;
   </script>
   <script type="text/javascript" src="/rtbtc/Scripts/hotel_search.js"></script>
+  <script type = "text/javascript">
+      function ShowDialogBox() {
+          setTimeout(function () {
+               if (Page_IsValid) {
+                   $("#hotel-search-dialog").dialog('open');
+               }
+           }, 500);
+       }
+  </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -107,7 +117,16 @@
       <input type="hidden" value="<%= RoomsCount %>" id="totalRooms" name="totalRooms" />
       <asp:Button ID="btnSearch" runat="server" Text="Search" 
           CssClass="btn btn-success" ValidationGroup="search" 
-          onclick="btnSearch_Click"/>
+          onclick="btnSearch_Click" OnClientClick="ShowDialogBox();"/>
+      <div id="hotel-search-dialog">
+        <h3 class="blue-font">
+          We are now searching hundreds of offers to find you the very best prices. This should only take a few seconds...
+        </h3>
+        <% var path = CurrentUser.GetRootPath("Images/ajax-loader.gif"); %>
+        <div class="loading-image">
+          <img alt="" src="<%= path %>" />
+        </div>
+      </div>
     </div>
   </div>
   <div id="otherCriterias">
