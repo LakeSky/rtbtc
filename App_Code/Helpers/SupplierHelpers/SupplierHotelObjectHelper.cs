@@ -21,8 +21,9 @@ public class SupplierHotelObjectHelper
     long hotelInfoId;
     string status;
     string imagePath;
-    decimal price;
+    string roomName;
     string defaultImagePath;
+    decimal price;
     bool searchNew;
     List<long> productMasterIds;
     ShoppingHotelHelper shoppingHotelHelper;
@@ -69,7 +70,11 @@ public class SupplierHotelObjectHelper
             {
                 price = Math.Floor(decimal.Parse(_sqlDataReader["AvrNightPrice"].ToString()));
             }
-            supplierHotelRoomHelper = new SupplierHotelRoomHelper { HotelInfoId = hotelInfoId, RoomId = supplierHotelRoomId, RoomName = _sqlDataReader["RoomName"].ToString(), RoomType = _sqlDataReader["RoomType"].ToString(), Price = price };
+            roomName = _sqlDataReader["RoomName"].ToString();
+            if (!string.IsNullOrEmpty(_sqlDataReader["BBName"].ToString())) {
+                roomName = roomName + " - " + _sqlDataReader["BBName"].ToString();
+            }
+            supplierHotelRoomHelper = new SupplierHotelRoomHelper { HotelInfoId = hotelInfoId, RoomId = supplierHotelRoomId, RoomName = roomName, RoomType = _sqlDataReader["RoomType"].ToString(), Price = price };
             if (productMasterIds.Contains(productMasterId))
             {
                 supplierHotelHelper = supplierHotels.Where(p => p.ProductMasterId == productMasterId).First();
