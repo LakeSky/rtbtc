@@ -105,9 +105,9 @@
       </table>
       <br />
       <input type="hidden" value="<%= RoomsCount %>" id="totalRooms" name="totalRooms" />
-      <asp:Button ID="txtSearch" runat="server" Text="Search" 
+      <asp:Button ID="btnSearch" runat="server" Text="Search" 
           CssClass="btn btn-success" ValidationGroup="search" 
-          onclick="txtSearch_Click"/>
+          onclick="btnSearch_Click"/>
     </div>
   </div>
   <div id="otherCriterias">

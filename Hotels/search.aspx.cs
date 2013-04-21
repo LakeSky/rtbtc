@@ -42,8 +42,10 @@ public partial class Hotels_Index : PublicApplicationPage
         }
     }
 
-    protected void txtSearch_Click(object sender, EventArgs e)
+    protected void btnSearch_Click(object sender, EventArgs e)
     {
+        UpdateShoppingHelperObject(txtCity.Text, txtStartDate.Text, txtEndDate.Text);
+        Response.Redirect(CurrentUser.GetRootPath("hotels/search.aspx"));
     }
 
     protected void CheckBox_Changed(object sender, EventArgs e)

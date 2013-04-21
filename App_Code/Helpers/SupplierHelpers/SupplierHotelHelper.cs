@@ -9,8 +9,6 @@ using System.Web;
 public class SupplierHotelHelper
 {
     public long Id { get; set; }
-    public string SessionId { get; set; }
-    public int SearchId { get; set; }
     public string CityCode { get; set; }
     public long ProductMasterId { get; set; }
     public string ProductName { get; set; }

@@ -49,40 +49,10 @@ public partial class Home : PublicApplicationPage
         Session["NoticeMessage"] = "Successfully added for subscription!";
         Response.Redirect(CurrentUser.GetRootPath("/home.aspx"));
     }
-    protected void txtSearch_Click(object sender, EventArgs e)
+
+    protected void btnSearch_Click(object sender, EventArgs e)
     {
-        string index = "";
-        string childAge = "";
-        var totalRooms = int.Parse(Request.Params["totalRooms"].ToString());
-        var parms = Request.Params;
-        _ShoppingHelper = GetShoppingHelperObject(true);
-        _ShoppingHotel = new ShoppingHotelHelper();
-        ShoppingRoomsList = new List<ShoppingRoomHelper>();
-        ShoppingRoomHelper _ShoppingRoomHelper;
-        _ShoppingHotel.CityName = txtCity.Text;
-        _ShoppingHotel.FromDate = txtStartDate.Text;
-        _ShoppingHotel.ToDate = txtEndDate.Text;
-        _ShoppingHotel.SessionId = Session.SessionID;
-        for (int i = 0; i < totalRooms; i++ ){
-            index = (i + 1).ToString();
-            _ShoppingRoomHelper = new ShoppingRoomHelper();
-            _ShoppingRoomHelper.RoomName = "Room " + index;
-            _ShoppingRoomHelper.Adults = int.Parse(parms["rooms[" + index + "][adults]"].ToString());
-            _ShoppingRoomHelper.Kids = int.Parse(parms["rooms[" + index + "][kids]"].ToString());
-            _ShoppingRoomHelper.Infants = int.Parse(parms["rooms[" + index + "][infants]"].ToString());
-            _ShoppingRoomHelper.ChildAge = new List<int>();
-            for (int j = 1; j < 5; j++) {
-              childAge = (string)(parms["rooms[" + index + "][kids][age]["+j.ToString()+"]"]);
-              if (childAge == null) { 
-                break; 
-              }
-              _ShoppingRoomHelper.ChildAge.Add(int.Parse(childAge));
-            }
-            ShoppingRoomsList.Add(_ShoppingRoomHelper);
-        }
-        _ShoppingHotel.RoomDetails = ShoppingRoomsList;
-        _ShoppingHelper.HotelDetails = _ShoppingHotel;
-        Session["StoredShopping"] = _ShoppingHelper;
+        UpdateShoppingHelperObject(txtCity.Text, txtStartDate.Text, txtEndDate.Text);
         Response.Redirect(CurrentUser.GetRootPath("hotels/search.aspx"));
     }
 }
