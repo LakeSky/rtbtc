@@ -24,7 +24,7 @@
       <%= packageHeader.Validto.ToString("dd MMM yyyy")%>
     </div>
     <div class="span3 right">
-      <div class="display-price">Price Per Person SR. <%= packageHeader.Pacvalue %></div>
+      <div class="display-price">Price Per Person SR. <%= packageHeader.PacValueB2C%></div>
       <img src="<%= packageHeader.DisplayImage %>" alt="" style=""/>
     </div>
     <div class="clear"></div>

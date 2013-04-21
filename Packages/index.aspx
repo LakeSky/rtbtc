@@ -50,7 +50,7 @@
               <a class="thumbnail" href="<%= CurrentUser.GetRootPath("packages/show.aspx")%>?id=<%# Eval("PacId") %>">
                 <img src="<%# Eval("DisplayImage") %>" alt="" style="width:260px;height:180px;" />
                 <div class="caption"> 
-                  <span class="package-pirce blue-font">Price SR. <%# Eval("PacValue") %></span><br />
+                  <span class="package-pirce blue-font">Price SR. <%# Eval("PacValueB2C")%></span><br />
                   <span class="package-name"><%# PackageHelper.FormattedPackageName(Eval("PacName"), 23)%></span>
                 </div>
               </a>

@@ -160,7 +160,10 @@
       <ItemTemplate>
         <div data-url="/rtbtc/packages/show.aspx?id=<%# Eval("PacId") %>">
           <img alt="" src="<%# Eval("DisplayImage") %>" /><br />
-          <span class="thumbnail-text"><%# PackageHelper.FormattedPackageName(Eval("PacName"), 15)%></span>
+          <div class="thumbnail-text">
+          <span class="price blue-font">SR. <%# Eval("PacValueB2C")%></span>
+          <span class="name"><%# PackageHelper.FormattedPackageName(Eval("PacName"), 15)%></span>
+          </div>
         </div>
       </ItemTemplate>
       <FooterTemplate>

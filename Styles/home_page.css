@@ -3,9 +3,24 @@
  border : none;
 }
 
+#carouselh .jscarousal-contents-horizontal
+{
+    min-height: 135px;
+}
+
 #carouselh .thumbnail-text {
+ text-align: center;
+ padding-top: 0;
+}
+
+#carouselh .thumbnail-text .name{
  color: red;
- font-size: 14px;
+ font-size: 12px;
+}
+
+#carouselh .thumbnail-text .price{
+ font-size: 10px;
+ display: block;
 }
 
 #carouselh .jscarousal-horizontal-back, #carouselh .jscarousal-horizontal-forward {
