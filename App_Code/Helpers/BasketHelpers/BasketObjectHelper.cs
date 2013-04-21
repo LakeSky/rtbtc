@@ -27,6 +27,7 @@ public class BasketObjectHelper
         DateTime fromDateParsed = DateTimeHelper.customFormat(fromDate);
         DateTime toDateParsed = DateTimeHelper.customFormat(toDate);
         string differenceDays = (toDateParsed - fromDateParsed).Days.ToString();
+        string roomName;
 
         _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
@@ -37,6 +38,10 @@ public class BasketObjectHelper
         _sqlDataReader = _sqlCommand.ExecuteReader();
         while (_sqlDataReader.Read())
         {
+            roomName = _sqlDataReader["RoomType"].ToString() + " - " + _sqlDataReader["RoomName"].ToString();
+            if (!string.IsNullOrEmpty(_sqlDataReader["BBName"].ToString())){
+                roomName = roomName + " - " + _sqlDataReader["BBName"].ToString();
+            }
 
             if (!string.IsNullOrEmpty(_sqlDataReader["NumOfPassengers"].ToString())){
                 NoOfPassengers = int.Parse(_sqlDataReader["NumOfPassengers"].ToString());
@@ -74,7 +79,7 @@ public class BasketObjectHelper
                 pricePerPassenger = price,
                 stay = (fromDateParsed.ToString("dd MMM yy") + " to " + toDateParsed.ToString("dd MMM yy") + " (" + differenceDays + " Nights)"),
                 guests = guests,
-                room = _sqlDataReader["RoomType"].ToString() + " - " + _sqlDataReader["RoomName"].ToString(),
+                room = roomName,
                 guestDetails = basketHotelGuestDetailsList,
                 totalPrice = totalPrice,
                 fromDate = fromDateParsed,

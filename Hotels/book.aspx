@@ -40,7 +40,7 @@
       <div class="price">
         Price Per Person SR. <%= bookingHotelDetails.pricePerPassenger %>
       </div>
-      <img src="<%= bookingHotelDetails.productDefaultImagePath %>" class="media-image" />
+      <img alt="" src="<%= bookingHotelDetails.productDefaultImagePath %>" class="media-image"  style="width:200px;height:200px;"  />
     </div>
     <div class="clear"></div>
   </div>

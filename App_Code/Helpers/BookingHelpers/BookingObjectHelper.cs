@@ -26,7 +26,7 @@ public static class BookingObjectHelper
         DateTime fromDate = DateTimeHelper.customFormat(_shoppingHelper.HotelDetails.FromDate);
         DateTime toDate = DateTimeHelper.customFormat(_shoppingHelper.HotelDetails.ToDate);
         string differenceDays = (toDate - fromDate).Days.ToString();
-
+        string roomName = "";
         _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
         _sqlCommand = new SqlCommand("spProductMasterTest", _sqlConnection);
@@ -36,6 +36,11 @@ public static class BookingObjectHelper
         _sqlDataReader = _sqlCommand.ExecuteReader();
         while (_sqlDataReader.Read())
         {
+
+            roomName = _sqlDataReader["RoomType"].ToString() + " - " + _sqlDataReader["RoomName"].ToString();
+            if (!string.IsNullOrEmpty(_sqlDataReader["BBName"].ToString())){
+                roomName = roomName + " - " + _sqlDataReader["BBName"].ToString();
+            }
 
             if (!string.IsNullOrEmpty(_sqlDataReader["NumOfPassengers"].ToString())){
                 NoOfPassengers = int.Parse(_sqlDataReader["NumOfPassengers"].ToString());
@@ -65,7 +70,7 @@ public static class BookingObjectHelper
                 pricePerPassenger = price,
                 stay = (fromDate.ToString("dd MMM yy") + " to " + toDate.ToString("dd MMM yy") + " (" + differenceDays+ " Nights)"),
                 guests = guests,
-                room = _sqlDataReader["RoomType"].ToString() + " - " + _sqlDataReader["RoomName"].ToString(),
+                room = roomName,
                 guestDetails = bookingGuestDetails,
                 totalPrice = totalPrice,
                 fromDate = fromDate,
