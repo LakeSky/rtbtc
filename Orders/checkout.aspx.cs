@@ -33,17 +33,21 @@ public partial class Orders_checkout : PublicApplicationPage
     protected void btnConfirmOrder_Click(object sender, EventArgs e)
     {
         _meis007Entities = new meis007Entities();
+        var sequence = _meis007Entities.BasketSequences.OrderBy(x => x.Id).First();
+        var basketSequence = sequence.SequenceNumber + 1;
+        var bookedHotels = false;
         SuppliersHotelsInfo suppliersHotelsInfo;
         BkgMaster bkgMaster;
         PaxDetail paxDetail;
         basketHelper = GetBasketHelperObject();
         var hotelsToRemove = new List<BasketHotelDetails>();
         foreach (var x in basketHelper.hotelDetails) {
-            if (!DbParameter.IsInetrnalSupplier(x.supplierId)) { 
+            if (!DbParameter.IsInetrnalSupplier(x.supplierId)) {
+                bookedHotels = true;
                 suppliersHotelsInfo = _meis007Entities.SuppliersHotelsInfoes.Where(y => y.HotelInfoID == x.hotelInfoId).First();
                 //CreateBooking(x, suppliersHotelsInfo);
                 bkgMaster = new BkgMaster { 
-                    BasketID = 5,
+                    BasketID = basketSequence,
                     SearchID = int.Parse(suppliersHotelsInfo.SearchID.ToString()),
                     HotelInfoID = suppliersHotelsInfo.HotelInfoID,
                     BkgDate = DateTime.Now,
@@ -89,6 +93,10 @@ public partial class Orders_checkout : PublicApplicationPage
                 }
                 hotelsToRemove.Add(x);
             }
+        }
+        if (bookedHotels) {
+            sequence.SequenceNumber = basketSequence;
+            _meis007Entities.SaveChanges();
         }
         RemoveHotels(basketHelper, hotelsToRemove);
         UpdateBasketHelperObject(basketHelper);
