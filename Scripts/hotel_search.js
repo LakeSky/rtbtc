@@ -72,6 +72,12 @@ $(function () {
     $(".start-date, .end-date").attr("readonly", true);
 
     $(".txtCity").autocomplete({
+        change: function (event, ui) {
+            if (ui.item == null) {
+                $(".txtCity").val('');
+                $(".txtCity").focus();
+            }
+        },
         source: function (request, response) {
             $.ajax({
                 type: "POST",
@@ -80,12 +86,23 @@ $(function () {
                 data: "{ 'q': '" + request.term + "'}",
                 dataType: "json",
                 success: function (data) {
-                    response(data.d);
+                    var array = [];
+                    $.each(data.d, function (i, x) {
+                        var obj = {}
+                        obj['id'] = x.Id;
+                        obj['label'] = x.Text;
+                        obj['name'] = x.Text;
+                        array.push(obj);
+                    });
+                    response(array);
                 },
                 error: function (result) {
                     console.log(result);
                 }
             });
+        },
+        select: function (e, ui) {
+            $("#cityCode").val(ui.item.id);
         }
     });
 

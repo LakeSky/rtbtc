@@ -19,6 +19,7 @@ public class PublicApplicationPage : System.Web.UI.Page
         List<ShoppingRoomHelper> shoppingRoomsList = new List<ShoppingRoomHelper>();
         ShoppingRoomHelper _ShoppingRoomHelper;
         shoppingHotel.CityName = city;
+        shoppingHotel.CityCode = parms["cityCode"];
         shoppingHotel.FromDate = startDate;
         shoppingHotel.ToDate = endDate;
         shoppingHotel.SessionId = Session.SessionID;

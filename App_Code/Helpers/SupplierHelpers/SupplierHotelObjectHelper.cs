@@ -47,7 +47,7 @@ public class SupplierHotelObjectHelper
     {
         searchId = shoppingHotelHelper.SearchId;
         if (searchNew || string.IsNullOrEmpty(shoppingHotelHelper.SearchId.ToString()) || shoppingHotelHelper.SearchId == 0) {
-            searchId = GetSearchId();
+            searchId = GetSearchId(shoppingHotelHelper.CityCode);
             shoppingHotelHelper.SearchId = searchId;
         }
         defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
@@ -83,7 +83,7 @@ public class SupplierHotelObjectHelper
             else
             {
                 imagePath = string.IsNullOrEmpty(_sqlDataReader["DefaultImagePath"].ToString()) ? defaultImagePath : _sqlDataReader["DefaultImagePath"].ToString();
-                supplierHotelHelper = new SupplierHotelHelper { Id = hotelInfoId, SupplierId = _sqlDataReader["SupplierID"].ToString(), ProductName = _sqlDataReader["ProductName"].ToString(), City = _sqlDataReader["CityName"].ToString(), ProdcutDescription = _sqlDataReader["ShortDescription"].ToString(), ProductMasterId = productMasterId, ProductStarsName = _sqlDataReader["ClsName"].ToString(), ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(), ProductImagePath = imagePath };
+                supplierHotelHelper = new SupplierHotelHelper { Id = hotelInfoId, SupplierId = _sqlDataReader["SupplierID"].ToString(), ProductName = _sqlDataReader["ProductName"].ToString(), City = _sqlDataReader["CityName"].ToString(), CityCode = shoppingHotelHelper.CityCode, ProdcutDescription = _sqlDataReader["ShortDescription"].ToString(), ProductMasterId = productMasterId, ProductStarsName = _sqlDataReader["ClsName"].ToString(), ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(), ProductImagePath = imagePath };
                 var rooms = new List<SupplierHotelRoomHelper>();
                 rooms.Add(supplierHotelRoomHelper);
                 supplierHotelHelper.Rooms = rooms;
@@ -100,9 +100,9 @@ public class SupplierHotelObjectHelper
         return supplierHotels;
     }
 
-    protected int GetSearchId() {
+    protected int GetSearchId(string cityCode) {
         SearchEntity _search = new SearchEntity();
-        _search.Destination = "DXB";
+        _search.Destination = cityCode;
         _search.CheckIn = DateTimeHelper.customFormat(shoppingHotelHelper.FromDate);
         _search.CheckOut = DateTimeHelper.customFormat(shoppingHotelHelper.ToDate);
         _search.AdultCount = shoppingHotelHelper.RoomDetails.Select(x => x.Adults).Sum();

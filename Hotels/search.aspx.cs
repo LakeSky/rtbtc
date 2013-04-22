@@ -14,6 +14,7 @@ public partial class Hotels_Index : PublicApplicationPage
     protected ShoppingHotelHelper _ShoppingHotel;
     public List<ShoppingRoomHelper> ShoppingRoomsList;
     public int RoomsCount;
+    public string CityCode;
     public List<Classification> classifications;
     public List<ProductMaster> productMasters;
     protected void Page_Load(object sender, EventArgs e)
@@ -31,6 +32,7 @@ public partial class Hotels_Index : PublicApplicationPage
         txtCity.Text = _ShoppingHotel.CityName;
         txtStartDate.Text = _ShoppingHotel.FromDate;
         txtEndDate.Text = _ShoppingHotel.ToDate;
+        CityCode = _ShoppingHotel.CityCode;
         RoomsCount = ShoppingRoomsList.Count;
         if (!IsPostBack)
         {

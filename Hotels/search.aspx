@@ -115,6 +115,7 @@
       </table>
       <br />
       <input type="hidden" value="<%= RoomsCount %>" id="totalRooms" name="totalRooms" />
+      <input type="hidden" value="<%= CityCode %>" id="cityCode" name="cityCode" />
       <asp:Button ID="btnSearch" runat="server" Text="Search" 
           CssClass="btn btn-success" ValidationGroup="search" 
           onclick="btnSearch_Click" OnClientClick="ShowDialogBox();"/>

@@ -13,6 +13,7 @@ public partial class Home : PublicApplicationPage
     protected ShoppingHotelHelper _ShoppingHotel;
     public List<ShoppingRoomHelper> ShoppingRoomsList;
     public int RoomsCount;
+    public string CityCode;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack) {
@@ -27,6 +28,7 @@ public partial class Home : PublicApplicationPage
             txtStartDate.Text = _ShoppingHotel.FromDate;
             txtEndDate.Text = _ShoppingHotel.ToDate;
             RoomsCount = ShoppingRoomsList.Count;
+            CityCode = _ShoppingHotel.CityCode;
         }
         _meis007Entities = new meis007Entities();
         var data = _meis007Entities.PackageHeaders.Where(x => x.InService == true).OrderBy(x => x.DisplaySeq).ToList();

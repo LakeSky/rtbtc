@@ -43,6 +43,12 @@
         $(".start-date, .end-date").attr("readonly", true);
 
         $("#departure, #arrival").autocomplete({
+            change: function (event, ui) {
+                if (ui.item == null) {
+                    $(this).val('');
+                    $(this).focus();
+                }
+            },
             source: function (request, response) {
                 $.ajax({
                     type: "POST",
@@ -52,12 +58,11 @@
                     dataType: "json",
                     success: function (data) {
                         var array = [];
-                        $.each(data.d, function (i, text) {
+                        $.each(data.d, function (i, x) {
                             var obj = {}
-                            var textArray = text.split("#");
-                            obj['id'] = textArray[1];
-                            obj['label'] = textArray[0];
-                            obj['name'] = textArray[0];
+                            obj['id'] = x.Id;
+                            obj['label'] = x.Text;
+                            obj['name'] = x.Text;
                             array.push(obj);
                         });
                         response(array);
@@ -236,8 +241,8 @@
         <td>Children</td>
         <td>
           <select name="External_FlightFareSearch_NumberOfChilds" class="children">
-            <option value="0" >0</option>
-            <option value="1" selected ="selected">1</option>
+            <option value="0" selected ="selected" >0</option>
+            <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -249,8 +254,8 @@
          <td>Infants</td>
          <td>
            <select name="External_FlightFareSearch_NumberOfInfants" class="infants">
-             <option value="0" >0</option>
-             <option value="1" selected ="selected">1</option>
+             <option value="0" selected ="selected" >0</option>
+             <option value="1">1</option>
              <option value="2">2</option>
              <option value="3">3</option>
              <option value="4">4</option>
