@@ -58,4 +58,12 @@ public static class DbParameter
     public static bool IsInetrnalSupplier(string supplierId) {
         return supplierId == "1020";
     }
+
+    public static string GetBookingType() {
+        return "B2C";
+    }
+
+    public static string GetBookingStatus() {
+        return "CC";
+    }
 }

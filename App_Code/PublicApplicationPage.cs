@@ -107,6 +107,11 @@ public class PublicApplicationPage : System.Web.UI.Page
         return basketHelper.packageDetails.Count;
     }
 
+    protected void UpdateBasketHelperObject(BasketHelper basketHelper)
+    {
+        Session["Basket"] = basketHelper;
+    }
+
     protected void DisposeHotelDetails(){
         var shoppingHelper = GetShoppingHelperObject();
         shoppingHelper.HotelDetails = null;

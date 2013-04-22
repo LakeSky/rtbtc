@@ -64,7 +64,7 @@ public partial class Packages_book : PublicApplicationPage
             basketPackagePassengersDetailsList.Add(basketPackagePassengersDetails);
         }
         basketPackageDetails.Passengers = basketPackagePassengersDetailsList;
-        basketPackageDetails.PricePerPerson = packageHeader.PacValueB2C;
+        basketPackageDetails.PricePerPerson = double.Parse(packageHeader.PacValueB2C.ToString());
         basketPackageDetails.calculateTotalPrice();
         basketHelper.packageDetails.Add(basketPackageDetails);
         basketHelper.calculateTotalPrice();
