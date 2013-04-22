@@ -40,6 +40,6 @@ public partial class Packages_show : System.Web.UI.Page
     protected void Redirect()
     {
         Session["ErrorMessage"] = "You are not authorized to access that package!";
-        Response.Redirect(CurrentUser.GetRootPath("packages/index.aspx"));
+        Response.Redirect(Route.GetRootPath("packages/index.aspx"));
     }
 }

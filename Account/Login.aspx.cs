@@ -19,11 +19,11 @@ public partial class Account_Login : System.Web.UI.Page
         }
         if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
         {
-            Response.Redirect(CurrentUser.GetRootPath("Home.aspx"));
+            Response.Redirect(Route.GetRootPath("home.aspx"));
         }
         else if (User.Identity.IsAuthenticated)
         {
-            Response.Redirect(CurrentUser.GetRootPath("Home.aspx"));
+            Response.Redirect(Route.GetRootPath("home.aspx"));
         }    
     }
     protected void btnSave_Click(object sender, EventArgs e)
@@ -60,11 +60,11 @@ public partial class Account_Login : System.Web.UI.Page
         String returnUrl1 = "";
         if (Request.QueryString["bookingid"] != null && Request.QueryString["bookingtype"] == "hotel")
         {
-            returnUrl1 = CurrentUser.GetRootPath("hotels/book.aspx?id=" + Request.QueryString["bookingid"]);
+            returnUrl1 = Route.GetRootPath("hotels/book.aspx?id=" + Request.QueryString["bookingid"]);
         }
         else if (Request.QueryString["bookingid"] != null && Request.QueryString["bookingtype"] == "package")
         {
-            returnUrl1 = CurrentUser.GetRootPath("packages/book.aspx?id=" + Request.QueryString["bookingid"]);
+            returnUrl1 = Route.GetRootPath("packages/book.aspx?id=" + Request.QueryString["bookingid"]);
         }
         else if (Request.QueryString["ReturnUrl"] != null)
         {
@@ -72,7 +72,7 @@ public partial class Account_Login : System.Web.UI.Page
         }
         else
         {
-            returnUrl1 = CurrentUser.GetRedirectPath();
+            returnUrl1 = Route.GetRedirectPath();
         }
         Session["NoticeMessage"] = "Successfully logged in !";
         Response.Redirect(returnUrl1);

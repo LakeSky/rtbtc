@@ -47,7 +47,7 @@
           <ItemTemplate>
             <%# Container.ItemIndex != 0 && Container.ItemIndex % 3 == 0 ? "<div class='margin10'></div>" : "" %>
             <li class="span3" style="<%# Container.ItemIndex % 3 == 0 ? "margin-left:0;" : "" %>">
-              <a class="thumbnail" href="<%= CurrentUser.GetRootPath("packages/show.aspx")%>?id=<%# Eval("PacId") %>">
+              <a class="thumbnail" href="<%= Route.GetRootPath("packages/show.aspx")%>?id=<%# Eval("PacId") %>">
                 <img src="<%# Eval("DisplayImage") %>" alt="" style="width:260px;height:180px;" />
                 <div class="caption"> 
                   <span class="package-pirce blue-font">Price SR. <%# Eval("PacValueB2C")%></span><br />

@@ -13,7 +13,7 @@ public partial class Account_ChangePassword : System.Web.UI.Page
     {
         if (User.Identity.IsAuthenticated)
         {
-            Response.Redirect(CurrentUser.GetRootPath("Home.aspx"));
+            Response.Redirect(Route.GetRootPath("home.aspx"));
         }
         if(!IsPostBack){
             errorDiv.Visible = false;
@@ -31,7 +31,7 @@ public partial class Account_ChangePassword : System.Web.UI.Page
         }
         Mailer.SendPasswordEmail(_B2CCustomerinfo, Request.Url.Host);
         Session["NoticeMessage"] = "Successfully send password to your email please check it!";
-        var _path = CurrentUser.GetRootPath("Account/Login.aspx");
+        var _path = Route.GetRootPath("account/login.aspx");
         Response.Redirect(_path);
     }
 }

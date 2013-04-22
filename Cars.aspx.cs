@@ -36,6 +36,6 @@ public partial class Cars : PublicApplicationPage //System.Web.UI.Page
         _ShoppingCarHelper.DropoffDateTime = DateTimeHelper.ConvertToDateAndTimeWithoutNull(txtDropoffDate.Text + " " + ddlDropoffTime.SelectedValue.ToString() + ":00:00");
         _ShoppingHelper.CarDetails = _ShoppingCarHelper;
         Session["StoredShopping"] = _ShoppingHelper;
-        Response.Redirect(CurrentUser.GetRootPath("Choose.aspx"));
+        Response.Redirect(Route.GetRootPath("choose.aspx"));
     }
 }

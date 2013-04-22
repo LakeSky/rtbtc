@@ -54,7 +54,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <div id="hotelsList" style="width:100%;">
     <h3 class="custom-h3 blue-font left">Total Amount SR. <span class="total-price"><%= totalPrice %></h3>
-    <a class="btn btn-success right" href="<%= CurrentUser.GetRootPath("orders/checkout.aspx") %>">Checkout</a>
+    <a class="btn btn-success right" href="<%= Route.GetRootPath("orders/checkout.aspx") %>">Checkout</a>
     <div class="clear"></div>
     <hr />
 
@@ -82,7 +82,7 @@
             <span class="bold-font">Total Price SR. </span>
             <%# Eval("TotalPrice") %>
             <br />
-            <% var path = CurrentUser.GetRootPath("packages/show.aspx"); %>
+            <% var path = Route.GetRootPath("packages/show.aspx"); %>
             <a class="btn btn-primary" href="<%= path %>?id=<%# Eval("PackageId")%>&from=basket">More Info</a>
           </div>
           <div class="span3 right">
@@ -144,7 +144,7 @@
               <br />
               <h4><%# Eval("cityName") %></h4>
             </div>
-             <% var path = CurrentUser.GetRootPath("hotels/show.aspx?from=basket"); %>
+             <% var path = Route.GetRootPath("hotels/show.aspx?from=basket"); %>
             <div class="right paddingT10">
               <a href="<%= path %>&sid=<%# Eval("hotelInfoId") %>&id=<%# Eval("productId")%>" class="btn btn-primary">More Info ></a>
             </div>

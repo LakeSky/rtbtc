@@ -24,7 +24,7 @@ public partial class Hotels_Index : PublicApplicationPage
         if (_ShoppingHelper == null || _ShoppingHelper.HotelDetails == null)
         { 
             Session["ErrorMessage"] = "Please provide hotel search details!";
-            Response.Redirect(CurrentUser.GetRootPath("home.aspx"));
+            Response.Redirect(Route.GetRootPath("home.aspx"));
             return;
         }
         _ShoppingHotel = _ShoppingHelper.HotelDetails;
@@ -47,7 +47,7 @@ public partial class Hotels_Index : PublicApplicationPage
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         UpdateShoppingHelperObject(txtCity.Text, txtStartDate.Text, txtEndDate.Text);
-        Response.Redirect(CurrentUser.GetRootPath("hotels/search.aspx"));
+        Response.Redirect(Route.GetRootPath("hotels/search.aspx"));
     }
 
     protected void CheckBox_Changed(object sender, EventArgs e)

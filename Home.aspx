@@ -126,7 +126,7 @@
       <h3 class="blue-font">
         We are now searching hundreds of offers to find you the very best prices. This should only take a few seconds...
       </h3>
-      <% var path = CurrentUser.GetRootPath("Images/ajax-loader.gif"); %>
+      <% var path = Route.GetRootPath("Images/ajax-loader.gif"); %>
       <div class="loading-image">
         <img alt="" src="<%= path %>" />
       </div>
@@ -174,7 +174,7 @@
   </div>
   <div class="span3">
     <h3 class="blue-font">
-      <% path = CurrentUser.GetRootPath("packages/index.aspx"); %>
+      <% path = Route.GetRootPath("packages/index.aspx"); %>
       <a href="<%= path %>">View More</a>
     </h3>
   </div>

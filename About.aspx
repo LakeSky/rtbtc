@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <h2>
-        About Us => <%= Session.SessionID %>
+        About Us
     </h2>
     <asp:Repeater ID="Repeater1" runat="server">
       <HeaderTemplate>

@@ -12,10 +12,10 @@ public partial class Account_Confirm : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (User.Identity.IsAuthenticated){
-            Response.Redirect(CurrentUser.GetRootPath("Home.aspx"));
+            Response.Redirect(Route.GetRootPath("home.aspx"));
         }
         var _id = Request.QueryString["id"].ToString();
-        var _errorPath = CurrentUser.GetRootPath("Home.aspx");
+        var _errorPath = Route.GetRootPath("home.aspx");
         if (string.IsNullOrEmpty(_id)) {
             Session["ErrorMEssage"] = "Incorrect confirmation code !";
             Response.Redirect(_errorPath);
@@ -28,7 +28,7 @@ public partial class Account_Confirm : System.Web.UI.Page
             Response.Redirect(_errorPath);
             return;
         }
-        var _successPath = CurrentUser.GetRootPath("Account/Login.aspx");
+        var _successPath = Route.GetRootPath("account/login.aspx");
         if (_B2CCustomerinfo.InService == "1") {
             Session["ErrorMessage"] = "Your account is already confirmed please login";
         } else {

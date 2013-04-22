@@ -123,7 +123,7 @@
         <h3 class="blue-font">
           We are now searching hundreds of offers to find you the very best prices. This should only take a few seconds...
         </h3>
-        <% var path = CurrentUser.GetRootPath("Images/ajax-loader.gif"); %>
+        <% var path = Route.GetRootPath("Images/ajax-loader.gif"); %>
         <div class="loading-image">
           <img alt="" src="<%= path %>" />
         </div>
@@ -178,7 +178,7 @@
                   <br />
                   <h4><%# Eval("City") %></h4>
                 </div>
-                <% var path = CurrentUser.GetRootPath("hotels/show.aspx?from=search"); %>
+                <% var path = Route.GetRootPath("hotels/show.aspx?from=search"); %>
                 <div class="right paddingT10">
                   <a href="<%= path %>&sid=<%# Eval("Id") %>&id=<%# Eval("ProductMasterId")%>" class="btn btn-primary">More Info ></a>
                 </div>
@@ -211,7 +211,7 @@
                     <td><%# Eval("RoomName") %></td>
                     <td>SR. <%# Eval("Price") %></td>
                     <td><a href="#" class="btn btn-small btn-warning" title="View Cancellation Policy">!</a></td>
-                    <% var path = CurrentUser.GetRootPath("Hotels/book.aspx"); %>
+                    <% var path = Route.GetRootPath("hotels/book.aspx"); %>
                     <td><a href="<%= path %>?id=<%# Eval("HotelInfoId")%>" class="btn btn-success">Book</a></td>
                   </tr>
                 </ItemTemplate>

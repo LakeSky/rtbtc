@@ -92,7 +92,7 @@
             <%}
               else
               { %>
-                <% var path = CurrentUser.GetRootPath("account"); %>
+                <% var path = Route.GetRootPath("account"); %>
                 To Book or add to basket use 
                 <a href="<%= path %>/login.aspx?bookingtype=package&bookingid=<%= hdnFldPackageId.Value %>">Existing Account</a>
                 |

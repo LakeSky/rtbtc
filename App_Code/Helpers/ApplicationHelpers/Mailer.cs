@@ -39,13 +39,13 @@ public class Mailer
     }
 
     public static void SendRegistrationEmail(B2CCustomerinfo _B2CCustomerinfo, string host) {
-        var href = host + CurrentUser.GetRootPath("/Account/Confirm.aspx?id=" + _B2CCustomerinfo.authenicationcode);
+        var href = host + Route.GetRootPath("/account/confirm.aspx?id=" + _B2CCustomerinfo.authenicationcode);
         var body = "Hi " + _B2CCustomerinfo.PaxFirstName + "<br/>. Please <a href='"+href+"'>Confirm Account</a>";
         SendMailMessage(_B2CCustomerinfo.PaxEmail, "", "", "Confirm Account", body);
     }
 
     public static void SendPasswordEmail(B2CCustomerinfo _B2CCustomerinfo, string host){
-        var href = host + CurrentUser.GetRootPath("/Account/Login.aspx");
+        var href = host + Route.GetRootPath("/account/login.aspx");
         string _decryptPassword = StringHelper.Decrypt(_B2CCustomerinfo.PaxPassword);
         var body = "Hi " + _B2CCustomerinfo.PaxFirstName + " your password is "+_decryptPassword  +"<br/>. <a href='" + href + "'>Login</a>";
         SendMailMessage(_B2CCustomerinfo.PaxEmail, "", "", "Password", body);

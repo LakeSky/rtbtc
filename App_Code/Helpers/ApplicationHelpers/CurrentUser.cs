@@ -15,15 +15,4 @@ public static class CurrentUser
         //return int.Parse(HttpContext.Current.Session["currentUserId"].ToString());
         return int.Parse(cookie.Split('#')[0].ToString());
     }
-
-    public static string GetRedirectPath()
-    {
-        string returnUrl = "/rtbtc/Home.aspx";
-        return returnUrl;
-    }
-
-    public static string GetRootPath(string path) {
-        string returnUrl = "/rtbtc/" + path;
-        return returnUrl;
-    }
 }

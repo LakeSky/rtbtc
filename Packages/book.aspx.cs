@@ -70,12 +70,12 @@ public partial class Packages_book : PublicApplicationPage
         basketHelper.calculateTotalPrice();
         Session["Basket"] = basketHelper;
         Session["NoticeMessage"] = "Successfully added to basket! ";
-        Response.Redirect(CurrentUser.GetRootPath("packages/index.aspx"));
+        Response.Redirect(Route.GetRootPath("packages/index.aspx"));
     }
 
     protected void Redirect()
     {
         Session["ErrorMessage"] = "You are not authorized to access that package!";
-        Response.Redirect(CurrentUser.GetRootPath("packages/index.aspx"));
+        Response.Redirect(Route.GetRootPath("packages/index.aspx"));
     }
 }

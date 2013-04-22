@@ -49,12 +49,12 @@ public partial class Home : PublicApplicationPage
         _meis007Entities.AddToB2CCustomerinfo(_b2CCustomerinfo);
         _meis007Entities.SaveChanges();
         Session["NoticeMessage"] = "Successfully added for subscription!";
-        Response.Redirect(CurrentUser.GetRootPath("/home.aspx"));
+        Response.Redirect(Route.GetRootPath("home.aspx"));
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         UpdateShoppingHelperObject(txtCity.Text, txtStartDate.Text, txtEndDate.Text);
-        Response.Redirect(CurrentUser.GetRootPath("hotels/search.aspx"));
+        Response.Redirect(Route.GetRootPath("hotels/search.aspx"));
     }
 }

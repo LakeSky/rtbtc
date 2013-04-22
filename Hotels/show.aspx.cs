@@ -59,7 +59,7 @@ public partial class Hotels_Details : PublicApplicationPage
         }
         if (!found) {
             Session["ErrorMessage"] = "Hotel not found";
-            Response.Redirect(CurrentUser.GetRootPath("Home.aspx"));
+            Response.Redirect(Route.GetRootPath("home.aspx"));
             return;
         }
     }

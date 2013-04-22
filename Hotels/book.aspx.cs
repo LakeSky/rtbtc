@@ -16,7 +16,7 @@ public partial class Hotels_book : PublicApplicationPage
         if (!IsPostBack){
             _shoppingHelper = GetShoppingHelperObject();
             if (_shoppingHelper == null || _shoppingHelper.HotelDetails == null){
-                Redirect("Please select hotel first!", CurrentUser.GetRootPath("home.aspx"));
+                Redirect("Please select hotel first!", Route.GetRootPath("home.aspx"));
                 return;
             }
             string id = (string)Request.QueryString["id"];
@@ -69,12 +69,12 @@ public partial class Hotels_book : PublicApplicationPage
         Session["Basket"] = basketObjectHelper.CreateBasketHotel(new meis007Entities(), basketHelper, hdnFldHotelInfoId.Value, hdnFldFromDate.Value, hdnFldToDate.Value, basketHotelGuestDetailsList);
         Session["NoticeMessage"] = "Succesfully added to the basket!";
         DisposeHotelDetails();
-        Response.Redirect(CurrentUser.GetRootPath("home.aspx"));
+        Response.Redirect(Route.GetRootPath("home.aspx"));
     }  
 
     void Redirect(string message, string path = null) {
         Session["ErrorMessage"] = message;
-        path = path == null ? CurrentUser.GetRootPath("hotels/index.aspx") : path;
+        path = path == null ? Route.GetRootPath("hotels/index.aspx") : path;
         Response.Redirect(path);
     }
 

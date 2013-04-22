@@ -14,7 +14,7 @@ public partial class basket_show : PublicApplicationPage
         basketHelper = GetBasketHelperObject();
         if (basketHelper == null || !hasBasketItems(basketHelper)) {
             Session["ErrorMessage"] = "You dont have any items in basket please add it !";
-            Response.Redirect(CurrentUser.GetRootPath("home.aspx"));
+            Response.Redirect(Route.GetRootPath("home.aspx"));
         }
         rptrHotels.DataSource = basketHelper.hotelDetails;
         rptrHotels.DataBind();

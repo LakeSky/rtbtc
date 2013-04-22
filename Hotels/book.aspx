@@ -55,7 +55,7 @@
   <h3 class="custom-h3 blue-font">
     <span class="left">Guest Details</span>
     <% if(!User.Identity.IsAuthenticated) {%>
-      <% var path = CurrentUser.GetRootPath("account"); %>
+      <% var path = Route.GetRootPath("account"); %>
       <% var bookingId = Request.QueryString["id"]; %>
       <span class="right">
         To Book or add to basket use

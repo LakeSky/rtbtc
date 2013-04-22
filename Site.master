@@ -28,15 +28,15 @@
             <div class="header-right-link">
               <div class="top-sign-up">
                 <% if (Page.User.Identity.IsAuthenticated){%>
-                  <% var _logoutPath = CurrentUser.GetRootPath("account/logout.aspx"); %>
-                  <% var _accountPath = CurrentUser.GetRootPath("currentuser/myaccount.aspx"); %>
+                  <% var _logoutPath = Route.GetRootPath("account/logout.aspx"); %>
+                  <% var _accountPath = Route.GetRootPath("currentuser/myaccount.aspx"); %>
                   <a href="<%= _accountPath %>">My Account</a>
                   |
                   <a href="<%= _logoutPath %>">Log out</a>
                 <%}else{ %>
-                  <% var _registerPath = CurrentUser.GetRootPath("account/register.aspx"); %>
-                  <% var _loginPath = CurrentUser.GetRootPath("account/login.aspx"); %>
-                  <% var _forgotPasswordPath = CurrentUser.GetRootPath("account/forgotpassword.aspx"); %>
+                  <% var _registerPath = Route.GetRootPath("account/register.aspx"); %>
+                  <% var _loginPath = Route.GetRootPath("account/login.aspx"); %>
+                  <% var _forgotPasswordPath = Route.GetRootPath("account/forgotpassword.aspx"); %>
                   <a href="<%= _registerPath %>">Register</a>
                   |
                   <a href="<%= _loginPath %>">Login</a>
@@ -47,7 +47,7 @@
             </div>
             <div class="clear"></div>
             <div class="navigation">
-              <% var rootPath = CurrentUser.GetRootPath(""); %>
+              <% var rootPath = Route.GetRootPath(""); %>
               <ul class="left">
                 <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/home.aspx" ? "active" : "" %>"><a href="<%= rootPath + "home.aspx" %>">Home</a></li>
                 <li  class="<%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/hotels/search.aspx" ? "active" : "" %>"><a href="<%= rootPath + "hotels/search.aspx" %>">Hotels</a></li>
@@ -58,7 +58,7 @@
               </ul>
               <ul class="right">
               <% var klass = hasBasketItems ? "has-basket-items" : "no-basket-items"; %>
-                <li><a href="<%= CurrentUser.GetRootPath("basket/show.aspx") %>" class="basket-items <%= klass %>">Basket (<span id="basket-items-count"><%= basketItemsCount %></span>)</a></li>
+                <li><a href="<%= Route.GetRootPath("basket/show.aspx") %>" class="basket-items <%= klass %>">Basket (<span id="basket-items-count"><%= basketItemsCount %></span>)</a></li>
               </ul>
               <div class="clear"></div>
             </div>

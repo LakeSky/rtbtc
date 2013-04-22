@@ -43,7 +43,7 @@
     <%= description %>
     <div class="margin10"></div>
     <%if (Request.QueryString["from"] == "basket"){ %>
-      <% var path = CurrentUser.GetRootPath("basket/show.aspx"); %>
+      <% var path = Route.GetRootPath("basket/show.aspx"); %>
       <a class="btn btn-primary" href="<%= path %>">Back To Basket</a>
     <%}else{%>
       <a class="btn btn-success" href="book.aspx?id=<%= packageHeader.PacId %>">Book</a>

@@ -20,7 +20,7 @@ public partial class Choose : PublicApplicationPage
         shoppingHelper = GetShoppingHelperObject();
         if (shoppingHelper == null) {
           Session["NoticeMessage"] = "Please Select below details!";
-          Response.Redirect("Home.aspx");
+          Response.Redirect("home.aspx");
         }
 
         if (shoppingHelper.HotelDetails != null){

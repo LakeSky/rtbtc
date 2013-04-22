@@ -166,7 +166,7 @@
         <td>SR. <%# Eval("Price") %></td>
         <td><a href="#" class="btn btn-small btn-warning" title="View Cancellation Policy">!</a></td>
         <% if (requestFrom == "search"){%>
-          <% var path = CurrentUser.GetRootPath("Hotels/book.aspx"); %>
+          <% var path = Route.GetRootPath("hotels/book.aspx"); %>
           <td><a href="<%= path %>?id=<%# Eval("HotelInfoId")%>" class="btn btn-success">Book</a></td>
         <%} %>
       </tr>

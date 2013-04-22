@@ -22,7 +22,7 @@ public partial class Account_Logout : System.Web.UI.Page
         Response.Cookies.Add(cookie2);
         FormsAuthentication.RedirectToLoginPage();
         HttpContext.Current.Session.Remove("currentUserId");
-        var _homePath = CurrentUser.GetRootPath("Home.aspx");
+        var _homePath = Route.GetRootPath("home.aspx");
         Response.Redirect(_homePath);
     }
 }

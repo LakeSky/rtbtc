@@ -18,7 +18,7 @@ public partial class Orders_checkout : PublicApplicationPage
        basketHelper = GetBasketHelperObject();
         if (basketHelper == null || !hasBasketItems(basketHelper)) {
             Session["ErrorMessage"] = "You dont have any items in basket please add it !";
-            Response.Redirect(CurrentUser.GetRootPath("home.aspx"));
+            Response.Redirect(Route.GetRootPath("home.aspx"));
         }
         _meis007Entities = new meis007Entities();
         var userId = CurrentUser.Id();
@@ -93,7 +93,7 @@ public partial class Orders_checkout : PublicApplicationPage
         RemoveHotels(basketHelper, hotelsToRemove);
         UpdateBasketHelperObject(basketHelper);
         Session["NoticeMessage"] = "Successfully confirmed bookings!";
-        Response.Redirect(CurrentUser.GetRootPath("basket/show.aspx"));
+        Response.Redirect(Route.GetRootPath("basket/show.aspx"));
     }
 
     protected void CreateBooking(BasketHotelDetails x, SuppliersHotelsInfo suppliersHotelsInfo) {
