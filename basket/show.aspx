@@ -53,7 +53,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <div id="hotelsList" style="width:100%;">
-    <h3 class="custom-h3 blue-font">Total Amount SR. <span class="total-price"><%= totalPrice %></h3>
+    <h3 class="custom-h3 blue-font left">Total Amount SR. <span class="total-price"><%= totalPrice %></h3>
+    <a class="btn btn-success right" href="<%= CurrentUser.GetRootPath("orders/checkout.aspx") %>">Checkout</a>
+    <div class="clear"></div>
     <hr />
 
     <asp:Repeater ID="rptrPackages" runat="server">
