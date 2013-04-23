@@ -133,8 +133,6 @@
           <td colspan="5">
             <% if (User.Identity.IsAuthenticated){%>
               <asp:Button ID="btnAddToBasket" runat="server" Text="Add to Basket" CssClass="btn btn-success" OnClick="btnAddToBasket_Click" />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <asp:Button ID="btnCheckOut" runat="server" Text="Check Out" CssClass="btn btn-primary" Enabled="false" />
             <%} %>
           </td>
         </tr>    

@@ -30,6 +30,8 @@
                 <% if (Page.User.Identity.IsAuthenticated){%>
                   <% var _logoutPath = Route.GetRootPath("account/logout.aspx"); %>
                   <% var _accountPath = Route.GetRootPath("currentuser/myaccount.aspx"); %>
+                  <a href="<%= Route.GetRootPath("bookings/index.aspx") %>">My Bookings</a>
+                  | 
                   <a href="<%= _accountPath %>">My Account</a>
                   |
                   <a href="<%= _logoutPath %>">Log out</a>

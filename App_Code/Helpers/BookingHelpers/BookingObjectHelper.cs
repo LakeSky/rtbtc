@@ -177,7 +177,6 @@ public static class BookingObjectHelper
         }
         return bookingGuestDetails;
     }
-	
 }
 
 public class TempGuestType {
