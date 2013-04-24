@@ -153,7 +153,7 @@
        <ContentTemplate>
         <div class="left">
           <userControl:Pager ID="Pager" runat="server" Separator=" | " FirstText="First"
-            PreviousText="<" NextText=">" LastText="Last" PageSize="2" NumberOfPages="3"
+            PreviousText="<" NextText=">" LastText="Last" PageSize="5" NumberOfPages="3"
             ShowGoTo="True" OnChange="Pager_Changed" />
         </div>
         <div class="right">
