@@ -26,11 +26,12 @@
             }
             var id = $(this).data('id');
             var type = $(this).data('type');
+            var masterCurrency = $(".ddlMasterCurrency").val();
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
                 url: '<%=ResolveUrl("~/BasketWebService.asmx/RemoveItem") %>',
-                data: "{'id': '" + id + "', 'type': '" + type + "'}",
+                data: "{'id': '" + id + "', 'type': '" + type + "', 'masterCurrency': '" + masterCurrency + "'}",
                 dataType: "json",
                 success: function (data) {
                     var array = data.d.split('#');
@@ -121,9 +122,9 @@
             <hr />
           </FooterTemplate>
         </asp:Repeater>
+        </div>
       </ItemTemplate>
       <FooterTemplate>
-          </div>
         </div>
         <hr />
       </FooterTemplate>

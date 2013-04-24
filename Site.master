@@ -47,7 +47,7 @@
                 <%} %>
                 |
                 <asp:DropDownList ID="ddlMasterCurency" runat="server" AutoPostBack="True" 
-                      onselectedindexchanged="ddlMasterCurency_SelectedIndexChanged" CssClass="ddl-custom"></asp:DropDownList>
+                      onselectedindexchanged="ddlMasterCurency_SelectedIndexChanged" CssClass="ddl-custom ddlMasterCurrency"></asp:DropDownList>
               </div>
             </div>
             <div class="clear"></div>

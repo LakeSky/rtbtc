@@ -22,7 +22,7 @@ public class BasketWebService : System.Web.Services.WebService {
 
     [WebMethod(EnableSession = true)]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string RemoveItem(string id, string type)
+    public string RemoveItem(string id, string type, string masterCurrency)
     {
         var basketHelper = (BasketHelper)(Session["Basket"]);
         var hasBasketItems = false;
@@ -50,7 +50,8 @@ public class BasketWebService : System.Web.Services.WebService {
         }
         Session["Basket"] = basketHelper;
         basketHelper.calculateTotalPrice();
-        return hasBasketItems.ToString() + "#" + count.ToString() + "#" + basketHelper.totalPrice.ToString();
+        var totalPrice = ApplicationObject.FormattedCurrencyDisplayPrice(basketHelper.totalPrice, masterCurrency);
+        return hasBasketItems.ToString() + "#" + count.ToString() + "#" + totalPrice.ToString();
     }
     
 }
