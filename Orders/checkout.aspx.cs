@@ -59,7 +59,7 @@ public partial class Orders_checkout : PublicApplicationPage
                     CustomerDisplayPrice = suppliersHotelsInfo.LCAP,
                     FCSalesAmt = suppliersHotelsInfo.LCAP, 
                     FCurrencyID = suppliersHotelsInfo.CurrencyCode,
-                    BaseCurrencyID = suppliersHotelsInfo.CurrencyCode,//take sys paramaters
+                    BaseCurrencyID = ApplicationObject.GetBaseCurrency(),
                     ExRate = suppliersHotelsInfo.LCAP, //take ex rate
                     SalesAmt = suppliersHotelsInfo.LCAP,
                     SupplierID = long.Parse(suppliersHotelsInfo.SupplierID.ToString()),
