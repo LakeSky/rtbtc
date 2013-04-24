@@ -188,7 +188,7 @@
               </div>      
               <div class="hotel-image">
                 <div class="price">
-                  SR. <%# Eval("BasicPrice")%>
+                  <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("BasicPrice"), masterCurrencyValue) %>
                 </div>
                 <img src="<%# Eval("ProductImagePath")%>" class="media-image" style="width:200px;height:200px;" />
               </div>
@@ -209,7 +209,7 @@
                   <tr>
                     <td><%# Eval("RoomType") %></td>
                     <td><%# Eval("RoomName") %></td>
-                    <td>SR. <%# Eval("Price") %></td>
+                    <td> <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("Price"), masterCurrencyValue) %></td>
                     <td><a href="#" class="btn btn-small btn-warning" title="View Cancellation Policy">!</a></td>
                     <% var path = Route.GetRootPath("hotels/book.aspx"); %>
                     <td><a href="<%= path %>?id=<%# Eval("HotelInfoId")%>" class="btn btn-success">Book</a></td>

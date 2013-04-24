@@ -53,7 +53,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <div id="hotelsList" style="width:100%;">
-    <h3 class="custom-h3 blue-font left">Total Amount SR. <span class="total-price"><%= totalPrice %></h3>
+    <h3 class="custom-h3 blue-font left">Total Amount <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <span class="total-price"><%= ApplicationObject.FormattedCurrencyDisplayPrice(totalPrice, masterCurrencyValue) %></h3>
     <a class="btn btn-success right" href="<%= Route.GetRootPath("orders/checkout.aspx") %>">Checkout</a>
     <div class="clear"></div>
     <hr />
@@ -76,11 +76,11 @@
             <span class="bold-font">Travelling From: </span>
             <%# ((DateTime)Eval("From")).ToString("dd MMM yyyy") %>
             <br />
-            <span class="bold-font">Price Per Person SR. </span>
-            <%# Eval("PricePerPerson") %>
+            <span class="bold-font">Price Per Person <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> </span>
+            <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("PricePerPerson"), masterCurrencyValue) %>
             <br />
             <span class="bold-font">Total Price SR. </span>
-            <%# Eval("TotalPrice") %>
+            <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("TotalPrice"), masterCurrencyValue) %>
             <br />
             <% var path = Route.GetRootPath("packages/show.aspx"); %>
             <a class="btn btn-primary" href="<%= path %>?id=<%# Eval("PackageId")%>&from=basket">More Info</a>
@@ -153,11 +153,11 @@
             <h4>Stay: <%# Eval("stay") %></h4>
             <h4>Room: <%# Eval("room") %></h4>
             <h4>Guest: <%# Eval("guests") %></h4>
-            <h4>Total Price SR.<%# Eval("totalPrice") %></h4>
+            <h4>Total Price <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("totalPrice"), masterCurrencyValue) %></h4>
           </div>      
           <div class="hotel-image">
             <div class="price">
-              <span class="left">SR. <%# Eval("pricePerPassenger")%> / pax</span>
+              <span class="left"> <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("pricePerPassenger"), masterCurrencyValue) %> / pax</span>
               <a  href="#" title="Remove from basket." class="btn btn-danger right remove-basket-item" data-id='<%# Eval("hotelInfoId") %>' data-type="hotel">X</a>
               <div class="clear"></div>
             </div>

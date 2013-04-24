@@ -22,8 +22,10 @@ public partial class Hotels_Details : PublicApplicationPage
     public string roomName = "";
     public dynamic shoppingHotelDetailDynamic;
     public BasketHotelDetails basketHotelDetailsObj;
+    public string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
+        masterCurrencyValue = GetMasteCurrencySelectedValue();
         _meis007Entities = new meis007Entities();
         var id = (string)(Request.QueryString["id"]);
         var found = false;

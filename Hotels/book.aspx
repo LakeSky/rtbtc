@@ -34,11 +34,11 @@
       <h4>Stay: <%= bookingHotelDetails.stay %></h4>
       <h4>Room: <%= bookingHotelDetails.room %></h4>
       <h4>Guest: <%= bookingHotelDetails.guests %></h4>
-      <h4>Total Price SR.<%= bookingHotelDetails.totalPrice %></h4>
+      <h4>Total Price <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%= ApplicationObject.FormattedCurrencyDisplayPrice(bookingHotelDetails.totalPrice, masterCurrencyValue) %></h4>
     </div>
     <div class="hotel-image">
       <div class="price">
-        Price Per Person SR. <%= bookingHotelDetails.pricePerPassenger %>
+        Price Per Person <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%= ApplicationObject.FormattedCurrencyDisplayPrice(bookingHotelDetails.pricePerPassenger, masterCurrencyValue) %>
       </div>
       <img alt="" src="<%= bookingHotelDetails.productDefaultImagePath %>" class="media-image"  style="width:200px;height:200px;"  />
     </div>

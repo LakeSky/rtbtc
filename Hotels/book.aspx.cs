@@ -11,8 +11,10 @@ public partial class Hotels_book : PublicApplicationPage
     meis007Entities _meis007Entities;
     ShoppingHelper _shoppingHelper;
     public BookingHotelDetails bookingHotelDetails;
+    public string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
+        masterCurrencyValue = GetMasteCurrencySelectedValue();
         if (!IsPostBack){
             _shoppingHelper = GetShoppingHelperObject();
             if (_shoppingHelper == null || _shoppingHelper.HotelDetails == null){

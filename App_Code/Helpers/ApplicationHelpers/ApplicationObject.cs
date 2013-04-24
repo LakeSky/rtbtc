@@ -38,7 +38,10 @@ public static  class ApplicationObject
     public static CurrencyMaster GetMasterCurrencyObject(string selectedValue) {
         meis007Entities _meis007Entities = new meis007Entities();
         var masterCurrencyCode = GetMasterCurrency(selectedValue);
-        var masterCurrency = _meis007Entities.CurrencyMasters.Where(x => x.CurID == masterCurrencyCode).First();
+        var masterCurrency = _meis007Entities.CurrencyMasters.Where(x => x.CurID == masterCurrencyCode).FirstOrDefault();
+        if (masterCurrency == null) {
+            masterCurrency = GetBaseCurrencyObject();
+        }
         return masterCurrency;
     }
 

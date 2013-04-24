@@ -17,8 +17,10 @@ public partial class Hotels_Index : PublicApplicationPage
     public string CityCode;
     public List<Classification> classifications;
     public List<ProductMaster> productMasters;
+    public string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
+        masterCurrencyValue = GetMasteCurrencySelectedValue();
         RoomsCount = 1;
         _ShoppingHelper = GetShoppingHelperObject();
         if (_ShoppingHelper == null || _ShoppingHelper.HotelDetails == null)

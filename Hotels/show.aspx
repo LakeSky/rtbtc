@@ -100,7 +100,7 @@
       <br />
       <span class="bold-font">Guest:</span> <%= basketHotelDetailsObj.guests %>
       <br />
-      <span class="bold-font">Total Price</span> SR.<%= basketHotelDetailsObj.totalPrice %>
+      <span class="bold-font">Total Price</span> <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%= ApplicationObject.FormattedCurrencyDisplayPrice(basketHotelDetailsObj.totalPrice, masterCurrencyValue) %>
     <%} %>
   </div>
   <hr class="margin10" />
@@ -163,7 +163,7 @@
       <tr>
         <td><%# Eval("RoomType") %></td>
         <td><%# Eval("RoomName") %></td>
-        <td>SR. <%# Eval("Price") %></td>
+        <td> <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("Price"), masterCurrencyValue) %></td>
         <td><a href="#" class="btn btn-small btn-warning" title="View Cancellation Policy">!</a></td>
         <% if (requestFrom == "search"){%>
           <% var path = Route.GetRootPath("hotels/book.aspx"); %>

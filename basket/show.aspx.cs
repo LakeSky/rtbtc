@@ -9,8 +9,10 @@ public partial class basket_show : PublicApplicationPage
 {
     public BasketHelper basketHelper;
     public decimal totalPrice;
+    public string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
+        masterCurrencyValue = GetMasteCurrencySelectedValue();
         basketHelper = GetBasketHelperObject();
         if (basketHelper == null || !hasBasketItems(basketHelper)) {
             Session["ErrorMessage"] = "You dont have any items in basket please add it !";
