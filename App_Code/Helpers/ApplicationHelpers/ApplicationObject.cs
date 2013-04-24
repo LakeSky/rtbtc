@@ -53,6 +53,6 @@ public static  class ApplicationObject
             return formattedPrice;
         }
         var obj = GetMasterCurrencyObject(selectedValue);
-        return Math.Floor(decimal.Parse(obj.SellingExRate.ToString()) * formattedPrice);
+        return Math.Floor(formattedPrice / decimal.Parse(obj.SellingExRate.ToString()));
     }
 }
