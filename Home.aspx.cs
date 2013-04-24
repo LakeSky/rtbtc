@@ -20,7 +20,6 @@ public partial class Home : PublicApplicationPage
         masterCurrencyValue = GetMasteCurrencySelectedValue();
         if (!IsPostBack) {
             errorDiv.Visible = false;
-        }
         RoomsCount = 1;
         _ShoppingHelper = GetShoppingHelperObject();
         if (_ShoppingHelper != null && _ShoppingHelper.HotelDetails != null) {
@@ -36,6 +35,7 @@ public partial class Home : PublicApplicationPage
         var data = _meis007Entities.PackageHeaders.Where(x => x.InService == true).OrderBy(x => x.DisplaySeq).ToList();
         rptrPackages.DataSource = data;
         rptrPackages.DataBind();
+        }
     }
 
     protected void btnSubscribe_Click(object sender, EventArgs e)
@@ -44,7 +44,8 @@ public partial class Home : PublicApplicationPage
         var _email = txtEmail.Text.Trim();
         var count = _meis007Entities.B2CCustomerinfo.Where(x => x.PaxEmail == _email).Count();
         if (count > 0) {
-            errorDiv.Visible = true;
+            Session["ErrorMessage"] = "Email Already Taken!";
+            Response.Redirect(Request.Url.AbsoluteUri);
             return;
         }
         B2CCustomerinfo _b2CCustomerinfo = new B2CCustomerinfo { PaxEmail = _email, InService = "0" };
