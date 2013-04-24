@@ -15,6 +15,7 @@
           <EntitySet Name="CityMaster" EntityType="meis007Model.Store.CityMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Classifications" EntityType="meis007Model.Store.Classifications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CountryMaster" EntityType="meis007Model.Store.CountryMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CurrencyMaster" EntityType="meis007Model.Store.CurrencyMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Facilities" EntityType="meis007Model.Store.Facilities" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PackageDescription" EntityType="meis007Model.Store.PackageDescription" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PackageHeader" EntityType="meis007Model.Store.PackageHeader" store:Type="Tables" Schema="dbo" />
@@ -248,6 +249,20 @@
           <Property Name="ModDate" Type="smalldatetime" />
           <Property Name="H2H" Type="smallint" />
         </EntityType>
+        <EntityType Name="CurrencyMaster">
+          <Key>
+            <PropertyRef Name="CurID" />
+          </Key>
+          <Property Name="CurID" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="CurName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="CoName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExRate" Type="decimal" Nullable="false" Precision="12" Scale="9" />
+          <Property Name="SellingExRate" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="Decimals" Type="int" Nullable="false" />
+          <Property Name="IsVisibleB2C" Type="bit" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ModDate" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Facilities">
           <Key>
             <PropertyRef Name="FID" />
@@ -444,6 +459,7 @@
           <Property Name="ExchRate" Type="decimal" Precision="12" Scale="9" />
           <Property Name="LCAP" Type="decimal" Precision="12" Scale="4" />
           <Property Name="AvrNightPrice" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="RateSDID" Type="int" />
           <Property Name="BBID" Type="int" />
           <Property Name="BBName" Type="varchar(max)" />
           <Property Name="CityId" Type="varchar" MaxLength="255" />
@@ -748,6 +764,7 @@
             <End Role="RoomTypeDetail" EntitySet="RoomTypeDetails" />
           </AssociationSet>
           <EntitySet Name="BasketSequences" EntityType="meis007Model.BasketSequence" />
+          <EntitySet Name="CurrencyMasters" EntityType="meis007Model.CurrencyMaster" />
         </EntityContainer>
         <EntityType Name="AmadeusTable">
           <Key>
@@ -1118,6 +1135,7 @@
           <Property Name="CountryID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="Address" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="ModDate" Type="DateTime" />
+          <Property Type="Int32" Name="RateSDID" />
         </EntityType>
         <EntityType Name="XMLHotel">
           <Key>
@@ -1328,6 +1346,20 @@
           </Key>
           <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int64" Name="SequenceNumber" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurrencyMaster">
+          <Key>
+            <PropertyRef Name="CurID" />
+          </Key>
+          <Property Type="String" Name="CurID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CurName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CoName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ExRate" Nullable="false" Precision="12" Scale="9" />
+          <Property Type="Decimal" Name="SellingExRate" Precision="12" Scale="9" />
+          <Property Type="Int32" Name="Decimals" Nullable="false" />
+          <Property Type="Boolean" Name="IsVisibleB2C" />
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModDate" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1579,7 +1611,8 @@
             <ScalarProperty Name="ModDate" ColumnName="ModDate" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="SuppliersHotelsInfoes"><EntityTypeMapping TypeName="meis007Model.SuppliersHotelsInfo"><MappingFragment StoreEntitySet="SuppliersHotelsInfo">
-            <ScalarProperty Name="HotelInfoID" ColumnName="HotelInfoID" />
+            <ScalarProperty Name="RateSDID" ColumnName="RateSDID" />
+                <ScalarProperty Name="HotelInfoID" ColumnName="HotelInfoID" />
             <ScalarProperty Name="SessionID" ColumnName="SessionID" />
             <ScalarProperty Name="SearchID" ColumnName="SearchID" />
             <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
@@ -1628,6 +1661,21 @@
               <MappingFragment StoreEntitySet="BasketSequence">
                 <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrencyMasters">
+            <EntityTypeMapping TypeName="meis007Model.CurrencyMaster">
+              <MappingFragment StoreEntitySet="CurrencyMaster">
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="IsVisibleB2C" ColumnName="IsVisibleB2C" />
+                <ScalarProperty Name="Decimals" ColumnName="Decimals" />
+                <ScalarProperty Name="SellingExRate" ColumnName="SellingExRate" />
+                <ScalarProperty Name="ExRate" ColumnName="ExRate" />
+                <ScalarProperty Name="CoName" ColumnName="CoName" />
+                <ScalarProperty Name="CurName" ColumnName="CurName" />
+                <ScalarProperty Name="CurID" ColumnName="CurID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1762,6 +1810,7 @@
           <ConnectorPoint PointX="3" PointY="7.3651432291666694" />
         </AssociationConnector>
         <EntityTypeShape EntityType="meis007Model.BasketSequence" Width="1.5" PointX="15.375" PointY="16.75" Height="1.4033821614583246" />
+        <EntityTypeShape EntityType="meis007Model.CurrencyMaster" Width="1.5" PointX="17.375" PointY="0.75" Height="2.7494921875000102" />
       </Diagram>
     </Diagrams>
   </Designer>

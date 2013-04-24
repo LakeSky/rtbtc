@@ -499,6 +499,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<BasketSequence> _BasketSequences;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CurrencyMaster> CurrencyMasters
+        {
+            get
+            {
+                if ((_CurrencyMasters == null))
+                {
+                    _CurrencyMasters = base.CreateObjectSet<CurrencyMaster>("CurrencyMasters");
+                }
+                return _CurrencyMasters;
+            }
+        }
+        private ObjectSet<CurrencyMaster> _CurrencyMasters;
 
         #endregion
         #region AddTo Methods
@@ -709,6 +725,14 @@ namespace meis007Model
         public void AddToBasketSequences(BasketSequence basketSequence)
         {
             base.AddObject("BasketSequences", basketSequence);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CurrencyMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCurrencyMasters(CurrencyMaster currencyMaster)
+        {
+            base.AddObject("CurrencyMasters", currencyMaster);
         }
 
         #endregion
@@ -3632,6 +3656,263 @@ namespace meis007Model
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="meis007Model", Name="CurrencyMaster")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class CurrencyMaster : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new CurrencyMaster object.
+        /// </summary>
+        /// <param name="curID">Initial value of the CurID property.</param>
+        /// <param name="curName">Initial value of the CurName property.</param>
+        /// <param name="exRate">Initial value of the ExRate property.</param>
+        /// <param name="decimals">Initial value of the Decimals property.</param>
+        /// <param name="userID">Initial value of the UserID property.</param>
+        /// <param name="modDate">Initial value of the ModDate property.</param>
+        public static CurrencyMaster CreateCurrencyMaster(global::System.String curID, global::System.String curName, global::System.Decimal exRate, global::System.Int32 decimals, global::System.String userID, global::System.DateTime modDate)
+        {
+            CurrencyMaster currencyMaster = new CurrencyMaster();
+            currencyMaster.CurID = curID;
+            currencyMaster.CurName = curName;
+            currencyMaster.ExRate = exRate;
+            currencyMaster.Decimals = decimals;
+            currencyMaster.UserID = userID;
+            currencyMaster.ModDate = modDate;
+            return currencyMaster;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CurID
+        {
+            get
+            {
+                return _CurID;
+            }
+            set
+            {
+                if (_CurID != value)
+                {
+                    OnCurIDChanging(value);
+                    ReportPropertyChanging("CurID");
+                    _CurID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("CurID");
+                    OnCurIDChanged();
+                }
+            }
+        }
+        private global::System.String _CurID;
+        partial void OnCurIDChanging(global::System.String value);
+        partial void OnCurIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CurName
+        {
+            get
+            {
+                return _CurName;
+            }
+            set
+            {
+                OnCurNameChanging(value);
+                ReportPropertyChanging("CurName");
+                _CurName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CurName");
+                OnCurNameChanged();
+            }
+        }
+        private global::System.String _CurName;
+        partial void OnCurNameChanging(global::System.String value);
+        partial void OnCurNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CoName
+        {
+            get
+            {
+                return _CoName;
+            }
+            set
+            {
+                OnCoNameChanging(value);
+                ReportPropertyChanging("CoName");
+                _CoName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CoName");
+                OnCoNameChanged();
+            }
+        }
+        private global::System.String _CoName;
+        partial void OnCoNameChanging(global::System.String value);
+        partial void OnCoNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal ExRate
+        {
+            get
+            {
+                return _ExRate;
+            }
+            set
+            {
+                OnExRateChanging(value);
+                ReportPropertyChanging("ExRate");
+                _ExRate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ExRate");
+                OnExRateChanged();
+            }
+        }
+        private global::System.Decimal _ExRate;
+        partial void OnExRateChanging(global::System.Decimal value);
+        partial void OnExRateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SellingExRate
+        {
+            get
+            {
+                return _SellingExRate;
+            }
+            set
+            {
+                OnSellingExRateChanging(value);
+                ReportPropertyChanging("SellingExRate");
+                _SellingExRate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SellingExRate");
+                OnSellingExRateChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SellingExRate;
+        partial void OnSellingExRateChanging(Nullable<global::System.Decimal> value);
+        partial void OnSellingExRateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Decimals
+        {
+            get
+            {
+                return _Decimals;
+            }
+            set
+            {
+                OnDecimalsChanging(value);
+                ReportPropertyChanging("Decimals");
+                _Decimals = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Decimals");
+                OnDecimalsChanged();
+            }
+        }
+        private global::System.Int32 _Decimals;
+        partial void OnDecimalsChanging(global::System.Int32 value);
+        partial void OnDecimalsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsVisibleB2C
+        {
+            get
+            {
+                return _IsVisibleB2C;
+            }
+            set
+            {
+                OnIsVisibleB2CChanging(value);
+                ReportPropertyChanging("IsVisibleB2C");
+                _IsVisibleB2C = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsVisibleB2C");
+                OnIsVisibleB2CChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsVisibleB2C;
+        partial void OnIsVisibleB2CChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsVisibleB2CChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserID
+        {
+            get
+            {
+                return _UserID;
+            }
+            set
+            {
+                OnUserIDChanging(value);
+                ReportPropertyChanging("UserID");
+                _UserID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("UserID");
+                OnUserIDChanged();
+            }
+        }
+        private global::System.String _UserID;
+        partial void OnUserIDChanging(global::System.String value);
+        partial void OnUserIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime ModDate
+        {
+            get
+            {
+                return _ModDate;
+            }
+            set
+            {
+                OnModDateChanging(value);
+                ReportPropertyChanging("ModDate");
+                _ModDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ModDate");
+                OnModDateChanged();
+            }
+        }
+        private global::System.DateTime _ModDate;
+        partial void OnModDateChanging(global::System.DateTime value);
+        partial void OnModDateChanged();
+
+        #endregion
+    
     }
     
     /// <summary>
@@ -7950,6 +8231,30 @@ namespace meis007Model
         private Nullable<global::System.DateTime> _ModDate;
         partial void OnModDateChanging(Nullable<global::System.DateTime> value);
         partial void OnModDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> RateSDID
+        {
+            get
+            {
+                return _RateSDID;
+            }
+            set
+            {
+                OnRateSDIDChanging(value);
+                ReportPropertyChanging("RateSDID");
+                _RateSDID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RateSDID");
+                OnRateSDIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _RateSDID;
+        partial void OnRateSDIDChanging(Nullable<global::System.Int32> value);
+        partial void OnRateSDIDChanged();
 
         #endregion
     

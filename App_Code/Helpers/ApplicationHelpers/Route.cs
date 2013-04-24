@@ -10,7 +10,7 @@ public static class Route
 {
     public static string GetRedirectPath()
     {
-        string returnUrl = "/rtbtc/Home.aspx";
+        string returnUrl = "/rtbtc/home.aspx";
         return returnUrl;
     }
 

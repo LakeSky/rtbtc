@@ -57,10 +57,10 @@ public partial class Orders_checkout : PublicApplicationPage
                     //DbParameter.GetCustomerId
                     CustConsultantID = CurrentUser.Id(),
                     CustomerDisplayPrice = suppliersHotelsInfo.LCAP,
-                    FCSalesAmt = suppliersHotelsInfo.FCAP,
+                    FCSalesAmt = suppliersHotelsInfo.LCAP, 
                     FCurrencyID = suppliersHotelsInfo.CurrencyCode,
-                    BaseCurrencyID = suppliersHotelsInfo.CurrencyCode,
-                    ExRate = suppliersHotelsInfo.LCAP,
+                    BaseCurrencyID = suppliersHotelsInfo.CurrencyCode,//take sys paramaters
+                    ExRate = suppliersHotelsInfo.LCAP, //take ex rate
                     SalesAmt = suppliersHotelsInfo.LCAP,
                     SupplierID = long.Parse(suppliersHotelsInfo.SupplierID.ToString()),
                     SupplierRefNo = "XXX",
@@ -68,7 +68,7 @@ public partial class Orders_checkout : PublicApplicationPage
                     SuppreMarks = "XXX",
                     PayCurrID = suppliersHotelsInfo.CurrencyCode,
                     PayExRate = suppliersHotelsInfo.ExchRate,
-                    PayAmt = suppliersHotelsInfo.LCAP,
+                    PayAmt = suppliersHotelsInfo.LCAP,//to be added fcas fcaps
                     serviceid = DbParameter.GetServiceId("HOTELS"),
                     CheckIN = x.fromDate,
                     checkOUT = x.toDate,
