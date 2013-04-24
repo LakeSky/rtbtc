@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Dynamic;
+using System.Web.UI.WebControls;
 
 /// <summary>
 /// Summary description for PublicApplicationPage
@@ -117,6 +118,11 @@ public class PublicApplicationPage : System.Web.UI.Page
         var shoppingHelper = GetShoppingHelperObject();
         shoppingHelper.HotelDetails = null;
         Session["StoredShopping"] = shoppingHelper;
+    }
+
+    public string GetMasteCurrencySelectedValue() {
+        var dropDown = Page.Master.FindControl("ddlMasterCurency") as DropDownList;
+        return dropDown.SelectedValue;
     }
 
 }

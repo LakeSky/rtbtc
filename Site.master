@@ -45,8 +45,9 @@
                   |
                   <a href="<%= _forgotPasswordPath %>">Forgot Password?</a>
                 <%} %>
+                |
                 <asp:DropDownList ID="ddlMasterCurency" runat="server" AutoPostBack="True" 
-                      onselectedindexchanged="ddlMasterCurency_SelectedIndexChanged" CssClass="ddl-small"></asp:DropDownList>
+                      onselectedindexchanged="ddlMasterCurency_SelectedIndexChanged" CssClass="ddl-custom"></asp:DropDownList>
               </div>
             </div>
             <div class="clear"></div>

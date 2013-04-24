@@ -7,11 +7,13 @@ using System.Web.UI.WebControls;
 using PagerWebControls;
 using meis007Model;
 
-public partial class Packages_index : System.Web.UI.Page
+public partial class Packages_index : PublicApplicationPage
 {
     meis007Entities _meis007Entities;
+    public string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
+        masterCurrencyValue = GetMasteCurrencySelectedValue();
         if (!IsPostBack)
         {
             _meis007Entities = new meis007Entities();

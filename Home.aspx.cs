@@ -14,8 +14,10 @@ public partial class Home : PublicApplicationPage
     public List<ShoppingRoomHelper> ShoppingRoomsList;
     public int RoomsCount;
     public string CityCode;
+    public string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
+        masterCurrencyValue = GetMasteCurrencySelectedValue();
         if (!IsPostBack) {
             errorDiv.Visible = false;
         }

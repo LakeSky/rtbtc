@@ -96,6 +96,10 @@ legend
   width: 55px;
 }
 
+.ddl-custom{
+  width: 85px;
+}
+
 .media-image{
   margin-bottom: 11px;
   border: 5px solid #595959;

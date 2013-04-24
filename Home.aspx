@@ -162,7 +162,7 @@
         <div data-url="/rtbtc/packages/show.aspx?id=<%# Eval("PacId") %>">
           <img alt="" src="<%# Eval("DisplayImage") %>" /><br />
           <div class="thumbnail-text">
-          <span class="price blue-font">SR. <%# Eval("PacValueB2C")%></span>
+          <span class="price blue-font"><%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("PacValueB2C"), masterCurrencyValue) %></span>
           <span class="name"><%# PackageHelper.FormattedPackageName(Eval("PacName"), 15)%></span>
           </div>
         </div>

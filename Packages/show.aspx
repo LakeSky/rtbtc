@@ -18,7 +18,7 @@
     <div class="span12 main-slider">
       <h3 class="custom-h3 blue-font">
         <span class="left"><%= packageHeader.PacName %></span>
-        <span class="right">Price Per Person SR. <%= packageHeader.PacValueB2C %></span>
+        <span class="right">Price Per Person <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%= ApplicationObject.FormattedCurrencyDisplayPrice(packageHeader.PacValueB2C, masterCurrencyValue) %></span>
         <div class="clear"></div>
       </h3>
       <div class="slider-wrapper theme-default" style="width: 950px;height: 200px;">

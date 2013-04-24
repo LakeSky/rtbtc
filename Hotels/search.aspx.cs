@@ -27,15 +27,15 @@ public partial class Hotels_Index : PublicApplicationPage
             Response.Redirect(Route.GetRootPath("home.aspx"));
             return;
         }
-        _ShoppingHotel = _ShoppingHelper.HotelDetails;
-        ShoppingRoomsList = _ShoppingHotel.RoomDetails;
-        txtCity.Text = _ShoppingHotel.CityName;
-        txtStartDate.Text = _ShoppingHotel.FromDate;
-        txtEndDate.Text = _ShoppingHotel.ToDate;
-        CityCode = _ShoppingHotel.CityCode;
-        RoomsCount = ShoppingRoomsList.Count;
         if (!IsPostBack)
         {
+            _ShoppingHotel = _ShoppingHelper.HotelDetails;
+            ShoppingRoomsList = _ShoppingHotel.RoomDetails;
+            txtCity.Text = _ShoppingHotel.CityName;
+            txtStartDate.Text = _ShoppingHotel.FromDate;
+            txtEndDate.Text = _ShoppingHotel.ToDate;
+            CityCode = _ShoppingHotel.CityCode;
+            RoomsCount = ShoppingRoomsList.Count;
             var supplierHotelObjectHelper = new SupplierHotelObjectHelper(_ShoppingHotel, true);
             var data = supplierHotelObjectHelper.GetHotels();
             BindStarRatingsRepeater();

@@ -12,8 +12,10 @@ public partial class Packages_book : PublicApplicationPage
     public PackageHeader packageHeader;
     public string minDate;
     public string maxDate;
+    public string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
+        masterCurrencyValue = GetMasteCurrencySelectedValue();
         long id;
         if (Request.QueryString["id"] == null || !long.TryParse(Request.QueryString["id"], out id))
         {

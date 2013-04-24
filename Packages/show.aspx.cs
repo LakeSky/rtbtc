@@ -6,14 +6,16 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using meis007Model;
 
-public partial class Packages_show : System.Web.UI.Page
+public partial class Packages_show : PublicApplicationPage
 {
     meis007Entities _meis007Entities;
     public PackageHeader packageHeader;
     public string description = "";
     PackageDescription packageDescription;
+    public string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
+        masterCurrencyValue = GetMasteCurrencySelectedValue();
         long id;
         if (Request.QueryString["id"] == null || !long.TryParse(Request.QueryString["id"], out id))
         {

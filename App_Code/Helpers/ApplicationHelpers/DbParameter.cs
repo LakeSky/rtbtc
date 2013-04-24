@@ -66,4 +66,22 @@ public static class DbParameter
     public static string GetBookingStatus() {
         return "CC";
     }
+
+    public static string GetBaseCurrency() {
+        var baseCurrency = "SAR";
+        SqlConnection _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
+        _sqlConnection.Open();
+        SqlCommand _sqlCommand = new SqlCommand("SELECT * FROM SysParameters;", _sqlConnection);
+        SqlDataReader _sqlDataReader = _sqlCommand.ExecuteReader();
+        while (_sqlDataReader.Read())
+        {
+            if (_sqlDataReader["ParameterName"].ToString() == "SystemCurrency")
+            {
+                baseCurrency = _sqlDataReader["ParameterValue"].ToString();
+            }
+        }
+        _sqlConnection.Close();
+        baseCurrency = string.IsNullOrEmpty(baseCurrency) ? "SAR" : baseCurrency;
+        return baseCurrency;
+    }
 }
