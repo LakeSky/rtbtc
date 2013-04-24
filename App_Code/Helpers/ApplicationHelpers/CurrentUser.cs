@@ -9,7 +9,7 @@ using System.Web.Security;
 /// </summary>
 public static class CurrentUser
 {
-    public static int Id()
+    public static long Id()
     {
         var cookie = FormsAuthentication.Decrypt(HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
         //return int.Parse(HttpContext.Current.Session["currentUserId"].ToString());

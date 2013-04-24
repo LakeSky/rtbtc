@@ -9,7 +9,7 @@ using meis007Model;
 /// </summary>
 public static class BookingsIndexObjectHelper
 {
-    public static List<BookingIndex> GetBookings()
+    public static List<BookingIndex> GetBookings(long bookingId)
     {
         BookingIndex bookingIndex;
         BookingIndexGuest bookingIndexGuest;
@@ -35,7 +35,7 @@ public static class BookingsIndexObjectHelper
                    on pm.CityID equals ci.CityID
                    join co in _meis007Entities.CountryMasters
                    on ci.CountryID equals co.CountryID
-                   where pd.BkgID != null && bg.CustConsultantID == id
+                   where pd.BkgID != null && bg.CustConsultantID == id && bg.BkgID == bookingId
                    orderby bg.BkgID
                    select new
                    {

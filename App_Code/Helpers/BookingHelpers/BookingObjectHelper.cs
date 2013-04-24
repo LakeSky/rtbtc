@@ -13,7 +13,7 @@ using System.Dynamic;
 /// </summary>
 public static class BookingObjectHelper
 {
-    public static BookingHotelDetails GetHotelDetails(meis007Entities _meis007Entities, long supplierHotelInfoId, ShoppingHelper _shoppingHelper, int? currentUserId)
+    public static BookingHotelDetails GetHotelDetails(meis007Entities _meis007Entities, long supplierHotelInfoId, ShoppingHelper _shoppingHelper, long? currentUserId)
     {
         var NoOfPassengers = 0;
         decimal price = decimal.Parse("0");
@@ -82,7 +82,7 @@ public static class BookingObjectHelper
         return bookingHotelDetails;
     }
 
-    public static List<BookingGuestDetails> GetGuests(ShoppingHelper _shoppingHelper, meis007Entities _meis007Entities, int? currentUserId)
+    public static List<BookingGuestDetails> GetGuests(ShoppingHelper _shoppingHelper, meis007Entities _meis007Entities, long? currentUserId)
     {
         dynamic obj = new ExpandoObject();
         var childAgeMin = DateTime.Now.AddYears(-2);
@@ -144,7 +144,7 @@ public static class BookingObjectHelper
         return bookingGuestDetails;
     }
 
-    public static List<BookingGuestDetails> AppendData(List<BookingGuestDetails> bookingGuestDetails, List<TempGuestType> tempGuestTypeList, string type, int count, int objCount, dynamic obj, int? currentUserId)
+    public static List<BookingGuestDetails> AppendData(List<BookingGuestDetails> bookingGuestDetails, List<TempGuestType> tempGuestTypeList, string type, int count, int objCount, dynamic obj, long? currentUserId)
     {
         string title, firstName, middleName, lastName, age;
         int index = 0;

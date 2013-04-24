@@ -49,7 +49,7 @@ public class PublicApplicationPage : System.Web.UI.Page
         Session["StoredShopping"] = shoppingHelper;
     }
 
-    protected int? CheckAndGetCurrentUserId() {
+    protected long? CheckAndGetCurrentUserId() {
         if (!User.Identity.IsAuthenticated) {
             return null;
         }
