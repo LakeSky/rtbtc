@@ -38,7 +38,7 @@ public partial class Bookings_index : System.Web.UI.Page
     }
 
     protected void BindDataToGridView()
-    {
+    {   
         var userId = CurrentUser.Id();
         _meis007Entities = new meis007Entities();
         var data = from pm in _meis007Entities.ProductMasters

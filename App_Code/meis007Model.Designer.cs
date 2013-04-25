@@ -439,22 +439,6 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<SuppliersHotelsInfo> SuppliersHotelsInfoes
-        {
-            get
-            {
-                if ((_SuppliersHotelsInfoes == null))
-                {
-                    _SuppliersHotelsInfoes = base.CreateObjectSet<SuppliersHotelsInfo>("SuppliersHotelsInfoes");
-                }
-                return _SuppliersHotelsInfoes;
-            }
-        }
-        private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<XMLHotel> XMLHotels
         {
             get
@@ -515,6 +499,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<CurrencyMaster> _CurrencyMasters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SuppliersHotelsInfo> SuppliersHotelsInfoes
+        {
+            get
+            {
+                if ((_SuppliersHotelsInfoes == null))
+                {
+                    _SuppliersHotelsInfoes = base.CreateObjectSet<SuppliersHotelsInfo>("SuppliersHotelsInfoes");
+                }
+                return _SuppliersHotelsInfoes;
+            }
+        }
+        private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
 
         #endregion
         #region AddTo Methods
@@ -696,14 +696,6 @@ namespace meis007Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the SuppliersHotelsInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
-        {
-            base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the XMLHotels EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToXMLHotels(XMLHotel xMLHotel)
@@ -733,6 +725,14 @@ namespace meis007Model
         public void AddToCurrencyMasters(CurrencyMaster currencyMaster)
         {
             base.AddObject("CurrencyMasters", currencyMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SuppliersHotelsInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
+        {
+            base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
         }
 
         #endregion
@@ -8069,24 +8069,120 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> AvrNightPrice
+        public Nullable<global::System.Decimal> AvrNightPricePay
         {
             get
             {
-                return _AvrNightPrice;
+                return _AvrNightPricePay;
             }
             set
             {
-                OnAvrNightPriceChanging(value);
-                ReportPropertyChanging("AvrNightPrice");
-                _AvrNightPrice = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("AvrNightPrice");
-                OnAvrNightPriceChanged();
+                OnAvrNightPricePayChanging(value);
+                ReportPropertyChanging("AvrNightPricePay");
+                _AvrNightPricePay = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AvrNightPricePay");
+                OnAvrNightPricePayChanged();
             }
         }
-        private Nullable<global::System.Decimal> _AvrNightPrice;
-        partial void OnAvrNightPriceChanging(Nullable<global::System.Decimal> value);
-        partial void OnAvrNightPriceChanged();
+        private Nullable<global::System.Decimal> _AvrNightPricePay;
+        partial void OnAvrNightPricePayChanging(Nullable<global::System.Decimal> value);
+        partial void OnAvrNightPricePayChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> AvrNightPriceSale
+        {
+            get
+            {
+                return _AvrNightPriceSale;
+            }
+            set
+            {
+                OnAvrNightPriceSaleChanging(value);
+                ReportPropertyChanging("AvrNightPriceSale");
+                _AvrNightPriceSale = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AvrNightPriceSale");
+                OnAvrNightPriceSaleChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _AvrNightPriceSale;
+        partial void OnAvrNightPriceSaleChanging(Nullable<global::System.Decimal> value);
+        partial void OnAvrNightPriceSaleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> MarkUp
+        {
+            get
+            {
+                return _MarkUp;
+            }
+            set
+            {
+                OnMarkUpChanging(value);
+                ReportPropertyChanging("MarkUp");
+                _MarkUp = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MarkUp");
+                OnMarkUpChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _MarkUp;
+        partial void OnMarkUpChanging(Nullable<global::System.Int32> value);
+        partial void OnMarkUpChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TPABC
+        {
+            get
+            {
+                return _TPABC;
+            }
+            set
+            {
+                OnTPABCChanging(value);
+                ReportPropertyChanging("TPABC");
+                _TPABC = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TPABC");
+                OnTPABCChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TPABC;
+        partial void OnTPABCChanging(Nullable<global::System.Decimal> value);
+        partial void OnTPABCChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> RateSDID
+        {
+            get
+            {
+                return _RateSDID;
+            }
+            set
+            {
+                OnRateSDIDChanging(value);
+                ReportPropertyChanging("RateSDID");
+                _RateSDID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RateSDID");
+                OnRateSDIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _RateSDID;
+        partial void OnRateSDIDChanging(Nullable<global::System.Int32> value);
+        partial void OnRateSDIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -8231,30 +8327,6 @@ namespace meis007Model
         private Nullable<global::System.DateTime> _ModDate;
         partial void OnModDateChanging(Nullable<global::System.DateTime> value);
         partial void OnModDateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> RateSDID
-        {
-            get
-            {
-                return _RateSDID;
-            }
-            set
-            {
-                OnRateSDIDChanging(value);
-                ReportPropertyChanging("RateSDID");
-                _RateSDID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("RateSDID");
-                OnRateSDIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _RateSDID;
-        partial void OnRateSDIDChanging(Nullable<global::System.Int32> value);
-        partial void OnRateSDIDChanged();
 
         #endregion
     

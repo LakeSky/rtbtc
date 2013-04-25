@@ -68,7 +68,7 @@ public class SupplierHotelObjectHelper
             hotelInfoId = long.Parse(_sqlDataReader["HotelInfoID"].ToString());
             if (_sqlDataReader["LCAP"] != null && _sqlDataReader["NumOfPassengers"] != null && _sqlDataReader["NumOfPassengers"].ToString() != "0")
             {
-                price = Math.Floor(decimal.Parse(_sqlDataReader["AvrNightPrice"].ToString()));
+                price = Math.Floor(decimal.Parse(_sqlDataReader["AvrNightPriceSale"].ToString()));
             }
             roomName = _sqlDataReader["RoomName"].ToString();
             if (!string.IsNullOrEmpty(_sqlDataReader["BBName"].ToString())) {

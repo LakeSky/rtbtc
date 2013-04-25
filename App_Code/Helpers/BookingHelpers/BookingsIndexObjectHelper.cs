@@ -47,7 +47,7 @@ public static class BookingsIndexObjectHelper
                        Adults = bg.Adults,
                        Kids = bg.Children,
                        Infants = bg.Infants,
-                       AvgAmount = hi.AvrNightPrice,
+                       AvgAmount = hi.AvrNightPriceSale,
                        Amount = bg.CustomerDisplayPrice,
                        RoomType = hi.RoomType,
                        RoomName = hi.RoomName,
