@@ -1,0 +1,42 @@
+.ui-tabs-hide {
+	display: none;
+}
+.tabnav 		{
+	display:block; overflow:hidden;
+	margin:0px 0 10px -20px; padding:0;
+}
+.tabnav li {
+	display: block; float:left; margin-top:0px;
+}
+.tabnav li a {
+	text-decoration: none;
+	padding: 0px 0px;
+	display:block;
+	margin-left:20px;
+}
+.tabnav li.ui-tabs-selected a,
+.tabnav li a:hover {
+	text-decoration: none;
+	color:#fff;
+}
+.tabnav .title_inner					{font-weight:400; text-transform:uppercase;font-family: 'Oswald', sans-serif; white-space:nowrap; font-size:1.143em;}
+.tabnav li.ui-tabs-selected .title_wrapper,
+.tabnav a:hover .title_wrapper			{
+		background: #3b3b3b;
+-webkit-box-shadow: inset 0px 0px 12px 0px #000;
+        box-shadow: inset 0px 0px 12px 0px #000;
+}
+#tabvanilla		{ display:inherit;}
+
+#description,
+#tabvanilla_pinfo 
+	.contentContainer ,
+#tabvanilla 
+	.contentContainer,
+#tabvanilla_nested 
+	.contentContainer {
+  padding: 10px 0 30px 0;
+}
+.tabdiv .tags 		{padding-top:10px; margin-bottom:30px;}
+.tabdiv .tags .infoBoxContents		{line-height:1.5em; margin:0;}
+
