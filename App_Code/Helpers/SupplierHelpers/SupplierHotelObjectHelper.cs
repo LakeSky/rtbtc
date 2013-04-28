@@ -121,6 +121,35 @@ public class SupplierHotelObjectHelper
         return supplierFactory.GetSuppliersHotelsInfo(out status);
     }
 
+    public static List<SupplierHotelHelper> GetHomePageHotels(meis007Entities _meis007Entities)
+    {
+        var defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
+        string imagePath = "";
+        var _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
+        _sqlConnection.Open();
+        var _sqlCommand = new SqlCommand("spProductMasterTest", _sqlConnection);
+        _sqlCommand.CommandType = CommandType.StoredProcedure;
+        _sqlCommand.Parameters.AddWithValue("@Trans", "B2CHome");
+        var _sqlDataReader = _sqlCommand.ExecuteReader();
+        SupplierHotelHelper supplierHotelHelper;
+        List<SupplierHotelHelper> supplierHotelHelperList = new List<SupplierHotelHelper>();
+        while (_sqlDataReader.Read())
+        {
+           imagePath = string.IsNullOrEmpty(_sqlDataReader["DefaultImagePath"].ToString()) ? defaultImagePath : _sqlDataReader["DefaultImagePath"].ToString();
+           supplierHotelHelper = new SupplierHotelHelper
+           {
+               ProductName = _sqlDataReader["ProductName"].ToString(),
+               City = _sqlDataReader["CityName"].ToString(),
+               ProductMasterId = long.Parse(_sqlDataReader["ProductId"].ToString()),
+               ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
+               ProductImagePath = imagePath
+           };
+           supplierHotelHelperList.Add(supplierHotelHelper);
+        }
+        _sqlConnection.Close();
+        return supplierHotelHelperList;
+    }
+
 }
 
 public static class SupplierHotelObjectSortHelper

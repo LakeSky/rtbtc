@@ -1,0 +1,28 @@
+﻿#screenshot
+{
+    width: 170px;
+}
+#screenshot img
+{
+    width: 170px;
+    height: 137px;
+}
+#screenshotCategory img
+{
+    width: 100px !important;
+    height: 100px !important;
+}
+div[id*="foo"] a
+{
+    width: 152px;
+    height: px;
+}
+.col_10
+{
+    width: 220px;
+}
+#mainWrapper
+{
+    width: 1180px;
+}
+

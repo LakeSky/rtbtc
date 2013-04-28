@@ -18,32 +18,38 @@ public partial class Home : PublicApplicationPage
     protected void Page_Load(object sender, EventArgs e)
     {
         masterCurrencyValue = GetMasteCurrencySelectedValue();
-        if (!IsPostBack) {
-            errorDiv.Visible = false;
-        RoomsCount = 1;
-        _ShoppingHelper = GetShoppingHelperObject();
-        if (_ShoppingHelper != null && _ShoppingHelper.HotelDetails != null) {
-            _ShoppingHotel = _ShoppingHelper.HotelDetails;
-            ShoppingRoomsList = _ShoppingHotel.RoomDetails;
-            txtCity.Text = _ShoppingHotel.CityName;
-            txtStartDate.Text = _ShoppingHotel.FromDate;
-            txtEndDate.Text = _ShoppingHotel.ToDate;
-            RoomsCount = ShoppingRoomsList.Count;
-            CityCode = _ShoppingHotel.CityCode;
-        }
-        _meis007Entities = new meis007Entities();
-        var data = _meis007Entities.PackageHeaders.Where(x => x.InService == true).OrderBy(x => x.DisplaySeq).ToList();
-        rptrPackages.DataSource = data;
-        rptrPackages.DataBind();
+        if (!IsPostBack)
+        {
+            //errorDiv.Visible = false;
+            RoomsCount = 1;
+            _ShoppingHelper = GetShoppingHelperObject();
+            if (_ShoppingHelper != null && _ShoppingHelper.HotelDetails != null)
+            {
+                _ShoppingHotel = _ShoppingHelper.HotelDetails;
+                ShoppingRoomsList = _ShoppingHotel.RoomDetails;
+                //txtCity.Text = _ShoppingHotel.CityName;
+                //txtStartDate.Text = _ShoppingHotel.FromDate;
+                //txtEndDate.Text = _ShoppingHotel.ToDate;
+                RoomsCount = ShoppingRoomsList.Count;
+                CityCode = _ShoppingHotel.CityCode;
+            }
+            _meis007Entities = new meis007Entities();
+            var packages = _meis007Entities.PackageHeaders.Where(x => x.InService == true).OrderBy(x => x.DisplaySeq).Take(4).ToList();
+            rptrPackages.DataSource = packages;
+            rptrPackages.DataBind();
+            var hotels = SupplierHotelObjectHelper.GetHomePageHotels(_meis007Entities);
+            rptrHotels.DataSource = hotels;
+            rptrHotels.DataBind();
         }
     }
 
     protected void btnSubscribe_Click(object sender, EventArgs e)
     {
         _meis007Entities = new meis007Entities();
-        var _email = txtEmail.Text.Trim();
+        var _email = ""; // txtEmail.Text.Trim();
         var count = _meis007Entities.B2CCustomerinfo.Where(x => x.PaxEmail == _email).Count();
-        if (count > 0) {
+        if (count > 0)
+        {
             Session["ErrorMessage"] = "Email Already Taken!";
             Response.Redirect(Request.Url.AbsoluteUri);
             return;
@@ -57,7 +63,7 @@ public partial class Home : PublicApplicationPage
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        UpdateShoppingHelperObject(txtCity.Text, txtStartDate.Text, txtEndDate.Text);
+        //UpdateShoppingHelperObject(txtCity.Text, txtStartDate.Text, txtEndDate.Text);
         Response.Redirect(Route.GetRootPath("hotels/search.aspx"));
     }
 }

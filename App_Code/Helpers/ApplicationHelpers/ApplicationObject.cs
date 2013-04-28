@@ -46,6 +46,9 @@ public static  class ApplicationObject
     }
 
     public static decimal FormattedCurrencyDisplayPrice(object price, string selectedValue) {
+        if (price == null) {
+            return decimal.Parse("0.0");
+        }
         decimal formattedPrice = decimal.Parse(price.ToString());
         var masterCurrency = GetMasterCurrency(selectedValue);
         var baseCurrency = GetBaseCurrency();
