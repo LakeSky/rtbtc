@@ -10,6 +10,7 @@
           <EntitySet Name="Amenities" EntityType="meis007Model.Store.Amenities" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="B2CCustomerinfo" EntityType="meis007Model.Store.B2CCustomerinfo" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="B2CPaxinfo" EntityType="meis007Model.Store.B2CPaxinfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="B2CSiteImages" EntityType="meis007Model.Store.B2CSiteImages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BasketSequence" EntityType="meis007Model.Store.BasketSequence" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BkgMaster" EntityType="meis007Model.Store.BkgMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CityMaster" EntityType="meis007Model.Store.CityMaster" store:Type="Tables" Schema="dbo" />
@@ -157,6 +158,22 @@
           <Property Name="PaxLastName" Type="nvarchar" MaxLength="100" />
           <Property Name="PaxDOB" Type="date" />
           <Property Name="Nationality" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="B2CSiteImages">
+          <Key>
+            <PropertyRef Name="SNo" />
+          </Key>
+          <Property Name="SNo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="ImageDesc" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="Panel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Inservice" Type="bit" Nullable="false" />
+          <Property Name="SeqID" Type="int" Nullable="false" />
+          <Property Name="RedirectPath" Type="nvarchar" MaxLength="100" />
+          <Property Name="Price" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Userid" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ModDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="BasketSequence">
           <Key>
@@ -772,6 +789,7 @@
           <EntitySet Name="BasketSequences" EntityType="meis007Model.BasketSequence" />
           <EntitySet Name="CurrencyMasters" EntityType="meis007Model.CurrencyMaster" />
           <EntitySet Name="SuppliersHotelsInfoes" EntityType="meis007Model.SuppliersHotelsInfo" />
+          <EntitySet Name="B2CSiteImages" EntityType="meis007Model.B2CSiteImages" />
         </EntityContainer>
         <EntityType Name="AmadeusTable">
           <Key>
@@ -1375,6 +1393,22 @@
           <Property Type="String" Name="Address" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="ModDate" />
         </EntityType>
+        <EntityType Name="B2CSiteImages">
+          <Key>
+            <PropertyRef Name="SNo" />
+          </Key>
+          <Property Type="Int32" Name="SNo" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ImagePath" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImageDesc" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Panel" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Inservice" Nullable="false" />
+          <Property Type="Int32" Name="SeqID" Nullable="false" />
+          <Property Type="String" Name="RedirectPath" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Price" Precision="12" Scale="2" />
+          <Property Type="String" Name="Title" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Userid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModDate" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1704,6 +1738,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="B2CSiteImages">
+            <EntityTypeMapping TypeName="meis007Model.B2CSiteImages">
+              <MappingFragment StoreEntitySet="B2CSiteImages">
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="RedirectPath" ColumnName="RedirectPath" />
+                <ScalarProperty Name="SeqID" ColumnName="SeqID" />
+                <ScalarProperty Name="Inservice" ColumnName="Inservice" />
+                <ScalarProperty Name="Panel" ColumnName="Panel" />
+                <ScalarProperty Name="ImageDesc" ColumnName="ImageDesc" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="SNo" ColumnName="SNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1836,6 +1887,7 @@
         <EntityTypeShape EntityType="meis007Model.BasketSequence" Width="1.5" PointX="15.375" PointY="16.75" Height="1.4033821614583246" />
         <EntityTypeShape EntityType="meis007Model.CurrencyMaster" Width="1.5" PointX="17.375" PointY="0.75" Height="2.7494921875000102" />
         <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="17.375" PointY="8.75" Height="6.78782226562501" />
+        <EntityTypeShape EntityType="meis007Model.B2CSiteImages" Width="1.5" PointX="17.375" PointY="16.75" Height="3.1340950520833246" />
       </Diagram>
     </Diagrams>
   </Designer>

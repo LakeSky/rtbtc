@@ -515,6 +515,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<B2CSiteImages> B2CSiteImages
+        {
+            get
+            {
+                if ((_B2CSiteImages == null))
+                {
+                    _B2CSiteImages = base.CreateObjectSet<B2CSiteImages>("B2CSiteImages");
+                }
+                return _B2CSiteImages;
+            }
+        }
+        private ObjectSet<B2CSiteImages> _B2CSiteImages;
 
         #endregion
         #region AddTo Methods
@@ -733,6 +749,14 @@ namespace meis007Model
         public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
         {
             base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the B2CSiteImages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToB2CSiteImages(B2CSiteImages b2CSiteImages)
+        {
+            base.AddObject("B2CSiteImages", b2CSiteImages);
         }
 
         #endregion
@@ -1752,6 +1776,313 @@ namespace meis007Model
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="meis007Model", Name="B2CSiteImages")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class B2CSiteImages : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new B2CSiteImages object.
+        /// </summary>
+        /// <param name="sNo">Initial value of the SNo property.</param>
+        /// <param name="imagePath">Initial value of the ImagePath property.</param>
+        /// <param name="imageDesc">Initial value of the ImageDesc property.</param>
+        /// <param name="inservice">Initial value of the Inservice property.</param>
+        /// <param name="seqID">Initial value of the SeqID property.</param>
+        /// <param name="userid">Initial value of the Userid property.</param>
+        /// <param name="modDate">Initial value of the ModDate property.</param>
+        public static B2CSiteImages CreateB2CSiteImages(global::System.Int32 sNo, global::System.String imagePath, global::System.String imageDesc, global::System.Boolean inservice, global::System.Int32 seqID, global::System.String userid, global::System.DateTime modDate)
+        {
+            B2CSiteImages b2CSiteImages = new B2CSiteImages();
+            b2CSiteImages.SNo = sNo;
+            b2CSiteImages.ImagePath = imagePath;
+            b2CSiteImages.ImageDesc = imageDesc;
+            b2CSiteImages.Inservice = inservice;
+            b2CSiteImages.SeqID = seqID;
+            b2CSiteImages.Userid = userid;
+            b2CSiteImages.ModDate = modDate;
+            return b2CSiteImages;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SNo
+        {
+            get
+            {
+                return _SNo;
+            }
+            set
+            {
+                if (_SNo != value)
+                {
+                    OnSNoChanging(value);
+                    ReportPropertyChanging("SNo");
+                    _SNo = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SNo");
+                    OnSNoChanged();
+                }
+            }
+        }
+        private global::System.Int32 _SNo;
+        partial void OnSNoChanging(global::System.Int32 value);
+        partial void OnSNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ImagePath
+        {
+            get
+            {
+                return _ImagePath;
+            }
+            set
+            {
+                OnImagePathChanging(value);
+                ReportPropertyChanging("ImagePath");
+                _ImagePath = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ImagePath");
+                OnImagePathChanged();
+            }
+        }
+        private global::System.String _ImagePath;
+        partial void OnImagePathChanging(global::System.String value);
+        partial void OnImagePathChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ImageDesc
+        {
+            get
+            {
+                return _ImageDesc;
+            }
+            set
+            {
+                OnImageDescChanging(value);
+                ReportPropertyChanging("ImageDesc");
+                _ImageDesc = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ImageDesc");
+                OnImageDescChanged();
+            }
+        }
+        private global::System.String _ImageDesc;
+        partial void OnImageDescChanging(global::System.String value);
+        partial void OnImageDescChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Panel
+        {
+            get
+            {
+                return _Panel;
+            }
+            set
+            {
+                OnPanelChanging(value);
+                ReportPropertyChanging("Panel");
+                _Panel = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Panel");
+                OnPanelChanged();
+            }
+        }
+        private global::System.String _Panel;
+        partial void OnPanelChanging(global::System.String value);
+        partial void OnPanelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Inservice
+        {
+            get
+            {
+                return _Inservice;
+            }
+            set
+            {
+                OnInserviceChanging(value);
+                ReportPropertyChanging("Inservice");
+                _Inservice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Inservice");
+                OnInserviceChanged();
+            }
+        }
+        private global::System.Boolean _Inservice;
+        partial void OnInserviceChanging(global::System.Boolean value);
+        partial void OnInserviceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SeqID
+        {
+            get
+            {
+                return _SeqID;
+            }
+            set
+            {
+                OnSeqIDChanging(value);
+                ReportPropertyChanging("SeqID");
+                _SeqID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SeqID");
+                OnSeqIDChanged();
+            }
+        }
+        private global::System.Int32 _SeqID;
+        partial void OnSeqIDChanging(global::System.Int32 value);
+        partial void OnSeqIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String RedirectPath
+        {
+            get
+            {
+                return _RedirectPath;
+            }
+            set
+            {
+                OnRedirectPathChanging(value);
+                ReportPropertyChanging("RedirectPath");
+                _RedirectPath = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RedirectPath");
+                OnRedirectPathChanged();
+            }
+        }
+        private global::System.String _RedirectPath;
+        partial void OnRedirectPathChanging(global::System.String value);
+        partial void OnRedirectPathChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> Price
+        {
+            get
+            {
+                return _Price;
+            }
+            set
+            {
+                OnPriceChanging(value);
+                ReportPropertyChanging("Price");
+                _Price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Price");
+                OnPriceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _Price;
+        partial void OnPriceChanging(Nullable<global::System.Decimal> value);
+        partial void OnPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Userid
+        {
+            get
+            {
+                return _Userid;
+            }
+            set
+            {
+                OnUseridChanging(value);
+                ReportPropertyChanging("Userid");
+                _Userid = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Userid");
+                OnUseridChanged();
+            }
+        }
+        private global::System.String _Userid;
+        partial void OnUseridChanging(global::System.String value);
+        partial void OnUseridChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime ModDate
+        {
+            get
+            {
+                return _ModDate;
+            }
+            set
+            {
+                OnModDateChanging(value);
+                ReportPropertyChanging("ModDate");
+                _ModDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ModDate");
+                OnModDateChanged();
+            }
+        }
+        private global::System.DateTime _ModDate;
+        partial void OnModDateChanging(global::System.DateTime value);
+        partial void OnModDateChanged();
+
+        #endregion
+    
     }
     
     /// <summary>

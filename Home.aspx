@@ -29,84 +29,39 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
   <div class="row row_2 container_24">
     <div class="grid_24">
-      <div class="camera_wrap" id="camera_wrap_1">
-        <div data-src="/rtbtc/images/template/slider/banner_slider_01.jpg" data-thumb="/rtbtc/images/template/slider/banner_slider_01.jpg" class="slider_block">
-          <div class="camera_caption moveFromRight">
-            <span class="slider_text_1">The New Canon PowerShot SX240 HS</span> <span class="slider_text_2">
-              English Description - Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-              sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-              Ut wisi enim ad minim...
-            </span>
-            <span class="slider_text_3">
-              <small>for only</small>
-              <i>$</i>
-              <b>139.95</b>
-            </span>
-            <span class="slider_text_4">
-              <a href="http://www.responsive-shop.com/osc/tstore/3/redirect.php?action=slideshow_banner&amp;goto=101&amp;osCsid=qKSS-ugxZQ37A3jke2owD0" target="_self">
-                <strong class="button_slider">
-                  <strong class="button_bg">
-                    <strong></strong>
-                  </strong>
-                  <strong class="button_text">SHOP NOW!</strong>
-                </strong>
-              </a>
-            </span>
-          </div>
-        </div>
-        <div data-src="/rtbtc/images/template/slider/banner_slider_02.jpg" data-thumb="/rtbtc/images/template/slider/banner_slider_02.jpg" class="slider_block">
-          <div class="camera_caption moveFromRight">
-            <span class="slider_text_1">
-              iMac All-in-One Poweful Desktop
-            </span>
-            <span class="slider_text_2">
-              English Description - Veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-              nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit
-              in vulputate velit esse...
-            </span>
-            <span class="slider_text_3">
-              <small>for only</small>
-              <i>$</i>
-              <b>1199.00</b>
-            </span>
-            <span class="slider_text_4">
-              <a href="http://www.responsive-shop.com/osc/tstore/3/redirect.php?action=slideshow_banner&amp;goto=102&amp;osCsid=qKSS-ugxZQ37A3jke2owD0" target="_self">
-                <strong class="button_slider">
-                  <strong class="button_bg">
-                    <strong></strong>
-                  </strong>
-                  <strong class="button_text">SHOP NOW!</strong>
-                </strong>
-              </a>
-            </span>
-          </div>
-        </div>
-        <div data-src="/rtbtc/images/template/slider/banner_slider_03.jpg" data-thumb="/rtbtc/images/template/slider/banner_slider_03.jpg" class="slider_block">
-          <div class="camera_caption moveFromRight">
-            <span class="slider_text_1">iPod Touch The Brilliant New Design</span>
-            <span class="slider_text_2">
-              English Description - Accumsan et iusto odio dignissim qui blandit praesent luptatum
-              zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum
-              soluta nobis eleifend option...
-            </span>
-            <span class="slider_text_3">
-              <small>for only</small>
-              <i>$</i>
-              <b>199.00</b>
-            </span>
-            <span class="slider_text_4">
-              <a href="http://www.responsive-shop.com/osc/tstore/3/redirect.php?action=slideshow_banner&amp;goto=103&amp;osCsid=qKSS-ugxZQ37A3jke2owD0" target="_self">
-                <strong class="button_slider">
-                  <strong class="button_bg">
-                    <strong></strong>
-                  </strong>
-                  <strong class="button_text">SHOP NOW!</strong>
-                </strong>
-              </a>
-            </span>
-          </div>
-        </div>
-      </div>
+     <asp:Repeater ID="rptrSlider" runat="server">
+          <HeaderTemplate>
+            <div class="camera_wrap" id="camera_wrap_1">
+          </HeaderTemplate>
+          <ItemTemplate>
+            <div data-src="<%# Eval("ImagePath") %>" data-thumb="<%# Eval("ImagePath") %>" class="slider_block">
+              <div class="camera_caption moveFromRight">
+                <span class="slider_text_1"><%# Eval("Title") %></span>
+                <span class="slider_text_2">
+                  <%# Eval("ImageDesc") %>
+                </span>
+                <span class="slider_text_3">
+                  <small>for only</small>
+                  <i><%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %></i>
+                  <b><%# Eval("Price") %></b>
+                </span>
+                <span class="slider_text_4">
+                  <a href="" target="_self">
+                    <strong class="button_slider">
+                      <strong class="button_bg">
+                        <strong></strong>
+                      </strong>
+                      <strong class="button_text">SHOP NOW!</strong>
+                    </strong>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </ItemTemplate>
+          <FooterTemplate>
+            </div>
+          </FooterTemplate>
+        </asp:Repeater>
       <div class="customer_greeting">
         <strong>
           Welcome <span class="greetUser">Guest!</span>
@@ -278,7 +233,7 @@
                       </div>
                     </div>
                     <div class="product_button_wrapper">
-                      <strong class="button_content button_content2">
+                      <strong class="button_content button_content1">
                         <img src="<%# Eval("ProductStarsImagePath") %>" alt="" />
                       </strong>
                     </div>
