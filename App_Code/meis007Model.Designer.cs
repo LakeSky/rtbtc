@@ -3162,6 +3162,102 @@ namespace meis007Model
         private Nullable<global::System.Int16> _H2H;
         partial void OnH2HChanging(Nullable<global::System.Int16> value);
         partial void OnH2HChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ImgPath
+        {
+            get
+            {
+                return _ImgPath;
+            }
+            set
+            {
+                OnImgPathChanging(value);
+                ReportPropertyChanging("ImgPath");
+                _ImgPath = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ImgPath");
+                OnImgPathChanged();
+            }
+        }
+        private global::System.String _ImgPath;
+        partial void OnImgPathChanging(global::System.String value);
+        partial void OnImgPathChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> DisplaySeqNo
+        {
+            get
+            {
+                return _DisplaySeqNo;
+            }
+            set
+            {
+                OnDisplaySeqNoChanging(value);
+                ReportPropertyChanging("DisplaySeqNo");
+                _DisplaySeqNo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DisplaySeqNo");
+                OnDisplaySeqNoChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _DisplaySeqNo;
+        partial void OnDisplaySeqNoChanging(Nullable<global::System.Int64> value);
+        partial void OnDisplaySeqNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> Bkgcount
+        {
+            get
+            {
+                return _Bkgcount;
+            }
+            set
+            {
+                OnBkgcountChanging(value);
+                ReportPropertyChanging("Bkgcount");
+                _Bkgcount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Bkgcount");
+                OnBkgcountChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _Bkgcount;
+        partial void OnBkgcountChanging(Nullable<global::System.Int64> value);
+        partial void OnBkgcountChanged();
 
         #endregion
     

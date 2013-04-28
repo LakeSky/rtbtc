@@ -34,12 +34,12 @@ public partial class Home : PublicApplicationPage
                 CityCode = _ShoppingHotel.CityCode;
             }
             _meis007Entities = new meis007Entities();
-            var packages = _meis007Entities.PackageHeaders.Where(x => x.InService == true).OrderBy(x => x.DisplaySeq).Take(4).ToList();
-            rptrPackages.DataSource = packages;
+            rptrPackages.DataSource = _meis007Entities.PackageHeaders.Where(x => x.InService == true).OrderBy(x => x.DisplaySeq).Take(4).ToList();
             rptrPackages.DataBind();
-            var hotels = SupplierHotelObjectHelper.GetHomePageHotels(_meis007Entities);
-            rptrHotels.DataSource = hotels;
+            rptrHotels.DataSource = SupplierHotelObjectHelper.GetHomePageHotels(_meis007Entities);
             rptrHotels.DataBind();
+            rptrCities.DataSource = _meis007Entities.CityMasters.Where(x => x.DisplaySeqNo < 5).OrderBy(x => x.DisplaySeqNo).Take(4);
+            rptrCities.DataBind();
         }
     }
 

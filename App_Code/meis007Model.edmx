@@ -226,6 +226,10 @@
           <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="ModDate" Type="smalldatetime" Nullable="false" />
           <Property Name="H2H" Type="smallint" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ImgPath" Type="nvarchar" MaxLength="50" />
+          <Property Name="DisplaySeqNo" Type="bigint" />
+          <Property Name="Bkgcount" Type="bigint" />
         </EntityType>
         <EntityType Name="Classifications">
           <Key>
@@ -887,6 +891,10 @@
           <Property Name="ModDate" Type="DateTime" Nullable="false" />
           <Property Name="H2H" Type="Int16" />
           <NavigationProperty Name="CountryMaster" Relationship="meis007Model.FK_CityMaster_CountryMaster" FromRole="CityMaster" ToRole="CountryMaster" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImgPath" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="DisplaySeqNo" />
+          <Property Type="Int64" Name="Bkgcount" />
         </EntityType>
         <EntityType Name="Classification">
           <Key>
@@ -1463,7 +1471,11 @@
             <ScalarProperty Name="ModDate" ColumnName="ModDate" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="CityMasters"><EntityTypeMapping TypeName="meis007Model.CityMaster"><MappingFragment StoreEntitySet="CityMaster">
-            <ScalarProperty Name="CityID" ColumnName="CityID" />
+            <ScalarProperty Name="Bkgcount" ColumnName="Bkgcount" />
+                <ScalarProperty Name="DisplaySeqNo" ColumnName="DisplaySeqNo" />
+                <ScalarProperty Name="ImgPath" ColumnName="ImgPath" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
             <ScalarProperty Name="CityName" ColumnName="CityName" />
             <ScalarProperty Name="CountryID" ColumnName="CountryID" />
             <ScalarProperty Name="UserID" ColumnName="UserID" />
