@@ -25,4 +25,20 @@ div[id*="foo"] a
 {
     width: 1180px;
 }
+#hotel_search
+{
+}
+#camera_wrap_1
+{
+    width: 70%;
+    float: right;
+}
+#hotel-search
+{
+    float: left;
+    height: 430px;
+    width: 30%;
+    background-image: url("/rtbtc/images/template/SearchPanel3.jpg")
+}
+
 

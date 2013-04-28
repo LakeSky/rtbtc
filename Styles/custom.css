@@ -180,3 +180,20 @@ legend
   font-weight: bold;
   text-align: center;    
 }
+
+.left
+{
+  float: left;    
+}
+
+.right
+{
+  float: right;    
+}
+
+.clear
+{
+    clear: both;
+}
+
+

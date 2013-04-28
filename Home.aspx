@@ -29,6 +29,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
   <div class="row row_2 container_24">
     <div class="grid_24">
+      <div id="hotel-search">
+      </div>
      <asp:Repeater ID="rptrSlider" runat="server">
           <HeaderTemplate>
             <div class="camera_wrap" id="camera_wrap_1">
@@ -62,6 +64,7 @@
             </div>
           </FooterTemplate>
         </asp:Repeater>
+      <div class="clear"></div>
       <div class="customer_greeting">
         <strong>
           Welcome <span class="greetUser">Guest!</span>
@@ -231,10 +234,16 @@
                         <b>City:&nbsp;&nbsp;</b>
                         <span class="productSpecialPrice"><%# Eval("City") %></span>
                       </div>
+                      <br /><br /><br />
+                      <img src="<%# Eval("ProductStarsImagePath") %>" alt="" />
                     </div>
                     <div class="product_button_wrapper">
-                      <strong class="button_content button_content1">
-                        <img src="<%# Eval("ProductStarsImagePath") %>" alt="" />
+                      <strong class="button_content button_content2">
+                        <strong class="button bg_button">
+                          <a href="<%= rootPath + "hotels/show.aspx" %>?id=<%# Eval("ProductMasterId") %>" role="button">
+                            <span class="ui-button-text">Details</span>
+                          </a>
+                        </strong>
                       </strong>
                     </div>
                   </div>
