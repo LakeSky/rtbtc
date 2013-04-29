@@ -65,6 +65,7 @@
 #div-search #div-dates h4
 {
     margin-bottom: 3px;
+    margin-top: 0;
 }
 
 #div-search #div-dates #nights {
@@ -74,13 +75,21 @@
  clear: both;
 }
 
-#div-search #divRoomOccupancy {
+#div-search #div-rooms {
  position: relative;
  width: 280px;
  clear: both;
 }
 
-#div-search #divSearchMain table {
+#div-search #div-rooms h4{
+ float: left;
+}
+
+#div-search #div-rooms .add-room-btn{
+ float: right;
+}
+
+#div-search table {
  border-collapse: collapse;
  width: 280px;
  margin-top: 15px;
@@ -89,14 +98,14 @@
 #div-search tr {
  display: table-row;
  vertical-align: inherit;
-border-color: inherit;
+ border-color: inherit;
 }
 
-#div-search #divSearchMain table th {
+#div-search table th {
  text-align: left;
 }
 
-#div-search #divSearchMain table td.label {
+#div-search table td.label {
  width: 70px;
 }
 

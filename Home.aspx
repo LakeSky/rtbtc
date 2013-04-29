@@ -8,7 +8,6 @@
       window.city_autocomplete_url = '<%=ResolveUrl("~/ViewHelperWebService.asmx/CitySearch") %>';
       window.room_index = <%= RoomsCount + 1 %>;
     </script>
-    <script type="text/javascript" src="/rtbtc/Scripts/packages_slider.js"></script>
     <script type="text/javascript" src="/rtbtc/Scripts/hotel_search.js"></script>
     <style type="text/css">
         .no-close .ui-dialog-titlebar-close
@@ -31,28 +30,134 @@
     <div class="grid_24">
       <div id="search-bar">
         <div id="div-search">
-        <h3>Hotel Search</h3>
-        <div id="div-destination">
-        <label>Where do you want to go?</label>
-        <asp:TextBox ID="txtCity" runat="server" CssClass="txtCity" ValidationGroup="search"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" ForeColor="#FF3300" 
-        SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
-        </div>
-        <div id="div-dates">
-        <h4>When do you want to go?</h4>
-        <div class="check-in">
-        <label>Check In</label>
-        <asp:TextBox ID="txtStartDate" runat="server" CssClass="start-date" ValidationGroup="search"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvStartDate" runat="server" ControlToValidate="txtStartDate" ForeColor="#FF3300" 
-        SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
-        </div>
-        <div class="check-out">
-        <label>Check Out</label>
-        <asp:TextBox ID="txtEndDate" runat="server" CssClass="end-date" ValidationGroup="search"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvEndDate" runat="server" ControlToValidate="txtEndDate" ForeColor="#FF3300" 
-        SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
-        </div>
-        </div>
+          <h3>Hotel Search</h3>
+          <div id="div-destination">
+            <label>Where do you want to go?</label>
+            <asp:TextBox ID="txtCity" runat="server" CssClass="txtCity" ValidationGroup="search"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" ForeColor="#FF3300" 
+            SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+          </div>
+          <div id="div-dates">
+            <h4>When do you want to go?</h4>
+            <div class="check-in">
+              <label>Check In</label>
+              <asp:TextBox ID="txtStartDate" runat="server" CssClass="start-date" ValidationGroup="search"></asp:TextBox>
+              <asp:RequiredFieldValidator ID="rfvStartDate" runat="server" ControlToValidate="txtStartDate" ForeColor="#FF3300" 
+              SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+            </div>
+            <div class="check-out">
+              <label>Check Out</label>
+              <asp:TextBox ID="txtEndDate" runat="server" CssClass="end-date" ValidationGroup="search"></asp:TextBox>
+              <asp:RequiredFieldValidator ID="rfvEndDate" runat="server" ControlToValidate="txtEndDate" ForeColor="#FF3300" 
+              SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+            </div>
+          </div>
+          <div id="div-rooms">
+            <h4>How many of you?</h4>
+            <div class="add-room-btn">
+              <strong class="button_content button_content1">
+                <strong class="button bg_button">
+                  <button id="tdb2" type="submit" class="add-room ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover">
+                    <span class="ui-button-text">
+                      Add Room
+                    </span>
+                  </button>
+                </strong>
+              </strong>
+            </div>
+            <div class="clear"></div>
+            <table class="table table-bordered rooms-table">
+              <tr>
+                <th style="width:65px;">&nbsp;</th>
+                <th style="width:45px;">Adults</th>
+                <th style="width:65px;">Kids(2-12)</th>
+                <th style="width:75px;">Infants(0-1)</th>
+                <th style="width:55px;">&nbsp;</th>
+              </tr>
+              <% if(ShoppingRoomsList == null){ %>
+                <tr id="room_1">
+                  <td>Room 1</td>
+                  <td>
+                    <select name="rooms[1][adults]" class="ddl-small">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select name="rooms[1][kids]" class="ddl-small kids" data-id="1">
+                      <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select name="rooms[1][infants]" class="ddl-small">
+                      <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+                    </select>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+              <%}else{%>
+                <% int i = 1; %>
+                <%foreach (var room in ShoppingRoomsList)
+                  { %>
+                  <tr id="room_<%= i %>">
+                    <td><%= room.RoomName %></td>
+                    <td>
+                      <select name="rooms[<%= i %>][adults]" class="ddl-small old-ddl" data-value="<%= room.Adults %>" >
+                        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select name="rooms[<%= i %>][kids]" class="ddl-small kids old-ddl" data-id="<%= i %>"  data-value="<%= room.Kids %>">
+                        <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select name="rooms[<%= i %>][infants]" class="ddl-small old-ddl"  data-value="<%= room.Infants %>">
+                        <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+                      </select>
+                    </td>
+                    <% if ((i != 1) && (RoomsCount == i))
+                     {%>
+                     <td>
+                       <input type="button" class="btn btn-danger remove-room" value="x" data-id="<%= i %>" id="remove_room_<%= i %>" />
+                     </td>
+                    <%}
+                    else
+                    { %>
+                     <td>&nbsp;</td>
+                    <%} %>
+                  </tr>            
+                  <% var count = room.ChildAge.Count; %>
+                    <% if (count > 0)
+                     { %>
+                       <tr  id="child_<%= i %>">
+                         <td>Child  Ages</td>
+                         <% int x = 1; %>
+                         <%foreach (var age in room.ChildAge)
+                           { %>
+                             <td class="td_<%= x %>">
+                               <select name="rooms[<%= i %>][kids][age][<%= x %>]" class="ddl-small old-ddl" data-value="<%= age %>" data-id="<%= i %>">
+                                 <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+                               </select> 
+                             </td>
+                             <% x += 1; %>
+                         <%} %>
+                         <% if ((4 - count) != 0)
+                           {%>
+                             <%for (int k = 1; k <= (4 - count); k++)
+                                {%>
+                                  <td class="td_<%= 4 + k - count %>">&nbsp;</td>
+                             <%} %>
+                         <%} %>
+                       </tr>
+                     <%} %>
+                     <% i += 1; %>
+                   <%} %>
+                 <%} %>
+               </table>
+               <input type="hidden" value="<%= RoomsCount %>" id="totalRooms" name="totalRooms" />
+               <input type="hidden" value="<%= CityCode %>" id="cityCode" name="cityCode" />
+          </div>
         </div>
       </div>
      <asp:Repeater ID="rptrSlider" runat="server">
@@ -457,4 +562,40 @@
   </div>
 </div>
 </div>
+<script id='add-remove-room-button-template' type='text/html'>
+<input type="button" class="btn btn-danger remove-room" value="x" data-id="{{index}}" id="remove_room_{{index}}" />
+</script>
+<script id='add-room-template' type='text/html'>
+<tr id="room_{{index}}">
+<td>Room {{index}}</td>
+<td><select name="rooms[{{ index }}][adults]" class="ddl-small"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select> </td>
+<td><select name="rooms[{{ index }}][kids]" class="ddl-small kids" data-id="{{index}}"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></td>
+<td><select name="rooms[{{ index }}][infants]" class="ddl-small"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
+<td><input type="button" class="btn btn-danger remove-room" value="x" data-id="{{index}}" id="remove_room_{{index}}" /></td>
+</tr>
+</script>
+<script id='add-child-ages-template' type='text/html'>
+<tr id="child_{{index}}">
+<td>Child Ages</td>
+<td class="td_1"></td>
+<td class="td_2"></td>
+<td class="td_3"></td>
+<td class="td_4"></td>
+</tr>
+</script>
+<script id='child-age-dropdown-template' type='text/html'>
+<select name="rooms[{{ index }}][kids][age][{{age_index}}]" class="ddl-small" data-id="{{index}}">
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+  <option>6</option>
+  <option>7</option>
+  <option>8</option>
+  <option>9</option>
+  <option>10</option>
+  <option>11</option>
+  <option>12</option>
+</select> 
+</script>
 </asp:Content>

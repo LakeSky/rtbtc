@@ -27,9 +27,9 @@ public partial class Home : PublicApplicationPage
             {
                 _ShoppingHotel = _ShoppingHelper.HotelDetails;
                 ShoppingRoomsList = _ShoppingHotel.RoomDetails;
-                //txtCity.Text = _ShoppingHotel.CityName;
-                //txtStartDate.Text = _ShoppingHotel.FromDate;
-                //txtEndDate.Text = _ShoppingHotel.ToDate;
+                txtCity.Text = _ShoppingHotel.CityName;
+                txtStartDate.Text = _ShoppingHotel.FromDate;
+                txtEndDate.Text = _ShoppingHotel.ToDate;
                 RoomsCount = ShoppingRoomsList.Count;
                 CityCode = _ShoppingHotel.CityCode;
             }

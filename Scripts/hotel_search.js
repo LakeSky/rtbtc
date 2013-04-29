@@ -70,7 +70,7 @@ $(function () {
     });
 
     $(".start-date, .end-date").attr("readonly", true);
-
+    console.log("<<<<<<<<<<<<<<<<<<<<")
     $(".txtCity").autocomplete({
         change: function (event, ui) {
             if (ui.item == null) {
@@ -121,7 +121,7 @@ $(function () {
         }
     });
 
-    $("#middle-content").delegate('.remove-room', 'click', function (e) {
+    $("#wrapper").delegate('.remove-room', 'click', function (e) {
         e.preventDefault();
         var roomId = "tr#room_" + $(this).data('id');
         $(roomId).remove();
