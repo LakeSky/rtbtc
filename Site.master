@@ -20,7 +20,6 @@
     <link rel="stylesheet" type="text/css" href="/rtbtc/styles/template/1152_24_col.css" />
     <link rel="stylesheet" type="text/css" href="/rtbtc/styles/master_page.css" />
     <script type="text/javascript" src="/rtbtc/scripts/template/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="/rtbtc/scripts/template/jquery_ui/jquery-ui-1.8.23.min.js"></script>
     <script type="text/javascript" src="/rtbtc/Scripts/underscore.js"></script>
     <script type="text/javascript" src="/rtbtc/Scripts/underscore-template-settings.js"></script>
     <script type="text/javascript" src="/rtbtc/scripts/template/jquery_qtip/qtip.js"></script>
@@ -49,6 +48,7 @@
     <!--[if lte IE 7]>
         <div id="ie_message"><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." src="images/banner_ie.png"></a></div>
     <![endif]-->
+    <script type="text/javascript" src="/rtbtc/scripts/template/jquery_ui/jquery-ui-1.8.23.min.js"></script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>

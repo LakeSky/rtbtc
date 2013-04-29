@@ -87,6 +87,7 @@
 
 #div-search #div-rooms .add-room-btn{
  float: right;
+ margin-right: 19px;
 }
 
 #div-search table {
@@ -107,6 +108,11 @@
 
 #div-search table td.label {
  width: 70px;
+}
+
+.ui-widget-content {
+border: 1px solid #e9e9e9;
+background: #fcfdfd url(../../../images/template/redmond/ui-bg_inset-hard_100_fcfdfd_1x100.png) 50% bottom repeat-x;
 }
 
 

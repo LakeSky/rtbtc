@@ -70,7 +70,7 @@ $(function () {
     });
 
     $(".start-date, .end-date").attr("readonly", true);
-    console.log("<<<<<<<<<<<<<<<<<<<<")
+
     $(".txtCity").autocomplete({
         change: function (event, ui) {
             if (ui.item == null) {
@@ -136,7 +136,7 @@ $(function () {
         }
     });
 
-    $("#middle-content").delegate('.kids', 'change', function (e) {
+    $("#wrapper").delegate('.kids', 'change', function (e) {
         e.preventDefault();
         var index = $(this).data('id');
         var val = parseInt($(this).val());
@@ -173,25 +173,7 @@ $(function () {
         $(ddl).val(val);
     });
 
-    if ($('#carouselh').length > 0) {
-
-        $('#carouselh').jsCarousel({
-            onthumbnailclick: function (src) {
-            },
-            autoscroll: false,
-            circular: true,
-            masked: false,
-            itemstodisplay: 5,
-            orientation: 'h'
-        });
-
-        $(".jscarousal-contents-horizontal div div").click(function (e) {
-            e.preventDefault();
-            window.location = $(this).data('url');
-        });
-    }
-
-    $("#hotel-search-dialog").dialog({
+   $("#hotel-search-dialog").dialog({
         dialogClass: 'no-close',
         closeOnEscape: false,
         autoOpen: false,
