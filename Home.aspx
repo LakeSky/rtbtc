@@ -2,8 +2,8 @@
     AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
-    <link href="/rtbtc/Styles/packages_slider.css" rel="stylesheet" type="text/css" />
-    <link href="/rtbtc/Styles/home_page.css" rel="stylesheet" type="text/css" />
+    
+    <link href="/rtbtc/styles/search_box.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
       window.city_autocomplete_url = '<%=ResolveUrl("~/ViewHelperWebService.asmx/CitySearch") %>';
       window.room_index = <%= RoomsCount + 1 %>;
@@ -29,7 +29,31 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
   <div class="row row_2 container_24">
     <div class="grid_24">
-      <div id="hotel-search">
+      <div id="search-bar">
+        <div id="div-search">
+        <h3>Hotel Search</h3>
+        <div id="div-destination">
+        <label>Where do you want to go?</label>
+        <asp:TextBox ID="txtCity" runat="server" CssClass="txtCity" ValidationGroup="search"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" ForeColor="#FF3300" 
+        SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+        </div>
+        <div id="div-dates">
+        <h4>When do you want to go?</h4>
+        <div class="check-in">
+        <label>Check In</label>
+        <asp:TextBox ID="txtStartDate" runat="server" CssClass="start-date" ValidationGroup="search"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="rfvStartDate" runat="server" ControlToValidate="txtStartDate" ForeColor="#FF3300" 
+        SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+        </div>
+        <div class="check-out">
+        <label>Check Out</label>
+        <asp:TextBox ID="txtEndDate" runat="server" CssClass="end-date" ValidationGroup="search"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="rfvEndDate" runat="server" ControlToValidate="txtEndDate" ForeColor="#FF3300" 
+        SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+        </div>
+        </div>
+        </div>
       </div>
      <asp:Repeater ID="rptrSlider" runat="server">
           <HeaderTemplate>

@@ -1,0 +1,103 @@
+﻿#div-search{
+ display: block;
+ font-family: arial;
+ font-size: 12px;
+ height: 303px;
+ margin: 0 0 20px 39px;
+ padding: 40px 10px 10px 10px;
+ position: relative;
+ width: 280px;
+ z-index: 20;
+}
+
+#div-search h3 {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 290px;
+ height: 30px;
+ padding: 10px 0 0 10px;
+ margin: 40px 0 0 0;
+ font-size: 18px;
+}
+
+#div-search h4 {
+ margin: 12px 0 5px;
+ font-size: 14px;
+}
+
+#div-search #div-destination 
+{
+    padding-top: 35px;
+}
+
+#div-search input.txtCity {
+ width: 250px;
+ color: #555;
+ font-size: 12px !important;
+}
+
+#div-search #div-dates {
+ width: 280px;
+ margin: 3px 0;
+}
+
+#div-search #div-dates h4 {
+ margin: 24px 0 0;
+}
+
+#div-search #div-dates div.check-in, #div-search #div-dates div.check-out {
+ width: 137px;
+ float: left;
+}
+
+#div-search #div-dates label {
+ width: 135px;
+ margin: 0 0 5px;
+ display: block;
+}
+
+#div-search #div-dates input {
+ color: #333;
+ width: 115px;
+}
+
+#div-search #div-dates h4
+{
+    margin-bottom: 3px;
+}
+
+#div-search #div-dates #nights {
+ display: block;
+ height: 12px;
+ width: 280px;
+ clear: both;
+}
+
+#div-search #divRoomOccupancy {
+ position: relative;
+ width: 280px;
+ clear: both;
+}
+
+#div-search #divSearchMain table {
+ border-collapse: collapse;
+ width: 280px;
+ margin-top: 15px;
+}
+
+#div-search tr {
+ display: table-row;
+ vertical-align: inherit;
+border-color: inherit;
+}
+
+#div-search #divSearchMain table th {
+ text-align: left;
+}
+
+#div-search #divSearchMain table td.label {
+ width: 70px;
+}
+
+

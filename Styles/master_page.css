@@ -25,15 +25,14 @@ div[id*="foo"] a
 {
     width: 1180px;
 }
-#hotel_search
-{
-}
+
 #camera_wrap_1
 {
     width: 70%;
     float: right;
 }
-#hotel-search
+
+#search-bar
 {
     float: left;
     height: 430px;
