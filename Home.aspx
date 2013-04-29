@@ -194,27 +194,50 @@
           </FooterTemplate>
         </asp:Repeater>
       <div class="clear"></div>
-      <div class="customer_greeting">
-        <strong>
-          Welcome <span class="greetUser">Guest!</span>
-        </strong>
-          Would you like to
-          <a href="http://www.responsive-shop.com/osc/tstore/3/login.php?osCsid=qKSS-ugxZQ37A3jke2owD0">
-            <u>log yourself in</u>
-          </a>
-          ? Or would you prefer to
-          <a href="http://www.responsive-shop.com/osc/tstore/3/create_account.php?osCsid=qKSS-ugxZQ37A3jke2owD0">
-            <u>create an account</u>
-          </a>
-          ?
-      </div>
-      <div class="welcome">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris nisi ut aliquip ex.
-      </div>
     </div>
   </div>
+  <div class="row row_2 container_24">
+    <div class="grid_24">
+      <div class="contentContainer page_search">
+        <div class="contentBlock">
+          <div>
+            <h4><span class="greetUser"></span> Subscribe</h4>
+          </div>
+          <div class="contentText">
+            <div class="alert alert-danger" runat="server" id="errorDiv"></div>
+              <table>
+                <tbody>
+                  <tr>
+                    <td class="fieldKey">
+                      Email
+                    </td>
+                    <td class="fieldValue">
+                      <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                      <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ForeColor="#FF3300" 
+                      SetFocusOnError="True" ValidationGroup="subscribe">*</asp:RequiredFieldValidator>
+                      <asp:RegularExpressionValidator ID="revEmail" runat="server" ForeColor="#FF3300"
+                      ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" ControlToValidate="txtEmail"
+                      SetFocusOnError="True" ValidationGroup="subscribe">
+                        Please enter valid email !
+                      </asp:RegularExpressionValidator>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fieldKey">
+                    </td>
+                    <td class="fieldValue">
+                      <asp:Button ID="btnSubscribe" runat="server" Text="Subscribe" CssClass="btn btn-primary" 
+                      onclick="btnSubscribe_Click" ValidationGroup="subscribe" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
   <div class="row row_4 container_24">
     <section id="bodyContent" class="col grid_24 ">
       <div id="tabvanilla" class="widget">

@@ -20,7 +20,7 @@ public partial class Home : PublicApplicationPage
         masterCurrencyValue = GetMasteCurrencySelectedValue();
         if (!IsPostBack)
         {
-            //errorDiv.Visible = false;
+            errorDiv.Visible = false;
             RoomsCount = 1;
             _ShoppingHelper = GetShoppingHelperObject();
             if (_ShoppingHelper != null && _ShoppingHelper.HotelDetails != null)
@@ -48,7 +48,7 @@ public partial class Home : PublicApplicationPage
     protected void btnSubscribe_Click(object sender, EventArgs e)
     {
         _meis007Entities = new meis007Entities();
-        var _email = ""; // txtEmail.Text.Trim();
+        var _email =  txtEmail.Text.Trim();
         var count = _meis007Entities.B2CCustomerinfo.Where(x => x.PaxEmail == _email).Count();
         if (count > 0)
         {
@@ -65,7 +65,7 @@ public partial class Home : PublicApplicationPage
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        //UpdateShoppingHelperObject(txtCity.Text, txtStartDate.Text, txtEndDate.Text);
+        UpdateShoppingHelperObject(txtCity.Text, txtStartDate.Text, txtEndDate.Text);
         Response.Redirect(Route.GetRootPath("hotels/search.aspx"));
     }
 }
