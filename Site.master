@@ -75,9 +75,59 @@
                                                     <label>
                                                         My Cart
                                                     </label>
-                                                    <strong>0</strong> products
+                                                    <strong><%= basketItemsCount %></strong> items.
                                                     <ul id="submenu" class="submenu">
+                                                      <% if (hasBasketItems) { %>
+                                                        <% foreach(var x in masterBasketHelper.packageDetails) {%>
+                                                          <li class="items first">
+                                                            <img src="<%= x.DisplayImage %>" alt="" width="80" height="80" alt="" />
+                                                            <div class="item">
+                                                              <h5 class="item1">
+                                                                <%= x.PackageName %>
+                                                              </h5>
+                                                            </div>
+                                                          </li>
+                                                        <% } %>
+                                                        <% foreach(var x in masterBasketHelper.hotelDetails) {%>
+                                                          <li class="items first">
+                                                            <img src="<%= x.productDefaultImagePath %>" alt="" width="80" height="80" alt="" />
+                                                            <div class="item">
+                                                              <h5 class="item1">
+                                                                <%= x.productName %>
+                                                              </h5>
+                                                            </div>
+                                                          </li>
+                                                        <% } %>
+                                                        <li class="total">
+                                                          <span class="productSpecialPrice">
+                                                            <%= ApplicationObject.GetMasterCurrency(ddlMasterCurency.SelectedValue) %>
+                                                            &nbsp;
+                                                            <%# ApplicationObject.FormattedCurrencyDisplayPrice(masterBasketHelper.totalPrice, ddlMasterCurency.SelectedValue) %>
+                                                          </span>
+                                                        </li>
+                                                        <li class="last">
+                                                          <strong class="button_content button_content2">
+                                                            <strong class="button bg_button"  style="margin-left:0;">
+                                                              <a href="<%= Route.GetRootPath("basket/show.aspx") %>">
+                                                                <span class="ui-button-text">
+                                                                  Shopping cart
+                                                                </span>
+                                                              </a>
+                                                            </strong>
+                                                          </strong>
+                                                          <strong class="button_content button_content1">
+                                                            <strong class="button bg_button"  style="margin-left:35px;">
+                                                              <a href="<%= Route.GetRootPath("orders/checkout.aspx") %>">
+                                                                <span class="ui-button-text">
+                                                                  Checkout
+                                                                </span>
+                                                              </a>
+                                                            </strong>
+                                                          </strong>
+                                                        </li>
+                                                      <%} else {%>
                                                         <li>Your shopping cart is empty! </li>
+                                                      <%} %>
                                                     </ul>
                                                 </div>
                                             </div>

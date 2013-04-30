@@ -10,15 +10,16 @@ public partial class SiteMaster : System.Web.UI.MasterPage
 {
     public bool hasBasketItems;
     public int basketItemsCount;
+    public BasketHelper masterBasketHelper;
     protected void Page_Load(object sender, EventArgs e)
     {
         hasBasketItems = false;
         basketItemsCount = 0;
-        var basketHelper = (BasketHelper)(Session["Basket"]);
-        if (basketHelper != null) {
+        masterBasketHelper = (BasketHelper)(Session["Basket"]);
+        if (masterBasketHelper != null) {
             hasBasketItems = true;
-            basketItemsCount = basketHelper.hotelDetails.Count();
-            basketItemsCount += basketHelper.packageDetails.Count;
+            basketItemsCount = masterBasketHelper.hotelDetails.Count();
+            basketItemsCount += masterBasketHelper.packageDetails.Count;
         }
         if (!IsPostBack)
         {
