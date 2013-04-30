@@ -108,7 +108,7 @@ $(function () {
 
     $('.add-room').click(function (e) {
         e.preventDefault();
-        if (window.room_index == 6) {
+        if (window.room_index == 4) {
             return false;
         }
         var row = _.template($("#add-room-template").html(), { index: window.room_index });
@@ -173,7 +173,7 @@ $(function () {
         $(ddl).val(val);
     });
 
-   $("#hotel-search-dialog").dialog({
+    $("#hotel-search-dialog").dialog({
         dialogClass: 'no-close',
         closeOnEscape: false,
         autoOpen: false,
