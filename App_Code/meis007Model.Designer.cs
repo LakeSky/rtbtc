@@ -151,6 +151,38 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<B2CSiteImages> B2CSiteImages
+        {
+            get
+            {
+                if ((_B2CSiteImages == null))
+                {
+                    _B2CSiteImages = base.CreateObjectSet<B2CSiteImages>("B2CSiteImages");
+                }
+                return _B2CSiteImages;
+            }
+        }
+        private ObjectSet<B2CSiteImages> _B2CSiteImages;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BasketSequence> BasketSequences
+        {
+            get
+            {
+                if ((_BasketSequences == null))
+                {
+                    _BasketSequences = base.CreateObjectSet<BasketSequence>("BasketSequences");
+                }
+                return _BasketSequences;
+            }
+        }
+        private ObjectSet<BasketSequence> _BasketSequences;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<BkgMaster> BkgMasters
         {
             get
@@ -211,6 +243,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<CountryMaster> _CountryMasters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CurrencyMaster> CurrencyMasters
+        {
+            get
+            {
+                if ((_CurrencyMasters == null))
+                {
+                    _CurrencyMasters = base.CreateObjectSet<CurrencyMaster>("CurrencyMasters");
+                }
+                return _CurrencyMasters;
+            }
+        }
+        private ObjectSet<CurrencyMaster> _CurrencyMasters;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -439,6 +487,22 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<SuppliersHotelsInfo> SuppliersHotelsInfoes
+        {
+            get
+            {
+                if ((_SuppliersHotelsInfoes == null))
+                {
+                    _SuppliersHotelsInfoes = base.CreateObjectSet<SuppliersHotelsInfo>("SuppliersHotelsInfoes");
+                }
+                return _SuppliersHotelsInfoes;
+            }
+        }
+        private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<XMLHotel> XMLHotels
         {
             get
@@ -467,70 +531,6 @@ namespace meis007Model
             }
         }
         private ObjectSet<XMLSupplier> _XMLSuppliers;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<BasketSequence> BasketSequences
-        {
-            get
-            {
-                if ((_BasketSequences == null))
-                {
-                    _BasketSequences = base.CreateObjectSet<BasketSequence>("BasketSequences");
-                }
-                return _BasketSequences;
-            }
-        }
-        private ObjectSet<BasketSequence> _BasketSequences;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<CurrencyMaster> CurrencyMasters
-        {
-            get
-            {
-                if ((_CurrencyMasters == null))
-                {
-                    _CurrencyMasters = base.CreateObjectSet<CurrencyMaster>("CurrencyMasters");
-                }
-                return _CurrencyMasters;
-            }
-        }
-        private ObjectSet<CurrencyMaster> _CurrencyMasters;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<SuppliersHotelsInfo> SuppliersHotelsInfoes
-        {
-            get
-            {
-                if ((_SuppliersHotelsInfoes == null))
-                {
-                    _SuppliersHotelsInfoes = base.CreateObjectSet<SuppliersHotelsInfo>("SuppliersHotelsInfoes");
-                }
-                return _SuppliersHotelsInfoes;
-            }
-        }
-        private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<B2CSiteImages> B2CSiteImages
-        {
-            get
-            {
-                if ((_B2CSiteImages == null))
-                {
-                    _B2CSiteImages = base.CreateObjectSet<B2CSiteImages>("B2CSiteImages");
-                }
-                return _B2CSiteImages;
-            }
-        }
-        private ObjectSet<B2CSiteImages> _B2CSiteImages;
 
         #endregion
         #region AddTo Methods
@@ -568,6 +568,22 @@ namespace meis007Model
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the B2CSiteImages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToB2CSiteImages(B2CSiteImages b2CSiteImages)
+        {
+            base.AddObject("B2CSiteImages", b2CSiteImages);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BasketSequences EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBasketSequences(BasketSequence basketSequence)
+        {
+            base.AddObject("BasketSequences", basketSequence);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the BkgMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToBkgMasters(BkgMaster bkgMaster)
@@ -597,6 +613,14 @@ namespace meis007Model
         public void AddToCountryMasters(CountryMaster countryMaster)
         {
             base.AddObject("CountryMasters", countryMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CurrencyMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCurrencyMasters(CurrencyMaster currencyMaster)
+        {
+            base.AddObject("CurrencyMasters", currencyMaster);
         }
     
         /// <summary>
@@ -712,6 +736,14 @@ namespace meis007Model
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the SuppliersHotelsInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
+        {
+            base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the XMLHotels EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToXMLHotels(XMLHotel xMLHotel)
@@ -725,38 +757,6 @@ namespace meis007Model
         public void AddToXMLSuppliers(XMLSupplier xMLSupplier)
         {
             base.AddObject("XMLSuppliers", xMLSupplier);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the BasketSequences EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToBasketSequences(BasketSequence basketSequence)
-        {
-            base.AddObject("BasketSequences", basketSequence);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CurrencyMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCurrencyMasters(CurrencyMaster currencyMaster)
-        {
-            base.AddObject("CurrencyMasters", currencyMaster);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the SuppliersHotelsInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
-        {
-            base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the B2CSiteImages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToB2CSiteImages(B2CSiteImages b2CSiteImages)
-        {
-            base.AddObject("B2CSiteImages", b2CSiteImages);
         }
 
         #endregion
@@ -2812,24 +2812,24 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> serviceid
+        public global::System.String ServiceName
         {
             get
             {
-                return _serviceid;
+                return _ServiceName;
             }
             set
             {
-                OnserviceidChanging(value);
-                ReportPropertyChanging("serviceid");
-                _serviceid = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("serviceid");
-                OnserviceidChanged();
+                OnServiceNameChanging(value);
+                ReportPropertyChanging("ServiceName");
+                _ServiceName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ServiceName");
+                OnServiceNameChanged();
             }
         }
-        private Nullable<global::System.Int32> _serviceid;
-        partial void OnserviceidChanging(Nullable<global::System.Int32> value);
-        partial void OnserviceidChanged();
+        private global::System.String _ServiceName;
+        partial void OnServiceNameChanging(global::System.String value);
+        partial void OnServiceNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3268,24 +3268,216 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String UserID
+        public Nullable<global::System.Int32> supplierHotelID
         {
             get
             {
-                return _UserID;
+                return _supplierHotelID;
             }
             set
             {
-                OnUserIDChanging(value);
-                ReportPropertyChanging("UserID");
-                _UserID = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("UserID");
-                OnUserIDChanged();
+                OnsupplierHotelIDChanging(value);
+                ReportPropertyChanging("supplierHotelID");
+                _supplierHotelID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("supplierHotelID");
+                OnsupplierHotelIDChanged();
             }
         }
-        private global::System.String _UserID;
-        partial void OnUserIDChanging(global::System.String value);
-        partial void OnUserIDChanged();
+        private Nullable<global::System.Int32> _supplierHotelID;
+        partial void OnsupplierHotelIDChanging(Nullable<global::System.Int32> value);
+        partial void OnsupplierHotelIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> StarsLevel
+        {
+            get
+            {
+                return _StarsLevel;
+            }
+            set
+            {
+                OnStarsLevelChanging(value);
+                ReportPropertyChanging("StarsLevel");
+                _StarsLevel = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("StarsLevel");
+                OnStarsLevelChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _StarsLevel;
+        partial void OnStarsLevelChanging(Nullable<global::System.Decimal> value);
+        partial void OnStarsLevelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SupplierRoomID
+        {
+            get
+            {
+                return _SupplierRoomID;
+            }
+            set
+            {
+                OnSupplierRoomIDChanging(value);
+                ReportPropertyChanging("SupplierRoomID");
+                _SupplierRoomID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SupplierRoomID");
+                OnSupplierRoomIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SupplierRoomID;
+        partial void OnSupplierRoomIDChanging(Nullable<global::System.Int32> value);
+        partial void OnSupplierRoomIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> SupplierRoomTypeID
+        {
+            get
+            {
+                return _SupplierRoomTypeID;
+            }
+            set
+            {
+                OnSupplierRoomTypeIDChanging(value);
+                ReportPropertyChanging("SupplierRoomTypeID");
+                _SupplierRoomTypeID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SupplierRoomTypeID");
+                OnSupplierRoomTypeIDChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _SupplierRoomTypeID;
+        partial void OnSupplierRoomTypeIDChanging(Nullable<global::System.Int64> value);
+        partial void OnSupplierRoomTypeIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SupplierRoomType
+        {
+            get
+            {
+                return _SupplierRoomType;
+            }
+            set
+            {
+                OnSupplierRoomTypeChanging(value);
+                ReportPropertyChanging("SupplierRoomType");
+                _SupplierRoomType = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SupplierRoomType");
+                OnSupplierRoomTypeChanged();
+            }
+        }
+        private global::System.String _SupplierRoomType;
+        partial void OnSupplierRoomTypeChanging(global::System.String value);
+        partial void OnSupplierRoomTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SupplierRoomName
+        {
+            get
+            {
+                return _SupplierRoomName;
+            }
+            set
+            {
+                OnSupplierRoomNameChanging(value);
+                ReportPropertyChanging("SupplierRoomName");
+                _SupplierRoomName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SupplierRoomName");
+                OnSupplierRoomNameChanged();
+            }
+        }
+        private global::System.String _SupplierRoomName;
+        partial void OnSupplierRoomNameChanging(global::System.String value);
+        partial void OnSupplierRoomNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> BBID
+        {
+            get
+            {
+                return _BBID;
+            }
+            set
+            {
+                OnBBIDChanging(value);
+                ReportPropertyChanging("BBID");
+                _BBID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BBID");
+                OnBBIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _BBID;
+        partial void OnBBIDChanging(Nullable<global::System.Int32> value);
+        partial void OnBBIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BBName
+        {
+            get
+            {
+                return _BBName;
+            }
+            set
+            {
+                OnBBNameChanging(value);
+                ReportPropertyChanging("BBName");
+                _BBName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BBName");
+                OnBBNameChanged();
+            }
+        }
+        private global::System.String _BBName;
+        partial void OnBBNameChanging(global::System.String value);
+        partial void OnBBNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CustomerMarkUpApplied
+        {
+            get
+            {
+                return _CustomerMarkUpApplied;
+            }
+            set
+            {
+                OnCustomerMarkUpAppliedChanging(value);
+                ReportPropertyChanging("CustomerMarkUpApplied");
+                _CustomerMarkUpApplied = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CustomerMarkUpApplied");
+                OnCustomerMarkUpAppliedChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CustomerMarkUpApplied;
+        partial void OnCustomerMarkUpAppliedChanging(Nullable<global::System.Int32> value);
+        partial void OnCustomerMarkUpAppliedChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3310,6 +3502,30 @@ namespace meis007Model
         private Nullable<global::System.DateTime> _ModDate;
         partial void OnModDateChanging(Nullable<global::System.DateTime> value);
         partial void OnModDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String UserID
+        {
+            get
+            {
+                return _UserID;
+            }
+            set
+            {
+                OnUserIDChanging(value);
+                ReportPropertyChanging("UserID");
+                _UserID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("UserID");
+                OnUserIDChanged();
+            }
+        }
+        private global::System.String _UserID;
+        partial void OnUserIDChanging(global::System.String value);
+        partial void OnUserIDChanged();
 
         #endregion
     

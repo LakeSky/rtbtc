@@ -45,53 +45,69 @@ public partial class Orders_checkout : PublicApplicationPage
             if (!DbParameter.IsInetrnalSupplier(x.supplierId)) {
                 bookedHotels = true;
                 suppliersHotelsInfo = _meis007Entities.SuppliersHotelsInfoes.Where(y => y.HotelInfoID == x.hotelInfoId).First();
-                //CreateBooking(x, suppliersHotelsInfo);
-                bkgMaster = new BkgMaster { 
-                    BasketID = basketSequence,
-                    SearchID = int.Parse(suppliersHotelsInfo.SearchID.ToString()),
-                    HotelInfoID = suppliersHotelsInfo.HotelInfoID,
-                    BkgDate = DateTime.Now,
-                    BkgType = "",
-                    BkgStatus = "",
-                    CustomerID = 1015,
-                    //DbParameter.GetCustomerId
-                    CustConsultantID = CurrentUser.Id(),
-                    CustomerDisplayPrice = suppliersHotelsInfo.LCAP,
-                    FCSalesAmt = suppliersHotelsInfo.LCAP, 
-                    FCurrencyID = suppliersHotelsInfo.CurrencyCode,
-                    BaseCurrencyID = ApplicationObject.GetBaseCurrency(),
-                    ExRate = suppliersHotelsInfo.LCAP, //take ex rate
-                    SalesAmt = suppliersHotelsInfo.LCAP,
-                    SupplierID = long.Parse(suppliersHotelsInfo.SupplierID.ToString()),
-                    SupplierRefNo = "XXX",
-                    SupplierConfNo = "XXX",
-                    SuppreMarks = "XXX",
-                    PayCurrID = suppliersHotelsInfo.CurrencyCode,
-                    PayExRate = suppliersHotelsInfo.ExchRate,
-                    PayAmt = suppliersHotelsInfo.LCAP,//to be added fcas fcaps
-                    serviceid = DbParameter.GetServiceId("HOTELS"),
-                    CheckIN = x.fromDate,
-                    checkOUT = x.toDate,
-                    NoOfNights = suppliersHotelsInfo.NumOfNights,
-                    ProductID = suppliersHotelsInfo.LocHotelID,
-                    LeadPaxName = txtFirstName.Text + " " + txtMiddleName.Text + " " + txtLastName.Text,
-                    NoOfRooms = 1,
-                    Adults = x.guestDetails.Where(y => y.type == "Adult").Count(),
-                    Children = x.guestDetails.Where(y => y.type == "Kid").Count(),
-                    Infants = x.guestDetails.Where(y => y.type == "Infant").Count(),
-                    HasExtraPaxs = true
-                };
-                _meis007Entities.AddToBkgMasters(bkgMaster);
-                _meis007Entities.SaveChanges();
-                foreach (var y in x.guestDetails) {
-                    paxDetail = new PaxDetail { 
-                        BkgID = bkgMaster.BkgID,
-                        PaxName = y.firstName + " " + y.middleName + " " + y.lastName
+                string reservartionId =  CreateBooking(x, suppliersHotelsInfo);
+                if (!string.IsNullOrEmpty(reservartionId))
+                {
+                    var array = reservartionId.Split('~');
+                    bkgMaster = new BkgMaster
+                    {
+                        BasketID = basketSequence,
+                        SearchID = int.Parse(suppliersHotelsInfo.SearchID.ToString()),
+                        HotelInfoID = suppliersHotelsInfo.HotelInfoID,
+                        BkgDate = DateTime.Now,
+                        BkgType = DbParameter.GetBookingType(),
+                        BkgStatus = DbParameter.GetBookingStatus(),
+                        CustomerID = 1015,
+                        //DbParameter.GetCustomerId
+                        CustConsultantID = CurrentUser.Id(),
+                        CustomerDisplayPrice = suppliersHotelsInfo.LCAP,
+                        FCSalesAmt = suppliersHotelsInfo.LCAP,
+                        FCurrencyID = suppliersHotelsInfo.CurrencyCode,
+                        BaseCurrencyID = ApplicationObject.GetBaseCurrency(),
+                        ExRate = suppliersHotelsInfo.ExchRate,
+                        SalesAmt = suppliersHotelsInfo.LCAP,
+                        SupplierID = long.Parse(suppliersHotelsInfo.SupplierID.ToString()),
+                        SupplierRefNo = array[0],
+                        SupplierConfNo = array[1],
+                        PayCurrID = suppliersHotelsInfo.CurrencyCode,
+                        PayExRate = suppliersHotelsInfo.ExchRate,
+                        PayAmt = suppliersHotelsInfo.FCAP,
+                        ServiceName = DbParameter.GetServiceName(1),
+                        CheckIN = x.fromDate,
+                        checkOUT = x.toDate,
+                        NoOfNights = suppliersHotelsInfo.NumOfNights,
+                        ProductID = suppliersHotelsInfo.LocHotelID,
+                        LeadPaxName = txtFirstName.Text + " " + txtMiddleName.Text + " " + txtLastName.Text,
+                        NoOfRooms = 1,
+                        Adults = x.guestDetails.Where(y => y.type == "Adult").Count(),
+                        Children = x.guestDetails.Where(y => y.type == "Kid").Count(),
+                        Infants = x.guestDetails.Where(y => y.type == "Infant").Count(),
+                        HasExtraPaxs = true,
+                        RateSDID = suppliersHotelsInfo.RateSDID,
+                        supplierHotelID = suppliersHotelsInfo.HotelID,
+                        StarsLevel = suppliersHotelsInfo.StarsLevel,
+                        SupplierRoomID = suppliersHotelsInfo.RoomID,
+                        SupplierRoomName = suppliersHotelsInfo.RoomName,
+                        SupplierRoomType = suppliersHotelsInfo.RoomType,
+                        SupplierRoomTypeID = suppliersHotelsInfo.RoomTypeID,
+                        BBID = suppliersHotelsInfo.BBID,
+                        BBName = suppliersHotelsInfo.BBName,
+                        ModDate = DateTime.Now
                     };
-                    _meis007Entities.AddToPaxDetails(paxDetail);
+                    _meis007Entities.AddToBkgMasters(bkgMaster);
                     _meis007Entities.SaveChanges();
+                    foreach (var y in x.guestDetails)
+                    {
+                        paxDetail = new PaxDetail
+                        {
+                            BkgID = bkgMaster.BkgID,
+                            PaxName = y.firstName + " " + y.middleName + " " + y.lastName
+                        };
+                        _meis007Entities.AddToPaxDetails(paxDetail);
+                        _meis007Entities.SaveChanges();
+                    }
+                    hotelsToRemove.Add(x);
                 }
-                hotelsToRemove.Add(x);
             }
         }
         if (bookedHotels) {
@@ -104,7 +120,7 @@ public partial class Orders_checkout : PublicApplicationPage
         Response.Redirect(Route.GetRootPath("basket/show.aspx"));
     }
 
-    protected void CreateBooking(BasketHotelDetails x, SuppliersHotelsInfo suppliersHotelsInfo) {
+    protected string CreateBooking(BasketHotelDetails x, SuppliersHotelsInfo suppliersHotelsInfo) {
         BookingDetails bookingInfo = new BookingDetails();
         bookingInfo.CheckIn = x.fromDate;
         bookingInfo.CheckOut = x.toDate;
@@ -124,14 +140,14 @@ public partial class Orders_checkout : PublicApplicationPage
         bookingInfo.IsAvailable = true;
         bookingInfo.RequestedPrice = decimal.Parse(suppliersHotelsInfo.LCAP.ToString());
         bookingInfo.DeltaPrice = 1;
-        //bookingInfo.Currency = suppliersHotelsInfo.CurrencyCode;
+        bookingInfo.Currency = suppliersHotelsInfo.CurrencyCode;
         bookingInfo.SessionId = suppliersHotelsInfo.SessionID;
         bookingInfo.SearchId = int.Parse(suppliersHotelsInfo.SearchID.ToString());
         bookingInfo.SupplierId = suppliersHotelsInfo.SupplierID;
-        //bookingInfo.CustomerId = "1015"; //DbParameter.GetCustomerId();
-        bookingInfo.HotelInfoId = 1;
-        //RepositoryFactory supplierFactory = new RepositoryFactory();
-        //supplierFactory.HotelRoomBooking(bookingInfo);
+        bookingInfo.CustomerId = "1015"; //DbParameter.GetCustomerId();
+        bookingInfo.HotelInfoId = int.Parse(x.hotelInfoId.ToString());
+        RepositoryFactory supplierFactory = new RepositoryFactory(null, x.sessionId);
+        return supplierFactory.HotelRoomBooking(bookingInfo);
     }
 
     protected void RemoveHotels(BasketHelper basketHelper, List<BasketHotelDetails> hotelsToRemove)

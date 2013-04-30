@@ -19,6 +19,7 @@
     <!--[if IE]><script type="text/javascript" src="/rtbtc/styles/template/ie.js"></script><![endif]-->
     <link rel="stylesheet" type="text/css" href="/rtbtc/styles/template/1152_24_col.css" />
     <link rel="stylesheet" type="text/css" href="/rtbtc/styles/master_page.css" />
+    
     <script type="text/javascript" src="/rtbtc/scripts/template/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/rtbtc/Scripts/underscore.js"></script>
     <script type="text/javascript" src="/rtbtc/Scripts/underscore-template-settings.js"></script>

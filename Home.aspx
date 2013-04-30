@@ -7,7 +7,8 @@
       window.city_autocomplete_url = '<%=ResolveUrl("~/ViewHelperWebService.asmx/CitySearch") %>';
       window.room_index = <%= RoomsCount + 1 %>;
     </script>
-    <script type="text/javascript" src="/rtbtc/Scripts/hotel_search.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/home_page.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/hotel_search.js"></script>
     <style type="text/css">
         .no-close .ui-dialog-titlebar-close
         {
@@ -53,17 +54,6 @@
           </div>
           <div id="div-rooms">
             <h4>How many of you?</h4>
-            <div class="add-room-btn">
-              <strong class="button_content button_content1">
-                <strong class="button bg_button">
-                  <button id="tdb2" type="submit" class="add-room ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover">
-                    <span class="ui-button-text">
-                      Add Room
-                    </span>
-                  </button>
-                </strong>
-              </strong>
-            </div>
             <div class="clear"></div>
             <table class="table table-bordered rooms-table">
               <tr>
@@ -156,6 +146,8 @@
                </table>
                <input type="hidden" value="<%= RoomsCount %>" id="totalRooms" name="totalRooms" />
                <input type="hidden" value="<%= CityCode %>" id="cityCode" name="cityCode" />
+               <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn custom-button hotel-search-btn " ValidationGroup="search" 
+               onclick="btnSearch_Click" OnClientClick="ShowDialogBox();"/>
           </div>
         </div>
       </div>

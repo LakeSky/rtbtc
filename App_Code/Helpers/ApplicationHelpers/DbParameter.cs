@@ -38,6 +38,12 @@ public static class DbParameter
         return _meis007Entities.ServicesMasters.Where(x => x.ServiceName == serviceName).First().ServiceID;
     }
 
+    public static string GetServiceName(int serviceId)
+    {
+        meis007Entities _meis007Entities = new meis007Entities();
+        return _meis007Entities.ServicesMasters.Where(x => x.ServiceID == serviceId).First().ServiceName;
+    }
+
     public static string GetSupplierName(string supplierId) { 
         string supplierName = "";
          SqlConnection _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="meis007Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="meis007Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="meis007ModelStoreContainer">
           <EntitySet Name="AmadeusTable" EntityType="meis007Model.Store.AmadeusTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Amenities" EntityType="meis007Model.Store.Amenities" store:Type="Tables" Schema="dbo" />
@@ -211,7 +211,7 @@
           <Property Name="PayCurrID" Type="nvarchar" MaxLength="10" />
           <Property Name="PayExRate" Type="numeric" Scale="5" />
           <Property Name="PayAmt" Type="numeric" Scale="5" />
-          <Property Name="serviceid" Type="int" />
+          <Property Name="ServiceName" Type="nvarchar" MaxLength="50" />
           <Property Name="CompanyID" Type="nvarchar" MaxLength="10" />
           <Property Name="CompanyConsultant" Type="nvarchar" MaxLength="10" />
           <Property Name="ConsultantDisplayAmt" Type="numeric" Precision="8" />
@@ -230,8 +230,17 @@
           <Property Name="PurchaseBillNo" Type="nvarchar" MaxLength="50" />
           <Property Name="CancellationRec" Type="numeric" Scale="5" />
           <Property Name="CancellationPay" Type="numeric" Scale="5" />
-          <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+          <Property Name="supplierHotelID" Type="int" />
+          <Property Name="StarsLevel" Type="decimal" Precision="5" Scale="3" />
+          <Property Name="SupplierRoomID" Type="int" />
+          <Property Name="SupplierRoomTypeID" Type="bigint" />
+          <Property Name="SupplierRoomType" Type="varchar" MaxLength="255" />
+          <Property Name="SupplierRoomName" Type="varchar" MaxLength="255" />
+          <Property Name="BBID" Type="int" />
+          <Property Name="BBName" Type="varchar" MaxLength="200" />
+          <Property Name="CustomerMarkUpApplied" Type="int" />
           <Property Name="ModDate" Type="smalldatetime" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CityMaster">
           <Key>
@@ -697,7 +706,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="meis007Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -706,10 +716,13 @@
           <EntitySet Name="Amenities" EntityType="meis007Model.Amenity" />
           <EntitySet Name="B2CCustomerinfo" EntityType="meis007Model.B2CCustomerinfo" />
           <EntitySet Name="B2CPaxinfo" EntityType="meis007Model.B2CPaxinfo" />
+          <EntitySet Name="B2CSiteImages" EntityType="meis007Model.B2CSiteImages" />
+          <EntitySet Name="BasketSequences" EntityType="meis007Model.BasketSequence" />
           <EntitySet Name="BkgMasters" EntityType="meis007Model.BkgMaster" />
           <EntitySet Name="CityMasters" EntityType="meis007Model.CityMaster" />
           <EntitySet Name="Classifications" EntityType="meis007Model.Classification" />
           <EntitySet Name="CountryMasters" EntityType="meis007Model.CountryMaster" />
+          <EntitySet Name="CurrencyMasters" EntityType="meis007Model.CurrencyMaster" />
           <EntitySet Name="Facilities" EntityType="meis007Model.Facility" />
           <EntitySet Name="PackageDescriptions" EntityType="meis007Model.PackageDescription" />
           <EntitySet Name="PackageHeaders" EntityType="meis007Model.PackageHeader" />
@@ -724,6 +737,7 @@
           <EntitySet Name="RoomTypeHeaders" EntityType="meis007Model.RoomTypeHeader" />
           <EntitySet Name="ServicesMasters" EntityType="meis007Model.ServicesMaster" />
           <EntitySet Name="SupplierMasters" EntityType="meis007Model.SupplierMaster" />
+          <EntitySet Name="SuppliersHotelsInfoes" EntityType="meis007Model.SuppliersHotelsInfo" />
           <EntitySet Name="XMLHotels" EntityType="meis007Model.XMLHotel" />
           <EntitySet Name="XMLSuppliers" EntityType="meis007Model.XMLSupplier" />
           <AssociationSet Name="FK_ProductAmenities_Amenities" Association="meis007Model.FK_ProductAmenities_Amenities">
@@ -786,10 +800,6 @@
             <End Role="RoomTypeHeader" EntitySet="RoomTypeHeaders" />
             <End Role="RoomTypeDetail" EntitySet="RoomTypeDetails" />
           </AssociationSet>
-          <EntitySet Name="BasketSequences" EntityType="meis007Model.BasketSequence" />
-          <EntitySet Name="CurrencyMasters" EntityType="meis007Model.CurrencyMaster" />
-          <EntitySet Name="SuppliersHotelsInfoes" EntityType="meis007Model.SuppliersHotelsInfo" />
-          <EntitySet Name="B2CSiteImages" EntityType="meis007Model.B2CSiteImages" />
         </EntityContainer>
         <EntityType Name="AmadeusTable">
           <Key>
@@ -847,6 +857,29 @@
           <Property Name="Nationality" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="B2CCustomerinfo" Relationship="meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1" FromRole="B2CPaxinfo" ToRole="B2CCustomerinfo" />
         </EntityType>
+        <EntityType Name="B2CSiteImages">
+          <Key>
+            <PropertyRef Name="SNo" />
+          </Key>
+          <Property Name="SNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="ImageDesc" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="Panel" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Inservice" Type="Boolean" Nullable="false" />
+          <Property Name="SeqID" Type="Int32" Nullable="false" />
+          <Property Name="RedirectPath" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="Title" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Userid" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ModDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BasketSequence">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SequenceNumber" Type="Int64" Nullable="false" />
+        </EntityType>
         <EntityType Name="BkgMaster">
           <Key>
             <PropertyRef Name="BkgID" />
@@ -876,7 +909,7 @@
           <Property Name="PayCurrID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="PayExRate" Type="Decimal" Precision="18" Scale="5" />
           <Property Name="PayAmt" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="serviceid" Type="Int32" />
+          <Property Name="ServiceName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="CompanyID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="CompanyConsultant" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="ConsultantDisplayAmt" Type="Decimal" Precision="8" Scale="0" />
@@ -895,8 +928,17 @@
           <Property Name="PurchaseBillNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="CancellationRec" Type="Decimal" Precision="18" Scale="5" />
           <Property Name="CancellationPay" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="UserID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="supplierHotelID" Type="Int32" />
+          <Property Name="StarsLevel" Type="Decimal" Precision="5" Scale="3" />
+          <Property Name="SupplierRoomID" Type="Int32" />
+          <Property Name="SupplierRoomTypeID" Type="Int64" />
+          <Property Name="SupplierRoomType" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="SupplierRoomName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="BBID" Type="Int32" />
+          <Property Name="BBName" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="CustomerMarkUpApplied" Type="Int32" />
           <Property Name="ModDate" Type="DateTime" />
+          <Property Name="UserID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="CityMaster">
           <Key>
@@ -908,11 +950,11 @@
           <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="ModDate" Type="DateTime" Nullable="false" />
           <Property Name="H2H" Type="Int16" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ImgPath" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DisplaySeqNo" Type="Int64" />
+          <Property Name="Bkgcount" Type="Int64" />
           <NavigationProperty Name="CountryMaster" Relationship="meis007Model.FK_CityMaster_CountryMaster" FromRole="CityMaster" ToRole="CountryMaster" />
-          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ImgPath" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int64" Name="DisplaySeqNo" />
-          <Property Type="Int64" Name="Bkgcount" />
         </EntityType>
         <EntityType Name="Classification">
           <Key>
@@ -938,6 +980,20 @@
           <Property Name="ModDate" Type="DateTime" />
           <Property Name="H2H" Type="Int16" />
           <NavigationProperty Name="CityMasters" Relationship="meis007Model.FK_CityMaster_CountryMaster" FromRole="CountryMaster" ToRole="CityMaster" />
+        </EntityType>
+        <EntityType Name="CurrencyMaster">
+          <Key>
+            <PropertyRef Name="CurID" />
+          </Key>
+          <Property Name="CurID" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="CurName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="CoName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ExRate" Type="Decimal" Nullable="false" Precision="12" Scale="9" />
+          <Property Name="SellingExRate" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="Decimals" Type="Int32" Nullable="false" />
+          <Property Name="IsVisibleB2C" Type="Boolean" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ModDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="Facility">
           <Key>
@@ -1132,6 +1188,41 @@
           <Property Name="webPassword" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="ISXML" Type="Boolean" />
           <Property Name="UserID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="ModDate" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="SuppliersHotelsInfo">
+          <Key>
+            <PropertyRef Name="HotelInfoID" />
+          </Key>
+          <Property Name="HotelInfoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionID" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="SearchID" Type="Int32" />
+          <Property Name="SupplierID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="LocHotelID" Type="Int64" />
+          <Property Name="HotelID" Type="Int32" />
+          <Property Name="HotelName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="StarsLevel" Type="Decimal" Precision="5" Scale="3" />
+          <Property Name="RoomID" Type="Int32" />
+          <Property Name="RoomTypeID" Type="Int64" />
+          <Property Name="RoomType" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="RoomName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="NumOfNights" Type="Int32" />
+          <Property Name="NumOfPassengers" Type="Int32" />
+          <Property Name="NumOfChildrens" Type="Int32" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="FCAP" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="ExchRate" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="LCAP" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="AvrNightPricePay" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="AvrNightPriceSale" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="MarkUp" Type="Int32" />
+          <Property Name="TPABC" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="RateSDID" Type="Int32" />
+          <Property Name="BBID" Type="Int32" />
+          <Property Name="BBName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="CityId" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="CountryID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="ModDate" Type="DateTime" />
         </EntityType>
         <EntityType Name="XMLHotel">
@@ -1337,78 +1428,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="BasketSequence">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="SequenceNumber" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CurrencyMaster">
-          <Key>
-            <PropertyRef Name="CurID" />
-          </Key>
-          <Property Type="String" Name="CurID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CurName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CoName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="ExRate" Nullable="false" Precision="12" Scale="9" />
-          <Property Type="Decimal" Name="SellingExRate" Precision="12" Scale="9" />
-          <Property Type="Int32" Name="Decimals" Nullable="false" />
-          <Property Type="Boolean" Name="IsVisibleB2C" />
-          <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="ModDate" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SuppliersHotelsInfo">
-          <Key>
-            <PropertyRef Name="HotelInfoID" />
-          </Key>
-          <Property Type="Int64" Name="HotelInfoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="SessionID" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="SearchID" />
-          <Property Type="String" Name="SupplierID" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int64" Name="LocHotelID" />
-          <Property Type="Int32" Name="HotelID" />
-          <Property Type="String" Name="HotelName" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="StarsLevel" Precision="5" Scale="3" />
-          <Property Type="Int32" Name="RoomID" />
-          <Property Type="Int64" Name="RoomTypeID" />
-          <Property Type="String" Name="RoomType" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RoomName" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="NumOfNights" />
-          <Property Type="Int32" Name="NumOfPassengers" />
-          <Property Type="Int32" Name="NumOfChildrens" />
-          <Property Type="String" Name="CurrencyCode" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="FCAP" Precision="12" Scale="4" />
-          <Property Type="Decimal" Name="ExchRate" Precision="12" Scale="9" />
-          <Property Type="Decimal" Name="LCAP" Precision="12" Scale="4" />
-          <Property Type="Decimal" Name="AvrNightPricePay" Precision="9" Scale="2" />
-          <Property Type="Decimal" Name="AvrNightPriceSale" Precision="9" Scale="2" />
-          <Property Type="Int32" Name="MarkUp" />
-          <Property Type="Decimal" Name="TPABC" Precision="9" Scale="2" />
-          <Property Type="Int32" Name="RateSDID" />
-          <Property Type="Int32" Name="BBID" />
-          <Property Type="String" Name="BBName" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="CityId" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="CountryID" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Address" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="ModDate" />
-        </EntityType>
-        <EntityType Name="B2CSiteImages">
-          <Key>
-            <PropertyRef Name="SNo" />
-          </Key>
-          <Property Type="Int32" Name="SNo" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="ImagePath" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ImageDesc" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Panel" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="Inservice" Nullable="false" />
-          <Property Type="Int32" Name="SeqID" Nullable="false" />
-          <Property Type="String" Name="RedirectPath" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="Price" Precision="12" Scale="2" />
-          <Property Type="String" Name="Title" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Userid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="ModDate" Nullable="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1456,6 +1475,23 @@
             <ScalarProperty Name="PaxDOB" ColumnName="PaxDOB" />
             <ScalarProperty Name="Nationality" ColumnName="Nationality" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="B2CSiteImages"><EntityTypeMapping TypeName="meis007Model.B2CSiteImages"><MappingFragment StoreEntitySet="B2CSiteImages">
+            <ScalarProperty Name="SNo" ColumnName="SNo" />
+            <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+            <ScalarProperty Name="ImageDesc" ColumnName="ImageDesc" />
+            <ScalarProperty Name="Panel" ColumnName="Panel" />
+            <ScalarProperty Name="Inservice" ColumnName="Inservice" />
+            <ScalarProperty Name="SeqID" ColumnName="SeqID" />
+            <ScalarProperty Name="RedirectPath" ColumnName="RedirectPath" />
+            <ScalarProperty Name="Price" ColumnName="Price" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="Userid" ColumnName="Userid" />
+            <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="BasketSequences"><EntityTypeMapping TypeName="meis007Model.BasketSequence"><MappingFragment StoreEntitySet="BasketSequence">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="BkgMasters"><EntityTypeMapping TypeName="meis007Model.BkgMaster"><MappingFragment StoreEntitySet="BkgMaster">
             <ScalarProperty Name="BkgID" ColumnName="BkgID" />
             <ScalarProperty Name="BasketID" ColumnName="BasketID" />
@@ -1482,7 +1518,7 @@
             <ScalarProperty Name="PayCurrID" ColumnName="PayCurrID" />
             <ScalarProperty Name="PayExRate" ColumnName="PayExRate" />
             <ScalarProperty Name="PayAmt" ColumnName="PayAmt" />
-            <ScalarProperty Name="serviceid" ColumnName="serviceid" />
+            <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
             <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
             <ScalarProperty Name="CompanyConsultant" ColumnName="CompanyConsultant" />
             <ScalarProperty Name="ConsultantDisplayAmt" ColumnName="ConsultantDisplayAmt" />
@@ -1501,20 +1537,29 @@
             <ScalarProperty Name="PurchaseBillNo" ColumnName="PurchaseBillNo" />
             <ScalarProperty Name="CancellationRec" ColumnName="CancellationRec" />
             <ScalarProperty Name="CancellationPay" ColumnName="CancellationPay" />
-            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="supplierHotelID" ColumnName="supplierHotelID" />
+            <ScalarProperty Name="StarsLevel" ColumnName="StarsLevel" />
+            <ScalarProperty Name="SupplierRoomID" ColumnName="SupplierRoomID" />
+            <ScalarProperty Name="SupplierRoomTypeID" ColumnName="SupplierRoomTypeID" />
+            <ScalarProperty Name="SupplierRoomType" ColumnName="SupplierRoomType" />
+            <ScalarProperty Name="SupplierRoomName" ColumnName="SupplierRoomName" />
+            <ScalarProperty Name="BBID" ColumnName="BBID" />
+            <ScalarProperty Name="BBName" ColumnName="BBName" />
+            <ScalarProperty Name="CustomerMarkUpApplied" ColumnName="CustomerMarkUpApplied" />
             <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="CityMasters"><EntityTypeMapping TypeName="meis007Model.CityMaster"><MappingFragment StoreEntitySet="CityMaster">
-            <ScalarProperty Name="Bkgcount" ColumnName="Bkgcount" />
-                <ScalarProperty Name="DisplaySeqNo" ColumnName="DisplaySeqNo" />
-                <ScalarProperty Name="ImgPath" ColumnName="ImgPath" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
+            <ScalarProperty Name="CityID" ColumnName="CityID" />
             <ScalarProperty Name="CityName" ColumnName="CityName" />
             <ScalarProperty Name="CountryID" ColumnName="CountryID" />
             <ScalarProperty Name="UserID" ColumnName="UserID" />
             <ScalarProperty Name="ModDate" ColumnName="ModDate" />
             <ScalarProperty Name="H2H" ColumnName="H2H" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="ImgPath" ColumnName="ImgPath" />
+            <ScalarProperty Name="DisplaySeqNo" ColumnName="DisplaySeqNo" />
+            <ScalarProperty Name="Bkgcount" ColumnName="Bkgcount" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Classifications"><EntityTypeMapping TypeName="meis007Model.Classification"><MappingFragment StoreEntitySet="Classifications">
             <ScalarProperty Name="ClsID" ColumnName="ClsID" />
@@ -1531,6 +1576,17 @@
             <ScalarProperty Name="UserID" ColumnName="UserID" />
             <ScalarProperty Name="ModDate" ColumnName="ModDate" />
             <ScalarProperty Name="H2H" ColumnName="H2H" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CurrencyMasters"><EntityTypeMapping TypeName="meis007Model.CurrencyMaster"><MappingFragment StoreEntitySet="CurrencyMaster">
+            <ScalarProperty Name="CurID" ColumnName="CurID" />
+            <ScalarProperty Name="CurName" ColumnName="CurName" />
+            <ScalarProperty Name="CoName" ColumnName="CoName" />
+            <ScalarProperty Name="ExRate" ColumnName="ExRate" />
+            <ScalarProperty Name="SellingExRate" ColumnName="SellingExRate" />
+            <ScalarProperty Name="Decimals" ColumnName="Decimals" />
+            <ScalarProperty Name="IsVisibleB2C" ColumnName="IsVisibleB2C" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="ModDate" ColumnName="ModDate" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Facilities"><EntityTypeMapping TypeName="meis007Model.Facility"><MappingFragment StoreEntitySet="Facilities">
             <ScalarProperty Name="FID" ColumnName="FID" />
@@ -1662,6 +1718,38 @@
             <ScalarProperty Name="UserID" ColumnName="UserID" />
             <ScalarProperty Name="ModDate" ColumnName="ModDate" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SuppliersHotelsInfoes"><EntityTypeMapping TypeName="meis007Model.SuppliersHotelsInfo"><MappingFragment StoreEntitySet="SuppliersHotelsInfo">
+            <ScalarProperty Name="HotelInfoID" ColumnName="HotelInfoID" />
+            <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+            <ScalarProperty Name="SearchID" ColumnName="SearchID" />
+            <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+            <ScalarProperty Name="LocHotelID" ColumnName="LocHotelID" />
+            <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+            <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+            <ScalarProperty Name="StarsLevel" ColumnName="StarsLevel" />
+            <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+            <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
+            <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+            <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+            <ScalarProperty Name="NumOfNights" ColumnName="NumOfNights" />
+            <ScalarProperty Name="NumOfPassengers" ColumnName="NumOfPassengers" />
+            <ScalarProperty Name="NumOfChildrens" ColumnName="NumOfChildrens" />
+            <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+            <ScalarProperty Name="FCAP" ColumnName="FCAP" />
+            <ScalarProperty Name="ExchRate" ColumnName="ExchRate" />
+            <ScalarProperty Name="LCAP" ColumnName="LCAP" />
+            <ScalarProperty Name="AvrNightPricePay" ColumnName="AvrNightPricePay" />
+            <ScalarProperty Name="AvrNightPriceSale" ColumnName="AvrNightPriceSale" />
+            <ScalarProperty Name="MarkUp" ColumnName="MarkUp" />
+            <ScalarProperty Name="TPABC" ColumnName="TPABC" />
+            <ScalarProperty Name="RateSDID" ColumnName="RateSDID" />
+            <ScalarProperty Name="BBID" ColumnName="BBID" />
+            <ScalarProperty Name="BBName" ColumnName="BBName" />
+            <ScalarProperty Name="CityId" ColumnName="CityId" />
+            <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="XMLHotels"><EntityTypeMapping TypeName="meis007Model.XMLHotel"><MappingFragment StoreEntitySet="XMLHotels">
             <ScalarProperty Name="Sno" ColumnName="Sno" />
             <ScalarProperty Name="LocHotelid" ColumnName="LocHotelid" />
@@ -1679,82 +1767,6 @@
             <ScalarProperty Name="InService" ColumnName="InService" />
             <ScalarProperty Name="InternalSupplierID" ColumnName="InternalSupplierID" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="BasketSequences">
-            <EntityTypeMapping TypeName="meis007Model.BasketSequence">
-              <MappingFragment StoreEntitySet="BasketSequence">
-                <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CurrencyMasters">
-            <EntityTypeMapping TypeName="meis007Model.CurrencyMaster">
-              <MappingFragment StoreEntitySet="CurrencyMaster">
-                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="IsVisibleB2C" ColumnName="IsVisibleB2C" />
-                <ScalarProperty Name="Decimals" ColumnName="Decimals" />
-                <ScalarProperty Name="SellingExRate" ColumnName="SellingExRate" />
-                <ScalarProperty Name="ExRate" ColumnName="ExRate" />
-                <ScalarProperty Name="CoName" ColumnName="CoName" />
-                <ScalarProperty Name="CurName" ColumnName="CurName" />
-                <ScalarProperty Name="CurID" ColumnName="CurID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SuppliersHotelsInfoes">
-            <EntityTypeMapping TypeName="meis007Model.SuppliersHotelsInfo">
-              <MappingFragment StoreEntitySet="SuppliersHotelsInfo">
-                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="BBName" ColumnName="BBName" />
-                <ScalarProperty Name="BBID" ColumnName="BBID" />
-                <ScalarProperty Name="RateSDID" ColumnName="RateSDID" />
-                <ScalarProperty Name="TPABC" ColumnName="TPABC" />
-                <ScalarProperty Name="MarkUp" ColumnName="MarkUp" />
-                <ScalarProperty Name="AvrNightPriceSale" ColumnName="AvrNightPriceSale" />
-                <ScalarProperty Name="AvrNightPricePay" ColumnName="AvrNightPricePay" />
-                <ScalarProperty Name="LCAP" ColumnName="LCAP" />
-                <ScalarProperty Name="ExchRate" ColumnName="ExchRate" />
-                <ScalarProperty Name="FCAP" ColumnName="FCAP" />
-                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
-                <ScalarProperty Name="NumOfChildrens" ColumnName="NumOfChildrens" />
-                <ScalarProperty Name="NumOfPassengers" ColumnName="NumOfPassengers" />
-                <ScalarProperty Name="NumOfNights" ColumnName="NumOfNights" />
-                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
-                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
-                <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
-                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
-                <ScalarProperty Name="StarsLevel" ColumnName="StarsLevel" />
-                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
-                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
-                <ScalarProperty Name="LocHotelID" ColumnName="LocHotelID" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-                <ScalarProperty Name="SearchID" ColumnName="SearchID" />
-                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
-                <ScalarProperty Name="HotelInfoID" ColumnName="HotelInfoID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="B2CSiteImages">
-            <EntityTypeMapping TypeName="meis007Model.B2CSiteImages">
-              <MappingFragment StoreEntitySet="B2CSiteImages">
-                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
-                <ScalarProperty Name="Userid" ColumnName="Userid" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="RedirectPath" ColumnName="RedirectPath" />
-                <ScalarProperty Name="SeqID" ColumnName="SeqID" />
-                <ScalarProperty Name="Inservice" ColumnName="Inservice" />
-                <ScalarProperty Name="Panel" ColumnName="Panel" />
-                <ScalarProperty Name="ImageDesc" ColumnName="ImageDesc" />
-                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-                <ScalarProperty Name="SNo" ColumnName="SNo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1775,31 +1787,35 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="meis007Model" ZoomLevel="85">
-        <EntityTypeShape EntityType="meis007Model.AmadeusTable" Width="1.5" PointX="9.75" PointY="4.75" Height="1.9802864583333335" IsExpanded="true" />
+      <Diagram Name="meis007Model">
+        <EntityTypeShape EntityType="meis007Model.AmadeusTable" Width="1.5" PointX="12.75" PointY="11.75" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.Amenity" Width="1.5" PointX="3" PointY="3.5" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.B2CCustomerinfo" Width="1.5" PointX="12.75" PointY="1" Height="4.2879036458333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.B2CPaxinfo" Width="1.5" PointX="15" PointY="1.75" Height="2.9417936197916656" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.BkgMaster" Width="1.5" PointX="12.75" PointY="9.75" Height="9.8646451822916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.CityMaster" Width="1.5" PointX="10" PointY="1" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.B2CCustomerinfo" Width="1.5" PointX="12.75" PointY="6" Height="4.2879036458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.B2CPaxinfo" Width="1.5" PointX="15" PointY="6.75" Height="2.9417936197916665" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.B2CSiteImages" Width="1.5" PointX="7.75" PointY="13.75" Height="3.1340950520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.BasketSequence" Width="1.5" PointX="9.75" PointY="5.75" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.BkgMaster" Width="1.5" PointX="9.75" PointY="13.75" Height="11.595358072916667" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.CityMaster" Width="1.5" PointX="12" PointY="1" Height="3.1340950520833317" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.Classification" Width="1.5" PointX="0.75" PointY="12.125" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.CountryMaster" Width="1.5" PointX="7.75" PointY="1" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.Facility" Width="1.5" PointX="5.25" PointY="1.625" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.PackageDescription" Width="1.5" PointX="10" PointY="8" Height="1.787985026041671" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.PackageHeader" Width="1.5" PointX="7.75" PointY="8.375" Height="3.9033007812500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.CountryMaster" Width="1.5" PointX="9.75" PointY="1.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.CurrencyMaster" Width="1.5" PointX="14.75" PointY="0.75" Height="2.7494921875000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.Facility" Width="1.5" PointX="5.25" PointY="1.625" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.PackageDescription" Width="1.5" PointX="10" PointY="8" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.PackageHeader" Width="1.5" PointX="7.75" PointY="8.375" Height="3.903300781249996" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.PackageImage" Width="1.5" PointX="10" PointY="10.625" Height="1.9802864583333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.PaxDetail" Width="1.5" PointX="7.75" PointY="13.75" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.PaxDetail" Width="1.5" PointX="14.75" PointY="10.75" Height="1.5956835937500031" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.ProductAmenity" Width="1.5" PointX="5.25" PointY="12.5" Height="1.9802864583333388" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.ProductFacility" Width="1.5" PointX="7.5" PointY="4.5" Height="1.9802864583333388" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.ProductImage" Width="1.5" PointX="5.25" PointY="15.25" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.ProductMaster" Width="1.5" PointX="3" PointY="9.875" Height="7.1724251302083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.ProductMaster" Width="1.5" PointX="3" PointY="9.875" Height="7.1724251302083264" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.ProductRRC" Width="1.5" PointX="5.25" PointY="4.125" Height="2.7494921875000031" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.RoomTypeDetail" Width="1.5" PointX="3" PointY="6.375" Height="1.9802864583333397" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.RoomTypeHeader" Width="1.5" PointX="0.75" PointY="2.5" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.ServicesMaster" Width="1.5" PointX="1.5" PointY="18.5" Height="1.9802864583333246" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.SupplierMaster" Width="1.5" PointX="9.75" PointY="13.75" Height="5.2494108072916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.XMLHotel" Width="1.5" PointX="14.75" PointY="12.75" Height="2.5571907552083246" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.XMLSupplier" Width="1.5" PointX="16.75" PointY="5.75" Height="1.9802864583333246" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.SupplierMaster" Width="1.5" PointX="11.75" PointY="14.75" Height="5.2494108072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="14.75" PointY="13.75" Height="6.78782226562501" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.XMLHotel" Width="1.5" PointX="16.75" PointY="0.75" Height="2.5571907552083246" IsExpanded="true" />
+        <EntityTypeShape EntityType="meis007Model.XMLSupplier" Width="1.5" PointX="16.75" PointY="10.75" Height="1.9802864583333246" IsExpanded="true" />
         <AssociationConnector Association="meis007Model.FK_ProductAmenities_Amenities" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="5.2879850260416674" />
           <ConnectorPoint PointX="4.875" PointY="5.6629850260416674" />
@@ -1807,12 +1823,12 @@
           <ConnectorPoint PointX="5.25" PointY="13.490143229166669" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_B2CPaxinfo_B2CCustomerinfo1" ManuallyRouted="false">
-          <ConnectorPoint PointX="14.25" PointY="3.2208968098958328" />
-          <ConnectorPoint PointX="15" PointY="3.2208968098958328" />
+          <ConnectorPoint PointX="14.25" PointY="8.2208968098958337" />
+          <ConnectorPoint PointX="15" PointY="8.2208968098958337" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_CityMaster_CountryMaster" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.25" PointY="2.0862939453125" />
-          <ConnectorPoint PointX="10" PointY="2.0862939453125" />
+          <ConnectorPoint PointX="11.25" PointY="2.5862939453125" />
+          <ConnectorPoint PointX="12" PointY="2.5862939453125" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_Classifications_ServicesMaster" ManuallyRouted="false">
           <ConnectorPoint PointX="1.875" PointY="18.5" />
@@ -1823,18 +1839,17 @@
           <ConnectorPoint PointX="3" PointY="13.49974609375" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductFacilities_Facilities" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="3.2206835937499996" />
-          <ConnectorPoint PointX="7.125" PointY="3.5956835937499996" />
-          <ConnectorPoint PointX="7.125" PointY="5.4901432291666694" />
-          <ConnectorPoint PointX="7.5" PointY="5.4901432291666694" />
+          <ConnectorPoint PointX="6.75" PointY="2.4228417968750016" />
+          <ConnectorPoint PointX="8.25" PointY="2.4228417968750016" />
+          <ConnectorPoint PointX="8.25" PointY="4.5" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_PackageDescription_PackageHeader" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.25" PointY="9.0814925130208355" />
-          <ConnectorPoint PointX="10" PointY="9.0814925130208355" />
+          <ConnectorPoint PointX="9.25" PointY="9.0814925130208337" />
+          <ConnectorPoint PointX="10" PointY="9.0814925130208337" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_PackageImages_PackageHeader" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.25" PointY="11.451650390625002" />
-          <ConnectorPoint PointX="10" PointY="11.451650390625002" />
+          <ConnectorPoint PointX="9.25" PointY="11.451650390624998" />
+          <ConnectorPoint PointX="10" PointY="11.451650390624998" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductAmenities_ProductMaster" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="12.932571614583335" />
@@ -1843,10 +1858,8 @@
           <ConnectorPoint PointX="5.25" PointY="12.932571614583335" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductFacilities_ProductRRC" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="4.9325716145833347" />
-          <ConnectorPoint PointX="7.041666666666667" PointY="4.9325716145833338" />
-          <ConnectorPoint PointX="7.208333333333333" PointY="4.9325716145833347" />
-          <ConnectorPoint PointX="7.5" PointY="4.9325716145833347" />
+          <ConnectorPoint PointX="6.75" PointY="5.4901432291666694" />
+          <ConnectorPoint PointX="7.5" PointY="5.4901432291666694" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductImages_ProductMaster" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="16.143992513020834" />
@@ -1884,10 +1897,6 @@
           <ConnectorPoint PointX="1.9062525" PointY="7.3651432291666694" />
           <ConnectorPoint PointX="3" PointY="7.3651432291666694" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="meis007Model.BasketSequence" Width="1.5" PointX="15.375" PointY="16.75" Height="1.4033821614583246" />
-        <EntityTypeShape EntityType="meis007Model.CurrencyMaster" Width="1.5" PointX="17.375" PointY="0.75" Height="2.7494921875000102" />
-        <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="17.375" PointY="8.75" Height="6.78782226562501" />
-        <EntityTypeShape EntityType="meis007Model.B2CSiteImages" Width="1.5" PointX="17.375" PointY="16.75" Height="3.1340950520833246" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -29,8 +29,6 @@
                   <a href="<%= _forgotPasswordPath %>">Forgot Password?</a>
                 <%} %>
                 |
-                <asp:DropDownList ID="ddlMasterCurency" runat="server" AutoPostBack="True" 
-                      onselectedindexchanged="ddlMasterCurency_SelectedIndexChanged" CssClass="ddl-custom ddlMasterCurrency"></asp:DropDownList>
               </div>
             </div>
             <div class="clear"></div>
@@ -46,7 +44,7 @@
               </ul>
               <ul class="right">
               <% var klass = "hasBasketItems" == "" ? "has-basket-items" : "no-basket-items"; %>
-                <li><a href="<%= Route.GetRootPath("basket/show.aspx") %>" class="basket-items <%= klass %>">Basket (<span id="basket-items-count"><%= basketItemsCount %></span>)</a></li>
+                <li><a href="<%= Route.GetRootPath("basket/show.aspx") %>" class="basket-items <%= klass %>">Basket (<span id="basket-items-count"><%= "basketItemsCount" %></span>)</a></li>
               </ul>
               <div class="clear"></div>
             </div>
