@@ -55,7 +55,7 @@
           <div id="div-rooms">
             <h4>How many of you?</h4>
             <div class="clear"></div>
-            <table class="table table-bordered rooms-table">
+            <table class="rooms-table">
               <tr>
                 <th style="width:65px;">&nbsp;</th>
                 <th style="width:45px;">Adults</th>

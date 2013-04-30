@@ -2,12 +2,14 @@
 <%@ Register Src="/rtbtc/Pager.ascx" TagName="Pager" TagPrefix="userControl" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
   <style type="text/css">
-      #otherCriterias .div-wrapper label {
+      .infoBoxContents .inner label {
         display:inline-block;
         margin-left: 5px;
       }
       .no-close .ui-dialog-titlebar-close {display: none}
+      
   </style>
+  <link href="/rtbtc/styles/search_box.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript">
       window.city_autocomplete_url = '<%=ResolveUrl("~/ViewHelperWebService.asmx/CitySearch") %>';
       window.room_index = <%= RoomsCount + 1 %>;
@@ -27,43 +29,48 @@
   <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 <!-- <div id="hotelsListMain"> -->
   <div class="row row_4 container_24">
-  <section id="bodyContent" class="col grid_6">
-  <div id="searchCriteria">
-    
-    <div id="mainSearch">
-      <div class="div-wrapper">
-        <h3>Hotel Search</h3>
-        <label>Where do you want to go?</label>
-        <asp:TextBox ID="txtCity" runat="server" CssClass="txtCity" 
-          ValidationGroup="search"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvCity" runat="server" 
-                    ControlToValidate="txtCity" ForeColor="#FF3300" 
-                    SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
-        <label>When do you want to go?</label>
-        <asp:TextBox ID="txtStartDate" runat="server" CssClass="start-date" 
-          ValidationGroup="search"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvStartDate" runat="server" 
-                    ControlToValidate="txtStartDate" ForeColor="#FF3300" 
-                    SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
-        <asp:TextBox ID="txtEndDate" runat="server" CssClass="end-date" 
-          ValidationGroup="search"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvEndDate" runat="server" 
-                    ControlToValidate="txtEndDate" ForeColor="#FF3300" 
-                    SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
-        <br />
+    <section id="bodyContent" class="col grid_6">
+      <div class="ui-widget infoBoxContainer box_list" style="min-height:570px;"> 
+        <div class="ui-widget-header infoBoxHeading">
+          Hotels Search
+        </div>
+        
+      <div id="search-bar" style="float:none;height:auto;width:100%;background-image:none;">
+        <div id="div-search" style="margin-left:0;padding-top:0;">
+          <div id="div-destination">
+            <label>Where do you want to go?</label>
+            <asp:TextBox ID="txtCity" runat="server" CssClass="txtCity" ValidationGroup="search"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" ForeColor="#FF3300" 
+            SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+          </div>
+          <div id="div-dates">
+            <h4>When do you want to go?</h4>
+            <div class="check-in">
+              <label>Check In</label>
+              <asp:TextBox ID="txtStartDate" runat="server" CssClass="start-date" ValidationGroup="search"></asp:TextBox>
+              <asp:RequiredFieldValidator ID="rfvStartDate" runat="server" ControlToValidate="txtStartDate" ForeColor="#FF3300" 
+              SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+            </div>
+            <div class="check-out">
+              <label>Check Out</label>
+              <asp:TextBox ID="txtEndDate" runat="server" CssClass="end-date" ValidationGroup="search"></asp:TextBox>
+              <asp:RequiredFieldValidator ID="rfvEndDate" runat="server" ControlToValidate="txtEndDate" ForeColor="#FF3300" 
+              SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+            </div>
+          </div>
         <span class="difference-nights"></span>
-        <br />
-        <input type="button" class="btn btn-success right add-room" value="Add Room" />
-        <div class="clear"></div>
-        <br />
-        <table class="table table-bordered rooms-table">
-          <tr>
-            <th>&nbsp;</th>
-            <th>Adults</th>
-            <th>Kids(2-12)</th>
-            <th>Infants(0-1)</th>
-            <th>&nbsp;</th>
-          </tr>
+        <div id="div-rooms">
+          <h4>How many of you?</h4>
+          <input type="button" class="btn btn-success right add-room" value="Add Room" />
+          <div class="clear"></div>
+          <table class="rooms-table">
+            <tr>
+              <th>&nbsp;</th>
+              <th>Adults</th>
+              <th>Kids(2-12)</th>
+              <th>Infants(0-1)</th>
+              <th>&nbsp;</th>
+            </tr>
           <% if(ShoppingRoomsList == null){ %>
             <tr id="room_1">
               <td>Room 1</td>
@@ -133,23 +140,32 @@
       </div>
     </div>
   </div>
-  <div id="otherCriterias">
-    <div class="div-wrapper">
-      <asp:UpdatePanel ID="UpdatePanelStartRatings" runat="server"  UpdateMode="Conditional">
-         <ContentTemplate>
-           <h3>Star Ratings</h3>
-           <asp:Repeater ID="rptrStarRatings" runat="server" >
-             <ItemTemplate>
-               <asp:CheckBox ID="chkBoxStar" runat="server" AutoPostBack="true" Text='<%#Bind("ClsName")%>' OnCheckedChanged="CheckBox_Changed" />
-             </ItemTemplate>
-             <SeparatorTemplate>
-               <br />
-             </SeparatorTemplate>
-           </asp:Repeater>
-         </ContentTemplate>
-       </asp:UpdatePanel>
-    </div>
-  </div>
+  </div></div>
+  <div class="ui-widget infoBoxContainer box_list">
+    <h2 class="ui-widget-header infoBoxHeading">
+      Star Ratings
+    </h2>      
+    <asp:UpdatePanel ID="UpdatePanelStartRatings" runat="server"  UpdateMode="Conditional">
+      <ContentTemplate>
+        <asp:Repeater ID="rptrStarRatings" runat="server" >
+          <HeaderTemplate>
+            <div class="infoBoxContents">
+              <ul>
+          </HeaderTemplate>
+          <ItemTemplate>
+            <li>
+              <div class="inner">
+                <asp:CheckBox ID="chkBoxStar" runat="server" AutoPostBack="true" Text='<%#Bind("ClsName")%>' OnCheckedChanged="CheckBox_Changed" />
+              </div>
+             </li>
+          </ItemTemplate>
+          <FooterTemplate>
+              </ul>
+            </div>
+          </FooterTemplate>
+        </asp:Repeater>
+      </ContentTemplate>
+     </asp:UpdatePanel>
   </div>
   </section>
   <aside id="columnRight" class="col grid_18">
