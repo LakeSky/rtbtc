@@ -26,7 +26,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 <!-- <div id="hotelsListMain"> -->
+  <div class="row row_4 container_24">
+  <section id="bodyContent" class="col grid_6">
   <div id="searchCriteria">
+    
     <div id="mainSearch">
       <div class="div-wrapper">
         <h3>Hotel Search</h3>
@@ -148,51 +151,89 @@
     </div>
   </div>
   </div>
-  <div id="hotelsList">
+  </section>
+  <aside id="columnRight" class="col grid_18">
      <asp:UpdatePanel ID="UpdatePanelHotelList" runat="server"  UpdateMode="Conditional">
        <ContentTemplate>
-        <div class="left">
-          <userControl:Pager ID="Pager" runat="server" Separator=" | " FirstText="First"
-            PreviousText="<" NextText=">" LastText="Last" PageSize="5" NumberOfPages="3"
-            ShowGoTo="True" OnChange="Pager_Changed" />
-        </div>
-        <div class="right">
-          <asp:DropDownList ID="ddlSort" runat="server" AutoPostBack="True" 
-            onselectedindexchanged="ddlSort_SelectedIndexChanged">
-            <asp:ListItem Value="plf">Price - Lowest First</asp:ListItem>
-            <asp:ListItem Value="phf">Price - Highest First</asp:ListItem>
-            <asp:ListItem Value="aa">Alphabets - Ascending</asp:ListItem>
-            <asp:ListItem Value="ad">Alphabets - Descending</asp:ListItem>
-          </asp:DropDownList>
-        </div>
-        <div class="clear"></div>
+         <div class="result result1_top">
+           <div class="result1_bottom">
+             <div class="result_top_padd">
+               <div class="result_left">
+                 <userControl:Pager ID="Pager" runat="server" Separator=" | " FirstText="First" PreviousText="<" NextText=">"
+                 LastText="Last" PageSize="5" NumberOfPages="3" ShowGoTo="True" OnChange="Pager_Changed" />
+               </div>
+               <div class="result_right">
+                 <asp:DropDownList ID="ddlSort" runat="server" AutoPostBack="True" 
+                 onselectedindexchanged="ddlSort_SelectedIndexChanged">
+                   <asp:ListItem Value="plf">Price - Lowest First</asp:ListItem>
+                   <asp:ListItem Value="phf">Price - Highest First</asp:ListItem>
+                   <asp:ListItem Value="aa">Alphabets - Ascending</asp:ListItem>
+                   <asp:ListItem Value="ad">Alphabets - Descending</asp:ListItem>
+                  </asp:DropDownList>
+               </div>
+             </div>
+           </div>
+         </div>
         <asp:Repeater ID="rptrHotels" runat="server">
           <HeaderTemplate>
+            <div class="contentContainer page_new_product">
+              <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" style="">
+                <div class="contentBlock row_view" style="visibility: visible;">
+                    <div class="content t_view">
+                      <ul id="view_row-0">
           </HeaderTemplate>
           <ItemTemplate>
-            <div class="hotel-div">
-              <div class="hotel-content">
-                <h3><%# Eval("ProductName")%></h3>
-                <div class="left">
-                  <img src="<%# Eval("ProductStarsImagePath")%>" />
-                  <br />
-                  <h4><%# Eval("City") %></h4>
+            <% var rootPath = Route.GetRootPath(""); %>
+            <% var detailsPath = rootPath + "hotels/show.aspx?from=search"; %>
+            <li class="responsive_block first" style="width:100%;">
+              <div class="product_block equal-height_products_block">
+                <div class="product_pic_wrapper" style="width:195px;height:195px;">
+                  <a class="product_img" href="<%= detailsPath %>&sid=<%# Eval("Id") %>&id=<%# Eval("ProductMasterId")%>" style="width:195px;height:195px;">
+                    <img src="<%# Eval("ProductImagePath") %>" alt="<%# Eval("ProductName") %>" width="195" height="195" style="width:195px;height:195px;">
+                  </a>
                 </div>
-                <% var path = Route.GetRootPath("hotels/show.aspx?from=search"); %>
-                <div class="right paddingT10">
-                  <a href="<%= path %>&sid=<%# Eval("Id") %>&id=<%# Eval("ProductMasterId")%>" class="btn btn-primary">More Info ></a>
+                <div class="product_info_wrapper">
+                  <div class="data">
+                    <div class="fl_left">
+                      <img src="<%#  Eval("ProductStarsImagePath") %>" class="media-image" alt="" />
+                    </div>
+                    <div class="fl_right">
+                    </div>
+                  </div>
+                
+                <div class="row_02">
+                  <div class="product_price_wrapper price ">
+                    <b>Price:&nbsp;&nbsp;</b>
+                    <span class="productSpecialPrice">
+                      <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %>
+                      &nbsp;
+                      <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("BasicPrice"), masterCurrencyValue) %>
+                    </span>
+                  </div>
+                  <strong class="button_content button_content2">
+                    <strong class="button bg_button">
+                      <a href="<%= detailsPath %>&sid=<%# Eval("Id") %>&id=<%# Eval("ProductMasterId")%>" role="button">
+                        <span class="ui-button-text">Details</span>
+                      </a>
+                    </strong>
+                  </strong>
                 </div>
-                <div class="clear"></div>
-                <div class="margin10"></div>
-                <%# Eval("ProdcutDescription")%>
-              </div>      
-              <div class="hotel-image">
-                <div class="price">
-                  <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("BasicPrice"), masterCurrencyValue) %>
+                <div class="row_01">
+                  <h3 class="name equal-height_products_name">
+                    <span>
+                      <a href="<%= detailsPath %>&sid=<%# Eval("Id") %>&id=<%# Eval("ProductMasterId")%>">
+                        <%# Eval("ProductName") %>
+                      </a>
+                    </span>
+                  </h3>
+                  <div class="manuf">
+                    <span><%# Eval("City") %></span>
+                  </div>
+                  <div class="desc equal-height_products_desc">
+                    <%# Eval("ProdcutDescription") %>
+                  </div>
                 </div>
-                <img src="<%# Eval("ProductImagePath")%>" class="media-image" style="width:200px;height:200px;" />
-              </div>
-              <div class="clear"></div>
+                
               <div class="margin10"></div>
               <asp:Repeater ID="rptrRooms" runat="server" DataSource='<%# Eval("Rooms") %>'>
                 <HeaderTemplate>
@@ -212,7 +253,15 @@
                     <td> <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("Price"), masterCurrencyValue) %></td>
                     <td><a href="#" class="btn btn-small btn-warning" title="View Cancellation Policy">!</a></td>
                     <% var path = Route.GetRootPath("hotels/book.aspx"); %>
-                    <td><a href="<%= path %>?id=<%# Eval("HotelInfoId")%>" class="btn btn-success">Book</a></td>
+                    <td>
+                      <strong class="button_content button_content1">
+                        <strong class="button bg_button">
+                          <a href="<%= path %>?id=<%# Eval("HotelInfoId")%>" role="button">
+                            <span class="ui-button-text">Book</span>
+                          </a>
+                        </strong>
+                      </strong>
+                    </td>
                   </tr>
                 </ItemTemplate>
                 <FooterTemplate>
@@ -220,7 +269,16 @@
                 </FooterTemplate>
               </asp:Repeater>
             </div>
+              </div>
+              </li>
           </ItemTemplate>
+          <SeparatorTemplate>
+            <li class="prods_vseparator">
+              <div class="equal-height_products_block">
+                <img src="<%= Route.GetRootPath("images/template/spacer.gif") %>" alt="" width="10" height="1">
+              </div>
+            </li>
+          </SeparatorTemplate>
           <FooterTemplate>
           </FooterTemplate>
       </asp:Repeater>
@@ -228,7 +286,9 @@
   </asp:UpdatePanel>
   </div>
   <div class="clear"></div>
+  </aside>
   <!-- </div> -->
+  </div>
 <script id='add-remove-room-button-template' type='text/html'>
 <input type="button" class="btn btn-danger remove-room" value="x" data-id="{{index}}" id="remove_room_{{index}}" />
 </script>
