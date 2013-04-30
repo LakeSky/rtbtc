@@ -26,6 +26,7 @@ public static class DbParameter
         while (_sqlDataReader.Read()) {
             if (_sqlDataReader["ParameterName"].ToString() == "B2CCustomerID"){
                 _customerId = _sqlDataReader["ParameterValue"].ToString();
+                HttpContext.Current.Session["CustomerId"] = _customerId;
             }
         }
         _sqlConnection.Close();
@@ -61,8 +62,32 @@ public static class DbParameter
         return supplierName;
     }
 
+    public static string GetIneternalSupplierId() {
+        var internalSupplierId = "";
+        internalSupplierId = (string)(HttpContext.Current.Session["InternalSupplierId"]);
+        if (internalSupplierId != null && !string.IsNullOrEmpty(internalSupplierId))
+        {
+            return internalSupplierId;
+        }
+        internalSupplierId = "";
+        SqlConnection _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
+        _sqlConnection.Open();
+        SqlCommand _sqlCommand = new SqlCommand("SELECT * FROM SysParameters;", _sqlConnection);
+        SqlDataReader _sqlDataReader = _sqlCommand.ExecuteReader();
+        while (_sqlDataReader.Read())
+        {
+            if (_sqlDataReader["ParameterName"].ToString() == "InternalSupplierID")
+            {
+                internalSupplierId = _sqlDataReader["ParameterValue"].ToString();
+                HttpContext.Current.Session["InternalSupplierId"] = internalSupplierId;
+            }
+        }
+        _sqlConnection.Close();
+        return internalSupplierId;
+    }
+
     public static bool IsInetrnalSupplier(string supplierId) {
-        return supplierId == "1020";
+        return supplierId == GetIneternalSupplierId();
     }
 
     public static string GetBookingType() {
