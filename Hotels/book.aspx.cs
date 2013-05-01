@@ -72,11 +72,34 @@ public partial class Hotels_book : PublicApplicationPage
         Session["NoticeMessage"] = "Succesfully added to the basket!";
         DisposeHotelDetails();
         Response.Redirect(Route.GetRootPath("home.aspx"));
-    }  
+    }
+
+    public void rptrBookingGuests_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
+    {
+        var x = e.Item.ItemType;
+        var y = e.Item.DataItem;
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            var dropDown = e.Item.FindControl("ddlTitle") as DropDownList;
+            if (((BookingGuestDetails)e.Item.DataItem).type == "Adult")
+            {
+                dropDown.Items.Remove("Master");
+            }
+            else if (((BookingGuestDetails)e.Item.DataItem).type == "Kid")
+            {
+                dropDown.Items.Remove("Mr");
+                dropDown.Items.Remove("Mrs");
+                dropDown.Items.Remove("Miss");
+                dropDown.Items.Remove("Ms");
+                dropDown.Items.Remove("Dr");
+            }
+
+        }
+    }
 
     void Redirect(string message, string path = null) {
         Session["ErrorMessage"] = message;
-        path = path == null ? Route.GetRootPath("cars.aspx") : path;
+        path = path == null ? Route.GetRootPath("hotels/search.aspx") : path;
         Response.Redirect(path);
     }
 

@@ -66,7 +66,7 @@
     <%} %>
     <div class="clear"></div>
   </h3>
-  <asp:Repeater ID="rptrBookingGuests" runat="server">
+  <asp:Repeater ID="rptrBookingGuests" runat="server"  OnItemDataBound="rptrBookingGuests_ItemDataBound" >
     <HeaderTemplate>
       <table class="table">
         <tr>

@@ -47,7 +47,7 @@ public class SupplierHotelObjectHelper
     {
         searchId = shoppingHotelHelper.SearchId;
         if (searchNew || string.IsNullOrEmpty(shoppingHotelHelper.SearchId.ToString()) || shoppingHotelHelper.SearchId == 0) {
-            searchId = 6;// GetSearchId(shoppingHotelHelper.CityCode);
+            searchId = GetSearchId(shoppingHotelHelper.CityCode);
             shoppingHotelHelper.SearchId = searchId;
         }
         defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
@@ -56,7 +56,7 @@ public class SupplierHotelObjectHelper
         _sqlCommand = new SqlCommand("spProductMasterTest", _sqlConnection);
         _sqlCommand.CommandType = CommandType.StoredProcedure;
         _sqlCommand.Parameters.AddWithValue("@Trans", "SearchBySession");
-        _sqlCommand.Parameters.AddWithValue("@SessionId", "moyo0h4arkrg0cddrezgb4a5"); //shoppingHotelHelper.SessionId);
+        _sqlCommand.Parameters.AddWithValue("@SessionId", shoppingHotelHelper.SessionId);
         _sqlCommand.Parameters.AddWithValue("@SearchId", searchId);
         _sqlDataReader = _sqlCommand.ExecuteReader();
         while (_sqlDataReader.Read())
