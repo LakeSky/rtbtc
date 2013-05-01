@@ -8833,7 +8833,7 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsAvailable
+        public global::System.String IsAvailable
         {
             get
             {
@@ -8843,13 +8843,13 @@ namespace meis007Model
             {
                 OnIsAvailableChanging(value);
                 ReportPropertyChanging("IsAvailable");
-                _IsAvailable = StructuralObject.SetValidValue(value);
+                _IsAvailable = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("IsAvailable");
                 OnIsAvailableChanged();
             }
         }
-        private Nullable<global::System.Boolean> _IsAvailable;
-        partial void OnIsAvailableChanging(Nullable<global::System.Boolean> value);
+        private global::System.String _IsAvailable;
+        partial void OnIsAvailableChanging(global::System.String value);
         partial void OnIsAvailableChanged();
     
         /// <summary>

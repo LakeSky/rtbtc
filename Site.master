@@ -102,7 +102,7 @@
                                                           <span class="productSpecialPrice">
                                                             <%= ApplicationObject.GetMasterCurrency(ddlMasterCurency.SelectedValue) %>
                                                             &nbsp;
-                                                            <%# ApplicationObject.FormattedCurrencyDisplayPrice(masterBasketHelper.totalPrice, ddlMasterCurency.SelectedValue) %>
+                                                            <%= ApplicationObject.FormattedCurrencyDisplayPrice(masterBasketHelper.totalPrice, ddlMasterCurency.SelectedValue) %>
                                                           </span>
                                                         </li>
                                                         <li class="last">

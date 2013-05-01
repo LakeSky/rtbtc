@@ -499,7 +499,7 @@
           <Property Name="RoomTypeID" Type="bigint" />
           <Property Name="RoomType" Type="varchar" MaxLength="255" />
           <Property Name="RoomName" Type="varchar" MaxLength="255" />
-          <Property Name="IsAvailable" Type="bit" />
+          <Property Name="IsAvailable" Type="varchar" MaxLength="100" />
           <Property Name="NumOfNights" Type="int" />
           <Property Name="NumOfPassengers" Type="int" />
           <Property Name="NumOfChildrens" Type="int" />
@@ -1458,7 +1458,7 @@
           <Property Type="Int64" Name="RoomTypeID" />
           <Property Type="String" Name="RoomType" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="RoomName" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsAvailable" />
+          <Property Type="String" Name="IsAvailable" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="NumOfNights" />
           <Property Type="Int32" Name="NumOfPassengers" />
           <Property Type="Int32" Name="NumOfChildrens" />
