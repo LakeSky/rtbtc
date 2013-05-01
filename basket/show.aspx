@@ -53,83 +53,159 @@
 </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-  <div id="hotelsList" style="width:100%;">
-    <h3 class="custom-h3 blue-font left">Total Amount <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <span class="total-price"><%= ApplicationObject.FormattedCurrencyDisplayPrice(totalPrice, masterCurrencyValue) %></h3>
-    <a class="btn btn-success right" href="<%= Route.GetRootPath("orders/checkout.aspx") %>">Checkout</a>
-    <div class="clear"></div>
-    <hr />
-
-    <asp:Repeater ID="rptrPackages" runat="server">
-      <HeaderTemplate>
-        <div id="packages">
-          <h3 class="package_heading"> Packages</h3>
-      </HeaderTemplate>
-      <ItemTemplate>
-        <div class="package-div" id='package_<%# Eval("Id") %>'>
-          <div class="span9 left">
-            <h3 class="custom-h3"><%# Eval("PackageName") %></h3>
-            <span class="bold-font"> Package Start Date: </span>
-            <%# ((DateTime)Eval("ValidFrom")).ToString("dd MMM yyyy") %>
-            <br />
-            <span class="bold-font"> Package End Date: </span>
-            <%# ((DateTime)Eval("ValidTo")).ToString("dd MMM yyyy") %>
-            <br />
-            <span class="bold-font">Travelling From: </span>
-            <%# ((DateTime)Eval("From")).ToString("dd MMM yyyy") %>
-            <br />
-            <span class="bold-font">Price Per Person <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> </span>
-            <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("PricePerPerson"), masterCurrencyValue) %>
-            <br />
-            <span class="bold-font">Total Price SR. </span>
-            <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("TotalPrice"), masterCurrencyValue) %>
-            <br />
-            <% var path = Route.GetRootPath("packages/show.aspx"); %>
-            <a class="btn btn-primary" href="<%= path %>?id=<%# Eval("PackageId")%>&from=basket">More Info</a>
-          </div>
-          <div class="span3 right">
-            <div class="price">
-              <span class="left">Price Per Person SR. <%# Eval("PricePerPerson") %></span>
-              <a  href="#" title="Remove from basket." class="btn btn-danger right remove-basket-item" data-id='<%# Eval("Id")%>' data-type="package">X</a>
-              <div class="clear"></div>
-            </div>
-            <img src="<%# Eval("DisplayImage") %>" alt="" class="media-image" style="width:200px; height:200px"/>
-          </div>
-          <div class="clear"></div>
-        <asp:Repeater ID="rptrPackagePassengers" runat="server"  DataSource='<%# Eval("Passengers") %>'>
-          <HeaderTemplate>
-            <div class="span12" style="margin-left:0;">
-              <h3 class="custom-h3 left" >Passenger Details</h3>
-              <br />
-              <table class="table table-bordered">
-                <tr>
-                  <th>Title</th>
-                 <th>First Name</th>
-                  <th>Middle Name</th>
-                  <th>Last Name</th>
-                </tr>
-          </HeaderTemplate>
-          <ItemTemplate>
-            <tr>
-              <td><%# Eval("Title") %></td>
-              <td><%# Eval("FirstName") %></td>
-              <td><%# Eval("MiddleName") %></td>
-              <td><%# Eval("LastName") %></td>
-            </tr>
-          </ItemTemplate>
-          <FooterTemplate>
-              </table>
-            </div>
-            <hr />
-          </FooterTemplate>
-        </asp:Repeater>
+  <div class="row row_4 container_24">
+    <section id="bodyContent" class="col grid_24">
+      <div class="title_wrapper">
+        <div class="title_inner">
+          <span class="title-icon"></span>
+          <h2>What's In My Basket?</h2>
         </div>
+      </div>
+      <div class="contentContainer page_cart">
+        <div class="contentBlock">
+          <table style="width:100%; border-collapse:collapse;" class="prods_content cart">
+            <tbody>
+              <tr>
+                <th class="th1" style="width:700px;">Product(s)</th>
+                <th style="width:70px;"></th>
+                <th class="th3" style="border-right-width: 0px;"  width="220px">Total</th>
+              </tr>
+              <asp:Repeater ID="rptrPackages" runat="server">
+                <HeaderTemplate>
+                </HeaderTemplate>
+                <ItemTemplate>
+                  <% var rootPath = Route.GetRootPath(""); %>
+                  <% var path = Route.GetRootPath("packages/show.aspx"); %>
+                  <tr class="packages_row" id="package_<%# Eval("Id") %>">
+                    <td class="cart_prods" style="border-width: 0px 1px 1px 0px;width:700px;">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td colspan="2">
+                              <div class="name equal-height" style="min-height: 21px;">
+                                <div>
+                                  <span>
+                                    <a href="<%= path %>?id=<%# Eval("PackageId")%>&from=basket">
+                                      <%# Eval("PackageName") %>
+                                    </a>
+                                  </span>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="text-align:center;" width="120px">
+                              <div class="product_pic_wrapper" style="width:120px;height:104px;">
+                                <a class="product_img" href="" style="width:120px;height:104px;">
+                                  <img src="<%# Eval("DisplayImage") %>" alt="" width="120" height="104" style="width:120px;height:104px;">
+                                </a>
+                              </div>
+                            </td>
+                            <td>
+                              <span class="bold-font"> Package Start Date: </span>
+                              <%# ((DateTime)Eval("ValidFrom")).ToString("dd MMM yyyy") %>
+                              <br />
+                              <span class="bold-font"> Package End Date: </span>
+                              <%# ((DateTime)Eval("ValidTo")).ToString("dd MMM yyyy") %>
+                              <br />
+                              <span class="bold-font">Travelling From: </span>
+                              <%# ((DateTime)Eval("From")).ToString("dd MMM yyyy") %>
+                              <br />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2">
+                            <asp:Repeater ID="rptrPackagePassengers" runat="server"  DataSource='<%# Eval("Passengers") %>'>
+                              <HeaderTemplate>
+                                <div class="span12" style="margin-left:0;">
+                                  <h3 class="custom-h3 left" >Passenger Details</h3>
+                                  <br />
+                                  <table class="table table-bordered">
+                                    <tr>
+                                      <th>Title</th>
+                                      <th>First Name</th>
+                                      <th>Middle Name</th>
+                                      <th>Last Name</th>
+                                    </tr>
+                              </HeaderTemplate>
+                              <ItemTemplate>
+                                <tr>
+                                  <td><%# Eval("Title") %></td>
+                                  <td><%# Eval("FirstName") %></td>
+                                  <td><%# Eval("MiddleName") %></td>
+                                  <td><%# Eval("LastName") %></td>
+                                </tr>
+                              </ItemTemplate>
+                              <FooterTemplate>
+                                  </table>
+                                </div>
+                                <hr />
+                              </FooterTemplate>
+                            </asp:Repeater>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td class="cart_update" style="border-width: 0px 1px 1px 0px;">
+                      <div class="name equal-height" style="min-height: 22px;">
+                        <div>&nbsp;</div>
+                      </div>
+                      <div class="buttonSet">
+                        <strong class="button_content button_content1">
+                          <strong class="button bg_button">
+                            <a href="<%= path %>?id=<%# Eval("PackageId")%>&from=basket">
+                              <span class="ui-button-text">
+                                Details
+                              </span>
+                            </a>
+                          </strong>
+                        </strong>
+                        <br/>
+                        <br/>
+                        <strong class="button_content button_content2 remove-basket-item" data-id='<%# Eval("Id")%>' data-type="package">
+                          <strong class="button bg_button">
+                            <a href="#" title="Remove from basket.">
+                              <span class="ui-button-text">
+                                Remove
+                              </span>
+                            </a>
+                          </strong>
+                        </strong>
+                      </div>
+                    </td>
+                    <td class="cart_price" style="border-width: 0px 0px 1px;"   width="220px">
+                      <div class="name equal-height" style="min-height: 22px;">
+                        <div>&nbsp;</div>
+                      </div>
+                      <span class="productSpecialPrice" style="font-size: 18px;">
+                        Price Per Person: <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %>
+                        &nbsp;
+                        <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("PricePerPerson"), masterCurrencyValue) %>
+                        <br />
+                        Total Price: <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %>
+                        &nbsp;
+                        <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("TotalPrice"), masterCurrencyValue) %>
+                      </span>
+                    </td>
+             
+        </tr>
       </ItemTemplate>
+      <SeparatorTemplate>
+        <tr>
+          <td colspan="3" class="cart_hseparator">
+            <% var path = Route.GetRootPath("images/template/spacer.gif"); %>
+            <img src="<%= path %>" alt="" width="1" height="1"></td></tr>
+      </SeparatorTemplate>
       <FooterTemplate>
-        </div>
-        <hr />
       </FooterTemplate>
-    </asp:Repeater>
-
+    </asp:Repeater>            
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
 
     <asp:Repeater ID="rptrHotels" runat="server">
       <HeaderTemplate>
