@@ -58,10 +58,10 @@
             <table class="rooms-table">
               <tr>
                 <th style="width:65px;">&nbsp;</th>
-                <th style="width:45px;">Adults</th>
-                <th style="width:65px;">Kids(2-12)</th>
+                <th style="width:47px;">Adults</th>
+                <th style="width:67px;">Kids(2-12)</th>
                 <th style="width:75px;">Infants(0-1)</th>
-                <th style="width:55px;">&nbsp;</th>
+                <th style="width:40px;">&nbsp;</th>
               </tr>
               <% if(ShoppingRoomsList == null){ %>
                 <tr id="room_1">

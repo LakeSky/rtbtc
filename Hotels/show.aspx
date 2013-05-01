@@ -10,6 +10,12 @@
       controlNav: false,
       effect: 'fold'
     });
+
+    $("ul#stringball").stringball({
+      camd: 900,
+      radi: 0,
+      speed: 15
+    });
   });
 </script>
 <script type="text/javascript">
@@ -114,35 +120,44 @@
         <h3 style="margin-bottom:15px;">
           <%= hotelName %>
           &nbsp;
-          <img src="<%= starsImagePath %>"/>
+          <img alt="" src="<%= starsImagePath %>"/>
         </h3>
         <p class="small-font">
           <%= address %>,&nbsp;
           <%= cityName %>,&nbsp;
           <%= countryName %>
         </p>
-        <p>
-          <span class="bold-font">Check in Time:</span> <%= productMaster.CheckInTime %>
-          &nbsp;|&nbsp;
-          <span class="bold-font">Check out Time:</span> <%= productMaster.CheckOutTime %>
-        </p>
-        <p>
-          <span class="bold-font">Telephone:</span> <%= productMaster.Tel %>
-          &nbsp;|&nbsp;
-          <span class="bold-font">Fax:</span> <%= productMaster.Fax %>
-          &nbsp;|&nbsp;
-          <span class="bold-font">Website:</span> <%= productMaster.WebSite %>
-        </p>
-        <h3 class="custom-h3 blue-font">Description</h3>
-        <p>
-          <%= productMaster.ShortDescription %>
-        </p>
-        <h3 class="custom-h3 blue-font">Hotel Amenities</h3>
-        <%foreach (var x in productMaster.ProductAmenities) {%>
-          <%= x.Amenity.AmenitiesName %>
-          <br />
-        <%} %>
-        <h3 class="custom-h3 blue-font">Rooms & Facilities</h3>
+        <div class="box_bottom_content">
+          <div class="ui-widget infoBoxContainer" style="width:100%;">
+            <div class="ui-widget-header infoBoxHeading">
+              Description
+            </div>
+            <div class="infoBoxContents">
+              <%= productMaster.ShortDescription %>
+            </div>
+          </div>
+        </div>
+        <div class="box_bottom_content">
+          <div class="ui-widget infoBoxContainer">
+            <div class="ui-widget-header infoBoxHeading">
+              Hotel Amenities
+            </div>
+            <div class="infoBoxContents">
+              <ul id="stringball" style="visibility: visible;">
+                <%foreach (var x in productMaster.ProductAmenities) {%>
+                  <li><%= x.Amenity.AmenitiesName %></li>
+                <%} %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="box_bottom_content">
+          <div class="ui-widget infoBoxContainer" style="width:100%;margin-bottom:23px;">
+            <div class="ui-widget-header infoBoxHeading">
+              Rooms & Facilities
+            </div>
+          </div>
+        </div>
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -168,7 +183,13 @@
             <%}%>
           </tbody>
         </table>
-        <h3 class="custom-h3 blue-font">Rooms Detail Prices</h3>
+        <div class="box_bottom_content">
+          <div class="ui-widget infoBoxContainer" style="width:100%;margin-bottom:23px;">
+            <div class="ui-widget-header infoBoxHeading">
+              Rooms Detail Prices
+            </div>
+          </div>
+        </div>
         <asp:Repeater ID="rptrRooms" runat="server">
           <HeaderTemplate>
             <table class="table table-bordered">
