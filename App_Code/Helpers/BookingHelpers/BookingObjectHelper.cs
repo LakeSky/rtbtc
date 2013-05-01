@@ -151,7 +151,7 @@ public static class BookingObjectHelper
         BookingGuestDetails bookingGuestDetail;
         foreach (var x in tempGuestTypeList.Where(g => g.type == type)){
             title = firstName = middleName = lastName = "";
-            age = "-";
+            age = x.age;
             if (currentUserId != null && objCount != 0 && index < objCount)
             {
                 var paxObj = new B2CPaxinfo();
@@ -159,6 +159,7 @@ public static class BookingObjectHelper
                     paxObj = obj.adultsArray[index];
                 }else if (type == "Kid"){
                     paxObj = obj.childArray[index];
+                    age = x.age;
                 }
                 else {
                     paxObj = obj.infantArray[index];

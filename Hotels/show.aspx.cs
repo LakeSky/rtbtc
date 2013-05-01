@@ -58,7 +58,7 @@ public partial class Hotels_Details : PublicApplicationPage
                 rptrRooms.DataSource = data;
                 rptrRooms.DataBind();
             }
-        }
+        } 
         if (!found) {
             Session["ErrorMessage"] = "Hotel not found";
             Response.Redirect(Route.GetRootPath("home.aspx"));

@@ -243,6 +243,32 @@
                             </div>
                         </div>
                     </div>
+                    <% if ((Session["NoticeMessage"] != null) || (Session["ErrorMessage"] != null)) {%>
+                      <div class="row row_2 container_24">
+                        <div class="grid_24">
+                          <% if (Session["NoticeMessage"] != null) {%>
+                            <div class="alert alert-success">
+                              <h4>
+                               <%= Session["NoticeMessage"]%>
+                               <a class="right close">X</a>
+                              </h4>
+                              <div class="clear"></div>
+                              <% Session["NoticeMessage"] = null; %>
+                            </div>
+                          <%} %>
+                          <% if (Session["ErrorMessage"] != null) {%>
+                            <div class="alert alert-danger">
+                              <h4>
+                                <%= Session["ErrorMessage"]%>
+                                <a class="right close">X</a>
+                              </h4>
+                              <div class="clear"></div>
+                              <% Session["ErrorMessage"] = null; %>
+                            </div>
+                          <%} %>
+                        </div>
+                      </div>
+                    <%} %>
                     <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
                     <div class="row row_5 container_24">
                         <div class="col grid_24">

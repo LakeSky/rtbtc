@@ -69,6 +69,7 @@ div[id*="foo"] a
   top: -2px;
   right: -21px;
   line-height: 20px;
+  float: right;
 }
 
 .alert-success {

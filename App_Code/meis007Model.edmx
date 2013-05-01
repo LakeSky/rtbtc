@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="meis007Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="meis007Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="meis007ModelStoreContainer">
           <EntitySet Name="AmadeusTable" EntityType="meis007Model.Store.AmadeusTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Amenities" EntityType="meis007Model.Store.Amenities" store:Type="Tables" Schema="dbo" />
@@ -18,6 +18,7 @@
           <EntitySet Name="CountryMaster" EntityType="meis007Model.Store.CountryMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CurrencyMaster" EntityType="meis007Model.Store.CurrencyMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Facilities" EntityType="meis007Model.Store.Facilities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HotelBooking" EntityType="meis007Model.Store.HotelBooking" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PackageDescription" EntityType="meis007Model.Store.PackageDescription" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PackageHeader" EntityType="meis007Model.Store.PackageHeader" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PackageImages" EntityType="meis007Model.Store.PackageImages" store:Type="Tables" Schema="dbo" />
@@ -45,6 +46,10 @@
       FROM [dbo].[XMLHotels] AS [XMLHotels]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="XMLSuppliers" EntityType="meis007Model.Store.XMLSuppliers" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__HotelBook__Hotel__28A2FA0E" Association="meis007Model.Store.FK__HotelBook__Hotel__28A2FA0E">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
+            <End Role="HotelBooking" EntitySet="HotelBooking" />
+          </AssociationSet>
           <AssociationSet Name="FK_B2CPaxinfo_B2CCustomerinfo1" Association="meis007Model.Store.FK_B2CPaxinfo_B2CCustomerinfo1">
             <End Role="B2CCustomerinfo" EntitySet="B2CCustomerinfo" />
             <End Role="B2CPaxinfo" EntitySet="B2CPaxinfo" />
@@ -300,6 +305,19 @@
           <Property Name="FID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="FacilityName" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="HotelBooking">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Name="BookingId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SessionId" Type="varchar(max)" />
+          <Property Name="SearchId" Type="int" />
+          <Property Name="HotelInfoId" Type="bigint" />
+          <Property Name="CustomerId" Type="varchar" MaxLength="255" />
+          <Property Name="SupplierId" Type="varchar" MaxLength="100" />
+          <Property Name="ReservationId" Type="varchar(max)" />
+          <Property Name="IsCancelled" Type="bit" />
+        </EntityType>
         <EntityType Name="PackageDescription">
           <Key>
             <PropertyRef Name="PacDesID" />
@@ -474,13 +492,14 @@
           <Property Name="SearchID" Type="int" />
           <Property Name="SupplierID" Type="varchar" MaxLength="100" />
           <Property Name="LocHotelID" Type="bigint" />
-          <Property Name="HotelID" Type="int" />
+          <Property Name="HotelID" Type="bigint" />
           <Property Name="HotelName" Type="varchar" MaxLength="255" />
           <Property Name="StarsLevel" Type="decimal" Precision="5" Scale="3" />
           <Property Name="RoomID" Type="int" />
           <Property Name="RoomTypeID" Type="bigint" />
           <Property Name="RoomType" Type="varchar" MaxLength="255" />
           <Property Name="RoomName" Type="varchar" MaxLength="255" />
+          <Property Name="IsAvailable" Type="bit" />
           <Property Name="NumOfNights" Type="int" />
           <Property Name="NumOfPassengers" Type="int" />
           <Property Name="NumOfChildrens" Type="int" />
@@ -526,6 +545,18 @@
           <Property Name="InService" Type="int" />
           <Property Name="InternalSupplierID" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK__HotelBook__Hotel__28A2FA0E">
+          <End Role="SuppliersHotelsInfo" Type="meis007Model.Store.SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Role="HotelBooking" Type="meis007Model.Store.HotelBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="HotelBooking">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_B2CPaxinfo_B2CCustomerinfo1">
           <End Role="B2CCustomerinfo" Type="meis007Model.Store.B2CCustomerinfo" Multiplicity="0..1" />
           <End Role="B2CPaxinfo" Type="meis007Model.Store.B2CPaxinfo" Multiplicity="*" />
@@ -706,8 +737,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="meis007Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -737,7 +767,6 @@
           <EntitySet Name="RoomTypeHeaders" EntityType="meis007Model.RoomTypeHeader" />
           <EntitySet Name="ServicesMasters" EntityType="meis007Model.ServicesMaster" />
           <EntitySet Name="SupplierMasters" EntityType="meis007Model.SupplierMaster" />
-          <EntitySet Name="SuppliersHotelsInfoes" EntityType="meis007Model.SuppliersHotelsInfo" />
           <EntitySet Name="XMLHotels" EntityType="meis007Model.XMLHotel" />
           <EntitySet Name="XMLSuppliers" EntityType="meis007Model.XMLSupplier" />
           <AssociationSet Name="FK_ProductAmenities_Amenities" Association="meis007Model.FK_ProductAmenities_Amenities">
@@ -799,6 +828,12 @@
           <AssociationSet Name="FK_RoomTypeDetail_RoomTypeHeader" Association="meis007Model.FK_RoomTypeDetail_RoomTypeHeader">
             <End Role="RoomTypeHeader" EntitySet="RoomTypeHeaders" />
             <End Role="RoomTypeDetail" EntitySet="RoomTypeDetails" />
+          </AssociationSet>
+          <EntitySet Name="HotelBookings" EntityType="meis007Model.HotelBooking" />
+          <EntitySet Name="SuppliersHotelsInfoes" EntityType="meis007Model.SuppliersHotelsInfo" />
+          <AssociationSet Name="FK__HotelBook__Hotel__28A2FA0E" Association="meis007Model.FK__HotelBook__Hotel__28A2FA0E">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
+            <End Role="HotelBooking" EntitySet="HotelBookings" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AmadeusTable">
@@ -1190,41 +1225,6 @@
           <Property Name="UserID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="ModDate" Type="DateTime" />
         </EntityType>
-        <EntityType Name="SuppliersHotelsInfo">
-          <Key>
-            <PropertyRef Name="HotelInfoID" />
-          </Key>
-          <Property Name="HotelInfoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SessionID" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="SearchID" Type="Int32" />
-          <Property Name="SupplierID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="LocHotelID" Type="Int64" />
-          <Property Name="HotelID" Type="Int32" />
-          <Property Name="HotelName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="StarsLevel" Type="Decimal" Precision="5" Scale="3" />
-          <Property Name="RoomID" Type="Int32" />
-          <Property Name="RoomTypeID" Type="Int64" />
-          <Property Name="RoomType" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="RoomName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="NumOfNights" Type="Int32" />
-          <Property Name="NumOfPassengers" Type="Int32" />
-          <Property Name="NumOfChildrens" Type="Int32" />
-          <Property Name="CurrencyCode" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="FCAP" Type="Decimal" Precision="12" Scale="4" />
-          <Property Name="ExchRate" Type="Decimal" Precision="12" Scale="9" />
-          <Property Name="LCAP" Type="Decimal" Precision="12" Scale="4" />
-          <Property Name="AvrNightPricePay" Type="Decimal" Precision="9" Scale="2" />
-          <Property Name="AvrNightPriceSale" Type="Decimal" Precision="9" Scale="2" />
-          <Property Name="MarkUp" Type="Int32" />
-          <Property Name="TPABC" Type="Decimal" Precision="9" Scale="2" />
-          <Property Name="RateSDID" Type="Int32" />
-          <Property Name="BBID" Type="Int32" />
-          <Property Name="BBName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="CityId" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="CountryID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="Address" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="ModDate" Type="DateTime" />
-        </EntityType>
         <EntityType Name="XMLHotel">
           <Key>
             <PropertyRef Name="Sno" />
@@ -1425,6 +1425,69 @@
             </Principal>
             <Dependent Role="RoomTypeDetail">
               <PropertyRef Name="RoomTHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HotelBooking">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Type="Int64" Name="BookingId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SessionId" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="SearchId" />
+          <Property Type="Int64" Name="HotelInfoId" />
+          <Property Type="String" Name="CustomerId" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SupplierId" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ReservationId" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsCancelled" />
+          <NavigationProperty Name="SuppliersHotelsInfo" Relationship="meis007Model.FK__HotelBook__Hotel__28A2FA0E" FromRole="HotelBooking" ToRole="SuppliersHotelsInfo" />
+        </EntityType>
+        <EntityType Name="SuppliersHotelsInfo">
+          <Key>
+            <PropertyRef Name="HotelInfoID" />
+          </Key>
+          <Property Type="Int64" Name="HotelInfoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SessionID" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="SearchID" />
+          <Property Type="String" Name="SupplierID" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="LocHotelID" />
+          <Property Type="Int64" Name="HotelID" />
+          <Property Type="String" Name="HotelName" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="StarsLevel" Precision="5" Scale="3" />
+          <Property Type="Int32" Name="RoomID" />
+          <Property Type="Int64" Name="RoomTypeID" />
+          <Property Type="String" Name="RoomType" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RoomName" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsAvailable" />
+          <Property Type="Int32" Name="NumOfNights" />
+          <Property Type="Int32" Name="NumOfPassengers" />
+          <Property Type="Int32" Name="NumOfChildrens" />
+          <Property Type="String" Name="CurrencyCode" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="FCAP" Precision="12" Scale="4" />
+          <Property Type="Decimal" Name="ExchRate" Precision="12" Scale="9" />
+          <Property Type="Decimal" Name="LCAP" Precision="12" Scale="4" />
+          <Property Type="Decimal" Name="AvrNightPricePay" Precision="9" Scale="2" />
+          <Property Type="Decimal" Name="AvrNightPriceSale" Precision="9" Scale="2" />
+          <Property Type="Int32" Name="MarkUp" />
+          <Property Type="Decimal" Name="TPABC" Precision="9" Scale="2" />
+          <Property Type="Int32" Name="RateSDID" />
+          <Property Type="Int32" Name="BBID" />
+          <Property Type="String" Name="BBName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CityId" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CountryID" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ModDate" />
+          <NavigationProperty Name="HotelBookings" Relationship="meis007Model.FK__HotelBook__Hotel__28A2FA0E" FromRole="SuppliersHotelsInfo" ToRole="HotelBooking" />
+        </EntityType>
+        <Association Name="FK__HotelBook__Hotel__28A2FA0E">
+          <End Type="meis007Model.SuppliersHotelsInfo" Role="SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Type="meis007Model.HotelBooking" Role="HotelBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="HotelBooking">
+              <PropertyRef Name="HotelInfoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1718,38 +1781,6 @@
             <ScalarProperty Name="UserID" ColumnName="UserID" />
             <ScalarProperty Name="ModDate" ColumnName="ModDate" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SuppliersHotelsInfoes"><EntityTypeMapping TypeName="meis007Model.SuppliersHotelsInfo"><MappingFragment StoreEntitySet="SuppliersHotelsInfo">
-            <ScalarProperty Name="HotelInfoID" ColumnName="HotelInfoID" />
-            <ScalarProperty Name="SessionID" ColumnName="SessionID" />
-            <ScalarProperty Name="SearchID" ColumnName="SearchID" />
-            <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-            <ScalarProperty Name="LocHotelID" ColumnName="LocHotelID" />
-            <ScalarProperty Name="HotelID" ColumnName="HotelID" />
-            <ScalarProperty Name="HotelName" ColumnName="HotelName" />
-            <ScalarProperty Name="StarsLevel" ColumnName="StarsLevel" />
-            <ScalarProperty Name="RoomID" ColumnName="RoomID" />
-            <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
-            <ScalarProperty Name="RoomType" ColumnName="RoomType" />
-            <ScalarProperty Name="RoomName" ColumnName="RoomName" />
-            <ScalarProperty Name="NumOfNights" ColumnName="NumOfNights" />
-            <ScalarProperty Name="NumOfPassengers" ColumnName="NumOfPassengers" />
-            <ScalarProperty Name="NumOfChildrens" ColumnName="NumOfChildrens" />
-            <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
-            <ScalarProperty Name="FCAP" ColumnName="FCAP" />
-            <ScalarProperty Name="ExchRate" ColumnName="ExchRate" />
-            <ScalarProperty Name="LCAP" ColumnName="LCAP" />
-            <ScalarProperty Name="AvrNightPricePay" ColumnName="AvrNightPricePay" />
-            <ScalarProperty Name="AvrNightPriceSale" ColumnName="AvrNightPriceSale" />
-            <ScalarProperty Name="MarkUp" ColumnName="MarkUp" />
-            <ScalarProperty Name="TPABC" ColumnName="TPABC" />
-            <ScalarProperty Name="RateSDID" ColumnName="RateSDID" />
-            <ScalarProperty Name="BBID" ColumnName="BBID" />
-            <ScalarProperty Name="BBName" ColumnName="BBName" />
-            <ScalarProperty Name="CityId" ColumnName="CityId" />
-            <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-            <ScalarProperty Name="Address" ColumnName="Address" />
-            <ScalarProperty Name="ModDate" ColumnName="ModDate" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="XMLHotels"><EntityTypeMapping TypeName="meis007Model.XMLHotel"><MappingFragment StoreEntitySet="XMLHotels">
             <ScalarProperty Name="Sno" ColumnName="Sno" />
             <ScalarProperty Name="LocHotelid" ColumnName="LocHotelid" />
@@ -1767,6 +1798,57 @@
             <ScalarProperty Name="InService" ColumnName="InService" />
             <ScalarProperty Name="InternalSupplierID" ColumnName="InternalSupplierID" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="HotelBookings">
+            <EntityTypeMapping TypeName="meis007Model.HotelBooking">
+              <MappingFragment StoreEntitySet="HotelBooking">
+                <ScalarProperty Name="IsCancelled" ColumnName="IsCancelled" />
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="HotelInfoId" ColumnName="HotelInfoId" />
+                <ScalarProperty Name="SearchId" ColumnName="SearchId" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuppliersHotelsInfoes">
+            <EntityTypeMapping TypeName="meis007Model.SuppliersHotelsInfo">
+              <MappingFragment StoreEntitySet="SuppliersHotelsInfo">
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="BBName" ColumnName="BBName" />
+                <ScalarProperty Name="BBID" ColumnName="BBID" />
+                <ScalarProperty Name="RateSDID" ColumnName="RateSDID" />
+                <ScalarProperty Name="TPABC" ColumnName="TPABC" />
+                <ScalarProperty Name="MarkUp" ColumnName="MarkUp" />
+                <ScalarProperty Name="AvrNightPriceSale" ColumnName="AvrNightPriceSale" />
+                <ScalarProperty Name="AvrNightPricePay" ColumnName="AvrNightPricePay" />
+                <ScalarProperty Name="LCAP" ColumnName="LCAP" />
+                <ScalarProperty Name="ExchRate" ColumnName="ExchRate" />
+                <ScalarProperty Name="FCAP" ColumnName="FCAP" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="NumOfChildrens" ColumnName="NumOfChildrens" />
+                <ScalarProperty Name="NumOfPassengers" ColumnName="NumOfPassengers" />
+                <ScalarProperty Name="NumOfNights" ColumnName="NumOfNights" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="StarsLevel" ColumnName="StarsLevel" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="LocHotelID" ColumnName="LocHotelID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="SearchID" ColumnName="SearchID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="HotelInfoID" ColumnName="HotelInfoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1813,7 +1895,6 @@
         <EntityTypeShape EntityType="meis007Model.RoomTypeHeader" Width="1.5" PointX="0.75" PointY="2.5" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.ServicesMaster" Width="1.5" PointX="1.5" PointY="18.5" Height="1.9802864583333246" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.SupplierMaster" Width="1.5" PointX="11.75" PointY="14.75" Height="5.2494108072916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="14.75" PointY="13.75" Height="6.78782226562501" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.XMLHotel" Width="1.5" PointX="16.75" PointY="0.75" Height="2.5571907552083246" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.XMLSupplier" Width="1.5" PointX="16.75" PointY="10.75" Height="1.9802864583333246" IsExpanded="true" />
         <AssociationConnector Association="meis007Model.FK_ProductAmenities_Amenities" ManuallyRouted="false">
@@ -1896,6 +1977,12 @@
           <ConnectorPoint PointX="1.9062525" PointY="5.0571907552083388" />
           <ConnectorPoint PointX="1.9062525" PointY="7.3651432291666694" />
           <ConnectorPoint PointX="3" PointY="7.3651432291666694" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="meis007Model.HotelBooking" Width="1.5" PointX="17" PointY="15.875" Height="2.749492187499996" />
+        <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="14.75" PointY="14.625" Height="7.1724251302083246" />
+        <AssociationConnector Association="meis007Model.FK__HotelBook__Hotel__28A2FA0E" >
+          <ConnectorPoint PointX="16.25" PointY="17.24974609375" />
+          <ConnectorPoint PointX="17" PointY="17.24974609375" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

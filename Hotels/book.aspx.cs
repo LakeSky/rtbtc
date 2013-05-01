@@ -30,7 +30,7 @@ public partial class Hotels_book : PublicApplicationPage
             _meis007Entities = new meis007Entities();
             var supplierHotelInfo = _meis007Entities.SuppliersHotelsInfoes.Where(x => x.HotelInfoID == supplierHotelInfoId).FirstOrDefault();
             if (supplierHotelInfo == null){
-                Redirect("Sorry but the hotel you selected is not found!");
+                Redirect("Sorry but the hotel you selected is not found! ");
                 return;
             }
             bookingHotelDetails = BookingObjectHelper.GetHotelDetails(_meis007Entities, supplierHotelInfoId, _shoppingHelper, CheckAndGetCurrentUserId());
@@ -76,7 +76,7 @@ public partial class Hotels_book : PublicApplicationPage
 
     void Redirect(string message, string path = null) {
         Session["ErrorMessage"] = message;
-        path = path == null ? Route.GetRootPath("hotels/index.aspx") : path;
+        path = path == null ? Route.GetRootPath("cars.aspx") : path;
         Response.Redirect(path);
     }
 

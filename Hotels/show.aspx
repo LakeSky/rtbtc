@@ -102,7 +102,7 @@
         <div id="slider" style="width:200px;height:200px;float:left;">
           <%foreach (var x in productMaster.ProductImages) {%>
             <%if(!string.IsNullOrEmpty(x.ImageAddress)){%>
-              <img src="<%= x.ImageAddress %>"/>
+              <img alt="" src="<%= x.ImageAddress %>"  style="width:200px;height:200px;"/>
             <%}%>
           <%}%>
         </div>

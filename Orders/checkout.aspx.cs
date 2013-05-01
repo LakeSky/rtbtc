@@ -46,9 +46,10 @@ public partial class Orders_checkout : PublicApplicationPage
                 bookedHotels = true;
                 suppliersHotelsInfo = _meis007Entities.SuppliersHotelsInfoes.Where(y => y.HotelInfoID == x.hotelInfoId).First();
                 string reservartionId =  CreateBooking(x, suppliersHotelsInfo);
-                if (!string.IsNullOrEmpty(reservartionId))
+                var obj = _meis007Entities.HotelBookings.Where(y => y.HotelInfoId == x.hotelInfoId).FirstOrDefault();
+                if (obj != null)
                 {
-                    var array = reservartionId.Split('~');
+                    var array = obj.ReservationId.Split('~');
                     bkgMaster = new BkgMaster
                     {
                         BasketID = basketSequence,
@@ -84,7 +85,7 @@ public partial class Orders_checkout : PublicApplicationPage
                         Infants = x.guestDetails.Where(y => y.type == "Infant").Count(),
                         HasExtraPaxs = true,
                         RateSDID = suppliersHotelsInfo.RateSDID,
-                        supplierHotelID = suppliersHotelsInfo.HotelID,
+                        supplierHotelID = int.Parse(suppliersHotelsInfo.HotelID.ToString()),
                         StarsLevel = suppliersHotelsInfo.StarsLevel,
                         SupplierRoomID = suppliersHotelsInfo.RoomID,
                         SupplierRoomName = suppliersHotelsInfo.RoomName,
@@ -92,7 +93,8 @@ public partial class Orders_checkout : PublicApplicationPage
                         SupplierRoomTypeID = suppliersHotelsInfo.RoomTypeID,
                         BBID = suppliersHotelsInfo.BBID,
                         BBName = suppliersHotelsInfo.BBName,
-                        ModDate = DateTime.Now
+                        ModDate = DateTime.Now,
+                        UserID = CurrentUser.Id().ToString()
                     };
                     _meis007Entities.AddToBkgMasters(bkgMaster);
                     _meis007Entities.SaveChanges();
@@ -126,8 +128,8 @@ public partial class Orders_checkout : PublicApplicationPage
         bookingInfo.CheckOut = x.toDate;
         bookingInfo.AdultNum = x.guestDetails.Where(y => y.type == "Adult").Count();
         bookingInfo.ChildNum = x.guestDetails.Where(y => y.type == "Kid").Count();
-        bookingInfo.ChildAges = x.guestDetails.Where(y => y.type == "Infant").Select(y => int.Parse(y.age)).ToArray();
-        bookingInfo.AgentNumber = "1";
+        bookingInfo.ChildAges = x.guestDetails.Where(y => y.type == "Kid").Select(y => int.Parse(y.age)).ToArray();
+        bookingInfo.AgentNumber = x.hotelInfoId.ToString();
         bookingInfo.FirstName = txtFirstName.Text;
         bookingInfo.MiddleName = txtMiddleName.Text;
         bookingInfo.LastName = txtLastName.Text;
@@ -138,7 +140,7 @@ public partial class Orders_checkout : PublicApplicationPage
         bookingInfo.RoomTypeId = int.Parse(suppliersHotelsInfo.RoomTypeID.ToString());
         bookingInfo.Supplier = DbParameter.GetSupplierName(suppliersHotelsInfo.SupplierID);
         bookingInfo.IsAvailable = true;
-        bookingInfo.RequestedPrice = decimal.Parse(suppliersHotelsInfo.LCAP.ToString());
+        bookingInfo.RequestedPrice = decimal.Parse((suppliersHotelsInfo.AvrNightPricePay * suppliersHotelsInfo.NumOfNights).ToString());
         bookingInfo.DeltaPrice = 1;
         bookingInfo.Currency = suppliersHotelsInfo.CurrencyCode;
         bookingInfo.SessionId = suppliersHotelsInfo.SessionID;
