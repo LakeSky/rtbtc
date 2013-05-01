@@ -75,11 +75,11 @@
                                                     <label>
                                                         My Cart
                                                     </label>
-                                                    <strong><%= basketItemsCount %></strong> items.
+                                                    <strong id="cart_header_count"><%= basketItemsCount %></strong> items.
                                                     <ul id="submenu" class="submenu">
                                                       <% if (hasBasketItems) { %>
                                                         <% foreach(var x in masterBasketHelper.packageDetails) {%>
-                                                          <li class="items first">
+                                                          <li class="items first" id="li_<%= x.Id  %>">
                                                             <img src="<%= x.DisplayImage %>" alt="" width="80" height="80" alt="" />
                                                             <div class="item">
                                                               <h5 class="item1">
@@ -89,7 +89,7 @@
                                                           </li>
                                                         <% } %>
                                                         <% foreach(var x in masterBasketHelper.hotelDetails) {%>
-                                                          <li class="items first">
+                                                          <li class="items first" id="li_<%= x.hotelInfoId %>">
                                                             <img src="<%= x.productDefaultImagePath %>" alt="" width="80" height="80" alt="" />
                                                             <div class="item">
                                                               <h5 class="item1">
@@ -102,7 +102,9 @@
                                                           <span class="productSpecialPrice">
                                                             <%= ApplicationObject.GetMasterCurrency(ddlMasterCurency.SelectedValue) %>
                                                             &nbsp;
-                                                            <%= ApplicationObject.FormattedCurrencyDisplayPrice(masterBasketHelper.totalPrice, ddlMasterCurency.SelectedValue) %>
+                                                            <span id="cart_header_amount">
+                                                              <%= ApplicationObject.FormattedCurrencyDisplayPrice(masterBasketHelper.totalPrice, ddlMasterCurency.SelectedValue) %>
+                                                            </span>
                                                           </span>
                                                         </li>
                                                         <li class="last">

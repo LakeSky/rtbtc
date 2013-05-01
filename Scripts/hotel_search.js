@@ -178,7 +178,7 @@ $(function () {
         closeOnEscape: false,
         autoOpen: false,
         width: 550,
-        height: 400,
+        height: 220,
         modal: true
     });
 

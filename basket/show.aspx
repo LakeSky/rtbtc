@@ -4,22 +4,7 @@
 <script type="text/javascript">
     $(function () {
 
-        function removePackagesDiv() {
-            if ($("#packages .package-div").length == 0) {
-                $("#packages").remove();
-            }
-        }
-
-        function removeHotelsDiv() {
-            if ($("#hotels .hotel-div").length == 0) {
-                $("#hotels").remove();
-            }
-        }
-
-        removePackagesDiv();
-        removeHotelsDiv();
-
-        $(".remove-basket-item").click(function (e) {
+       $(".remove-basket-item").click(function (e) {
             e.preventDefault();
             if (!confirm("Are you sure?")) {
                 return false;
@@ -38,11 +23,11 @@
                     if (array[0] == 'False') {
                         window.location = "/rtbtc/home.aspx";
                     }
-                    $("#basket-items-count").text(array[1]);
-                    $(".total-price").html(array[2]);
+                    $("#cart_header_count").text(array[1]);
+                    $("#cart_header_amount").text(array[2]);
+                    $("#total_amount").html(array[2]);
                     $("#" + type + "_" + id).remove();
-                    removeHotelsDiv();
-                    removePackagesDiv();
+                    $("#li" + "_" + id).remove();
                 },
                 error: function (result) {
                     console.log(result);
@@ -321,7 +306,9 @@
                   </div>
                   <span class="productSpecialPrice" style="font-size: 18px;">
                     <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %>
-                    <%= ApplicationObject.FormattedCurrencyDisplayPrice(basketHelper.totalPrice, masterCurrencyValue) %>
+                    <span id="total_amount">
+                      <%= ApplicationObject.FormattedCurrencyDisplayPrice(basketHelper.totalPrice, masterCurrencyValue) %>
+                    </span>
                   </span>
                 </td>
               </tr>

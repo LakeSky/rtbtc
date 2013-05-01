@@ -148,6 +148,15 @@
                <input type="hidden" value="<%= CityCode %>" id="cityCode" name="cityCode" />
                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn custom-button hotel-search-btn " ValidationGroup="search" 
                onclick="btnSearch_Click" OnClientClick="ShowDialogBox();"/>
+               <div id="hotel-search-dialog">
+                 <h3 class="blue-font">
+                   We are now searching hundreds of offers to find you the very best prices. This should only take a few seconds...
+                 </h3>
+                 <% var path = Route.GetRootPath("Images/ajax-loader.gif"); %>
+                 <div class="loading-image">
+                   <img alt="" src="<%= path %>" />
+                 </div>
+               </div>
           </div>
         </div>
       </div>

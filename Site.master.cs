@@ -17,10 +17,10 @@ public partial class SiteMaster : System.Web.UI.MasterPage
         basketItemsCount = 0;
         masterBasketHelper = (BasketHelper)(Session["Basket"]);
         if (masterBasketHelper != null) {
-            hasBasketItems = true;
             basketItemsCount = masterBasketHelper.hotelDetails.Count();
             basketItemsCount += masterBasketHelper.packageDetails.Count;
         }
+        hasBasketItems = basketItemsCount == 0 ? false : true;
         if (!IsPostBack)
         {
             BindMasterCurrencyDropDown();
