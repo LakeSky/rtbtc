@@ -27,7 +27,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
   <div class="row row_2 container_24">
-    <div class="grid_24">
+    <div class="grid_24 main_slider">
       <div id="search-bar">
         <div id="div-search">
           <h3>Hotel Search</h3>

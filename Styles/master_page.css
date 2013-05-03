@@ -37,7 +37,6 @@ div[id*="foo"] a
     float: left;
     height: 430px;
     width: 30%;
-    background-image: url("/rtbtc/images/template/SearchPanel3.jpg")
 }
 
 .custom-hide, .hide{
@@ -219,4 +218,9 @@ div[id*="foo"] a
 }
 .table tbody tr:hover td, .table tbody tr:hover th {
     background-color: #F5F5F5;
+}
+
+#wrapper .row_2 .main_slider
+{
+    background-image: url("/rtbtc/images/template/slider_banner.jpg")
 }
