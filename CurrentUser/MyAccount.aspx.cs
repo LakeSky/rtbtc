@@ -45,7 +45,7 @@ public partial class Account_MyAccount : System.Web.UI.Page
         b2CCustomerinfo.PaxAdd2 = txtAddress2.Text;
         b2CCustomerinfo.PaxCity = ddlCity.SelectedValue;
         _meis007Entities.SaveChanges();
-        Session["NoticeMessage"] = "Successfully updaeted your account !";
+        Session["NoticeMessage"] = "Successfully updated your account !";
         Response.Redirect(Route.GetRootPath("home.aspx"));
     }
     protected void btnCancel_Click(object sender, EventArgs e)

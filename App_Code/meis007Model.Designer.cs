@@ -34,6 +34,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.RoomTypeHeader), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_RoomTypeDetail_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.RoomTypeHeader), "RoomTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.RoomTypeDetail), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__HotelBook__Hotel__28A2FA0E", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "HotelBooking", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.HotelBooking), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 
 #endregion
 
@@ -548,6 +549,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<TouricoCancelationPolicy> TouricoCancelationPolicies
+        {
+            get
+            {
+                if ((_TouricoCancelationPolicies == null))
+                {
+                    _TouricoCancelationPolicies = base.CreateObjectSet<TouricoCancelationPolicy>("TouricoCancelationPolicies");
+                }
+                return _TouricoCancelationPolicies;
+            }
+        }
+        private ObjectSet<TouricoCancelationPolicy> _TouricoCancelationPolicies;
 
         #endregion
         #region AddTo Methods
@@ -782,6 +799,14 @@ namespace meis007Model
         public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
         {
             base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the TouricoCancelationPolicies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTouricoCancelationPolicies(TouricoCancelationPolicy touricoCancelationPolicy)
+        {
+            base.AddObject("TouricoCancelationPolicies", touricoCancelationPolicy);
         }
 
         #endregion
@@ -9306,6 +9331,340 @@ namespace meis007Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<HotelBooking>("meis007Model.FK__HotelBook__Hotel__28A2FA0E", "HotelBooking", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__40457975", "TouricoCancelationPolicy")]
+        public EntityCollection<TouricoCancelationPolicy> TouricoCancelationPolicies
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__40457975", "TouricoCancelationPolicy");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__40457975", "TouricoCancelationPolicy", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="meis007Model", Name="TouricoCancelationPolicy")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TouricoCancelationPolicy : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TouricoCancelationPolicy object.
+        /// </summary>
+        /// <param name="cID">Initial value of the CID property.</param>
+        public static TouricoCancelationPolicy CreateTouricoCancelationPolicy(global::System.Int32 cID)
+        {
+            TouricoCancelationPolicy touricoCancelationPolicy = new TouricoCancelationPolicy();
+            touricoCancelationPolicy.CID = cID;
+            return touricoCancelationPolicy;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CID
+        {
+            get
+            {
+                return _CID;
+            }
+            set
+            {
+                if (_CID != value)
+                {
+                    OnCIDChanging(value);
+                    ReportPropertyChanging("CID");
+                    _CID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("CID");
+                    OnCIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _CID;
+        partial void OnCIDChanging(global::System.Int32 value);
+        partial void OnCIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> HotelInfoId
+        {
+            get
+            {
+                return _HotelInfoId;
+            }
+            set
+            {
+                OnHotelInfoIdChanging(value);
+                ReportPropertyChanging("HotelInfoId");
+                _HotelInfoId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HotelInfoId");
+                OnHotelInfoIdChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _HotelInfoId;
+        partial void OnHotelInfoIdChanging(Nullable<global::System.Int64> value);
+        partial void OnHotelInfoIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SearchId
+        {
+            get
+            {
+                return _SearchId;
+            }
+            set
+            {
+                OnSearchIdChanging(value);
+                ReportPropertyChanging("SearchId");
+                _SearchId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SearchId");
+                OnSearchIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SearchId;
+        partial void OnSearchIdChanging(Nullable<global::System.Int32> value);
+        partial void OnSearchIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> HotelID
+        {
+            get
+            {
+                return _HotelID;
+            }
+            set
+            {
+                OnHotelIDChanging(value);
+                ReportPropertyChanging("HotelID");
+                _HotelID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HotelID");
+                OnHotelIDChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _HotelID;
+        partial void OnHotelIDChanging(Nullable<global::System.Int64> value);
+        partial void OnHotelIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> HotelRoomTypeId
+        {
+            get
+            {
+                return _HotelRoomTypeId;
+            }
+            set
+            {
+                OnHotelRoomTypeIdChanging(value);
+                ReportPropertyChanging("HotelRoomTypeId");
+                _HotelRoomTypeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HotelRoomTypeId");
+                OnHotelRoomTypeIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _HotelRoomTypeId;
+        partial void OnHotelRoomTypeIdChanging(Nullable<global::System.Int32> value);
+        partial void OnHotelRoomTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BasisType
+        {
+            get
+            {
+                return _BasisType;
+            }
+            set
+            {
+                OnBasisTypeChanging(value);
+                ReportPropertyChanging("BasisType");
+                _BasisType = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BasisType");
+                OnBasisTypeChanged();
+            }
+        }
+        private global::System.String _BasisType;
+        partial void OnBasisTypeChanging(global::System.String value);
+        partial void OnBasisTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> Percentage
+        {
+            get
+            {
+                return _Percentage;
+            }
+            set
+            {
+                OnPercentageChanging(value);
+                ReportPropertyChanging("Percentage");
+                _Percentage = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Percentage");
+                OnPercentageChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _Percentage;
+        partial void OnPercentageChanging(Nullable<global::System.Decimal> value);
+        partial void OnPercentageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> NumberOfNights
+        {
+            get
+            {
+                return _NumberOfNights;
+            }
+            set
+            {
+                OnNumberOfNightsChanging(value);
+                ReportPropertyChanging("NumberOfNights");
+                _NumberOfNights = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NumberOfNights");
+                OnNumberOfNightsChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _NumberOfNights;
+        partial void OnNumberOfNightsChanging(Nullable<global::System.Int32> value);
+        partial void OnNumberOfNightsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String OffSetUnit
+        {
+            get
+            {
+                return _OffSetUnit;
+            }
+            set
+            {
+                OnOffSetUnitChanging(value);
+                ReportPropertyChanging("OffSetUnit");
+                _OffSetUnit = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("OffSetUnit");
+                OnOffSetUnitChanged();
+            }
+        }
+        private global::System.String _OffSetUnit;
+        partial void OnOffSetUnitChanging(global::System.String value);
+        partial void OnOffSetUnitChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> UnitMultiplier
+        {
+            get
+            {
+                return _UnitMultiplier;
+            }
+            set
+            {
+                OnUnitMultiplierChanging(value);
+                ReportPropertyChanging("UnitMultiplier");
+                _UnitMultiplier = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UnitMultiplier");
+                OnUnitMultiplierChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _UnitMultiplier;
+        partial void OnUnitMultiplierChanging(Nullable<global::System.Int32> value);
+        partial void OnUnitMultiplierChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo")]
+        public SuppliersHotelsInfo SuppliersHotelsInfo
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SuppliersHotelsInfo> SuppliersHotelsInfoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo", value);
                 }
             }
         }

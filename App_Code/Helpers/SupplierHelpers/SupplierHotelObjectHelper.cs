@@ -106,6 +106,7 @@ public class SupplierHotelObjectHelper
         _search.CheckIn = DateTimeHelper.customFormat(shoppingHotelHelper.FromDate);
         _search.CheckOut = DateTimeHelper.customFormat(shoppingHotelHelper.ToDate);
         _search.AdultCount = shoppingHotelHelper.RoomDetails.Select(x => x.Adults).Sum();
+        _search.IsAvailable = true;
         List<int> lstAges = new List<int>();
         foreach (var x in shoppingHotelHelper.RoomDetails) {
             foreach (var y in x.ChildAge) {

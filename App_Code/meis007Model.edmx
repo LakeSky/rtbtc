@@ -33,6 +33,20 @@
           <EntitySet Name="ServicesMaster" EntityType="meis007Model.Store.ServicesMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SupplierMaster" EntityType="meis007Model.Store.SupplierMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SuppliersHotelsInfo" EntityType="meis007Model.Store.SuppliersHotelsInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TouricoCancelationPolicy" EntityType="meis007Model.Store.TouricoCancelationPolicy" store:Type="Tables" store:Schema="dbo" store:Name="TouricoCancelationPolicy">
+            <DefiningQuery>SELECT 
+      [TouricoCancelationPolicy].[CID] AS [CID], 
+      [TouricoCancelationPolicy].[HotelInfoId] AS [HotelInfoId], 
+      [TouricoCancelationPolicy].[SearchId] AS [SearchId], 
+      [TouricoCancelationPolicy].[HotelID] AS [HotelID], 
+      [TouricoCancelationPolicy].[HotelRoomTypeId] AS [HotelRoomTypeId], 
+      [TouricoCancelationPolicy].[BasisType] AS [BasisType], 
+      [TouricoCancelationPolicy].[Percentage] AS [Percentage], 
+      [TouricoCancelationPolicy].[NumberOfNights] AS [NumberOfNights], 
+      [TouricoCancelationPolicy].[OffSetUnit] AS [OffSetUnit], 
+      [TouricoCancelationPolicy].[UnitMultiplier] AS [UnitMultiplier]
+      FROM [dbo].[TouricoCancelationPolicy] AS [TouricoCancelationPolicy]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="XMLHotels" EntityType="meis007Model.Store.XMLHotels" store:Type="Tables" store:Schema="dbo" store:Name="XMLHotels">
             <DefiningQuery>SELECT 
       [XMLHotels].[Sno] AS [Sno], 
@@ -49,6 +63,10 @@
           <AssociationSet Name="FK__HotelBook__Hotel__28A2FA0E" Association="meis007Model.Store.FK__HotelBook__Hotel__28A2FA0E">
             <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
             <End Role="HotelBooking" EntitySet="HotelBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TouricoCa__Hotel__40457975" Association="meis007Model.Store.FK__TouricoCa__Hotel__40457975">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicy" />
           </AssociationSet>
           <AssociationSet Name="FK_B2CPaxinfo_B2CCustomerinfo1" Association="meis007Model.Store.FK_B2CPaxinfo_B2CCustomerinfo1">
             <End Role="B2CCustomerinfo" EntitySet="B2CCustomerinfo" />
@@ -520,6 +538,24 @@
           <Property Name="ModDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
+      warning 6002: The table/view 'meis007.dbo.TouricoCancelationPolicy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TouricoCancelationPolicy">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HotelInfoId" Type="bigint" />
+          <Property Name="SearchId" Type="int" />
+          <Property Name="HotelID" Type="bigint" />
+          <Property Name="HotelRoomTypeId" Type="int" />
+          <Property Name="BasisType" Type="varchar" MaxLength="255" />
+          <Property Name="Percentage" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="NumberOfNights" Type="int" />
+          <Property Name="OffSetUnit" Type="varchar" MaxLength="255" />
+          <Property Name="UnitMultiplier" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
       warning 6002: The table/view 'meis007.dbo.XMLHotels' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="XMLHotels">
@@ -553,6 +589,18 @@
               <PropertyRef Name="HotelInfoID" />
             </Principal>
             <Dependent Role="HotelBooking">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TouricoCa__Hotel__40457975">
+          <End Role="SuppliersHotelsInfo" Type="meis007Model.Store.SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Role="TouricoCancelationPolicy" Type="meis007Model.Store.TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
               <PropertyRef Name="HotelInfoId" />
             </Dependent>
           </ReferentialConstraint>
@@ -834,6 +882,11 @@
           <AssociationSet Name="FK__HotelBook__Hotel__28A2FA0E" Association="meis007Model.FK__HotelBook__Hotel__28A2FA0E">
             <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
             <End Role="HotelBooking" EntitySet="HotelBookings" />
+          </AssociationSet>
+          <EntitySet Name="TouricoCancelationPolicies" EntityType="meis007Model.TouricoCancelationPolicy" />
+          <AssociationSet Name="FK__TouricoCa__Hotel__40457975" Association="meis007Model.FK__TouricoCa__Hotel__40457975">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicies" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AmadeusTable">
@@ -1478,6 +1531,7 @@
           <Property Type="String" Name="Address" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="ModDate" />
           <NavigationProperty Name="HotelBookings" Relationship="meis007Model.FK__HotelBook__Hotel__28A2FA0E" FromRole="SuppliersHotelsInfo" ToRole="HotelBooking" />
+          <NavigationProperty Name="TouricoCancelationPolicies" Relationship="meis007Model.FK__TouricoCa__Hotel__40457975" FromRole="SuppliersHotelsInfo" ToRole="TouricoCancelationPolicy" />
         </EntityType>
         <Association Name="FK__HotelBook__Hotel__28A2FA0E">
           <End Type="meis007Model.SuppliersHotelsInfo" Role="SuppliersHotelsInfo" Multiplicity="0..1" />
@@ -1487,6 +1541,34 @@
               <PropertyRef Name="HotelInfoID" />
             </Principal>
             <Dependent Role="HotelBooking">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TouricoCancelationPolicy">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Type="Int32" Name="CID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="HotelInfoId" />
+          <Property Type="Int32" Name="SearchId" />
+          <Property Type="Int64" Name="HotelID" />
+          <Property Type="Int32" Name="HotelRoomTypeId" />
+          <Property Type="String" Name="BasisType" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Percentage" Precision="5" Scale="2" />
+          <Property Type="Int32" Name="NumberOfNights" />
+          <Property Type="String" Name="OffSetUnit" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="UnitMultiplier" />
+          <NavigationProperty Name="SuppliersHotelsInfo" Relationship="meis007Model.FK__TouricoCa__Hotel__40457975" FromRole="TouricoCancelationPolicy" ToRole="SuppliersHotelsInfo" />
+        </EntityType>
+        <Association Name="FK__TouricoCa__Hotel__40457975">
+          <End Type="meis007Model.SuppliersHotelsInfo" Role="SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Type="meis007Model.TouricoCancelationPolicy" Role="TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
               <PropertyRef Name="HotelInfoId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1849,6 +1931,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TouricoCancelationPolicies">
+            <EntityTypeMapping TypeName="meis007Model.TouricoCancelationPolicy">
+              <MappingFragment StoreEntitySet="TouricoCancelationPolicy">
+                <ScalarProperty Name="UnitMultiplier" ColumnName="UnitMultiplier" />
+                <ScalarProperty Name="OffSetUnit" ColumnName="OffSetUnit" />
+                <ScalarProperty Name="NumberOfNights" ColumnName="NumberOfNights" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="BasisType" ColumnName="BasisType" />
+                <ScalarProperty Name="HotelRoomTypeId" ColumnName="HotelRoomTypeId" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="SearchId" ColumnName="SearchId" />
+                <ScalarProperty Name="HotelInfoId" ColumnName="HotelInfoId" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1981,8 +2079,13 @@
         <EntityTypeShape EntityType="meis007Model.HotelBooking" Width="1.5" PointX="17" PointY="15.875" Height="2.749492187499996" />
         <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="14.75" PointY="14.625" Height="7.1724251302083246" />
         <AssociationConnector Association="meis007Model.FK__HotelBook__Hotel__28A2FA0E" >
-          <ConnectorPoint PointX="16.25" PointY="17.24974609375" />
-          <ConnectorPoint PointX="17" PointY="17.24974609375" />
+          <ConnectorPoint PointX="16.25" PointY="17.249746093749998" />
+          <ConnectorPoint PointX="17" PointY="17.249746093749998" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="meis007Model.TouricoCancelationPolicy" Width="1.5" PointX="17" PointY="19.75" Height="3.1340950520833246" />
+        <AssociationConnector Association="meis007Model.FK__TouricoCa__Hotel__40457975" >
+          <ConnectorPoint PointX="16.25" PointY="20.869863281249998" />
+          <ConnectorPoint PointX="17" PointY="20.869863281249998" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

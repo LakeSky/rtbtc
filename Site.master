@@ -144,9 +144,6 @@
                                 <div class="boxes_above_header">
                                     <div class="menu">
                                       <div>
-                                        <% if (Page.User.Identity.IsAuthenticated){%>
-                                          <a href="<%= Route.GetRootPath("bookings/index.aspx") %>" class="first">My Bookings</a>
-                                        <%}%>
                                       </div>
                                     </div>
                                     <div class="box_header_user_menu">

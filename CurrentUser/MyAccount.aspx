@@ -41,69 +41,70 @@
                 }
                 $("#add-passenger-div .alert h3").val("");
                 $("#add-passenger-div .alert").addClass("custom-hide");
-            },
-            buttons: {
-                Save: function () {
-                    var that = this;
-                    var error = false;
-                    if ($("#action").val() == "new") {
-                        var id = '<%= CurrentUser.Id() %>';
-                        var url = '<%=ResolveUrl("~/PassengerWebService.asmx/AddPassenger") %>';
-                    } else {
-                        var id = window.passenger.id;
-                        var url = '<%=ResolveUrl("~/PassengerWebService.asmx/EditPassenger") %>';
-                    }
-                    var title = $("#title").val();
-                    var firstname = $("#firstName").val();
-                    var middlename = $("#middleName").val();
-                    var lastname = $("#lastName").val();
-                    var dob = $("#dob").val();
-                    var nationality = $("#ddlNationality").val();
-                    var nationalitySelectedText = $("#ddlNationality option:selected").text();
-                    var message = "";
-
-                    if ($.trim(firstname) == "") {
-                        error = true;
-                        message = "First Name is required!<br/>";
-                    }
-                    if ($.trim(lastname) == "") {
-                        error = true;
-                        message = message + "Last Name is required!<br/>";
-                    }
-                    if ($.trim(dob) == "") {
-                        error = true;
-                        message = message + "DOB is required!<br/>";
-                    }
-                    if ($.trim(nationality) == "0") {
-                        error = true;
-                        message = message + "Nationality is required!";
-                    }
-                    if (error) {
-                        $("#add-passenger-div .alert h3").html(message);
-                        $("#add-passenger-div .alert").removeClass("custom-hide");
-                        return;
-                    }
-                    $("#add-passenger-div .alert").addClass("custom-hide");
-                    $.ajax({
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        url: url,
-                        data: "{'id': '" + id + "', 'title': '" + title + "', 'firstname': '" + firstname + "', 'middlename' : '" + middlename + "', 'lastname' : '" + lastname + "', 'dob' : '" + dob + "', 'nationality' : '" + nationality + "'}",
-                        dataType: "json",
-                        success: function (data) {
-                            var passengerid = data.d;
-                            appendRow(passengerid, title, firstname, middlename, lastname, dob, nationalitySelectedText);
-                            $(that).dialog("close");
-                        },
-                        error: function (result) {
-                            console.log(result);
-                        }
-                    });
-                },
-                Close: function () {
-                    $(this).dialog("close");
-                }
             }
+        });
+
+        $(".save_pax").click(function (e) {
+            e.preventDefault();
+            var error = false;
+            if ($("#action").val() == "new") {
+                var id = '<%= CurrentUser.Id() %>';
+                var url = '<%=ResolveUrl("~/PassengerWebService.asmx/AddPassenger") %>';
+            } else {
+                var id = window.passenger.id;
+                var url = '<%=ResolveUrl("~/PassengerWebService.asmx/EditPassenger") %>';
+            }
+            var title = $("#title").val();
+            var firstname = $("#firstName").val();
+            var middlename = $("#middleName").val();
+            var lastname = $("#lastName").val();
+            var dob = $("#dob").val();
+            var nationality = $("#ddlNationality").val();
+            var nationalitySelectedText = $("#ddlNationality option:selected").text();
+            var message = "";
+
+            if ($.trim(firstname) == "") {
+                error = true;
+                message = "First Name is required!<br/>";
+            }
+            if ($.trim(lastname) == "") {
+                error = true;
+                message = message + "Last Name is required!<br/>";
+            }
+            if ($.trim(dob) == "") {
+                error = true;
+                message = message + "DOB is required!<br/>";
+            }
+            if ($.trim(nationality) == "0") {
+                error = true;
+                message = message + "Nationality is required!";
+            }
+            if (error) {
+                $("#add-passenger-div .alert h3").html(message);
+                $("#add-passenger-div .alert").removeClass("custom-hide");
+                return;
+            }
+            $("#add-passenger-div .alert").addClass("custom-hide");
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: url,
+                data: "{'id': '" + id + "', 'title': '" + title + "', 'firstname': '" + firstname + "', 'middlename' : '" + middlename + "', 'lastname' : '" + lastname + "', 'dob' : '" + dob + "', 'nationality' : '" + nationality + "'}",
+                dataType: "json",
+                success: function (data) {
+                    var passengerid = data.d;
+                    appendRow(passengerid, title, firstname, middlename, lastname, dob, nationalitySelectedText);
+                    $("#add-passenger-div").dialog("close");
+                },
+                error: function (result) {
+                    console.log(result);
+                }
+            });
+        });
+
+        $(".cancel_pax").click(function (e) {
+            e.preventDefault();
+            $("#add-passenger-div").dialog("close");
         });
 
         $("#add-passenger").click(function (e) {
@@ -112,7 +113,7 @@
             $("#add-passenger-div").dialog("open");
         });
 
-        $("#middle-content").delegate('a.delete-passenger', 'click', function (e) {
+        $("#wrapper").delegate('.delete-passenger', 'click', function (e) {
             e.preventDefault();
             if (!confirm("Are you sure?")) {
                 return false;
@@ -123,7 +124,7 @@
             });
         });
 
-        $("#middle-content").delegate('a.edit-passenger', 'click', function (e) {
+        $("#wrapper").delegate('.edit-passenger', 'click', function (e) {
             e.preventDefault();
             $("#action").val("edit");
             var id = $(this).data('id');
@@ -164,10 +165,10 @@
             html = html + "<td>" + lastname + "</td>";
             html = html + "<td>" + dob + "</td>";
             html = html + "<td>" + nationality + "</td>";
-            html = html + "<td><a href='#' class='edit-passenger' data-id='" + id + "'>Edit</a></td>";
+            html = html + "<td><strong class='button_content button_content1 edit-passenger' data-id='" + id + "'><strong class='button bg_button'><a href='#'><span class='ui-button-text'>Edit</span></a></strong></strong></td>";
             html = html + "<td>"
             if (allowDelete) {
-                html = html + "<a href='#' class='delete-passenger' data-id='" + id + "'>Delete</a>"
+                html = html + "<strong class='button_content button_content2 delete-passenger' data-id='" + id + "'><strong class='button bg_button'><a href='#'><span class='ui-button-text'>Delete</span></a></strong></strong>";
             }
             html = html + "</td>";
             html = html + "</tr>";
@@ -180,172 +181,290 @@
         window.passenger = null;
     });
 </script>
+  <style type="text/css">
+    .fieldValue select {
+      width: 159px;
+    }
+    .fieldValue textarea {
+      width: 159px;
+    }
+    .ui-dialog
+    {
+        background-color: #FFF;
+    }
+</style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-<fieldset>
-  <legend>My Account</legend>
-  <table style="width:100%;">
-    <tr>
-      <td style="width:45%">
-        <p>
-          <label>First Name</label>
-          <asp:TextBox ID="txtFirstName" runat="server" MaxLength="300"></asp:TextBox>
-          <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" 
-                    ControlToValidate="txtFirstName" ForeColor="#FF3300" 
+  <div class="row row_2 container_24">
+    <div class="grid_24">
+     <strong class="button_content button_content1" style="float:right;">
+        <strong class="button bg_button" style="margin-bottom: 9px;">
+          <a href="<%= Route.GetRootPath("bookings/index.aspx") %>">
+            <span class="ui-button-text">
+              My Bookings
+            </span>
+          </a>
+        </strong>
+      </strong>
+      <div class="clear"></div>
+      <div class="contentContainer page_search">
+        <div class="contentBlock">
+          <div>
+            <h4>
+              My Account
+            </h4>
+          </div>
+          <div class="contentText">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="fieldKey">
+                    <label>First Name</label>  
+                  </td>
+                  <td class="fieldValue">
+                    <asp:TextBox ID="txtFirstName" runat="server" MaxLength="300"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" ControlToValidate="txtFirstName" ForeColor="#FF3300" 
+                    SetFocusOnError="True">*</asp:RequiredFieldValidator>        
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fieldKey">
+                    <label>Middle Name</label>
+                  </td>
+                  <td class="fieldValue">
+                    <asp:TextBox ID="txtMiddleName" runat="server" MaxLength="300"></asp:TextBox>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fieldKey">
+                    <label>Last Name</label>
+                  </td>
+                  <td class="fieldValue">
+                    <asp:TextBox ID="txtLastName" runat="server" MaxLength="300"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvLastName" runat="server" ControlToValidate="txtLastName" ForeColor="#FF3300"
                     SetFocusOnError="True">*</asp:RequiredFieldValidator>
-        </p>
-      </td>
-      <td>
-        <p>
-          <label>Middle Name</label>
-          <asp:TextBox ID="txtMiddleName" runat="server" MaxLength="300"></asp:TextBox>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p>
-          <label>Last Name</label>
-          <asp:TextBox ID="txtLastName" runat="server" MaxLength="300"></asp:TextBox>
-          <asp:RequiredFieldValidator ID="rfvLastName" runat="server" 
-                    ControlToValidate="txtLastName" ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
-        </p>
-      </td>
-      <td>
-        <p>
-          <label>Mobile</label>
-          <asp:TextBox ID="txtMobile" runat="server" MaxLength="300"></asp:TextBox>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p>
-          <label>Telephone</label>
-          <asp:TextBox ID="txtTelephone" runat="server" MaxLength="300"></asp:TextBox>
-        </p>
-      </td>
-      <td>
-        <p>
-          <label>City</label>
-          <asp:DropDownList ID="ddlCity" runat="server" AppendDataBoundItems="True" 
-          DataSourceID="SqlDataSource1" DataTextField="CityName" DataValueField="CityID">
-          <asp:ListItem Value="0">Select</asp:ListItem>
-          </asp:DropDownList>
-          <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-          ConnectionString="<%$ ConnectionStrings:meis007ConnectionString %>" 
-          SelectCommand="SELECT [CityID], [CityName] FROM [CityMaster]">
-          </asp:SqlDataSource>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p>
-          <label>Address 1</label>
-          <asp:TextBox ID="txtAddress1" runat="server" MaxLength="300" TextMode="MultiLine"></asp:TextBox>
-        </p>
-      </td>
-      <td>
-        <p>
-          <label>Address 2</label>
-          <asp:TextBox ID="txtAddress2" runat="server" MaxLength="300" TextMode="MultiLine"></asp:TextBox>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <p>
-          <asp:Button ID="btnSave" runat="server" onclick="btnSave_Click" Text="Save"  CssClass="btn btn-save btn-primary"/>
-          &nbsp;&nbsp;&nbsp;
-          <asp:Button ID="btnCancel" runat="server" CausesValidation="False" 
-                    onclick="btnCancel_Click" Text="Cancel"  CssClass="btn"/>
-        </p>
-      </td>
-    </tr>
-  </table>
-  </fieldset>
-  <input id="add-passenger" type="button" value="Add Passenger" class="btn btn-primary" />
-  <br />
-  <h3>Passenger Information</h3>
-  <table class="table table-bordered passenger-table">
-    <tr>
-      <th>Title</th>
-      <th>First Name</th>
-      <th>Middle Name</th>
-      <th>Last Name</th>
-      <th>DOB</th>
-      <th>Nationality</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-    <% meis007Model.meis007Entities _meis007Entities = new meis007Model.meis007Entities();  %>
-    <% foreach (var passenger in b2CCustomerinfo.B2CPaxinfo)
-       { %>
-
-       <tr id="<%= passenger.CustomerSno %>">
-        <td> <%= passenger.Title %></td>
-        <td><%= passenger.PaxFirstName %></td>
-        <td><%= passenger.PaxMiddleName %></td>
-        <td><%= passenger.PaxLastName %></td>
-        <td><%= DateTimeHelper.ConvertToString(passenger.PaxDOB.ToString()) %></td>
-        <td><%= QueryHelper.GetCountryName(_meis007Entities, passenger.Nationality) %></td>
-        <td><a href="#" class="edit-passenger" data-id="<%= passenger.CustomerSno %>">Edit</a></td>
-        <td>
-          <% if(passenger.CustomerId != 1) {%>
-            <a href="#" class="delete-passenger" data-id="<%= passenger.CustomerSno %>">Delete</a>
-          <%} %>
-        </td>
-       </tr>
-    <%} %>
-  </table>
-  <div id="add-passenger-div">
-  <fieldset>
-    <legend>Add Passenger</legend>
-    <input type="hidden" id="action" value="new" />
-    <div class="alert alert-error custom-hide">
-      <h3></h3>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fieldKey">
+                    <label>Mobile</label>
+                  </td>
+                  <td class="fieldValue">
+                    <asp:TextBox ID="txtMobile" runat="server" MaxLength="300"></asp:TextBox>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fieldKey">
+                    <label>Telephone</label>
+                  </td>
+                  <td class="fieldValue">
+                    <asp:TextBox ID="txtTelephone" runat="server" MaxLength="300"></asp:TextBox>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fieldKey">
+                    <label>City</label>
+                  </td>
+                  <td class="fieldValue">
+                    <asp:DropDownList ID="ddlCity" runat="server" AppendDataBoundItems="True" 
+                    DataSourceID="SqlDataSource1" DataTextField="CityName" DataValueField="CityID">
+                      <asp:ListItem Value="0">Select</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+                    ConnectionString="<%$ ConnectionStrings:meis007ConnectionString %>" 
+                    SelectCommand="SELECT [CityID], [CityName] FROM [CityMaster]">
+                    </asp:SqlDataSource>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fieldKey">
+                    <label>Address 1</label>
+                  </td>
+                  <td class="fieldValue">
+                    <asp:TextBox ID="txtAddress1" runat="server" MaxLength="300" TextMode="MultiLine"></asp:TextBox>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fieldKey">
+                    <label>Address 2</label>
+                  </td>
+                  <td class="fieldValue">
+                    <asp:TextBox ID="txtAddress2" runat="server" MaxLength="300" TextMode="MultiLine"></asp:TextBox>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fieldKey">
+                    <asp:Button ID="btnSave" runat="server" onclick="btnSave_Click" Text="Save"  CssClass="btn btn-save btn-primary"/>
+                  </td>
+                  <td class="fieldValue">
+                    <asp:Button ID="btnCancel" runat="server" CausesValidation="False" onclick="btnCancel_Click" Text="Cancel"
+                    CssClass="btn"/>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <strong id="add-passenger" class="button_content button_content1" style="float:right;">
+        <strong class="button bg_button" style="margin-bottom: 9px;">
+          <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">
+            <span class="ui-button-text">
+              Add Passenger
+            </span>
+          </button>
+        </strong>
+      </strong>
+      <h3 style="float:left;">Passenger Information</h3>
+      <div class="clear"></div>
+      <table class="table table-bordered passenger-table">
+        <tr>
+          <th>Title</th>
+          <th>First Name</th>
+          <th>Middle Name</th>
+          <th>Last Name</th>
+          <th>DOB</th>
+          <th>Nationality</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        <% meis007Model.meis007Entities _meis007Entities = new meis007Model.meis007Entities();  %>
+        <% foreach (var passenger in b2CCustomerinfo.B2CPaxinfo){ %>
+          <tr id="<%= passenger.CustomerSno %>">
+            <td> <%= passenger.Title %></td>
+            <td><%= passenger.PaxFirstName %></td>
+            <td><%= passenger.PaxMiddleName %></td>
+            <td><%= passenger.PaxLastName %></td>
+            <td><%= DateTimeHelper.ConvertToString(passenger.PaxDOB.ToString()) %></td>
+            <td><%= QueryHelper.GetCountryName(_meis007Entities, passenger.Nationality) %></td>
+            <td>
+              <strong class="button_content button_content1 edit-passenger" data-id="<%= passenger.CustomerSno %>">
+                <strong class="button bg_button">
+                  <a href="#">
+                    <span class="ui-button-text">Edit</span>
+                  </a>
+                </strong>
+              </strong>
+            </td>
+            <td>
+              <% if(passenger.CustomerId != 1) {%>
+                <strong class="button_content button_content2 delete-passenger" data-id="<%= passenger.CustomerSno %>">
+                  <strong class="button bg_button">
+                    <a href="#">
+                      <span class="ui-button-text">
+                        Delete
+                      </span>
+                    </a>
+                  </strong>
+                </strong>
+              <%} %>
+            </td>
+          </tr>
+        <%} %>
+      </table>
     </div>
-    <p>
-      <label>Title</label>
-        <select id="title">
-          <option>Mr</option>
-          <option>Mrs</option>
-          <option>Miss</option>
-          <option>Ms</option>
-          <option>Dr</option>
-          <option>Master</option>
-        </select>
-    </p>
-    <p>
-      <label>First Name</label>
-        <input id="firstName" type="text" />
-    </p>
-    <p>
-      <label>Middle Name</label>
-        <input id="middleName" type="text" />
-    </p>
-    <p>
-      <label>Last Name</label>
-        <input id="lastName" type="text" />
-    </p>
-    <p>
-      <label>DOB</label>
-        <input id="dob" type="text" />
-    </p>
-    <p>
-      <label>Nationality</label>
-        <asp:DropDownList ID="ddlNationality" runat="server" ClientIDMode="Static" 
-            DataSourceID="SqlDataSource2" DataTextField="CountryName" 
-            DataValueField="CountryID">
-            <asp:ListItem Value="0">Select</asp:ListItem>
-        </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:meis007ConnectionString %>" 
-            SelectCommand="SELECT [CountryID], [CountryName] FROM [CountryMaster]">
-        </asp:SqlDataSource>
-    </p>
-  </fieldset>
   </div>
+  <div id="add-passenger-div">
+    <input type="hidden" id="action" value="new" />
+    <div class="contentContainer page_search">
+      <div class="contentBlock">
+        <div>
+          <h4>
+            Add Passenger
+          </h4>
+        </div>
+        <div class="contentText">
+          <div class="alert alert-error custom-hide">
+             <h3></h3>
+          </div>
+          <table>
+            <tbody>
+              <tr>
+                <td class="fieldKey">
+                  <label>Title</label>
+                </td>
+                <td class="fieldValue">
+                  <select id="title">
+                    <option>Mr</option>
+                    <option>Mrs</option>
+                    <option>Miss</option>
+                    <option>Ms</option>
+                    <option>Dr</option>
+                    <option>Master</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="fieldKey">
+                  <label>First Name</label>
+                </td>
+                <td class="fieldValue">
+                  <input id="firstName" type="text" />
+                </td>
+              </tr>
+              <tr>
+                <td class="fieldKey">
+                  <label>Middle Name</label>
+                </td>
+                <td class="fieldValue">
+                  <input id="middleName" type="text" />
+                </td>
+              </tr>
+               <tr>
+                <td class="fieldKey">
+                  <label>Last Name</label>
+                </td>
+                <td class="fieldValue">
+                  <input id="lastName" type="text" />
+                </td>
+              </tr>
+               <tr>
+                <td class="fieldKey">
+                  <label>DOB</label>
+                </td>
+                <td class="fieldValue">
+                  <input id="dob" type="text" />
+                </td>
+              </tr>
+               <tr>
+                <td class="fieldKey">
+                  <label>Nationality</label>
+                </td>
+                <td class="fieldValue">
+                  <asp:DropDownList ID="ddlNationality" runat="server" ClientIDMode="Static" DataSourceID="SqlDataSource2"
+                  DataTextField="CountryName" DataValueField="CountryID">
+                    <asp:ListItem Value="0">Select</asp:ListItem>
+                  </asp:DropDownList>
+                  <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:meis007ConnectionString %>" 
+                  SelectCommand="SELECT [CountryID], [CountryName] FROM [CountryMaster]">
+                  </asp:SqlDataSource>
+                </td>
+              </tr>
+               <tr>
+                  <td>
+                    <strong class="button_content button_content1 save_pax">
+                      <strong class="button bg_button">
+                        <a href="#">
+                          <span class="ui-button-text">Save</span>
+                        </a>
+                      </strong>
+                    </strong>
+                  </td>
+                  <td>
+                    <strong class="button_content button_content2 cancel_pax">
+                      <strong class="button bg_button">
+                        <a href="#">
+                          <span class="ui-button-text">Cancel</span>
+                        </a>
+                      </strong>
+                    </strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 </asp:Content>
 

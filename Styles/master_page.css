@@ -40,7 +40,7 @@ div[id*="foo"] a
     background-image: url("/rtbtc/images/template/SearchPanel3.jpg")
 }
 
-.hide{
+.custom-hide, .hide{
     display: none;
 }
 
