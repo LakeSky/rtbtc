@@ -224,3 +224,7 @@ div[id*="foo"] a
 {
     background-image: url("/rtbtc/images/template/slider_banner.jpg")
 }
+
+#cancellation_policy_dialog .loading-image{
+    text-align: center;
+}

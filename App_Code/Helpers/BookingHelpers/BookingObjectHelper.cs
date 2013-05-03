@@ -64,6 +64,7 @@ public static class BookingObjectHelper
                 hotelInfoId = supplierHotelInfoId,
                 productId = long.Parse(_sqlDataReader["ProductID"].ToString()),
                 productName = _sqlDataReader["ProductName"].ToString(),
+                SupplierName = _sqlDataReader["SupplierName"].ToString(),
                 cityName = _sqlDataReader["CityName"].ToString(),
                 productStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
                 productDefaultImagePath = defaultImagePath,

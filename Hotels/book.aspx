@@ -44,7 +44,17 @@
         </div>
         <div class="infoBoxContents">
           <ul>
-            <li>Text</li>
+             <asp:Repeater ID="rptrCancelPolicies" runat="server"  >
+               <HeaderTemplate>
+               </HeaderTemplate>
+               <ItemTemplate>
+                 <li>
+                   <%# Eval("ChargingType")%>  <%# Eval("FromDate") %> <%# Eval("ToDate") %>
+                 </li>
+               </ItemTemplate>
+               <FooterTemplate>
+               </FooterTemplate>
+             </asp:Repeater>
           </ul>
         </div>
       </div>

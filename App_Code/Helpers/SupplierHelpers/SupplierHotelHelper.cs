@@ -19,5 +19,6 @@ public class SupplierHotelHelper
     public string City { get; set; }
     public int BasicPrice { get; set; }
     public string SupplierId { get; set; }
+    public string SupplierName { get; set; }
     public List<SupplierHotelRoomHelper> Rooms { get; set; }
 }

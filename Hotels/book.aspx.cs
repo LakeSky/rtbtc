@@ -40,6 +40,8 @@ public partial class Hotels_book : PublicApplicationPage
             rptrBookingGuests.DataSource = bookingHotelDetails.guestDetails;
             rptrBookingGuests.DataBind();
             AssignDropDown();
+            rptrCancelPolicies.DataSource = CancellationPolicyHelper.Get(bookingHotelDetails.hotelInfoId.ToString(), bookingHotelDetails.SupplierName, bookingHotelDetails.fromDate.ToString(), bookingHotelDetails.toDate.ToString());
+            rptrCancelPolicies.DataBind();
         }
     }
 

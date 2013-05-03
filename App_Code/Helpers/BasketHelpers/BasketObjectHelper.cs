@@ -66,6 +66,7 @@ public class BasketObjectHelper
                 hotelInfoId = supplierHotelInfoId,
                 sessionId = _sqlDataReader["SessionID"].ToString(),
                 supplierId = _sqlDataReader["SupplierID"].ToString(),
+                SupplierName = _sqlDataReader["SupplierName"].ToString(),
                 supplierHotelId = int.Parse(_sqlDataReader["HotelID"].ToString()),
                 supplierRoomId = int.Parse(_sqlDataReader["RoomID"].ToString()),
                 NoOfNights = int.Parse(_sqlDataReader["NumOfNights"].ToString()),

@@ -10,6 +10,7 @@ public class BookingHotelDetails
 {
     public long hotelInfoId { get; set; }
     public long productId { get; set; }
+    public string SupplierName { get; set; }
     public string productName { get; set; }
     public string cityName { get; set; }
     public string productStarsImagePath { get; set; }

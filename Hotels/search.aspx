@@ -15,6 +15,7 @@
       window.room_index = <%= RoomsCount + 1 %>;
   </script>
   <script type="text/javascript" src="/rtbtc/Scripts/hotel_search.js"></script>
+  <script type="text/javascript" src="/rtbtc/Scripts/cancellation_policy.js"></script>
   <script type = "text/javascript">
       function ShowDialogBox() {
           setTimeout(function () {
@@ -255,7 +256,11 @@
                      <td><%# Eval("RoomType") %></td>
                      <td><%# Eval("RoomName") %></td>
                      <td> <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("Price"), masterCurrencyValue) %></td>
-                     <td><a href="#" class="btn btn-small btn-warning" title="View Cancellation Policy">!</a></td>
+                     <td>
+                       <a href="#" class="btn btn-small btn-warning show_cancellation_policy" title="View Cancellation Policy">
+                         !
+                       </a>
+                     </td>
                      <% var path = Route.GetRootPath("hotels/book.aspx"); %>
                      <td>
                        <strong class="button_content button_content1">
@@ -291,7 +296,10 @@
   </div>
   <div class="clear"></div>
   </aside>
-  <!-- </div> -->
+  <div id="cancellation_policy_dialog">
+      <div class="loading-image">
+        <img alt="" src="<%= Route.GetRootPath("Images/ajax-loader.gif") %>" />
+      </div>
   </div>
 <script id='add-remove-room-button-template' type='text/html'>
 <input type="button" class="btn btn-danger remove-room" value="x" data-id="{{index}}" id="remove_room_{{index}}" />
