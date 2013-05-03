@@ -23,6 +23,8 @@ public partial class Hotels_Details : PublicApplicationPage
     public dynamic shoppingHotelDetailDynamic;
     public BasketHotelDetails basketHotelDetailsObj;
     public string masterCurrencyValue;
+    public string fromDate;
+    public string toDate;
     protected void Page_Load(object sender, EventArgs e)
     {
         masterCurrencyValue = GetMasteCurrencySelectedValue();
@@ -51,8 +53,15 @@ public partial class Hotels_Details : PublicApplicationPage
                 if (requestFrom == "search"){
                     data = RoomObjectHelper.GetHotelRooms(expando.hotelInfoId, _meis007Entities, null);
                     shoppingHotelDetailDynamic = expando.shoppingHotelDetails.formattedSearchText();
+                    fromDate = expando.shoppingHotelDetails.FromDate;
+                    toDate = expando.shoppingHotelDetails.ToDate;
                 }else {
                     data = RoomObjectHelper.GetHotelRooms(expando.hotelInfoId, null, expando.basketHelper);
+                    long hotelInfoId = expando.hotelInfoId;
+                    BasketHelper basketHelper = expando.basketHelper;
+                    BasketHotelDetails basketHotelDetails = basketHelper.hotelDetails.Where(x => x.hotelInfoId == hotelInfoId).First();
+                    fromDate = basketHotelDetails.fromDate.ToString();
+                    toDate = basketHotelDetails.toDate.ToString();
                     roomName = data.First().RoomName;
                 }
                 rptrRooms.DataSource = data;

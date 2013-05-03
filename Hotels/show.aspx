@@ -3,8 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 <link rel="stylesheet" href="/rtbtc/Styles/slider_default.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/rtbtc/Styles/slider.css" type="text/css" media="screen" />
+<style type="text/css">
+     .ui-dialog
+    {
+        background-color: #FFF;
+    }
+</style>
 <script type="text/javascript" src="/rtbtc/Scripts/slider.js"></script>
 <script type="text/javascript">
+  window.cancellation_policy_url = '<%=ResolveUrl("~/ApplicationWebService.asmx/CancellationPolicies") %>';
   $(function(){
     $('#slider').nivoSlider({
       controlNav: false,
@@ -18,6 +25,7 @@
     });
   });
 </script>
+ <script type="text/javascript" src="/rtbtc/Scripts/cancellation_policy.js"></script>
 <script type="text/javascript">
     function initialize() {
         var myLatlng = new google.maps.LatLng(parseFloat("<%= latitude %>"),parseFloat("<%= longitude %>"));
@@ -208,7 +216,14 @@
               <td><%# Eval("RoomType") %></td>
               <td><%# Eval("RoomName") %></td>
               <td> <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("Price"), masterCurrencyValue) %></td>
-              <td><a href="#" class="btn btn-small btn-warning" title="View Cancellation Policy">!</a></td>
+              <td>
+                <a href="#" class="btn btn-small btn-warning show_cancellation_policy" 
+                title="View Cancellation Policy" data-id="<%# Eval("HotelInfoId")%>"
+                data-name="<%# Eval("SupplierName") %>" data-from="<%= fromDate %>"
+                data-to="<%= toDate %>">
+                  !
+                </a>
+              </td>
               <% if (requestFrom == "search"){%>
                 <% var path = Route.GetRootPath("hotels/book.aspx"); %>
                 <td><a href="<%= path %>?id=<%# Eval("HotelInfoId")%>" class="btn btn-success">Book</a></td>
@@ -221,6 +236,13 @@
         </asp:Repeater>
       </div>
     </aside>
+  </div>
+  <div id="cancellation_policy_dialog">
+      <div class="loading-image">
+        <img alt="" src="<%= Route.GetRootPath("Images/ajax-loader.gif") %>" />
+      </div>
+      <table class="table custom-hide">
+      </table>
   </div>
 </asp:Content>
 

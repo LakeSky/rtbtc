@@ -67,6 +67,7 @@ public static class RoomObjectHelper
                 supplierHotelRoomHelper = new SupplierHotelRoomHelper
                 {
                     HotelInfoId = long.Parse(_sqlDataReader["HotelInfoID"].ToString()),
+                    SupplierName = _sqlDataReader["SupplierName"].ToString(),
                     RoomId = int.Parse(_sqlDataReader["RoomID"].ToString()),
                     RoomName = _sqlDataReader["RoomName"].ToString(),
                     RoomType = _sqlDataReader["RoomType"].ToString(),
