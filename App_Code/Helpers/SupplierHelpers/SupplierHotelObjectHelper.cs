@@ -83,7 +83,21 @@ public class SupplierHotelObjectHelper
             else
             {
                 imagePath = string.IsNullOrEmpty(_sqlDataReader["DefaultImagePath"].ToString()) ? defaultImagePath : _sqlDataReader["DefaultImagePath"].ToString();
-                supplierHotelHelper = new SupplierHotelHelper { Id = hotelInfoId, SupplierId = _sqlDataReader["SupplierID"].ToString(), SupplierName = _sqlDataReader["SupplierName"].ToString(), ProductName = _sqlDataReader["ProductName"].ToString(), City = _sqlDataReader["CityName"].ToString(), CityCode = shoppingHotelHelper.CityCode, ProdcutDescription = _sqlDataReader["ShortDescription"].ToString(), ProductMasterId = productMasterId, ProductStarsName = _sqlDataReader["ClsName"].ToString(), ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(), ProductImagePath = imagePath };
+                supplierHotelHelper = new SupplierHotelHelper { 
+                    Id = hotelInfoId, 
+                    SupplierId = _sqlDataReader["SupplierID"].ToString(), 
+                    SupplierName = _sqlDataReader["SupplierName"].ToString(), 
+                    FromDate = shoppingHotelHelper.FromDate,
+                    ToDate = shoppingHotelHelper.ToDate,
+                    ProductName = _sqlDataReader["ProductName"].ToString(), 
+                    City = _sqlDataReader["CityName"].ToString(), 
+                    CityCode = shoppingHotelHelper.CityCode,
+                    ProdcutDescription = _sqlDataReader["ShortDescription"].ToString(), 
+                    ProductMasterId = productMasterId, 
+                    ProductStarsName = _sqlDataReader["ClsName"].ToString(), 
+                    ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
+                    ProductImagePath = imagePath 
+                };
                 var rooms = new List<SupplierHotelRoomHelper>();
                 rooms.Add(supplierHotelRoomHelper);
                 supplierHotelHelper.Rooms = rooms;

@@ -13,7 +13,7 @@ public class CancellationPolicyHelper
     public string ToDate { get; set; }
     public string ChargingType { get; set; }
 
-    public static List<CancellationPolicyHelper> Get(string id, string supplierName, string startDateTime, string endDateTime)
+    public static List<CancellationPolicyHelper> GetCancelPolicies(string id, string supplierName, string startDateTime, string endDateTime)
     {
         long hotelInfoId = long.Parse(id);
         var startDate = DateTime.Parse(startDateTime);
@@ -78,6 +78,7 @@ public class CancellationPolicyHelper
         };
         if (fullCharge) {
             _cancellationPolicyHelper.ChargingType = "Full Charges (No Refund)";
+            _cancellationPolicyHelper.ToDate = "";
         }
         else
         {

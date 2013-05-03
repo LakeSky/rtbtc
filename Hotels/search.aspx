@@ -12,6 +12,7 @@
   <link href="/rtbtc/styles/search_box.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript">
       window.city_autocomplete_url = '<%=ResolveUrl("~/ViewHelperWebService.asmx/CitySearch") %>';
+      window.cancellation_policy_url = '<%=ResolveUrl("~/ApplicationWebService.asmx/CancellationPolicies") %>';
       window.room_index = <%= RoomsCount + 1 %>;
   </script>
   <script type="text/javascript" src="/rtbtc/Scripts/hotel_search.js"></script>
@@ -257,7 +258,10 @@
                      <td><%# Eval("RoomName") %></td>
                      <td> <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("Price"), masterCurrencyValue) %></td>
                      <td>
-                       <a href="#" class="btn btn-small btn-warning show_cancellation_policy" title="View Cancellation Policy">
+                       <a href="#" class="btn btn-small btn-warning show_cancellation_policy" 
+                       title="View Cancellation Policy" data-id="<%# DataBinder.Eval(Container.Parent.Parent, "DataItem.Id")%>"
+                       data-name="<%# DataBinder.Eval(Container.Parent.Parent, "DataItem.SupplierName")%>" data-from="<%# DataBinder.Eval(Container.Parent.Parent, "DataItem.FromDate")%>"
+                       data-to="<%# DataBinder.Eval(Container.Parent.Parent, "DataItem.ToDate")%>">
                          !
                        </a>
                      </td>
@@ -300,6 +304,8 @@
       <div class="loading-image">
         <img alt="" src="<%= Route.GetRootPath("Images/ajax-loader.gif") %>" />
       </div>
+      <table class="table custom-hide">
+      </table>
   </div>
 <script id='add-remove-room-button-template' type='text/html'>
 <input type="button" class="btn btn-danger remove-room" value="x" data-id="{{index}}" id="remove_room_{{index}}" />

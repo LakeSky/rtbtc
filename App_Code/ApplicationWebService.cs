@@ -36,5 +36,12 @@ public class ApplicationWebService : System.Web.Services.WebService {
         }
         return list;
     }
+
+    [WebMethod(EnableSession = true)]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public List<CancellationPolicyHelper> CancellationPolicies(string id, string supplierName, string fromDate, string toDate)
+    {
+        return CancellationPolicyHelper.GetCancelPolicies(id, supplierName, fromDate, toDate);
+    }
     
 }
