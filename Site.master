@@ -208,9 +208,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a id="storeLogo" href="http://www.responsive-shop.com/osc/tstore/3/index.php?osCsid=qKSS-ugxZQ37A3jke2owD0">
-                                    <img src="/rtbtc/images/template/logo.png" alt="osCommerce" title="osCommerce" width="258"
-                                        height="59" /></a>
+                                <a id="storeLogo" href="<%= rootPath + "home.aspx" %>" style="padding:1px 0 0 1px">
+                                    <img src="/rtbtc/images/template/company_logo.png" alt="osCommerce" title="osCommerce" width="258"
+                                        height="111" /></a>
                             </div>
                         </div>
                         <div class="grid_24">

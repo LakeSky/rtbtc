@@ -297,12 +297,24 @@
               </asp:Repeater>
               <tr>
                 <td class="cart_prods" style="border-width: 0px 1px 1px 0px; width: 700px;">
+                  <strong id="add-passenger" class="button_content button_content1" style="float:right;">
+                    <strong class="button bg_button" style="margin-bottom: 9px;">
+                      <a href="<%= Route.GetRootPath("orders/checkout.aspx") %>">
+                        <span class="ui-button-text">
+                          Checkout
+                        </span>
+                      </a>
+                    </strong>
+                  </strong>
+                  <div class="clear"></div>
                 </td>
                 <td class="cart_update" style="border-width: 0px 1px 1px 0px;">
                 </td>
                 <td class="cart_price" style="border-width: 0px 0px 1px;" width="220px">
                   <div class="name equal-height" style="min-height: 22px;">
-                    <div>&nbsp;</div>
+                    <div>
+                      &nbsp
+                    </div>
                   </div>
                   <span class="productSpecialPrice" style="font-size: 18px;">
                     <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %>
