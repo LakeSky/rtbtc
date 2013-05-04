@@ -34,9 +34,11 @@
           <h3>Hotel Search</h3>
           <div id="div-destination">
             <label>Where do you want to go?</label>
-            <asp:TextBox ID="txtCity" runat="server" CssClass="txtCity" ValidationGroup="search"></asp:TextBox>
+            <asp:TextBox ID="txtCity" runat="server" CssClass="txtCity txt-large" ValidationGroup="search"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" ForeColor="#FF3300" 
             SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+            <label>Which hotel?</label>
+            <asp:TextBox ID="txtHotelName" runat="server" CssClass="txt-large txtHotel" ValidationGroup="search"></asp:TextBox>
           </div>
           <div id="div-dates">
             <h4>When do you want to go?</h4>
@@ -367,7 +369,7 @@
             <li class="responsive_block" style="width:258px">
               <div class="product_block equal-height_new_products_block">
                 <div class="product_pic_wrapper" style="width:218px;height:218px;">
-                  <a class="product_img" href="<%= rootPath + "hotels/show.aspx" %>?id=<%# Eval("ProductMasterId") %>" style="width:218px;height:218px;">
+                  <a class="product_img top_hotels" data-productname="<%# Eval("ProductName")%>" data-id="<%# Eval("CityCode") %>" data-name="<%# Eval("City") %>"  href="<%= rootPath + "hotels/show.aspx" %>?id=<%# Eval("ProductMasterId") %>" style="width:218px;height:218px;">
                     <img src="<%# Eval("ProductImagePath") %>" alt="<%# Eval("ProductName") %>" width="218" height="218" style="width:218px;height:218px;"/>
                   </a>
                 </div>
@@ -375,9 +377,7 @@
                   <div class="row_01">
                     <h3 class="product_name_wrapper name equal-height_new_products_name">
                       <span>
-                        <a href="<%= rootPath + "hotels/show.aspx" %>?id=<%# Eval("ProductMasterId") %>">
-                          <%# Eval("ProductName")%>
-                        </a>
+                        <%# Eval("ProductName")%>
                       </span>
                     </h3>
                   </div>
@@ -389,15 +389,6 @@
                       </div>
                       <br /><br /><br />
                       <img src="<%# Eval("ProductStarsImagePath") %>" alt="" />
-                    </div>
-                    <div class="product_button_wrapper">
-                      <strong class="button_content button_content2">
-                        <strong class="button bg_button">
-                          <a href="<%= rootPath + "hotels/show.aspx" %>?id=<%# Eval("ProductMasterId") %>" role="button">
-                            <span class="ui-button-text">Details</span>
-                          </a>
-                        </strong>
-                      </strong>
                     </div>
                   </div>
                 </div>
@@ -431,7 +422,7 @@
             <li class="responsive_block" style="width:258px">
               <div class="product_block equal-height_new_products_block">
                 <div class="product_pic_wrapper" style="width:218px;height:218px;">
-                  <a class="product_img top_destination" href="#" style="width:218px;height:218px;"  data-id="<%# Eval("CityId") %>" data-name="<%# Eval("CityName") %>">
+                  <a class="product_img top_destination" href="#" style="width:218px;height:218px;" data-id="<%# Eval("CityId") %>" data-name="<%# Eval("CityName") %>">
                     <img src="<%# Eval("ImgPath") %>" alt="<%# Eval("CityName") %>" width="218" height="218" style="width:218px;height:218px;"/>
                   </a>
                 </div>

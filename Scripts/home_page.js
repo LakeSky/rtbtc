@@ -87,8 +87,18 @@
         setTimeout(ChangeBorder, 5000);
     });
 
+    $(".top_hotels").click(function (e) {
+        e.preventDefault();
+        $("#cityCode").val($(this).data('id'));
+        $(".txtCity").val($(this).data('name'));
+        $(".txtHotel").val($(this).data('productname'));
+        $('body').animate({ scrollTop: $('div').get(0).scrollHeight }, 3000);
+        $(".txtCity, .txtHotel").addClass("div-hightlight");
+        setTimeout(ChangeBorder, 5000);
+    });
+
     function ChangeBorder() {
-        $(".txtCity").removeClass("div-hightlight");
+        $(".txtCity, .txtHotel").removeClass("div-hightlight");
     }
 
 });

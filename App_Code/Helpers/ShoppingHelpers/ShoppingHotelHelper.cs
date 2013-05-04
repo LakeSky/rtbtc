@@ -13,6 +13,7 @@ public class ShoppingHotelHelper
     public int SearchId { get; set; }
     public string CityCode { get; set; }
     public string CityName { get; set; }
+    public string HotelName { get; set; }
     public string FromDate { get; set; }
     public string ToDate { get; set; }
     public List<ShoppingRoomHelper> RoomDetails { get; set; }

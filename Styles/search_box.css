@@ -17,7 +17,7 @@
  width: 290px;
  height: 30px;
  padding: 10px 0 0 10px;
- margin: 40px 0 0 0;
+ margin: 25px 0 0 0;
  font-size: 18px;
 }
 
@@ -33,10 +33,10 @@
 
 #div-search #div-destination 
 {
-    padding-top: 35px;
+    padding-top: 15px;
 }
 
-#div-search input.txtCity {
+#div-search input.txt-large {
  width: 250px;
  color: #555;
  font-size: 12px !important;
@@ -91,9 +91,9 @@
  width: 180px;
 }
 
-#div-search #div-rooms .add-room-btn{
+#div-search #div-rooms .add-room{
  float: right;
- margin-right: 19px;
+ margin-right: 16px;
 }
 
 #div-search table {

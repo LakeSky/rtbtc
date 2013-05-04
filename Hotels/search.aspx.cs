@@ -34,6 +34,7 @@ public partial class Hotels_Index : PublicApplicationPage
             _ShoppingHotel = _ShoppingHelper.HotelDetails;
             ShoppingRoomsList = _ShoppingHotel.RoomDetails;
             txtCity.Text = _ShoppingHotel.CityName;
+            txtHotelName.Text = _ShoppingHotel.HotelName;
             txtStartDate.Text = _ShoppingHotel.FromDate;
             txtEndDate.Text = _ShoppingHotel.ToDate;
             CityCode = _ShoppingHotel.CityCode;
@@ -48,7 +49,7 @@ public partial class Hotels_Index : PublicApplicationPage
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        UpdateShoppingHelperObject(txtCity.Text, txtStartDate.Text, txtEndDate.Text);
+        UpdateShoppingHelperObject(txtHotelName.Text, txtCity.Text, txtStartDate.Text, txtEndDate.Text);
         Response.Redirect(Route.GetRootPath("hotels/search.aspx"));
     }
 

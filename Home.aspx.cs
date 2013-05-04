@@ -65,7 +65,7 @@ public partial class Home : PublicApplicationPage
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        UpdateShoppingHelperObject(txtCity.Text, txtStartDate.Text, txtEndDate.Text);
+        UpdateShoppingHelperObject(txtHotelName.Text, txtCity.Text, txtStartDate.Text, txtEndDate.Text);
         Response.Redirect(Route.GetRootPath("hotels/search.aspx"));
     }
 }

@@ -31,7 +31,7 @@
   <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
   <div class="row row_4 container_24">
     <section id="bodyContent" class="col grid_6">
-      <div class="ui-widget infoBoxContainer box_list" style="min-height:580px;"> 
+      <div class="ui-widget infoBoxContainer box_list" style="min-height:620px;"> 
         <div class="ui-widget-header infoBoxHeading">
           Hotels Search
         </div>
@@ -39,9 +39,11 @@
           <div id="div-search" style="margin-left:0;padding-top:0;">
             <div id="div-destination">
               <label>Where do you want to go?</label>
-              <asp:TextBox ID="txtCity" runat="server" CssClass="txtCity" ValidationGroup="search"></asp:TextBox>
+              <asp:TextBox ID="txtCity" runat="server" CssClass="txtCity txt-large" ValidationGroup="search"></asp:TextBox>
               <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" ForeColor="#FF3300" 
               SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+              <label>Which hotel?</label>
+              <asp:TextBox ID="txtHotelName" runat="server" CssClass="txt-large txtHotel" ValidationGroup="search"></asp:TextBox>
             </div>
             <div id="div-dates">
               <h4>When do you want to go?</h4>

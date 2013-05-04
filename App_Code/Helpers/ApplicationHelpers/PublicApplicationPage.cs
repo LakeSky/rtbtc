@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 /// </summary>
 public class PublicApplicationPage : System.Web.UI.Page
 {
-    protected void UpdateShoppingHelperObject(string city, string startDate, string endDate) {
+    protected void UpdateShoppingHelperObject(string hotel, string city, string startDate, string endDate) {
         string index = "";
         string childAge = "";
         var totalRooms = int.Parse(Request.Params["totalRooms"].ToString());
@@ -19,6 +19,7 @@ public class PublicApplicationPage : System.Web.UI.Page
         ShoppingHotelHelper shoppingHotel = new ShoppingHotelHelper();
         List<ShoppingRoomHelper> shoppingRoomsList = new List<ShoppingRoomHelper>();
         ShoppingRoomHelper _ShoppingRoomHelper;
+        shoppingHotel.HotelName = hotel;
         shoppingHotel.CityName = city;
         shoppingHotel.CityCode = parms["cityCode"];
         shoppingHotel.FromDate = startDate;

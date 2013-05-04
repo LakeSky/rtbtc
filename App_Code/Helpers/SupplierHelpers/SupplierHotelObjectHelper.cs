@@ -116,6 +116,7 @@ public class SupplierHotelObjectHelper
 
     protected int GetSearchId(string cityCode) {
         SearchEntity _search = new SearchEntity();
+        _search.HotelName = shoppingHotelHelper.HotelName;
         _search.Destination = cityCode;
         _search.CheckIn = DateTimeHelper.customFormat(shoppingHotelHelper.FromDate);
         _search.CheckOut = DateTimeHelper.customFormat(shoppingHotelHelper.ToDate);
@@ -155,6 +156,7 @@ public class SupplierHotelObjectHelper
            {
                ProductName = _sqlDataReader["ProductName"].ToString(),
                City = _sqlDataReader["CityName"].ToString(),
+               CityCode = _sqlDataReader["CityID"].ToString(),
                ProductMasterId = long.Parse(_sqlDataReader["ProductId"].ToString()),
                ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
                ProductImagePath = imagePath
