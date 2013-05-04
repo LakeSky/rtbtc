@@ -79,6 +79,24 @@
                     </div>
                   </ItemTemplate>
                 </asp:Repeater>
+                <asp:Repeater ID="rptrCancelPolicies" runat="server" >
+                  <HeaderTemplate>
+                    <table class="table table-bordered">
+                      <tr>
+                        <th>Cancellation Policies</th>
+                      </tr>
+                  </HeaderTemplate>
+                  <ItemTemplate>
+                    <tr>
+                      <td>
+                        <%# Eval("ChargingType")%>  <%# Eval("FromDate") %> <%# Eval("ToDate") %>
+                      </td>
+                    </tr>
+                  </ItemTemplate>
+                  <FooterTemplate>
+                    </table>
+                  </FooterTemplate>
+                </asp:Repeater>
               </li>
             </ul>
           </div>

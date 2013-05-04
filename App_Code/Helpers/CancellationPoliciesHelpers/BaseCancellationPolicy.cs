@@ -8,7 +8,7 @@ using meis007Model;
 /// </summary>
 public class BaseCancellationPolicy
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
     public string BasisType;
     public long? HotelId { get; set; }
     public long? HotelInfoId { get; set; }
