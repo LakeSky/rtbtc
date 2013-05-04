@@ -56,6 +56,7 @@ public partial class Bookings_index : System.Web.UI.Page
         dt.Columns.Add(new DataColumn("Check In", typeof(string)));
         dt.Columns.Add(new DataColumn("Check Out", typeof(string)));
         dt.Columns.Add(new DataColumn("Details", typeof(string)));
+        dt.Columns.Add(new DataColumn("Print Voucher", typeof(string)));
         foreach (var x in data)
         {
             dr = dt.NewRow();
@@ -66,6 +67,7 @@ public partial class Bookings_index : System.Web.UI.Page
             dr["Check In"] = DateTimeHelper.ConvertToString(x.booking.CheckIN.ToString());
             dr["Check Out"] = DateTimeHelper.ConvertToString(x.booking.checkOUT.ToString());
             dr["Details"] = x.booking.BkgID;
+            dr["Print Voucher"] = "Print";
             dt.Rows.Add(dr);
         }
         gvBookings.DataSource = dt;
