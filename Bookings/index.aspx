@@ -41,16 +41,17 @@
   </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-  <div id="hotelsList" style="width:100%;">
-    <h3 class="custom-h3 blue-font left">My Bookings</h3>
-    <input id="txtBookingSearch" type="text" class="txtBookingSearch right" placeholder="Search Booking" />
-    <div class="clear"></div>
-    <asp:GridView ID="gvBookings" runat="server" 
+  <div class="row row_2 container_24">
+    <div class="grid_24">
+      <h3 class="custom-h3 blue-font left">My Bookings</h3>
+      <input id="txtBookingSearch" type="text" class="txtBookingSearch right" placeholder="Search Booking" />
+      <div class="clear"></div>
+      <asp:GridView ID="gvBookings" runat="server" 
           onpageindexchanging="gvBookings_PageIndexChanging" 
           onrowdatabound="gvBookings_RowDataBound" Width="100%" 
           CssClass="table table-bordered" AllowPaging="True" PageSize="10">
-    </asp:GridView>
+      </asp:GridView>
+    </div>
   </div>
-  <div class="clear"></div>
 </asp:Content>
 

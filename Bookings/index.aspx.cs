@@ -30,11 +30,11 @@ public partial class Bookings_index : System.Web.UI.Page
 
         LinkButton lb;
         lb = new LinkButton();
-        lb.CommandArgument = e.Row.Cells[5].Text;
+        lb.CommandArgument = e.Row.Cells[6].Text;
         lb.CommandName = "NumClick";
         lb.Text = "Details";
-        lb.PostBackUrl = "show.aspx?id=" + e.Row.Cells[5].Text;
-        e.Row.Cells[5].Controls.Add((Control)lb);
+        lb.PostBackUrl = "show.aspx?id=" + e.Row.Cells[6].Text;
+        e.Row.Cells[6].Controls.Add((Control)lb);
     }
 
     protected void BindDataToGridView()
@@ -51,6 +51,7 @@ public partial class Bookings_index : System.Web.UI.Page
         DataRow dr = null;
         dt.Columns.Add(new DataColumn("Booking Date", typeof(string)));
         dt.Columns.Add(new DataColumn("Lead Passenger Name", typeof(string)));
+        dt.Columns.Add(new DataColumn("First Passenger Name", typeof(string)));
         dt.Columns.Add(new DataColumn("Hotel", typeof(string)));
         dt.Columns.Add(new DataColumn("Check In", typeof(string)));
         dt.Columns.Add(new DataColumn("Check Out", typeof(string)));
@@ -60,6 +61,7 @@ public partial class Bookings_index : System.Web.UI.Page
             dr = dt.NewRow();
             dr["Booking Date"] = DateTimeHelper.ConvertToString(x.booking.BkgDate.ToString());
             dr["Lead Passenger Name"] = x.booking.LeadPaxName;
+            dr["First Passenger Name"] = _meis007Entities.PaxDetails.Where(z => z.BkgID == x.booking.BkgID).First().PaxName;
             dr["Hotel"] = x.HotelName;
             dr["Check In"] = DateTimeHelper.ConvertToString(x.booking.CheckIN.ToString());
             dr["Check Out"] = DateTimeHelper.ConvertToString(x.booking.checkOUT.ToString());
