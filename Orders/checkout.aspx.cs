@@ -108,6 +108,17 @@ public partial class Orders_checkout : PublicApplicationPage
                         _meis007Entities.AddToPaxDetails(paxDetail);
                         _meis007Entities.SaveChanges();
                     }
+                    BkgCancelPolicyHelper bkgCancelPolicyHelper =
+                        new BkgCancelPolicyHelper {
+                            _meis007Entities = _meis007Entities,
+                           bkgMaster = bkgMaster,
+                           EndDate = x.toDate.ToString(),
+                           hotelBooking = obj,
+                           StartDate = x.fromDate.ToString(),
+                           SupplierName = x.SupplierName,
+                           suppliersHotelsInfo = suppliersHotelsInfo
+                        };
+                    bkgCancelPolicyHelper.CreateBkgCancelPolicies();
                     hotelsToRemove.Add(x);
                 }
             }
