@@ -124,3 +124,9 @@ background: #fcfdfd url(../../../images/template/redmond/ui-bg_inset-hard_100_fc
 #hotel-search-dialog .loading-image{
     text-align: center;
 }
+
+#div-search input.div-hightlight
+{
+    border-color: rgba(150,202, 45, 1);
+   outline : 0;
+}

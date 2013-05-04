@@ -78,4 +78,17 @@
 
     $('.productListTable tr:nth-child(even)').addClass('alt');
 
+    $(".top_destination").click(function (e) {
+        e.preventDefault();
+        $("#cityCode").val($(this).data('id'));
+        $(".txtCity").val($(this).data('name'));
+        $('body').animate({ scrollTop: $('div').get(0).scrollHeight }, 3000);
+        $(".txtCity").addClass("div-hightlight");
+        setTimeout(ChangeBorder, 5000);
+    });
+
+    function ChangeBorder() {
+        $(".txtCity").removeClass("div-hightlight");
+    }
+
 });

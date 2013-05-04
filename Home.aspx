@@ -8,6 +8,7 @@
       window.room_index = <%= RoomsCount + 1 %>;
     </script>
     <script type="text/javascript" src="/rtbtc/scripts/home_page.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/custom_tabbing.js"></script>
     <script type="text/javascript" src="/rtbtc/scripts/hotel_search.js"></script>
     <style type="text/css">
         .no-close .ui-dialog-titlebar-close
@@ -241,7 +242,7 @@
   <div class="row row_4 container_24">
     <section id="bodyContent" class="col grid_24 ">
       <div id="tabvanilla" class="widget">
-        <ul class="tabnav" id="tabnav">
+        <ul class="tabnav" id="tabnav" style="border:none;">
           <li>
             <a href="#tabvanilla-packages">
               <strong class="title_wrapper">
@@ -288,7 +289,7 @@
               <div class="product_block equal-height_new_products_block">
                 <div class="product_pic_wrapper" style="width:218px;height:218px;">
                   <a class="product_img" href="<%= rootPath + "packages/show.aspx" %>?id=<%# Eval("PacId") %>" style="width:218px;height:218px;">
-                    <img src="<%# Eval("DisplayImage") %>" alt="<%# Eval("PacName") %>" title="Product #001" width="218" height="218" style="width:218px;height:218px;"/>
+                    <img src="<%# Eval("DisplayImage") %>" alt="<%# Eval("PacName") %>" width="218" height="218" style="width:218px;height:218px;"/>
                   </a>
                 </div>
                 <div class="product_info_wrapper">
@@ -367,7 +368,7 @@
               <div class="product_block equal-height_new_products_block">
                 <div class="product_pic_wrapper" style="width:218px;height:218px;">
                   <a class="product_img" href="<%= rootPath + "hotels/show.aspx" %>?id=<%# Eval("ProductMasterId") %>" style="width:218px;height:218px;">
-                    <img src="<%# Eval("ProductImagePath") %>" alt="<%# Eval("ProductName") %>" title="Product #001" width="218" height="218" style="width:218px;height:218px;"/>
+                    <img src="<%# Eval("ProductImagePath") %>" alt="<%# Eval("ProductName") %>" width="218" height="218" style="width:218px;height:218px;"/>
                   </a>
                 </div>
                 <div class="product_info_wrapper">
@@ -430,8 +431,8 @@
             <li class="responsive_block" style="width:258px">
               <div class="product_block equal-height_new_products_block">
                 <div class="product_pic_wrapper" style="width:218px;height:218px;">
-                  <a class="product_img" href="#" style="width:218px;height:218px;">
-                    <img src="<%# Eval("ImgPath") %>" alt="<%# Eval("CityName") %>" title="Product #001" width="218" height="218" style="width:218px;height:218px;"/>
+                  <a class="product_img top_destination" href="#" style="width:218px;height:218px;"  data-id="<%# Eval("CityId") %>" data-name="<%# Eval("CityName") %>">
+                    <img src="<%# Eval("ImgPath") %>" alt="<%# Eval("CityName") %>" width="218" height="218" style="width:218px;height:218px;"/>
                   </a>
                 </div>
                 <div class="product_info_wrapper">
