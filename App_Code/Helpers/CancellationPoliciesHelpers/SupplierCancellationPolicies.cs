@@ -72,6 +72,7 @@ public class SupplierCancellationPolicies
         foreach (var x in _meis007Entities.TouricoCancelationPolicies.Where(x => x.HotelInfoId == HotelInfoId)) {
             baseCancellationPolicy = new BaseCancellationPolicy { 
                 Id = x.CID,
+                BasisType = x.BasisType,
                 HotelId = x.HotelID,
                 HotelInfoId = x.HotelInfoId,
                 HotelRoomTypeId = x.HotelRoomTypeId,

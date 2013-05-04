@@ -12,7 +12,7 @@
         }
     });
 
-    $(".show_cancellation_policy").click(function (e) {
+    $("#wrapper").delegate('.show_cancellation_policy', 'click', function (e) {
         e.preventDefault();
         $("#cancellation_policy_dialog").dialog('open');
         var id = $(this).data('id');
