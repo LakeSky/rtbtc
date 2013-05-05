@@ -41,7 +41,7 @@ public partial class SiteMaster : System.Web.UI.MasterPage
                 };
                 list.Add(currencyHelper);
             }
-            Session["MasterCurrencySelectedValue"] = list.First().Id;
+            Session["MasterCurrencySelectedValue"] = ApplicationObject.GetBaseCurrency();
             Session["MasterCurrency"] = list;
         }
         return list;
