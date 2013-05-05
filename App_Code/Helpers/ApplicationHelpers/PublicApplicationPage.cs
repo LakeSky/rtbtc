@@ -122,8 +122,8 @@ public class PublicApplicationPage : System.Web.UI.Page
     }
 
     public string GetMasteCurrencySelectedValue() {
-        var dropDown = Page.Master.FindControl("ddlMasterCurency") as DropDownList;
-        return dropDown.SelectedValue;
+        var hdnFld = Page.Master.FindControl("hdnMasterCurrencySelectedValue") as HiddenField;
+        return hdnFld.Value;
     }
 
 }

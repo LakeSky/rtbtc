@@ -168,7 +168,7 @@
                       </ItemTemplate>
                       <FooterTemplate>
                         <tr>
-                          <td colspan="5">
+                          <td colspan="6">
                             <% if (User.Identity.IsAuthenticated){%>
                               <asp:CheckBox ID="ckbAgree" runat="server" Text="I have read and  agree cancellation policy!" ClientIDMode="Static" />
                               <asp:CustomValidator ID="CustomValidator" runat="server" ErrorMessage="" ClientValidationFunction = "ValidateCheckBox" Text="*"  ForeColor="#FF3300"></asp:CustomValidator>
@@ -176,7 +176,7 @@
                           </td>
                         </tr>
                         <tr>
-                          <td colspan="5">
+                          <td colspan="6">
                             <% if (User.Identity.IsAuthenticated){%>
                               <asp:Button ID="btnAddToBasket" runat="server" Text="Add to Basket" CssClass="btn btn-success" OnClick="btnAddToBasket_Click" />
                             <%} %>

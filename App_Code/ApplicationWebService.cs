@@ -43,5 +43,12 @@ public class ApplicationWebService : System.Web.Services.WebService {
     {
         return CancellationPolicyHelper.GetCancelPolicies(id, supplierName, fromDate, toDate);
     }
+
+    [WebMethod(EnableSession = true)]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public void CurrencyChange(string selectedCurrency)
+    {
+        Session["MasterCurrencySelectedValue"] = selectedCurrency;
+    }
     
 }

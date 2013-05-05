@@ -27,13 +27,7 @@ public partial class SiteMaster : System.Web.UI.MasterPage
         }
     }
 
-    protected void ddlMasterCurency_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        Session["MasterCurrencySelectedValue"] = ddlMasterCurency.SelectedValue;
-        Response.Redirect(Request.Url.AbsoluteUri);
-    }
-
-    protected List<CurrencyHelper> GetCurrencies() {
+   protected List<CurrencyHelper> GetCurrencies() {
         var list = (List<CurrencyHelper>)(Session["MasterCurrency"]);
         if (list == null)
         {
@@ -56,18 +50,21 @@ public partial class SiteMaster : System.Web.UI.MasterPage
     protected void BindMasterCurrencyDropDown() {
         var selectedValue = GetMasterCurrencySelectedValue();
         var list = GetCurrencies();
-        ddlMasterCurency.DataSource = list;
-        ddlMasterCurency.DataTextField = "Text";
-        ddlMasterCurency.DataValueField = "Id";
-        ddlMasterCurency.SelectedValue = string.IsNullOrEmpty(selectedValue) ? null : selectedValue ;
-        ddlMasterCurency.DataBind();
+        hdnMasterCurrencySelectedValue.Value = selectedValue;
+        rptrCurrencies.DataSource = list;
+        rptrCurrencies.DataBind();
     }
 
     protected string GetMasterCurrencySelectedValue() {
         var selectedValue = (string)(Session["MasterCurrencySelectedValue"]);
         if (string.IsNullOrEmpty(selectedValue)) {
-            selectedValue = "";
+            selectedValue = ApplicationObject.GetBaseCurrency();
         }
         return selectedValue;
+    }
+
+    protected string MasterCurrnecySelectedValue()
+    {
+        return ApplicationObject.GetMasterCurrency(ApplicationObject.GetBaseCurrency());
     }
 }

@@ -41,6 +41,9 @@
     <script type="text/javascript" src="/rtbtc/scripts/template/jquery.carouFredSel-6.2.0-packed.js"
         charset="utf-8"></script>
     <script type="text/javascript" src="/rtbtc/scripts/template/js.js"></script>
+    <script type="text/javascript">
+        window.CurrencyChangeUrl = '<%=ResolveUrl("~/ApplicationWebService.asmx/CurrencyChange") %>';
+    </script>
     <script type="text/javascript" src="/rtbtc/scripts/master_page.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet'
         type='text/css' />
@@ -62,8 +65,9 @@
         <div id="mainWrapper">
             <div id="wrapper">
                 <div class="container">
-                <asp:DropDownList ID="ddlMasterCurency" runat="server" AutoPostBack="True" Visible="false"
-                      onselectedindexchanged="ddlMasterCurency_SelectedIndexChanged" CssClass="ddl-custom ddlMasterCurrency"></asp:DropDownList>
+                    <div class="master-currency-wrap">
+                      <asp:HiddenField ID="hdnMasterCurrencySelectedValue" runat="server" />
+                    </div>
                     <div class="row row_1 container_24">
                         <div class="grid_24">
                             <div id="header">
@@ -100,10 +104,10 @@
                                                         <% } %>
                                                         <li class="total">
                                                           <span class="productSpecialPrice">
-                                                            <%= ApplicationObject.GetMasterCurrency(ddlMasterCurency.SelectedValue) %>
+                                                            <%= ApplicationObject.GetMasterCurrency(hdnMasterCurrencySelectedValue.Value) %>
                                                             &nbsp;
                                                             <span id="cart_header_amount">
-                                                              <%= ApplicationObject.FormattedCurrencyDisplayPrice(masterBasketHelper.totalPrice, ddlMasterCurency.SelectedValue) %>
+                                                              <%= ApplicationObject.FormattedCurrencyDisplayPrice(masterBasketHelper.totalPrice, hdnMasterCurrencySelectedValue.Value) %>
                                                             </span>
                                                           </span>
                                                         </li>
@@ -175,19 +179,27 @@
                                         </div>
                                     </div>
                                     <div id="box_currencies" class="box_currencies">
-                                        <div class="drop_down">
-                                            <form name="currencies" action="http://www.responsive-shop.com/osc/tstore/3/index.php"
-                                            method="get">
+                                      <div class="drop_down" style="width:60px;">
+                                        <asp:Repeater ID="rptrCurrencies" runat="server">
+                                          <HeaderTemplate>
                                             <label>
-                                                $&nbsp;U.S. Dollar<i></i></label>
-                                            <input type="hidden" name="osCsid" value="qKSS-ugxZQ37A3jke2owD0" />
+                                              <%# MasterCurrnecySelectedValue() %>
+                                              <i></i>
+                                            </label>
                                             <ul>
-                                                <li class="activ"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php?currency=USD&amp;osCsid=qKSS-ugxZQ37A3jke2owD0">
-                                                    $&nbsp;U.S. Dollar</a></li>
-                                                <li class=""><a href="http://www.responsive-shop.com/osc/tstore/3/index.php?currency=EUR&amp;osCsid=qKSS-ugxZQ37A3jke2owD0">
-                                                    Euro&nbsp;&euro;</a></li></ul>
-                                            </form>
-                                        </div>
+                                          </HeaderTemplate>
+                                          <ItemTemplate>
+                                            <li>
+                                              <a href="/ <%# Eval("Text") %>" data-value="<%# Eval("Text") %>">
+                                                <%# Eval("Text") %>
+                                              </a>
+                                            </li>
+                                          </ItemTemplate>
+                                          <FooterTemplate>
+                                            </ul>
+                                          </FooterTemplate>
+                                        </asp:Repeater>
+                                      </div>
                                     </div>
                                     <div id="box_languages" class="box_languages">
                                         <div class="drop_down">

@@ -11,7 +11,8 @@
             }
             var id = $(this).data('id');
             var type = $(this).data('type');
-            var masterCurrency = $(".ddlMasterCurrency").val();
+
+            var masterCurrency = $('.master-currency-wrap input[type=hidden]').val() ;
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
