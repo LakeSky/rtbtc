@@ -16,6 +16,10 @@ public partial class Account_Register : System.Web.UI.Page
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        if (!MyCaptchaControl.IsValid) {
+            Session["ErrorMEssage"] = "Incorrect captcha text please correct it!";
+            return;
+        }
         _meis007Entities = new meis007Entities();
         var _email = txtEmail.Text.Trim();
         var user = _meis007Entities.B2CCustomerinfo.Where(x => x.PaxEmail == _email).FirstOrDefault();
