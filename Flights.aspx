@@ -1,7 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Flights.aspx.cs" Inherits="Flights" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
-<script type="text/javascript">
+  <style type="text/css">
+      .fieldValue select {
+        width: 17%;
+      }
+  </style>
+  <script type="text/javascript">
     $(function () {
 
         function updateDatePickerOfToDate(minSelectedDate) {
@@ -149,130 +154,168 @@
         });
 
     });
-</script>
+  </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-  <fieldset>
-    <legend>Search Flights</legend>
-    <form action="http://staging.amadeusepower.com/artksa/portals/artksa/flightfaresearch.aspx" method="get" >
-    <input type="hidden" value="true" name="IsExternalAccess" /> 
-    <input   type="hidden"   id="External_FlightFareSearch_From"   name="External_FlightFareSearch_From"/>
-    <input type="hidden" value="4tLHLmdkTxRadijjpqQyTCWwpVkz" name="h1h" />
-    <input id="External_FlightFareSearch_To" name="External_FlightFareSearch_To" type="hidden" />
-    <div class="alert alert-error custom-hide custom-error">
-      <h3></h3>
+  <div class="row row_2 container_24">
+    <div class="grid_24">
+      <div class="contentContainer page_search">
+        <div class="contentBlock">
+          <div>
+            <h4>
+              Search Flights
+            </h4>
+          </div>
+          <div class="contentText">
+            <form action="http://staging.amadeusepower.com/artksa/portals/artksa/flightfaresearch.aspx" method="get" >
+              <input type="hidden" value="true" name="IsExternalAccess" /> 
+              <input   type="hidden"   id="External_FlightFareSearch_From"   name="External_FlightFareSearch_From"/>
+              <input type="hidden" value="4tLHLmdkTxRadijjpqQyTCWwpVkz" name="h1h" />
+              <input id="External_FlightFareSearch_To" name="External_FlightFareSearch_To" type="hidden" />
+              <div class="alert alert-error custom-hide custom-error">
+                <h3></h3>
+              </div>
+              <label class="inline-block marginR10">
+                <input type="radio" checked="checked"  name="External_FlightFareSearch_SearchType" value="RoundTrip" class="inline trip" />
+                Round Trip
+              </label>
+              <label class="inline-block marginR10">
+                <input type="radio"  name="External_FlightFareSearch_SearchType" value="OneWay" class="inline trip" />
+                One Way
+              </label>
+              <label class="inline-block marginR10">
+                <input type="radio"  name="External_FlightFareSearch_SearchType" value="radiobutton" class="inline trip" />
+                Advanced Search
+              </label>
+              <br />
+              <table>
+                <tbody>
+                  <tr>
+                    <td class="fieldKey">
+                      Class of Travel
+                    </td>
+                    <td class="fieldValue">
+                      <select  style="width:100px;"  name="External_FlightFareSearch_FlightClass" class="travel-type"> 
+                        <option value="" >Select</option> 
+	                    <option  value="Y" selected="selected" >Economy</option> 
+	                    <option  value="C">Business</option> <option value="F">First</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fieldKey">
+                      Departure
+                    </td>
+                    <td class="fieldValue">
+                      <input id="departure" type="text" name="External_FlightFareSearch_DepartureAirport" data-id="External_FlightFareSearch_From" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fieldKey">
+                      Arrival
+                    </td>
+                    <td class="fieldValue">
+                      <input  id="arrival" type="text"  name="External_FlightFareSearch_ArrivalAirport" data-id="External_FlightFareSearch_To" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fieldKey">
+                      From
+                    </td>
+                    <td class="fieldValue">
+                      <input  class="start-date" type="text"  name="External_FlightFareSearch_DepartureDate" />
+                      <select name="External_FlightFareSearch_DepartureFlexibility" class="from-flexibilty"> 
+                        <option value="">Exact Date</option>
+                        <option value="2M">-2 Days</option>
+                        <option value="1M">-1 Day</option>
+                        <option value="1C">-1/+1 Day</option>
+                        <option value="1P">+1 Day</option>
+                        <option value="2P">+2 Days</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fieldKey">
+                      To
+                    </td>
+                    <td class="fieldValue">
+                      <input  class="end-date" type="text" name="External_FlightFareSearch_ReturnDate" /> 
+                      <select name="External_FlightFareSearch_ArrivalFlexibility" class="to-flexibilty">
+                        <option value="">Exact Date</option>
+                        <option value="2M">-2 Days</option>
+                        <option value="1M">-1 Day</option>
+                        <option value="1C">-1/+1 Day</option>
+                        <option value="1P">+1 Day</option>
+                        <option value="2P">+2 Days</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fieldKey">
+                      Adults
+                    </td>
+                    <td class="fieldValue">
+                      <select name="External_FlightFareSearch_NumberOfAdults" class="adults">
+                        <option value="0" >0</option>
+                        <option value="1" selected ="selected">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fieldKey">
+                      Children
+                    </td>
+                    <td class="fieldValue">
+                      <select name="External_FlightFareSearch_NumberOfChilds" class="children">
+                        <option value="0" selected ="selected" >0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fieldKey">
+                      Infants
+                    </td>
+                    <td class="fieldValue">
+                      <select name="External_FlightFareSearch_NumberOfInfants" class="infants">
+                        <option value="0" selected ="selected" >0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fieldKey">
+                      <label>Show only direct flight options <input type="checkbox" name="External_FlightFareSearch_OnlyDirectFlights" value="ON" class="inline direct-flight" /></label>
+                    </td>
+                    <td class="fieldValue">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="fieldKey">
+                    </td>
+                    <td class="fieldValue">
+                    <input type="submit"  value="SEARCH" class="btn btn-success margin10 flight-search" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-    <label class="inline-block marginR10">
-      <input type="radio" checked="checked"  name="External_FlightFareSearch_SearchType" value="RoundTrip" class="inline trip" />
-      Round Trip
-    </label>
-    <label class="inline-block marginR10">
-      <input type="radio"  name="External_FlightFareSearch_SearchType" value="OneWay" class="inline trip" />
-      One Way
-    </label>
-    <label class="inline-block marginR10">
-      <input type="radio"  name="External_FlightFareSearch_SearchType" value="radiobutton" class="inline trip" />
-      Advanced Search
-    </label>
-    <br />
-    <table style="width:100%;">
-      <tr>
-        <td>
-          Class of Travel
-        </td>
-        <td>
-          <select  style="width:100px;"  name="External_FlightFareSearch_FlightClass" class="travel-type"> 
-            <option value="" >Select</option> 
-	        <option  value="Y" selected="selected" >Economy</option> 
-	        <option  value="C">Business</option> <option value="F">First</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>Departure</td>
-        <td><input  id="departure"  name="External_FlightFareSearch_DepartureAirport" data-id="External_FlightFareSearch_From" /></td>
-      </tr>
-      <tr>
-        <td>Arrival</td>
-        <td><input  id="arrival"  name="External_FlightFareSearch_ArrivalAirport" data-id="External_FlightFareSearch_To" /></td>
-      </tr>
-      <tr>
-        <td>From</td>
-        <td>
-          <input  class="start-date"  name="External_FlightFareSearch_DepartureDate" />
-          <select name="External_FlightFareSearch_DepartureFlexibility" class="from-flexibilty"> 
-            <option value="">Exact Date</option>
-            <option value="2M">-2 Days</option>
-            <option value="1M">-1 Day</option>
-            <option value="1C">-1/+1 Day</option>
-            <option value="1P">+1 Day</option>
-            <option value="2P">+2 Days</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>To</td>
-        <td>
-          <input  class="end-date" name="External_FlightFareSearch_ReturnDate" /> 
-          <select name="External_FlightFareSearch_ArrivalFlexibility" class="to-flexibilty">
-            <option value="">Exact Date</option>
-            <option value="2M">-2 Days</option>
-            <option value="1M">-1 Day</option>
-            <option value="1C">-1/+1 Day</option>
-            <option value="1P">+1 Day</option>
-            <option value="2P">+2 Days</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>Adults</td>
-        <td>
-          <select name="External_FlightFareSearch_NumberOfAdults" class="adults">
-            <option value="0" >0</option>
-            <option value="1" selected ="selected">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>Children</td>
-        <td>
-          <select name="External_FlightFareSearch_NumberOfChilds" class="children">
-            <option value="0" selected ="selected" >0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-         </td>
-       </tr>
-       <tr>
-         <td>Infants</td>
-         <td>
-           <select name="External_FlightFareSearch_NumberOfInfants" class="infants">
-             <option value="0" selected ="selected" >0</option>
-             <option value="1">1</option>
-             <option value="2">2</option>
-             <option value="3">3</option>
-             <option value="4">4</option>
-             <option value="5">5</option>
-           </select>
-         </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <label>Show only direct flight options <input type="checkbox" name="External_FlightFareSearch_OnlyDirectFlights" value="ON" class="inline direct-flight" /></label>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2"><input type="submit"  value="SEARCH" class="btn btn-success margin10 flight-search" /></td>
-      </tr>
-    </table>
-  </form>
-  </fieldset>
+  </div>
 </asp:Content>
 

@@ -4,7 +4,9 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <h2>
-        About Us
-    </h2>
+  <div class="row row_2 container_24">
+    <div class="grid_24">
+      <h2> About Us </h2>
+    </div>
+  </div>
 </asp:Content>
