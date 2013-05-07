@@ -27,14 +27,25 @@ public partial class Bookings_index : System.Web.UI.Page
     protected void gvBookings_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
-
+        var array = e.Row.Cells[0].Text.Split('#');
         LinkButton lb;
         lb = new LinkButton();
-        lb.CommandArgument = e.Row.Cells[6].Text;
+        lb.CommandArgument = array[0];
         lb.CommandName = "NumClick";
-        lb.Text = "Details";
-        lb.PostBackUrl = "show.aspx?id=" + e.Row.Cells[6].Text;
-        e.Row.Cells[6].Controls.Add((Control)lb);
+        lb.Text = array[0];
+        lb.PostBackUrl = "show.aspx?id=" + array[1];
+        lb.CssClass = "blue-link";
+        e.Row.Cells[0].Controls.Add((Control)lb);
+
+        if (e.Row.Cells[5].Text == "Cannot Cancel") {
+            return;
+        }
+        lb = new LinkButton();
+        lb.CommandArgument = e.Row.Cells[5].Text;
+        lb.CommandName = "NumClick";
+        lb.Text = "Cancel";
+        lb.PostBackUrl = "cancel.aspx?id=" + e.Row.Cells[5].Text;
+        e.Row.Cells[5].Controls.Add((Control)lb);
     }
 
     protected void BindDataToGridView()
@@ -50,23 +61,23 @@ public partial class Bookings_index : System.Web.UI.Page
         DataTable dt = new DataTable();
         DataRow dr = null;
         dt.Columns.Add(new DataColumn("Booking Date", typeof(string)));
-        dt.Columns.Add(new DataColumn("Lead Passenger Name", typeof(string)));
         dt.Columns.Add(new DataColumn("First Passenger Name", typeof(string)));
         dt.Columns.Add(new DataColumn("Hotel", typeof(string)));
         dt.Columns.Add(new DataColumn("Check In", typeof(string)));
         dt.Columns.Add(new DataColumn("Check Out", typeof(string)));
-        dt.Columns.Add(new DataColumn("Details", typeof(string)));
+        dt.Columns.Add(new DataColumn("Cancel", typeof(string)));
         dt.Columns.Add(new DataColumn("Print Voucher", typeof(string)));
         foreach (var x in data)
         {
+            
+            var cancelText = (DateTime)(x.booking.CheckIN) > DateTime.Now ? x.booking.BkgID.ToString() : "Cannot Cancel";
             dr = dt.NewRow();
-            dr["Booking Date"] = DateTimeHelper.ConvertToString(x.booking.BkgDate.ToString());
-            dr["Lead Passenger Name"] = x.booking.LeadPaxName;
+            dr["Booking Date"] = DateTimeHelper.ConvertToString(x.booking.BkgDate.ToString()) + "#" + x.booking.BkgID.ToString();
             dr["First Passenger Name"] = _meis007Entities.PaxDetails.Where(z => z.BkgID == x.booking.BkgID).First().PaxName;
             dr["Hotel"] = x.HotelName;
             dr["Check In"] = DateTimeHelper.ConvertToString(x.booking.CheckIN.ToString());
             dr["Check Out"] = DateTimeHelper.ConvertToString(x.booking.checkOUT.ToString());
-            dr["Details"] = x.booking.BkgID;
+            dr["Cancel"] = cancelText;
             dr["Print Voucher"] = "Print";
             dt.Rows.Add(dr);
         }

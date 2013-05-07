@@ -49,7 +49,7 @@
                </HeaderTemplate>
                <ItemTemplate>
                  <li>
-                   <%# Eval("ChargingType")%>  <%# Eval("FromDate") %> <%# Eval("ToDate") %>
+                   <%# Eval("ChargingType")%>  <%# Eval("ToDate") %>
                  </li>
                </ItemTemplate>
                <FooterTemplate>

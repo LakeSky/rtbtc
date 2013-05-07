@@ -238,3 +238,8 @@ div[id*="foo"] a
 {
   float: right;    
 }
+
+.blue-link 
+{
+  color: #4bb5c1;    
+}

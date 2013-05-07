@@ -31,8 +31,6 @@
                     html = "<tr><td>";
                     html += x.ChargingType;
                     html += " ";
-                    html += x.FromDate;
-                    html += " ";
                     html += x.ToDate;
                     html += "</td></tr>";
                     $("#cancellation_policy_dialog .table").append(html);

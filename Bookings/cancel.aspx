@@ -1,10 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="show.aspx.cs" Inherits="Bookings_show" %>
+﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="cancel.aspx.cs" Inherits="Bookings_cancel" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-  <div class="row row_2 container_24">
+<div class="row row_2 container_24">
     <div class="grid_24">
+      <asp:HiddenField ID="hdnBookingId" runat="server" />
       <strong class="button_content button_content1" style="float:right;">
         <strong class="button bg_button" style="margin-bottom: 9px;">
           <a href="<%= Route.GetRootPath("bookings/index.aspx") %>">
@@ -57,46 +58,13 @@
                         </div>                
                         <div class="margin10"></div>
                       <div class="clear"></div>
-                      <h4>Stay: <%# Eval("stay") %></h4>
-                      <h4>Room: <%# Eval("room") %></h4>
-                      <h4>Guest: <%# Eval("guests") %></h4>
-                      <asp:Repeater ID="rptrGuests" runat="server" DataSource='<%# Eval("guestDetails") %>'>
-                        <HeaderTemplate>
-                          <table class="table table-bordered">
-                            <tr>
-                              <th>Guest Name</th>
-                            </tr>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                          <tr>
-                            <td><%# Eval("name") %></td>
-                          </tr>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                          </table>
-                        </FooterTemplate>
-                      </asp:Repeater>              
-                      </div>
+                      <h4><%= CancelText %></h4>
+                      <h4>
+                        <asp:Button ID="btnCancelBooking" OnClientClick="return confirm('Are you sure?')" OnClick="btnCancelBooking_Click" runat="server" Text="Cancel Booking" CssClass="btn" />
+                      </h4>              
                     </div>
+                  </div>
                   </ItemTemplate>
-                </asp:Repeater>
-                <asp:Repeater ID="rptrCancelPolicies" runat="server" >
-                  <HeaderTemplate>
-                    <table class="table table-bordered">
-                      <tr>
-                        <th>Cancellation Policies</th>
-                      </tr>
-                  </HeaderTemplate>
-                  <ItemTemplate>
-                    <tr>
-                      <td>
-                        <%# Eval("ChargingType")%> <%# Eval("ToDate") %>
-                      </td>
-                    </tr>
-                  </ItemTemplate>
-                  <FooterTemplate>
-                    </table>
-                  </FooterTemplate>
                 </asp:Repeater>
               </li>
             </ul>

@@ -33,8 +33,6 @@ public class CancellationPolicyHelper
                 start_date = _cancellationPolicyHelper.ToDate + " - ";
                 list.Add(_cancellationPolicyHelper);
             }
-            _cancellationPolicyHelper = BuildCancelPolicy(start_date, endDate, null, true);
-            list.Add(_cancellationPolicyHelper);
         }
         else
         {
@@ -61,14 +59,14 @@ public class CancellationPolicyHelper
         }
         else
         {
-            _cancellationPolicyHelper.ToDate = endDate.AddHours(-(int.Parse(x.UnitMultiplier.ToString()))).ToString("dd MMM");
+            _cancellationPolicyHelper.ToDate = endDate.AddHours(-(int.Parse(x.UnitMultiplier.ToString()))).ToString("dd MMM yyyy");
             if (x.BasisType == "Nights")
             {
-                _cancellationPolicyHelper.ChargingType = "Charges " + x.NumberOfNights.ToString() + " " + x.BasisType;
+                _cancellationPolicyHelper.ChargingType = x.NumberOfNights.ToString() + " Nights Fee will be charged if cancelled before ";
             }
             else
             {
-                _cancellationPolicyHelper.ChargingType = x.Percentage.ToString() + " " + x.BasisType;
+                _cancellationPolicyHelper.ChargingType = Math.Round(decimal.Parse(x.Percentage.ToString())).ToString() + "% of Booking Amount will be charged if cancelled before ";
             }
         }
         return _cancellationPolicyHelper;

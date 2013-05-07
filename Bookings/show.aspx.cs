@@ -70,8 +70,6 @@ public partial class Bookings_show : System.Web.UI.Page
             startDate = _cancellationPolicyHelper.ToDate + " - ";
             list.Add(_cancellationPolicyHelper);
         }
-        _cancellationPolicyHelper = CancellationPolicyHelper.BuildCancelPolicy(startDate, endDate, null, true);
-        list.Add(_cancellationPolicyHelper);
         return list;
     }
 }

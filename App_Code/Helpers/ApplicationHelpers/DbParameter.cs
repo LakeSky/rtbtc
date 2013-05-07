@@ -94,8 +94,12 @@ public static class DbParameter
         return "B2C";
     }
 
-    public static string GetBookingStatus() {
-        return "CC";
+    public static string GetBookingStatus(string type = "book") {
+        string status = "CC";
+        if(type == "cancel") { 
+            status = "XX";
+        }
+        return status;
     }
 
     public static string GetBaseCurrency() {
