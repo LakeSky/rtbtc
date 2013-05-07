@@ -56,7 +56,7 @@ $(function () {
         }
     });
 
-    $("#container").delegate('.remove-passenger', 'click', function (e) {
+    $("#wrapper").delegate('.remove-passenger', 'click', function (e) {
         e.preventDefault();
         var index = $(this).data('id');
         var passengerId = "tr#passenger_" + index;

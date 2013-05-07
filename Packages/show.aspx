@@ -55,7 +55,8 @@
           </a>
         </strong>
       </strong>
-      &nbsp;&nbsp;&nbsp;
+      <div class="clear"></div>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <strong class="button_content button_content1">
         <strong class="button bg_button" style="margin-bottom: 9px;">
           <a href="index.aspx">
