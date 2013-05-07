@@ -1,4 +1,8 @@
-﻿#screenshot
+﻿body
+{
+    color:#000;
+}
+#screenshot
 {
     width: 170px;
 }
