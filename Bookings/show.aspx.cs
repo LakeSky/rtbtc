@@ -43,7 +43,7 @@ public partial class Bookings_show : System.Web.UI.Page
         }
         var data = booking.BkgCancelPolicies;
         var startDate = ((DateTime)(booking.CheckIN)).ToString("dd MMM yy -");
-        var endDate = ((DateTime)(booking.checkOUT));
+        var endDate = ((DateTime)(booking.CheckIN));
         foreach (var x in data)
         {
             var hotelInfoId = long.Parse(x.HotelInfoId.ToString());
