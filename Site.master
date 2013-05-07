@@ -280,7 +280,9 @@
                         </div>
                       </div>
                     <%} %>
-                    <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+                    <div class="custom-div-wrapper">
+                      <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+                    </div>
                     <div class="row row_5 container_24">
                         <div class="col grid_24">
                             <div class="boxes_footer">

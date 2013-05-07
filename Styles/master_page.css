@@ -1,7 +1,13 @@
 ﻿body
 {
-    color:#000;
+  color:#000;
 }
+
+body .custom-div-wrapper
+{
+  min-height: 700px;
+}
+
 #screenshot
 {
     width: 170px;
