@@ -185,7 +185,7 @@
                       <strong class="button_bg">
                         <strong></strong>
                       </strong>
-                      <strong class="button_text">SHOP NOW!</strong>
+                      <strong class="button_text">BOOK NOW!</strong>
                     </strong>
                   </a>
                 </span>
@@ -199,22 +199,17 @@
       <div class="clear"></div>
     </div>
   </div>
-  <div class="row row_2 container_24">
-    <div class="grid_24">
-      <div class="contentContainer page_search">
-        <div class="contentBlock">
-          <div>
-            <h4><span class="greetUser"></span> Subscribe</h4>
-          </div>
-          <div class="contentText">
-            <div class="alert alert-danger" runat="server" id="errorDiv"></div>
+  <% if (!User.Identity.IsAuthenticated) {%>
+    <div class="row row_2 container_24">
+      <div class="grid_24">
+        <div class="contentContainer page_search">
+          <div class="contentBlock" style="width:32%;">
+            <div class="contentText">
+              <div class="alert alert-danger" runat="server" id="errorDiv"></div>
               <table>
                 <tbody>
                   <tr>
                     <td class="fieldKey">
-                      Email
-                    </td>
-                    <td class="fieldValue">
                       <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                       <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ForeColor="#FF3300" 
                       SetFocusOnError="True" ValidationGroup="subscribe">*</asp:RequiredFieldValidator>
@@ -224,13 +219,11 @@
                         Please enter valid email !
                       </asp:RegularExpressionValidator>
                     </td>
-                  </tr>
-                  <tr>
-                    <td class="fieldKey">
-                    </td>
                     <td class="fieldValue">
-                      <asp:Button ID="btnSubscribe" runat="server" Text="Subscribe" CssClass="btn btn-primary" 
-                      onclick="btnSubscribe_Click" ValidationGroup="subscribe" />
+                      <div style="margin-bottom: 25px;">
+                        <asp:Button ID="btnSubscribe" runat="server" Text="Subscribe" CssClass="btn btn-primary" 
+                        onclick="btnSubscribe_Click" ValidationGroup="subscribe" />
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -240,7 +233,9 @@
         </div>
       </div>
     </div>
- 
+  <%} %>
+  <div class="clear"></div>
+  <div class="margin10"></div>
   <div class="row row_4 container_24">
     <section id="bodyContent" class="col grid_24 ">
       <div id="tabvanilla" class="widget">

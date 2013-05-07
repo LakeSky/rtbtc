@@ -201,7 +201,7 @@
                                         </asp:Repeater>
                                       </div>
                                     </div>
-                                    <div id="box_languages" class="box_languages">
+                                    <div id="box_languages" class="box_languages hide">
                                         <div class="drop_down">
                                             <label>
                                                 <img src="/rtbtc/images/template/includes/en_icon.gif" alt="English" title="English"
@@ -221,7 +221,7 @@
                                     </div>
                                 </div>
                                 <a id="storeLogo" href="<%= rootPath + "home.aspx" %>" style="padding:1px 0 0 1px">
-                                    <img src="/rtbtc/images/template/company_logo.png" alt="osCommerce" title="osCommerce" width="258"
+                                    <img src="/rtbtc/images/template/company_logo.png" alt="Riyadh Travels" title="osCommerce" width="258"
                                         height="111" /></a>
                             </div>
                         </div>

@@ -52,8 +52,8 @@ public partial class Home : PublicApplicationPage
         var count = _meis007Entities.B2CCustomerinfo.Where(x => x.PaxEmail == _email).Count();
         if (count > 0)
         {
-            Session["ErrorMessage"] = "Email Already Taken!";
-            Response.Redirect(Request.Url.AbsoluteUri);
+            errorDiv.Visible = true;
+            errorDiv.InnerText = "Email already exists in the system!";
             return;
         }
         B2CCustomerinfo _b2CCustomerinfo = new B2CCustomerinfo { PaxEmail = _email, InService = "0" };
