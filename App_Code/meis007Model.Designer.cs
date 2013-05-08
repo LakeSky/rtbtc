@@ -554,22 +554,6 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<BkgMaster> BkgMasters
-        {
-            get
-            {
-                if ((_BkgMasters == null))
-                {
-                    _BkgMasters = base.CreateObjectSet<BkgMaster>("BkgMasters");
-                }
-                return _BkgMasters;
-            }
-        }
-        private ObjectSet<BkgMaster> _BkgMasters;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<BkgCancelPolicy> BkgCancelPolicies
         {
             get
@@ -582,6 +566,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<BkgCancelPolicy> _BkgCancelPolicies;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BkgMaster> BkgMasters
+        {
+            get
+            {
+                if ((_BkgMasters == null))
+                {
+                    _BkgMasters = base.CreateObjectSet<BkgMaster>("BkgMasters");
+                }
+                return _BkgMasters;
+            }
+        }
+        private ObjectSet<BkgMaster> _BkgMasters;
 
         #endregion
         #region AddTo Methods
@@ -819,19 +819,19 @@ namespace meis007Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the BkgMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToBkgMasters(BkgMaster bkgMaster)
-        {
-            base.AddObject("BkgMasters", bkgMaster);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the BkgCancelPolicies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToBkgCancelPolicies(BkgCancelPolicy bkgCancelPolicy)
         {
             base.AddObject("BkgCancelPolicies", bkgCancelPolicy);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BkgMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBkgMasters(BkgMaster bkgMaster)
+        {
+            base.AddObject("BkgMasters", bkgMaster);
         }
 
         #endregion
@@ -2861,6 +2861,30 @@ namespace meis007Model
         private global::System.String _BkgStatus;
         partial void OnBkgStatusChanging(global::System.String value);
         partial void OnBkgStatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CustomerMarkup
+        {
+            get
+            {
+                return _CustomerMarkup;
+            }
+            set
+            {
+                OnCustomerMarkupChanging(value);
+                ReportPropertyChanging("CustomerMarkup");
+                _CustomerMarkup = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CustomerMarkup");
+                OnCustomerMarkupChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CustomerMarkup;
+        partial void OnCustomerMarkupChanging(Nullable<global::System.Int32> value);
+        partial void OnCustomerMarkupChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

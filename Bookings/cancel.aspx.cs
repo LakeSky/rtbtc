@@ -54,7 +54,7 @@ public partial class Bookings_cancel : System.Web.UI.Page
             Redirect("Booking not found");
             return;
         }
-        var reservationId = "(" + booking.SupplierRefNo + ") " + booking.SupplierConfNo ;
+        var reservationId = booking.SupplierRefNo + " ~ " + booking.SupplierConfNo;
         supplierFactory = new RepositoryFactory(null, Guid.NewGuid().ToString());
         var cancelled = supplierFactory.CancelHotelRoomBooking(Session.SessionID, int.Parse(booking.SearchID.ToString()), int.Parse(booking.HotelInfoID.ToString()), reservationId, DbParameter.GetSupplierName(booking.SupplierID.ToString()));
         if (cancelled) {

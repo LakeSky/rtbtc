@@ -65,7 +65,7 @@
             <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
             <End Role="HotelBooking" EntitySet="HotelBooking" />
           </AssociationSet>
-          <AssociationSet Name="FK__TouricoCa__Hotel__40457975" Association="meis007Model.Store.FK__TouricoCa__Hotel__40457975">
+          <AssociationSet Name="FK__TouricoCa__Hotel__507BE13E" Association="meis007Model.Store.FK__TouricoCa__Hotel__507BE13E">
             <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
             <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicy" />
           </AssociationSet>
@@ -240,6 +240,7 @@
           <Property Name="BkgDate" Type="datetime" Nullable="false" />
           <Property Name="BkgType" Type="nvarchar" Nullable="false" MaxLength="3" />
           <Property Name="BkgStatus" Type="nvarchar" Nullable="false" MaxLength="2" />
+          <Property Name="CustomerMarkup" Type="int" />
           <Property Name="FromAllocation" Type="nvarchar" MaxLength="1" />
           <Property Name="CustomerID" Type="bigint" />
           <Property Name="CustConsultantID" Type="bigint" />
@@ -617,7 +618,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TouricoCa__Hotel__40457975">
+        <Association Name="FK__TouricoCa__Hotel__507BE13E">
           <End Role="SuppliersHotelsInfo" Type="meis007Model.Store.SuppliersHotelsInfo" Multiplicity="0..1" />
           <End Role="TouricoCancelationPolicy" Type="meis007Model.Store.TouricoCancelationPolicy" Multiplicity="*" />
           <ReferentialConstraint>
@@ -923,8 +924,8 @@
             <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
             <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicies" />
           </AssociationSet>
-          <EntitySet Name="BkgMasters" EntityType="meis007Model.BkgMaster" />
           <EntitySet Name="BkgCancelPolicies" EntityType="meis007Model.BkgCancelPolicy" />
+          <EntitySet Name="BkgMasters" EntityType="meis007Model.BkgMaster" />
           <AssociationSet Name="FK_BkgCancelPolicies_BkgMaster" Association="meis007Model.FK_BkgCancelPolicies_BkgMaster">
             <End Role="BkgMaster" EntitySet="BkgMasters" />
             <End Role="BkgCancelPolicy" EntitySet="BkgCancelPolicies" />
@@ -1554,6 +1555,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BkgCancelPolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="HotelInfoId" />
+          <Property Type="Int32" Name="SearchId" />
+          <Property Type="Int64" Name="XMLBookingId" />
+          <Property Type="Int64" Name="LocalBookingId" Nullable="false" />
+          <Property Type="String" Name="SupplierId" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="LocalHotelId" />
+          <Property Type="Int64" Name="HotelRoomTypeId" />
+          <Property Type="String" Name="RateBasisType" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Percentage" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="NoOfNights" />
+          <Property Type="String" Name="OffSetUnit" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="UnitMultiplier" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
+          <NavigationProperty Name="BkgMaster" Relationship="meis007Model.FK_BkgCancelPolicies_BkgMaster" FromRole="BkgCancelPolicy" ToRole="BkgMaster" />
+        </EntityType>
         <EntityType Name="BkgMaster">
           <Key>
             <PropertyRef Name="BkgID" />
@@ -1565,6 +1586,7 @@
           <Property Type="DateTime" Name="BkgDate" Nullable="false" />
           <Property Type="String" Name="BkgType" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="BkgStatus" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CustomerMarkup" />
           <Property Type="String" Name="FromAllocation" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="CustomerID" />
           <Property Type="Int64" Name="CustConsultantID" />
@@ -1614,26 +1636,6 @@
           <Property Type="DateTime" Name="ModDate" />
           <Property Type="String" Name="UserID" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BkgCancelPolicies" Relationship="meis007Model.FK_BkgCancelPolicies_BkgMaster" FromRole="BkgMaster" ToRole="BkgCancelPolicy" />
-        </EntityType>
-        <EntityType Name="BkgCancelPolicy">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="HotelInfoId" />
-          <Property Type="Int32" Name="SearchId" />
-          <Property Type="Int64" Name="XMLBookingId" />
-          <Property Type="Int64" Name="LocalBookingId" Nullable="false" />
-          <Property Type="String" Name="SupplierId" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int64" Name="LocalHotelId" />
-          <Property Type="Int64" Name="HotelRoomTypeId" />
-          <Property Type="String" Name="RateBasisType" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="Percentage" Precision="18" Scale="0" />
-          <Property Type="Int32" Name="NoOfNights" />
-          <Property Type="String" Name="OffSetUnit" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="UnitMultiplier" />
-          <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
-          <NavigationProperty Name="BkgMaster" Relationship="meis007Model.FK_BkgCancelPolicies_BkgMaster" FromRole="BkgCancelPolicy" ToRole="BkgMaster" />
         </EntityType>
         <Association Name="FK_BkgCancelPolicies_BkgMaster">
           <End Type="meis007Model.BkgMaster" Role="BkgMaster" Multiplicity="1" />
@@ -1964,6 +1966,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BkgCancelPolicies">
+            <EntityTypeMapping TypeName="meis007Model.BkgCancelPolicy">
+              <MappingFragment StoreEntitySet="BkgCancelPolicies">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UnitMultiplier" ColumnName="UnitMultiplier" />
+                <ScalarProperty Name="OffSetUnit" ColumnName="OffSetUnit" />
+                <ScalarProperty Name="NoOfNights" ColumnName="NoOfNights" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="RateBasisType" ColumnName="RateBasisType" />
+                <ScalarProperty Name="HotelRoomTypeId" ColumnName="HotelRoomTypeId" />
+                <ScalarProperty Name="LocalHotelId" ColumnName="LocalHotelId" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="LocalBookingId" ColumnName="LocalBookingId" />
+                <ScalarProperty Name="XMLBookingId" ColumnName="XMLBookingId" />
+                <ScalarProperty Name="SearchId" ColumnName="SearchId" />
+                <ScalarProperty Name="HotelInfoId" ColumnName="HotelInfoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BkgMasters">
             <EntityTypeMapping TypeName="meis007Model.BkgMaster">
               <MappingFragment StoreEntitySet="BkgMaster">
@@ -2015,6 +2037,7 @@
                 <ScalarProperty Name="CustConsultantID" ColumnName="CustConsultantID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="FromAllocation" ColumnName="FromAllocation" />
+                <ScalarProperty Name="CustomerMarkup" ColumnName="CustomerMarkup" />
                 <ScalarProperty Name="BkgStatus" ColumnName="BkgStatus" />
                 <ScalarProperty Name="BkgType" ColumnName="BkgType" />
                 <ScalarProperty Name="BkgDate" ColumnName="BkgDate" />
@@ -2022,26 +2045,6 @@
                 <ScalarProperty Name="SearchID" ColumnName="SearchID" />
                 <ScalarProperty Name="BasketID" ColumnName="BasketID" />
                 <ScalarProperty Name="BkgID" ColumnName="BkgID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BkgCancelPolicies">
-            <EntityTypeMapping TypeName="meis007Model.BkgCancelPolicy">
-              <MappingFragment StoreEntitySet="BkgCancelPolicies">
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UnitMultiplier" ColumnName="UnitMultiplier" />
-                <ScalarProperty Name="OffSetUnit" ColumnName="OffSetUnit" />
-                <ScalarProperty Name="NoOfNights" ColumnName="NoOfNights" />
-                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
-                <ScalarProperty Name="RateBasisType" ColumnName="RateBasisType" />
-                <ScalarProperty Name="HotelRoomTypeId" ColumnName="HotelRoomTypeId" />
-                <ScalarProperty Name="LocalHotelId" ColumnName="LocalHotelId" />
-                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
-                <ScalarProperty Name="LocalBookingId" ColumnName="LocalBookingId" />
-                <ScalarProperty Name="XMLBookingId" ColumnName="XMLBookingId" />
-                <ScalarProperty Name="SearchId" ColumnName="SearchId" />
-                <ScalarProperty Name="HotelInfoId" ColumnName="HotelInfoId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2184,11 +2187,11 @@
           <ConnectorPoint PointX="16.25" PointY="20.869863281249998" />
           <ConnectorPoint PointX="17" PointY="20.869863281249998" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="meis007Model.BkgMaster" Width="1.5" PointX="4.375" PointY="19.375" Height="11.787659505208325" />
         <EntityTypeShape EntityType="meis007Model.BkgCancelPolicy" Width="1.5" PointX="6.625" PointY="23.375" Height="3.903300781249996" />
+        <EntityTypeShape EntityType="meis007Model.BkgMaster" Width="1.5" PointX="4.375" PointY="19.375" Height="11.979960937499996" />
         <AssociationConnector Association="meis007Model.FK_BkgCancelPolicies_BkgMaster" >
-          <ConnectorPoint PointX="5.875" PointY="25.326650390624998" />
-          <ConnectorPoint PointX="6.625" PointY="25.326650390624998" />
+          <ConnectorPoint PointX="5.875" PointY="25.326650390625" />
+          <ConnectorPoint PointX="6.625" PointY="25.326650390625" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

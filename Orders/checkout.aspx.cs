@@ -62,6 +62,7 @@ public partial class Orders_checkout : PublicApplicationPage
                         //DbParameter.GetCustomerId
                         CustConsultantID = CurrentUser.Id(),
                         CustomerDisplayPrice = suppliersHotelsInfo.LCAP,
+                        CustomerMarkup = suppliersHotelsInfo.MarkUp,
                         FCSalesAmt = suppliersHotelsInfo.LCAP,
                         FCurrencyID = suppliersHotelsInfo.CurrencyCode,
                         BaseCurrencyID = ApplicationObject.GetBaseCurrency(),
