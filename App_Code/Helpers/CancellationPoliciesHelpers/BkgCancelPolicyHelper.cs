@@ -27,7 +27,7 @@ public class BkgCancelPolicyHelper
                 HotelRoomTypeId = suppliersHotelsInfo.RoomTypeID,
                 LocalBookingId = bkgMaster.BkgID,
                 LocalHotelId = suppliersHotelsInfo.LocHotelID,
-                NoOfNights = suppliersHotelsInfo.NumOfNights,
+                NoOfNights = x.NumberOfNights,
                 OffSetUnit = x.OffSetUnit,
                 Percentage = x.Percentage,
                 RateBasisType = x.BasisType,

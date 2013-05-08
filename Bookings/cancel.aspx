@@ -6,6 +6,8 @@
 <div class="row row_2 container_24">
     <div class="grid_24">
       <asp:HiddenField ID="hdnBookingId" runat="server" />
+      <asp:HiddenField ID="hdnFeild1" runat="server" />
+      <asp:HiddenField ID="hdnFeild2" runat="server" />
       <strong class="button_content button_content1" style="float:right;">
         <strong class="button bg_button" style="margin-bottom: 9px;">
           <a href="<%= Route.GetRootPath("bookings/index.aspx") %>">

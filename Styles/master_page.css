@@ -253,3 +253,8 @@ div[id*="foo"] a
 {
   color: #4bb5c1;    
 }
+
+.check-out .difference-nights
+{
+    margin-right: 11px;
+}

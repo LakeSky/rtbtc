@@ -12,6 +12,8 @@ public partial class Bookings_cancel : System.Web.UI.Page
     meis007Entities _meis007Entities;
     RepositoryFactory supplierFactory;
     public string CancelText;
+    string payFee = string.Empty;
+    string markupFee = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         var id = Request.QueryString["id"] as string;
@@ -24,7 +26,10 @@ public partial class Bookings_cancel : System.Web.UI.Page
         hdnBookingId.Value = id;
         rptrBookingIndex.DataSource = BookingsIndexObjectHelper.GetBookings(bookingId);
         rptrBookingIndex.DataBind();
-        CancelText = "This Cancellation will charge $50";
+        payFee = BookingsIndexObjectHelper.GetCancellationFee(bookingId, Session.SessionID, out markupFee);
+        hdnFeild1.Value = payFee;
+        hdnFeild2.Value = markupFee;
+        CancelText = "This Cancellation will charge " + markupFee;
     }
 
     public void Redirect(string message)

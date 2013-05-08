@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using meis007Model;
+using RTCModel.Models;
 
 /// <summary>
 /// Summary description for BookingsIndexObjectHelper
@@ -104,6 +105,23 @@ public static class BookingsIndexObjectHelper
             }
         }
         return bookingIndexList;
+    }
+
+    public static string GetCancellationFee(long bookingId, string sessionId, out string markupCancellationFee)
+    {
+        markupCancellationFee = string.Empty;
+        string payCancellationFee = string.Empty;
+        string supplierName = string.Empty;
+        var id = CurrentUser.Id();
+        meis007Entities _meis007Entities = new meis007Entities();
+        var booking = _meis007Entities.BkgMasters.Where(x => x.BkgID == bookingId && x.CustConsultantID == id).FirstOrDefault();
+        if (booking == null) {
+            return payCancellationFee;
+        }
+        supplierName = DbParameter.GetSupplierName(booking.SupplierID.ToString());
+        RepositoryFactory supplierFactory = new RepositoryFactory(null, sessionId);
+        payCancellationFee = supplierFactory.GetCancelationFee(int.Parse(booking.SupplierConfNo), supplierName, out markupCancellationFee);
+        return payCancellationFee;
     }
 	
 }

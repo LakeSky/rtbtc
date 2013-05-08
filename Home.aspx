@@ -53,6 +53,9 @@
               <asp:TextBox ID="txtEndDate" runat="server" CssClass="end-date" ValidationGroup="search"></asp:TextBox>
               <asp:RequiredFieldValidator ID="rfvEndDate" runat="server" ControlToValidate="txtEndDate" ForeColor="#FF3300" 
               SetFocusOnError="True" ValidationGroup="search">*</asp:RequiredFieldValidator>
+              <br />
+              <span class="difference-nights right"></span>
+              <div class="clear"></div>
             </div>
           </div>
           <div id="div-rooms">
