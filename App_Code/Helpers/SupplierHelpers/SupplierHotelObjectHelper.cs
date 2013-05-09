@@ -58,6 +58,7 @@ public class SupplierHotelObjectHelper
         _sqlCommand.Parameters.AddWithValue("@Trans", "SearchBySession");
         _sqlCommand.Parameters.AddWithValue("@SessionId", shoppingHotelHelper.SessionId);//"sq4245oog1wivewdvmkccded"
         _sqlCommand.Parameters.AddWithValue("@SearchId", searchId);
+        _sqlCommand.Parameters.AddWithValue("@IsAvailable", "True");
         _sqlDataReader = _sqlCommand.ExecuteReader();
         while (_sqlDataReader.Read())
         {
