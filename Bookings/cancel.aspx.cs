@@ -131,7 +131,8 @@ public partial class Bookings_cancel : System.Web.UI.Page
             ModDate = DateTime.Now,
             UserID = CurrentUser.Id().ToString(),
             CancellationPay = payAmount,
-            CancellationRec = recieveAmount
+            CancellationRec = recieveAmount,
+            CustomerMarkup = x.CustomerMarkup
         };
         _meis007Entities.AddToBkgMasters(bkgMaster);
         x.BkgStatus = DbParameter.GetBookingStatus("existingCancel");

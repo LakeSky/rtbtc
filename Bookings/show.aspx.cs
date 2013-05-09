@@ -19,6 +19,7 @@ public partial class Bookings_show : System.Web.UI.Page
         }
         var userId = CurrentUser.Id();
         var status = DbParameter.GetBookingStatus();
+        _meis007Entities = new meis007Entities();
         var booking = _meis007Entities.BkgMasters.Where(x => x.BkgID == bookingId && x.CustConsultantID == userId && x.BkgStatus == status).FirstOrDefault();
         if (booking == null)
         {
