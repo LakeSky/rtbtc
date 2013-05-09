@@ -21,10 +21,11 @@ public class ApplicationWebService : System.Web.Services.WebService {
         var userId = CurrentUser.Id();
         meis007Entities _meis007Entities = new meis007Entities();
         _meis007Entities = new meis007Entities();
+        var status = DbParameter.GetBookingStatus();
         var data = from pm in _meis007Entities.ProductMasters
                    join bm in _meis007Entities.BkgMasters
                    on pm.ProductID equals bm.ProductID
-                   where bm.ProductID != null && bm.CustConsultantID == userId && pm.ProductName.Contains(q)
+                   where bm.ProductID != null && bm.CustConsultantID == userId && bm.BkgStatus == status && pm.ProductName.Contains(q)
                    orderby bm.BkgID descending
                    select new { bookingId = bm.BkgID, HotelName = pm.ProductName, BookingDate = bm.BkgDate };
         var list = new List<FormattedClass>();

@@ -17,6 +17,15 @@ public partial class Bookings_show : System.Web.UI.Page
             Redirect("Invalid booking Id");
             return;
         }
+        var userId = CurrentUser.Id();
+        var status = DbParameter.GetBookingStatus();
+        var booking = _meis007Entities.BkgMasters.Where(x => x.BkgID == bookingId && x.CustConsultantID == userId && x.BkgStatus == status).FirstOrDefault();
+        if (booking == null)
+        {
+            Session["ErrorMessage"] = "You are not authorized to access that booking!";
+            Response.Redirect("index.aspx");
+            return;
+        }
         rptrBookingIndex.DataSource = BookingsIndexObjectHelper.GetBookings(bookingId);
         rptrBookingIndex.DataBind();
         rptrCancelPolicies.DataSource = GetCancelPolicies(bookingId);

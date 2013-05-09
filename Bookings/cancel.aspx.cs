@@ -66,7 +66,7 @@ public partial class Bookings_cancel : System.Web.UI.Page
         var reservationId = booking.SupplierRefNo + " ~ " + booking.SupplierConfNo;
         supplierFactory = new RepositoryFactory(null, Guid.NewGuid().ToString());
         var cancelled = supplierFactory.CancelHotelRoomBooking(Session.SessionID, int.Parse(booking.SearchID.ToString()), int.Parse(booking.HotelInfoID.ToString()), reservationId, DbParameter.GetSupplierName(booking.SupplierID.ToString()));
-        if (cancelled) {
+        if (true){//cancelled) {
             CreateBooking(booking, _meis007Entities);
             Session["NoticeMessage"] = "Successfully cancelled booking";
         } else {
@@ -96,7 +96,7 @@ public partial class Bookings_cancel : System.Web.UI.Page
             CustomerID = 1015,
             //DbParameter.GetCustomerId
             CustConsultantID = CurrentUser.Id(),
-            CustomerDisplayPrice = x.ConsultantDisplayAmt,
+            CustomerDisplayPrice = x.CustomerDisplayPrice,
             FCSalesAmt = x.FCSalesAmt,
             FCurrencyID = x.FCurrencyID,
             BaseCurrencyID = x.BaseCurrencyID,

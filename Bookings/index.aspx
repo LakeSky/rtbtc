@@ -43,7 +43,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <div class="row row_2 container_24">
     <div class="grid_24">
-      <h3 class="custom-h3 blue-font left">My Bookings</h3>
+      <strong class="button_content button_content1 left">
+        <strong class="button bg_button" style="margin-bottom: 9px;">
+          <a href="cancelled.aspx">
+            <span class="ui-button-text">
+              Show Cancelled Bookings
+            </span>
+          </a>
+        </strong>
+      </strong>
+      <div class="clear"></div>
       <input id="txtBookingSearch" type="text" class="txtBookingSearch right" placeholder="Search Booking" />
       <div class="clear"></div>
       <asp:GridView ID="gvBookings" runat="server" 
