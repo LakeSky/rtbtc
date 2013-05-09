@@ -99,6 +99,9 @@ public static class DbParameter
         if(type == "cancel") { 
             status = "XX";
         }
+        else if (type == "existingCancel") {
+            status = "CX";
+        }
         return status;
     }
 

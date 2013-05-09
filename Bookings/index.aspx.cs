@@ -52,10 +52,11 @@ public partial class Bookings_index : System.Web.UI.Page
     {   
         var userId = CurrentUser.Id();
         _meis007Entities = new meis007Entities();
+        var status = DbParameter.GetBookingStatus();
         var data = from pm in _meis007Entities.ProductMasters
                    join bm in _meis007Entities.BkgMasters
                    on pm.ProductID equals bm.ProductID
-                   where bm.ProductID != null && bm.CustConsultantID == userId
+                   where bm.ProductID != null && bm.CustConsultantID == userId && bm.BkgStatus == status
                    orderby bm.BkgID descending
                    select new { booking = bm, HotelName = pm.ProductName };
         DataTable dt = new DataTable();

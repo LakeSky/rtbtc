@@ -23,13 +23,22 @@ public partial class Bookings_cancel : System.Web.UI.Page
             Redirect("Invalid booking Id");
             return;
         }
+        _meis007Entities = new meis007Entities();
+        var userId = CurrentUser.Id();
+        var status = DbParameter.GetBookingStatus();
+        var booking = _meis007Entities.BkgMasters.Where(x => x.BkgID == bookingId && x.CustConsultantID == userId && x.BkgStatus == status).FirstOrDefault();
+        if (booking == null){
+            Session["ErrorMessage"] = "You are not authorized to access that booking!";
+            Response.Redirect("index.aspx");
+            return;
+        }
         hdnBookingId.Value = id;
         rptrBookingIndex.DataSource = BookingsIndexObjectHelper.GetBookings(bookingId);
         rptrBookingIndex.DataBind();
         payFee = BookingsIndexObjectHelper.GetCancellationFee(bookingId, Session.SessionID, out markupFee);
         hdnFeild1.Value = payFee;
         hdnFeild2.Value = markupFee;
-        CancelText = "This Cancellation will charge " + markupFee;
+        CancelText = "This Cancellation will charge SAR. " + markupFee;
     }
 
     public void Redirect(string message)
@@ -58,16 +67,24 @@ public partial class Bookings_cancel : System.Web.UI.Page
         supplierFactory = new RepositoryFactory(null, Guid.NewGuid().ToString());
         var cancelled = supplierFactory.CancelHotelRoomBooking(Session.SessionID, int.Parse(booking.SearchID.ToString()), int.Parse(booking.HotelInfoID.ToString()), reservationId, DbParameter.GetSupplierName(booking.SupplierID.ToString()));
         if (cancelled) {
-            CreateBooking(booking, _meis007Entities, 25, 50);
+            CreateBooking(booking, _meis007Entities);
             Session["NoticeMessage"] = "Successfully cancelled booking";
         } else {
-            Session["ErrorMessage"] = "Booking Cannot be cancelled due to some errors please contact admin!";
+            Session["ErrorMessage"] = "Booking Cannot be cancelled please try after some time!";
         }
         Response.Redirect(Route.GetRootPath("bookings/index.aspx"));
     }
 
-    protected void CreateBooking(BkgMaster x, meis007Entities _meis007Entities, decimal payAmount, decimal recieveAmount)
+    protected void CreateBooking(BkgMaster x, meis007Entities _meis007Entities)
     {
+        decimal payAmount = decimal.Parse("0.0");
+        decimal recieveAmount = decimal.Parse("0.0");
+        if (!string.IsNullOrEmpty(hdnFeild1.Value)) {
+            payAmount = decimal.Parse(hdnFeild1.Value);
+        }
+        if (!string.IsNullOrEmpty(hdnFeild2.Value)) {
+            recieveAmount = decimal.Parse(hdnFeild2.Value);
+        }
         var bkgMaster = new BkgMaster
         {
             BasketID = x.BasketID,
@@ -117,6 +134,7 @@ public partial class Bookings_cancel : System.Web.UI.Page
             CancellationRec = recieveAmount
         };
         _meis007Entities.AddToBkgMasters(bkgMaster);
+        x.BkgStatus = DbParameter.GetBookingStatus("existingCancel");
         _meis007Entities.SaveChanges();
     }
     

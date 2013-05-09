@@ -120,7 +120,7 @@ public static class BookingsIndexObjectHelper
         }
         supplierName = DbParameter.GetSupplierName(booking.SupplierID.ToString());
         RepositoryFactory supplierFactory = new RepositoryFactory(null, sessionId);
-        payCancellationFee = supplierFactory.GetCancelationFee(int.Parse(booking.SupplierConfNo), supplierName, out markupCancellationFee);
+        payCancellationFee = supplierFactory.GetCancelationFee(int.Parse(booking.SupplierConfNo), supplierName, out markupCancellationFee, int.Parse(booking.CustomerMarkup.ToString()));
         return payCancellationFee;
     }
 	
