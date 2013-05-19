@@ -45,7 +45,7 @@ public static class RoomObjectHelper
 
         var _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
-        var _sqlCommand = new SqlCommand("spProductMasterTest", _sqlConnection);
+        var _sqlCommand = new SqlCommand("spProductMasterExtension", _sqlConnection);
         _sqlCommand.CommandType = CommandType.StoredProcedure;
         _sqlCommand.Parameters.AddWithValue("@Trans", "SearchMultipleRooms");
         _sqlCommand.Parameters.AddWithValue("@SessionId", sessionId);

@@ -22,14 +22,13 @@ public static class BookingObjectHelper
         SqlDataReader _sqlDataReader;
         List<BookingGuestDetails> bookingGuestDetails = BookingObjectHelper.GetGuests(_shoppingHelper, _meis007Entities, currentUserId);
         BookingHotelDetails bookingHotelDetails = new BookingHotelDetails();
-        var defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
         DateTime fromDate = DateTimeHelper.customFormat(_shoppingHelper.HotelDetails.FromDate);
         DateTime toDate = DateTimeHelper.customFormat(_shoppingHelper.HotelDetails.ToDate);
         string differenceDays = (toDate - fromDate).Days.ToString();
         string roomName = "";
         _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
-        _sqlCommand = new SqlCommand("spProductMasterTest", _sqlConnection);
+        _sqlCommand = new SqlCommand("spProductMasterExtension", _sqlConnection);
         _sqlCommand.CommandType = CommandType.StoredProcedure;
         _sqlCommand.Parameters.AddWithValue("@Trans", "SearchSingle");
         _sqlCommand.Parameters.AddWithValue("@HotelInfoId", supplierHotelInfoId);
@@ -57,7 +56,6 @@ public static class BookingObjectHelper
                 + " Kids " + bookingGuestDetails.Where(x => x.type == "Infant").Count().ToString() + " Infants";
 
             var totalPrice = price * (bookingGuestDetails.Where(x => x.type == "Adult").Count() + bookingGuestDetails.Where(x => x.type == "Kid").Count());
-            defaultImagePath = string.IsNullOrEmpty(_sqlDataReader["DefaultImagePath"].ToString()) ? defaultImagePath : _sqlDataReader["DefaultImagePath"].ToString();
 
             bookingHotelDetails = new BookingHotelDetails
             {
@@ -67,7 +65,7 @@ public static class BookingObjectHelper
                 SupplierName = _sqlDataReader["SupplierName"].ToString(),
                 cityName = _sqlDataReader["CityName"].ToString(),
                 productStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
-                productDefaultImagePath = defaultImagePath,
+                productDefaultImagePath = _sqlDataReader["ThumbnailPath"].ToString(),
                 pricePerPassenger = price,
                 stay = (fromDate.ToString("dd MMM yy") + " to " + toDate.ToString("dd MMM yy") + " (" + differenceDays+ " Nights)"),
                 guests = guests,

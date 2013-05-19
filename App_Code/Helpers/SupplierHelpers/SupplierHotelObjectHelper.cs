@@ -53,7 +53,7 @@ public class SupplierHotelObjectHelper
         defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
         _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
-        _sqlCommand = new SqlCommand("spProductMasterTest", _sqlConnection);
+        _sqlCommand = new SqlCommand("spProductMasterExtension", _sqlConnection);
         _sqlCommand.CommandType = CommandType.StoredProcedure;
         _sqlCommand.Parameters.AddWithValue("@Trans", "SearchBySession");
         _sqlCommand.Parameters.AddWithValue("@SessionId", shoppingHotelHelper.SessionId);//"sq4245oog1wivewdvmkccded"
@@ -82,8 +82,7 @@ public class SupplierHotelObjectHelper
                 supplierHotelHelper.Rooms.Add(supplierHotelRoomHelper);
             }
             else
-            {
-                imagePath = string.IsNullOrEmpty(_sqlDataReader["DefaultImagePath"].ToString()) ? defaultImagePath : _sqlDataReader["DefaultImagePath"].ToString();
+            {                
                 supplierHotelHelper = new SupplierHotelHelper { 
                     Id = hotelInfoId, 
                     SupplierId = _sqlDataReader["SupplierID"].ToString(), 
@@ -97,7 +96,7 @@ public class SupplierHotelObjectHelper
                     ProductMasterId = productMasterId, 
                     ProductStarsName = _sqlDataReader["ClsName"].ToString(), 
                     ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
-                    ProductImagePath = imagePath 
+                    ProductImagePath = _sqlDataReader["ThumbnailPath"].ToString()
                 };
                 var rooms = new List<SupplierHotelRoomHelper>();
                 rooms.Add(supplierHotelRoomHelper);
@@ -140,11 +139,9 @@ public class SupplierHotelObjectHelper
 
     public static List<SupplierHotelHelper> GetHomePageHotels(meis007Entities _meis007Entities)
     {
-        var defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
-        string imagePath = "";
         var _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
-        var _sqlCommand = new SqlCommand("spProductMasterTest", _sqlConnection);
+        var _sqlCommand = new SqlCommand("spProductMasterExtension", _sqlConnection);
         _sqlCommand.CommandType = CommandType.StoredProcedure;
         _sqlCommand.Parameters.AddWithValue("@Trans", "B2CHome");
         var _sqlDataReader = _sqlCommand.ExecuteReader();
@@ -152,7 +149,6 @@ public class SupplierHotelObjectHelper
         List<SupplierHotelHelper> supplierHotelHelperList = new List<SupplierHotelHelper>();
         while (_sqlDataReader.Read())
         {
-           imagePath = string.IsNullOrEmpty(_sqlDataReader["DefaultImagePath"].ToString()) ? defaultImagePath : _sqlDataReader["DefaultImagePath"].ToString();
            supplierHotelHelper = new SupplierHotelHelper
            {
                ProductName = _sqlDataReader["ProductName"].ToString(),
@@ -160,7 +156,7 @@ public class SupplierHotelObjectHelper
                CityCode = _sqlDataReader["CityID"].ToString(),
                ProductMasterId = long.Parse(_sqlDataReader["ProductId"].ToString()),
                ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
-               ProductImagePath = imagePath
+               ProductImagePath = _sqlDataReader["ThumbnailPath"].ToString()
            };
            supplierHotelHelperList.Add(supplierHotelHelper);
         }
