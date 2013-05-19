@@ -88,7 +88,7 @@ public partial class Bookings_cancel : System.Web.UI.Page
         var bkgMaster = new BkgMaster
         {
             BasketID = x.BasketID,
-            SearchID = x.SearchID,
+            SearchID = x.BkgID,
             HotelInfoID = x.HotelInfoID,
             BkgDate = DateTime.Now,
             BkgType = DbParameter.GetBookingType(),
