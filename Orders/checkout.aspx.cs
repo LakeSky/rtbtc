@@ -51,17 +51,18 @@ public partial class Orders_checkout : PublicApplicationPage
                 var obj = _meis007Entities.HotelBookings.Where(y => y.HotelInfoId == x.hotelInfoId).FirstOrDefault();
                 if (obj != null) {
                     var array = obj.ReservationId.Split('~');
-                    localBooking = new LocalBooking(_meis007Entities, suppliersHotelsInfo, x, null, obj, basketSequence, array[0].ToString().Trim(), array[1].ToString().Trim(), name, "Hotel");
+                    localBooking = new LocalBooking(_meis007Entities, suppliersHotelsInfo, x, null, obj, basketSequence, array[0].ToString().Trim(), array[1].ToString().Trim(), name, "Hotel", txtRemarks.Text);
                     localBooking.Create();
                     hotelsToRemove.Add(x);
                 }
             }
         }
         foreach (var x in basketHelper.packageDetails) {
-          localBooking = new LocalBooking(_meis007Entities, null, null, x, null, basketSequence, "", "", name, "Package");
+          localBooking = new LocalBooking(_meis007Entities, null, null, x, null, basketSequence, "", "", name, "Package", txtRemarks.Text);
           localBooking.Create();
         }
         RemoveHotels(basketHelper, hotelsToRemove);
+        basketHelper.packageDetails = new List<BasketPackageDetails>();
         UpdateBasketHelperObject(basketHelper);
         Session["NoticeMessage"] = "Successfully confirmed bookings!";
         Response.Redirect(Route.GetRootPath("basket/show.aspx"));

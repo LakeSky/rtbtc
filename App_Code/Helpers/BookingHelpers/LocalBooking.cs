@@ -19,7 +19,8 @@ public class LocalBooking
   string SupplierConfNo;
   string Name;
   string BookingType;
-	public LocalBooking(meis007Entities entity, SuppliersHotelsInfo shi, BasketHotelDetails bhd, BasketPackageDetails bpd, HotelBooking hb, long basketSequence, string refNo, string confNo, string name, string type)
+  string Remarks;
+	public LocalBooking(meis007Entities entity, SuppliersHotelsInfo shi, BasketHotelDetails bhd, BasketPackageDetails bpd, HotelBooking hb, long basketSequence, string refNo, string confNo, string name, string type, string remarks)
 	{
     this.bkgMaster = new BkgMaster();
     this._meis007Entities = entity;
@@ -32,6 +33,7 @@ public class LocalBooking
     this.Name = name;
     this.hotelBooking = hb;
     this.BookingType = type;
+    this.Remarks = remarks;
 	}
 
   public void Create() {
@@ -89,6 +91,7 @@ public class LocalBooking
       SupplierRoomTypeID = Shi.RoomTypeID,
       BBID = Shi.BBID,
       BBName = Shi.BBName,
+      CustomerRemarks = Remarks,
       ModDate = DateTime.Now,
       UserID = CurrentUser.Id().ToString()
     };
@@ -156,6 +159,7 @@ public class LocalBooking
       Children = 0,
       Infants = 0,
       HasExtraPaxs = true,
+      CustomerRemarks = Remarks,
       ModDate = DateTime.Now,
       UserID = CurrentUser.Id().ToString()
     };

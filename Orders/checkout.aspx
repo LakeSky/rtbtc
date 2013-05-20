@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="checkout.aspx.cs" Inherits="Orders_checkout" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
+  <style type="text/css">
+    .fieldValue textarea
+    {
+      width: 159px;
+    }
+  </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <div class="row row_2 container_24">
@@ -59,7 +65,15 @@
                     <asp:TextBox ID="txtTelephone" runat="server" MaxLength="300"></asp:TextBox>
                   </td>
                 </tr>
-                 <tr>
+                <tr>
+                  <td class="fieldKey">
+                    <label>Remarks</label>
+                  </td>
+                  <td class="fieldValue">
+                    <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine"></asp:TextBox>
+                  </td>
+                </tr>
+                <tr>
                   <td class="fieldKey">
                     <asp:Button ID="btnConfirmOrder" runat="server" onclick="btnConfirmOrder_Click" Text="Confirm Order"  CssClass="btn btn-save btn-primary"/>
                   </td>
