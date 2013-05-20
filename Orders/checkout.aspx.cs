@@ -42,22 +42,24 @@ public partial class Orders_checkout : PublicApplicationPage
         var hotelsToRemove = new List<BasketHotelDetails>();
         SupplierBooking supplierBooking;
         LocalBooking localBooking;
-        string name;
+        string name = txtFirstName.Text + " " + txtMiddleName.Text + " " + txtLastName.Text;
         foreach (var x in basketHelper.hotelDetails) {
             if (!DbParameter.IsInetrnalSupplier(x.supplierId)) {
                 suppliersHotelsInfo = _meis007Entities.SuppliersHotelsInfoes.Where(y => y.HotelInfoID == x.hotelInfoId).First();
                 supplierBooking = new SupplierBooking(suppliersHotelsInfo, x, txtFirstName.Text, txtMiddleName.Text, txtLastName.Text, txtMobile.Text, txtTelephone.Text);
                 string reservartionId = supplierBooking.Book();
                 var obj = _meis007Entities.HotelBookings.Where(y => y.HotelInfoId == x.hotelInfoId).FirstOrDefault();
-                if (obj != null)
-                {
-                    name = txtFirstName.Text + " " + txtMiddleName.Text + " " + txtLastName.Text;
+                if (obj != null) {
                     var array = obj.ReservationId.Split('~');
-                    localBooking = new LocalBooking(_meis007Entities, suppliersHotelsInfo, x, obj, basketSequence, array[0].ToString().Trim(), array[1].ToString().Trim(), name, "Hotel");
+                    localBooking = new LocalBooking(_meis007Entities, suppliersHotelsInfo, x, null, obj, basketSequence, array[0].ToString().Trim(), array[1].ToString().Trim(), name, "Hotel");
                     localBooking.Create();
                     hotelsToRemove.Add(x);
                 }
             }
+        }
+        foreach (var x in basketHelper.packageDetails) {
+          localBooking = new LocalBooking(_meis007Entities, null, null, x, null, basketSequence, "", "", name, "Package");
+          localBooking.Create();
         }
         RemoveHotels(basketHelper, hotelsToRemove);
         UpdateBasketHelperObject(basketHelper);
