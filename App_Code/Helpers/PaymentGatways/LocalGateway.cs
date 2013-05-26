@@ -18,7 +18,7 @@ public class LocalGateway
     {
       NameOnCard = paypalCC.first_name + " " + paypalCC.last_name,
       Number = paypalCC.number,
-      GatewayId = paypalCC.id,
+      GatewayId = "CARD",
       UserId = userId,
       CreatedAt = DateTime.Now,
       UpdatedAt = DateTime.Now,

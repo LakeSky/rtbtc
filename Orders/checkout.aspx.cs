@@ -44,29 +44,25 @@ public partial class Orders_checkout : PublicApplicationPage
 
     protected void btnConfirmOrder_Click(object sender, EventArgs e)
     {
-        if (int.Parse(ddlCCExpirationMonth.SelectedValue) < DateTime.Now.Month) {
+        if (int.Parse(ddlCCExpirationMonth.SelectedValue) < DateTime.Now.Month && int.Parse(ddlCCExpirationYear.SelectedValue) == DateTime.Now.Year) {
           ShowError("Please enter valid expiration month!");
           return;
         }
         _meis007Entities = new meis007Entities();
         basketHelper = GetBasketHelperObject();
-        var ccResponse = PaypalGateway.CreateCreditCard(txtCreditCardNumber.Text, txtCCCVV.Text, ddlCCType.SelectedValue, ddlCCExpirationMonth.SelectedValue, ddlCCExpirationYear.SelectedValue, txtBillingAddress.Text, txtPostalCode.Text, ddlBillingCity.SelectedValue, ddlCountry.SelectedValue);
-        if (!ccResponse.Valid) {
+        var adrs = PaypalGateway.AssignAddress(txtBillingAddress.Text, ddlBillingCity.SelectedValue, ddlBillingCity.SelectedValue, ddlCountry.SelectedValue, txtPostalCode.Text);
+        var cc = PaypalGateway.AssignCVV(adrs, txtCreditCardNumber.Text, txtCCCVV.Text, txtFirstName.Text, txtCCLastName.Text, ddlCCExpirationMonth.SelectedValue, ddlCCExpirationYear.SelectedValue, ddlCCType.SelectedValue);
+        var res = PaypalGateway.CreateCreditCard(cc, basketHelper.totalPrice.ToString());       
+        if (!res.Valid) {
           ShowError("Please Correct the credit card fields one!");
           return;
         }
-        var localCC = LocalGateway.CreateCreditCard(ccResponse, _meis007Entities);
-        gateway = new PaypalGateway(ccResponse.PaymentGateway, localCC, basketHelper.totalPrice.ToString());
-        var result = gateway.Pay();
-        if (!result.Valid) {
-          ShowError("Please Correct the credit card fields two!");
-          return;
-        }
+        var localCC = LocalGateway.CreateCreditCard(res, _meis007Entities);
         var sequence = _meis007Entities.BasketSequences.OrderBy(x => x.Id).First();
         var basketSequence = sequence.SequenceNumber + 1;
         sequence.SequenceNumber = basketSequence;
         _meis007Entities.SaveChanges();
-        var localTrans = LocalGateway.CreateTransaction(localCC, result, basketSequence, _meis007Entities);
+        var localTrans = LocalGateway.CreateTransaction(localCC, res, basketSequence, _meis007Entities);
         SuppliersHotelsInfo suppliersHotelsInfo;
         var hotelsToRemove = new List<BasketHotelDetails>();
         SupplierBooking supplierBooking;
