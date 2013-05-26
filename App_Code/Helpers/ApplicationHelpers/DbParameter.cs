@@ -122,4 +122,18 @@ public static class DbParameter
         baseCurrency = string.IsNullOrEmpty(baseCurrency) ? "SAR" : baseCurrency;
         return baseCurrency;
     }
+
+    public static PGMaster GetGateway(string name, meis007Entities _meis007Entities)
+    {
+      PGMaster paymentGateway = null;
+      if (_meis007Entities == null) {
+        _meis007Entities = new meis007Entities();
+      }
+      switch(name){
+        case "paypal":
+          paymentGateway = _meis007Entities.PGMasters.Where(x => x.ID == 1).First();
+          break;
+      }
+      return paymentGateway;
+    }
 }

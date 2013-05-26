@@ -20,7 +20,8 @@ public class LocalBooking
   string Name;
   string BookingType;
   string Remarks;
-	public LocalBooking(meis007Entities entity, SuppliersHotelsInfo shi, BasketHotelDetails bhd, BasketPackageDetails bpd, HotelBooking hb, long basketSequence, string refNo, string confNo, string name, string type, string remarks)
+  long TransactionId;
+	public LocalBooking(meis007Entities entity, SuppliersHotelsInfo shi, BasketHotelDetails bhd, BasketPackageDetails bpd, HotelBooking hb, long basketSequence, string refNo, string confNo, string name, string type, string remarks, long transId)
 	{
     this.bkgMaster = new BkgMaster();
     this._meis007Entities = entity;
@@ -34,6 +35,7 @@ public class LocalBooking
     this.hotelBooking = hb;
     this.BookingType = type;
     this.Remarks = remarks;
+    this.TransactionId = transId;
 	}
 
   public void Create() {
@@ -93,7 +95,8 @@ public class LocalBooking
       BBName = Shi.BBName,
       CustomerRemarks = Remarks,
       ModDate = DateTime.Now,
-      UserID = CurrentUser.Id().ToString()
+      UserID = CurrentUser.Id().ToString(),
+      TransactionId = TransactionId
     };
     _meis007Entities.AddToBkgMasters(bkgMaster);
     _meis007Entities.SaveChanges();
@@ -161,7 +164,8 @@ public class LocalBooking
       HasExtraPaxs = true,
       CustomerRemarks = Remarks,
       ModDate = DateTime.Now,
-      UserID = CurrentUser.Id().ToString()
+      UserID = CurrentUser.Id().ToString(),
+      TransactionId = TransactionId
     };
     _meis007Entities.AddToBkgMasters(bkgMaster);
     _meis007Entities.SaveChanges();

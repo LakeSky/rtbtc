@@ -7,26 +7,71 @@ using PayPal.Manager;
 using PayPal.Api.Payments;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using meis007Model;
 
 /// <summary>
 /// Summary description for PaypalGateway
 /// </summary>
 public class PaypalGateway
 {
-  public Address billingAddress;
-  public PayPal.Api.Payments.CreditCard creditCard;
+  public CreditCardToken credCardToken;
   string totalAmount;
   Payment createdPayment;
-  public PaypalGateway(Address adrs, PayPal.Api.Payments.CreditCard cc, string amount)
+  PGMaster paymentGateway;
+  public PaypalGateway(PGMaster pgm, PGCreditCard cc, string amount)
 	{
-    billingAddress = adrs;
-    creditCard = cc;
-    creditCard.billing_address = billingAddress;
-    totalAmount = amount;
+    paymentGateway = pgm;
+    totalAmount = int.Parse(amount.Split('.')[0]).ToString();
+    credCardToken = new CreditCardToken();
+    credCardToken.credit_card_id = cc.GatewayId;
+    createdPayment = null;
 	}
 
-  public Payment Pay()
+  public static PaypalResponse CreateCreditCard(string number, string cvv, string type, string expirationMonth, string expirationYear, string billingAddress, string postalCode, string billingCity, string billingCountry)
   {
+    bool valid = true;
+    PayPal.Api.Payments.Address address = new PayPal.Api.Payments.Address { 
+      line1 = billingAddress,
+      city = billingCity,
+      state = billingCity,
+      country_code = billingCountry,
+      postal_code = postalCode
+    };
+    PayPal.Api.Payments.CreditCard credtCard = new PayPal.Api.Payments.CreditCard();
+    credtCard.expire_month = expirationMonth;
+    credtCard.expire_year = expirationYear;
+    credtCard.number = number;
+    credtCard.type = type;
+    credtCard.billing_address = address;
+    //credtCard.cvv2 = cvv;
+    PayPal.Api.Payments.CreditCard createdCreditCard = null;
+    var paymentGateway = DbParameter.GetGateway("paypal", null);
+    try
+    {
+      string accessToken = new OAuthTokenCredential(paymentGateway.GatewayUserID, paymentGateway.GatewayPWD).GetAccessToken();
+      APIContext apiContext = new APIContext(accessToken);
+      createdCreditCard = credtCard.Create(apiContext);
+      if (createdCreditCard.state != "ok")
+      {
+        valid = false;
+      }
+    }
+    catch (PayPal.Exception.PayPalException ex)
+    {
+      valid = false;
+    }
+    PaypalResponse res = new PaypalResponse { 
+      Valid = valid,
+      CC = createdCreditCard,
+      PaymentGateway = paymentGateway
+    };
+    return res;
+  }
+
+  public PaypalResponse Pay()
+  {
+    bool valid = true;
+
     AmountDetails amntDetails = new AmountDetails();
     amntDetails.shipping = "0";
     amntDetails.subtotal = totalAmount;
@@ -34,19 +79,18 @@ public class PaypalGateway
 
     Amount amnt = new Amount();
     amnt.currency = "USD";
-    // Total must be equal to sum of shipping, tax and subtotal.
     amnt.total = totalAmount;
     amnt.details = amntDetails;
 
-    Transaction tran = new Transaction();
+    PayPal.Api.Payments.Transaction tran = new PayPal.Api.Payments.Transaction();
     tran.amount = amnt;
     tran.description = string.Empty;
 
-    List<Transaction> transactions = new List<Transaction>();
+    List<PayPal.Api.Payments.Transaction> transactions = new List<PayPal.Api.Payments.Transaction>();
     transactions.Add(tran);
 
     FundingInstrument fundInstrument = new FundingInstrument();
-    fundInstrument.credit_card = creditCard;
+    fundInstrument.credit_card_token = credCardToken;
 
     List<FundingInstrument> fundingInstrumentList = new List<FundingInstrument>();
     fundingInstrumentList.Add(fundInstrument);
@@ -67,15 +111,18 @@ public class PaypalGateway
       APIContext apiContext = new APIContext(accessToken);
       createdPayment = pymnt.Create(apiContext);
       var xy = JObject.Parse(createdPayment.ConvertToJson()).ToString(Formatting.Indented);
-      //CurrContext.Items.Add("ResponseJson", JObject.Parse(createdPayment.ConvertToJson()).ToString(Formatting.Indented));
       var x = createdPayment.payer.funding_instruments[0].credit_card;
       var y = createdPayment.payer.funding_instruments[0].credit_card_token;
     }
     catch (PayPal.Exception.PayPalException ex)
     {
-      //CurrContext.Items.Add("Error", ex.Message);
+      valid = false;
     }
-    //CurrContext.Items.Add("RequestJson", JObject.Parse(pymnt.ConvertToJson()).ToString(Formatting.Indented));
-    return createdPayment;
+    PaypalResponse res = new PaypalResponse { 
+      Valid = valid,
+      Pymnt = createdPayment,
+      PaymentGateway = paymentGateway
+    };
+    return res;
   }
 }

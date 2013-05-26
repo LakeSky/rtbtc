@@ -44,27 +44,29 @@ public partial class Orders_checkout : PublicApplicationPage
 
     protected void btnConfirmOrder_Click(object sender, EventArgs e)
     {
-        basketHelper = GetBasketHelperObject();
-        address = new PayPal.Api.Payments.Address { 
-          city = ddlBillingCity.SelectedValue,
-          country_code = ddlCountry.SelectedValue,
-          line1 = txtBillingAddress.Text,
-        };
-        creditCard = new PayPal.Api.Payments.CreditCard {            
-          cvv2 = txtCCCVV.Text,
-          expire_month = ddlCCExpirationMonth.SelectedValue,
-          expire_year = ddlCCExpirationYear.SelectedValue,
-          first_name = txtCCFirstName.Text,
-          last_name = txtCCLastName.Text,
-          number = txtMobile.Text
-        };
-        gateway = new PaypalGateway(address, creditCard, basketHelper.totalPrice.ToString());
-        var result = gateway.Pay();
+        if (int.Parse(ddlCCExpirationMonth.SelectedValue) < DateTime.Now.Month) {
+          ShowError("Please enter valid expiration month!");
+          return;
+        }
         _meis007Entities = new meis007Entities();
+        basketHelper = GetBasketHelperObject();
+        var ccResponse = PaypalGateway.CreateCreditCard(txtCreditCardNumber.Text, txtCCCVV.Text, ddlCCType.SelectedValue, ddlCCExpirationMonth.SelectedValue, ddlCCExpirationYear.SelectedValue, txtBillingAddress.Text, txtPostalCode.Text, ddlBillingCity.SelectedValue, ddlCountry.SelectedValue);
+        if (!ccResponse.Valid) {
+          ShowError("Please Correct the credit card fields one!");
+          return;
+        }
+        var localCC = LocalGateway.CreateCreditCard(ccResponse, _meis007Entities);
+        gateway = new PaypalGateway(ccResponse.PaymentGateway, localCC, basketHelper.totalPrice.ToString());
+        var result = gateway.Pay();
+        if (!result.Valid) {
+          ShowError("Please Correct the credit card fields two!");
+          return;
+        }
         var sequence = _meis007Entities.BasketSequences.OrderBy(x => x.Id).First();
         var basketSequence = sequence.SequenceNumber + 1;
         sequence.SequenceNumber = basketSequence;
         _meis007Entities.SaveChanges();
+        var localTrans = LocalGateway.CreateTransaction(localCC, result, basketSequence, _meis007Entities);
         SuppliersHotelsInfo suppliersHotelsInfo;
         var hotelsToRemove = new List<BasketHotelDetails>();
         SupplierBooking supplierBooking;
@@ -78,14 +80,14 @@ public partial class Orders_checkout : PublicApplicationPage
                 var obj = _meis007Entities.HotelBookings.Where(y => y.HotelInfoId == x.hotelInfoId).FirstOrDefault();
                 if (obj != null) {
                     var array = obj.ReservationId.Split('~');
-                    localBooking = new LocalBooking(_meis007Entities, suppliersHotelsInfo, x, null, obj, basketSequence, array[0].ToString().Trim(), array[1].ToString().Trim(), name, "Hotel", txtRemarks.Text);
+                    localBooking = new LocalBooking(_meis007Entities, suppliersHotelsInfo, x, null, obj, basketSequence, array[0].ToString().Trim(), array[1].ToString().Trim(), name, "Hotel", txtRemarks.Text, localTrans.Id);
                     localBooking.Create();
                     hotelsToRemove.Add(x);
                 }
             }
         }
         foreach (var x in basketHelper.packageDetails) {
-          localBooking = new LocalBooking(_meis007Entities, null, null, x, null, basketSequence, "", "", name, "Package", txtRemarks.Text);
+          localBooking = new LocalBooking(_meis007Entities, null, null, x, null, basketSequence, "", "", name, "Package", txtRemarks.Text, localTrans.Id);
           localBooking.Create();
         }
         RemoveHotels(basketHelper, hotelsToRemove);
@@ -139,7 +141,7 @@ public partial class Orders_checkout : PublicApplicationPage
       for (int i = startYear; i <= endYear; i++)
       {
         dr = table.NewRow();
-        dr["Value"] = i + 1;
+        dr["Value"] = i;
         dr["Text"] = i;
         table.Rows.Add(dr);
       }
@@ -148,5 +150,9 @@ public partial class Orders_checkout : PublicApplicationPage
       ddlCCExpirationYear.DataValueField = table.Columns["Value"].ColumnName;
       ddlCCExpirationYear.DataBind();
       ddlCCExpirationYear.SelectedIndexChanged += new System.EventHandler(BindCategories);
+    }
+
+    protected void ShowError(string message) {
+      Session["ErrorMessage"] = message;
     }
 }

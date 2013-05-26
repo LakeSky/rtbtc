@@ -24,6 +24,9 @@
           <EntitySet Name="PackageHeader" EntityType="meis007Model.Store.PackageHeader" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PackageImages" EntityType="meis007Model.Store.PackageImages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PaxDetails" EntityType="meis007Model.Store.PaxDetails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PGCreditCards" EntityType="meis007Model.Store.PGCreditCards" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PGMaster" EntityType="meis007Model.Store.PGMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PGTransactions" EntityType="meis007Model.Store.PGTransactions" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductAmenities" EntityType="meis007Model.Store.ProductAmenities" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductFacilities" EntityType="meis007Model.Store.ProductFacilities" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductImages" EntityType="meis007Model.Store.ProductImages" store:Type="Tables" Schema="dbo" />
@@ -65,7 +68,11 @@
             <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
             <End Role="HotelBooking" EntitySet="HotelBooking" />
           </AssociationSet>
-          <AssociationSet Name="FK__TouricoCa__Hotel__507BE13E" Association="meis007Model.Store.FK__TouricoCa__Hotel__507BE13E">
+          <AssociationSet Name="FK__TouricoCa__Hotel__1FA39FB9" Association="meis007Model.Store.FK__TouricoCa__Hotel__1FA39FB9">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TouricoCa__Hotel__218BE82B" Association="meis007Model.Store.FK__TouricoCa__Hotel__218BE82B">
             <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
             <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicy" />
           </AssociationSet>
@@ -119,10 +126,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_ProductRRC_ProductMaster" Association="meis007Model.Store.FK_ProductRRC_ProductMaster">
             <End Role="ProductMaster" EntitySet="ProductMaster" />
-            <End Role="ProductRRC" EntitySet="ProductRRC" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductRRC_RoomTypeDetail" Association="meis007Model.Store.FK_ProductRRC_RoomTypeDetail">
-            <End Role="RoomTypeDetail" EntitySet="RoomTypeDetail" />
             <End Role="ProductRRC" EntitySet="ProductRRC" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductRRC_RoomTypeHeader" Association="meis007Model.Store.FK_ProductRRC_RoomTypeHeader">
@@ -289,6 +292,10 @@
           <Property Name="CustomerMarkUpApplied" Type="int" />
           <Property Name="ModDate" Type="smalldatetime" />
           <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaxRemarks" Type="nvarchar" MaxLength="500" />
+          <Property Name="SupplierRemarks" Type="nvarchar" MaxLength="500" />
+          <Property Name="ConsultantRemarks" Type="nvarchar" MaxLength="500" />
+          <Property Name="TransactionId" Type="bigint" />
         </EntityType>
         <EntityType Name="CityMaster">
           <Key>
@@ -404,6 +411,55 @@
           <Property Name="BkgID" Type="bigint" />
           <Property Name="PaxName" Type="nvarchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="PGCreditCards">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameOnCard" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Number" Type="nvarchar" Nullable="false" MaxLength="25" />
+          <Property Name="GatewayId" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" Nullable="false" />
+          <Property Name="LPGID" Type="int" Nullable="false" />
+          <Property Name="Field1" Type="nvarchar" MaxLength="250" />
+          <Property Name="Field2" Type="nvarchar" MaxLength="250" />
+          <Property Name="Field3" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="PGMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GatewayName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="GatewayUserID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GatewayPWD" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="InService" Type="bit" Nullable="false" />
+          <Property Name="Field1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Field2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Field3" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModUserid" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ModDatetime" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PGTransactions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LPGID" Type="int" Nullable="false" />
+          <Property Name="ConfirmationID" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Status" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="CreditCardId" Type="bigint" Nullable="false" />
+          <Property Name="RawData" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="BasketId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="TransType" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Field1" Type="nvarchar" MaxLength="250" />
+          <Property Name="Field2" Type="nvarchar" MaxLength="250" />
+          <Property Name="Field3" Type="nvarchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="ProductAmenities">
           <Key>
             <PropertyRef Name="ProductAmenityId" />
@@ -478,6 +534,8 @@
           <Property Name="RoomTDID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="RoomTDName" Type="nvarchar" MaxLength="100" />
           <Property Name="RoomTHID" Type="bigint" Nullable="false" />
+          <Property Name="MaxAdults" Type="int" />
+          <Property Name="MaxChild" Type="int" />
         </EntityType>
         <EntityType Name="RoomTypeHeader">
           <Key>
@@ -501,8 +559,9 @@
         </EntityType>
         <EntityType Name="SupplierMaster">
           <Key>
-            <PropertyRef Name="SupplierID" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="SupplierID" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="SupplierName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="STID" Type="nvarchar" MaxLength="10" />
@@ -618,7 +677,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TouricoCa__Hotel__507BE13E">
+        <Association Name="FK__TouricoCa__Hotel__1FA39FB9">
+          <End Role="SuppliersHotelsInfo" Type="meis007Model.Store.SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Role="TouricoCancelationPolicy" Type="meis007Model.Store.TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TouricoCa__Hotel__218BE82B">
           <End Role="SuppliersHotelsInfo" Type="meis007Model.Store.SuppliersHotelsInfo" Multiplicity="0..1" />
           <End Role="TouricoCancelationPolicy" Type="meis007Model.Store.TouricoCancelationPolicy" Multiplicity="*" />
           <ReferentialConstraint>
@@ -786,18 +857,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductRRC_RoomTypeDetail">
-          <End Role="RoomTypeDetail" Type="meis007Model.Store.RoomTypeDetail" Multiplicity="0..1" />
-          <End Role="ProductRRC" Type="meis007Model.Store.ProductRRC" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RoomTypeDetail">
-              <PropertyRef Name="RoomTDID" />
-            </Principal>
-            <Dependent Role="ProductRRC">
-              <PropertyRef Name="RoomTDID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ProductRRC_RoomTypeHeader">
           <End Role="RoomTypeHeader" Type="meis007Model.Store.RoomTypeHeader" Multiplicity="0..1" />
           <End Role="ProductRRC" Type="meis007Model.Store.ProductRRC" Multiplicity="*" />
@@ -850,7 +909,6 @@
           <EntitySet Name="RoomTypeDetails" EntityType="meis007Model.RoomTypeDetail" />
           <EntitySet Name="RoomTypeHeaders" EntityType="meis007Model.RoomTypeHeader" />
           <EntitySet Name="ServicesMasters" EntityType="meis007Model.ServicesMaster" />
-          <EntitySet Name="SupplierMasters" EntityType="meis007Model.SupplierMaster" />
           <EntitySet Name="XMLHotels" EntityType="meis007Model.XMLHotel" />
           <EntitySet Name="XMLSuppliers" EntityType="meis007Model.XMLSupplier" />
           <AssociationSet Name="FK_ProductAmenities_Amenities" Association="meis007Model.FK_ProductAmenities_Amenities">
@@ -930,6 +988,10 @@
             <End Role="BkgMaster" EntitySet="BkgMasters" />
             <End Role="BkgCancelPolicy" EntitySet="BkgCancelPolicies" />
           </AssociationSet>
+          <EntitySet Name="SupplierMasters" EntityType="meis007Model.SupplierMaster" />
+          <EntitySet Name="PGCreditCards" EntityType="meis007Model.PGCreditCard" />
+          <EntitySet Name="PGMasters" EntityType="meis007Model.PGMaster" />
+          <EntitySet Name="PGTransactions" EntityType="meis007Model.PGTransaction" />
         </EntityContainer>
         <EntityType Name="AmadeusTable">
           <Key>
@@ -1209,6 +1271,8 @@
           <Property Name="RoomTHID" Type="Int64" Nullable="false" />
           <NavigationProperty Name="ProductRRCs" Relationship="meis007Model.FK_ProductRRC_RoomTypeDetail" FromRole="RoomTypeDetail" ToRole="ProductRRC" />
           <NavigationProperty Name="RoomTypeHeader" Relationship="meis007Model.FK_RoomTypeDetail_RoomTypeHeader" FromRole="RoomTypeDetail" ToRole="RoomTypeHeader" />
+          <Property Type="Int32" Name="MaxAdults" />
+          <Property Type="Int32" Name="MaxChild" />
         </EntityType>
         <EntityType Name="RoomTypeHeader">
           <Key>
@@ -1232,33 +1296,6 @@
           <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="ModDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Classifications" Relationship="meis007Model.FK_Classifications_ServicesMaster" FromRole="ServicesMaster" ToRole="Classifications" />
-        </EntityType>
-        <EntityType Name="SupplierMaster">
-          <Key>
-            <PropertyRef Name="SupplierID" />
-          </Key>
-          <Property Name="SupplierID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="SupplierName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="STID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="Address" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
-          <Property Name="CityID" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Telephone" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="Fax" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="CurID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="remarks" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="BankDetails" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="AcCPerson" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="AcCPEmail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="AcCPMobile" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="AccountCode" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="CreditLimit" Type="Decimal" Precision="12" Scale="0" />
-          <Property Name="CreditDays" Type="Decimal" Precision="12" Scale="0" />
-          <Property Name="WebUserName" Type="String" MaxLength="18" Unicode="true" FixedLength="false" />
-          <Property Name="webPassword" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ISXML" Type="Boolean" />
-          <Property Name="UserID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="ModDate" Type="DateTime" />
         </EntityType>
         <EntityType Name="XMLHotel">
           <Key>
@@ -1635,6 +1672,10 @@
           <Property Type="Int32" Name="CustomerMarkUpApplied" />
           <Property Type="DateTime" Name="ModDate" />
           <Property Type="String" Name="UserID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PaxRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SupplierRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ConsultantRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="TransactionId" />
           <NavigationProperty Name="BkgCancelPolicies" Relationship="meis007Model.FK_BkgCancelPolicies_BkgMaster" FromRole="BkgMaster" ToRole="BkgCancelPolicy" />
         </EntityType>
         <Association Name="FK_BkgCancelPolicies_BkgMaster">
@@ -1649,6 +1690,83 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SupplierMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SupplierID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SupplierName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="STID" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CityID" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Telephone" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Fax" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CurID" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="remarks" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BankDetails" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AcCPerson" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AcCPEmail" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AcCPMobile" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AccountCode" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="CreditLimit" Precision="12" Scale="0" />
+          <Property Type="Decimal" Name="CreditDays" Precision="12" Scale="0" />
+          <Property Type="String" Name="WebUserName" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="webPassword" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ISXML" />
+          <Property Type="String" Name="UserID" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModDate" />
+        </EntityType>
+        <EntityType Name="PGCreditCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameOnCard" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Number" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="GatewayId" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
+          <Property Type="DateTime" Name="UpdatedAt" Nullable="false" />
+          <Property Type="Int32" Name="LPGID" Nullable="false" />
+          <Property Type="String" Name="Field1" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Field2" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Field3" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PGMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="GatewayName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="GatewayUserID" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="GatewayPWD" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="InService" Nullable="false" />
+          <Property Type="String" Name="Field1" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Field2" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Field3" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ModUserid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModDatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PGTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="LPGID" Nullable="false" />
+          <Property Type="String" Name="ConfirmationID" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="CreditCardId" Nullable="false" />
+          <Property Type="String" Name="RawData" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="UserId" Nullable="false" />
+          <Property Type="Int64" Name="BasketId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
+          <Property Type="String" Name="TransType" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Field1" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Field2" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Field3" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1840,7 +1958,9 @@
             <ScalarProperty Name="RoomTDID" ColumnName="RoomTDID" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="RoomTypeDetails"><EntityTypeMapping TypeName="meis007Model.RoomTypeDetail"><MappingFragment StoreEntitySet="RoomTypeDetail">
-            <ScalarProperty Name="RoomTDID" ColumnName="RoomTDID" />
+            <ScalarProperty Name="MaxChild" ColumnName="MaxChild" />
+                <ScalarProperty Name="MaxAdults" ColumnName="MaxAdults" />
+                <ScalarProperty Name="RoomTDID" ColumnName="RoomTDID" />
             <ScalarProperty Name="RoomTDName" ColumnName="RoomTDName" />
             <ScalarProperty Name="RoomTHID" ColumnName="RoomTHID" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
@@ -1855,30 +1975,6 @@
           <EntitySetMapping Name="ServicesMasters"><EntityTypeMapping TypeName="meis007Model.ServicesMaster"><MappingFragment StoreEntitySet="ServicesMaster">
             <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
             <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
-            <ScalarProperty Name="UserID" ColumnName="UserID" />
-            <ScalarProperty Name="ModDate" ColumnName="ModDate" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SupplierMasters"><EntityTypeMapping TypeName="meis007Model.SupplierMaster"><MappingFragment StoreEntitySet="SupplierMaster">
-            <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-            <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
-            <ScalarProperty Name="STID" ColumnName="STID" />
-            <ScalarProperty Name="Address" ColumnName="Address" />
-            <ScalarProperty Name="CityID" ColumnName="CityID" />
-            <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-            <ScalarProperty Name="Fax" ColumnName="Fax" />
-            <ScalarProperty Name="Email" ColumnName="Email" />
-            <ScalarProperty Name="CurID" ColumnName="CurID" />
-            <ScalarProperty Name="remarks" ColumnName="remarks" />
-            <ScalarProperty Name="BankDetails" ColumnName="BankDetails" />
-            <ScalarProperty Name="AcCPerson" ColumnName="AcCPerson" />
-            <ScalarProperty Name="AcCPEmail" ColumnName="AcCPEmail" />
-            <ScalarProperty Name="AcCPMobile" ColumnName="AcCPMobile" />
-            <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
-            <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
-            <ScalarProperty Name="CreditDays" ColumnName="CreditDays" />
-            <ScalarProperty Name="WebUserName" ColumnName="WebUserName" />
-            <ScalarProperty Name="webPassword" ColumnName="webPassword" />
-            <ScalarProperty Name="ISXML" ColumnName="ISXML" />
             <ScalarProperty Name="UserID" ColumnName="UserID" />
             <ScalarProperty Name="ModDate" ColumnName="ModDate" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
@@ -1989,6 +2085,10 @@
           <EntitySetMapping Name="BkgMasters">
             <EntityTypeMapping TypeName="meis007Model.BkgMaster">
               <MappingFragment StoreEntitySet="BkgMaster">
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="ConsultantRemarks" ColumnName="ConsultantRemarks" />
+                <ScalarProperty Name="SupplierRemarks" ColumnName="SupplierRemarks" />
+                <ScalarProperty Name="PaxRemarks" ColumnName="PaxRemarks" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ModDate" ColumnName="ModDate" />
                 <ScalarProperty Name="CustomerMarkUpApplied" ColumnName="CustomerMarkUpApplied" />
@@ -2048,6 +2148,87 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SupplierMasters">
+            <EntityTypeMapping TypeName="meis007Model.SupplierMaster">
+              <MappingFragment StoreEntitySet="SupplierMaster">
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ISXML" ColumnName="ISXML" />
+                <ScalarProperty Name="webPassword" ColumnName="webPassword" />
+                <ScalarProperty Name="WebUserName" ColumnName="WebUserName" />
+                <ScalarProperty Name="CreditDays" ColumnName="CreditDays" />
+                <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="AcCPMobile" ColumnName="AcCPMobile" />
+                <ScalarProperty Name="AcCPEmail" ColumnName="AcCPEmail" />
+                <ScalarProperty Name="AcCPerson" ColumnName="AcCPerson" />
+                <ScalarProperty Name="BankDetails" ColumnName="BankDetails" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="CurID" ColumnName="CurID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="STID" ColumnName="STID" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PGCreditCards">
+            <EntityTypeMapping TypeName="meis007Model.PGCreditCard">
+              <MappingFragment StoreEntitySet="PGCreditCards">
+                <ScalarProperty Name="Field3" ColumnName="Field3" />
+                <ScalarProperty Name="Field2" ColumnName="Field2" />
+                <ScalarProperty Name="Field1" ColumnName="Field1" />
+                <ScalarProperty Name="LPGID" ColumnName="LPGID" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GatewayId" ColumnName="GatewayId" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="NameOnCard" ColumnName="NameOnCard" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PGMasters">
+            <EntityTypeMapping TypeName="meis007Model.PGMaster">
+              <MappingFragment StoreEntitySet="PGMaster">
+                <ScalarProperty Name="ModDatetime" ColumnName="ModDatetime" />
+                <ScalarProperty Name="ModUserid" ColumnName="ModUserid" />
+                <ScalarProperty Name="Field3" ColumnName="Field3" />
+                <ScalarProperty Name="Field2" ColumnName="Field2" />
+                <ScalarProperty Name="Field1" ColumnName="Field1" />
+                <ScalarProperty Name="InService" ColumnName="InService" />
+                <ScalarProperty Name="GatewayPWD" ColumnName="GatewayPWD" />
+                <ScalarProperty Name="GatewayUserID" ColumnName="GatewayUserID" />
+                <ScalarProperty Name="GatewayName" ColumnName="GatewayName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PGTransactions">
+            <EntityTypeMapping TypeName="meis007Model.PGTransaction">
+              <MappingFragment StoreEntitySet="PGTransactions">
+                <ScalarProperty Name="Field3" ColumnName="Field3" />
+                <ScalarProperty Name="Field2" ColumnName="Field2" />
+                <ScalarProperty Name="Field1" ColumnName="Field1" />
+                <ScalarProperty Name="TransType" ColumnName="TransType" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="BasketId" ColumnName="BasketId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RawData" ColumnName="RawData" />
+                <ScalarProperty Name="CreditCardId" ColumnName="CreditCardId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ConfirmationID" ColumnName="ConfirmationID" />
+                <ScalarProperty Name="LPGID" ColumnName="LPGID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2092,7 +2273,6 @@
         <EntityTypeShape EntityType="meis007Model.RoomTypeDetail" Width="1.5" PointX="3" PointY="6.375" Height="1.9802864583333397" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.RoomTypeHeader" Width="1.5" PointX="0.75" PointY="2.5" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.ServicesMaster" Width="1.5" PointX="1.5" PointY="18.5" Height="1.9802864583333246" IsExpanded="true" />
-        <EntityTypeShape EntityType="meis007Model.SupplierMaster" Width="1.5" PointX="11.75" PointY="14.75" Height="5.2494108072916674" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.XMLHotel" Width="1.5" PointX="16.75" PointY="0.75" Height="2.5571907552083246" IsExpanded="true" />
         <EntityTypeShape EntityType="meis007Model.XMLSupplier" Width="1.5" PointX="16.75" PointY="10.75" Height="1.9802864583333246" IsExpanded="true" />
         <AssociationConnector Association="meis007Model.FK_ProductAmenities_Amenities" ManuallyRouted="false">
@@ -2173,8 +2353,8 @@
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_RoomTypeDetail_RoomTypeHeader" ManuallyRouted="false">
           <ConnectorPoint PointX="1.9062525" PointY="5.0571907552083388" />
-          <ConnectorPoint PointX="1.9062525" PointY="7.3651432291666694" />
-          <ConnectorPoint PointX="3" PointY="7.3651432291666694" />
+          <ConnectorPoint PointX="1.9062525" PointY="7.5574446614583337" />
+          <ConnectorPoint PointX="3" PointY="7.5574446614583337" />
         </AssociationConnector>
         <EntityTypeShape EntityType="meis007Model.HotelBooking" Width="1.5" PointX="17" PointY="15.875" Height="2.749492187499996" />
         <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="14.75" PointY="14.625" Height="7.1724251302083246" />
@@ -2188,11 +2368,15 @@
           <ConnectorPoint PointX="17" PointY="20.869863281249998" />
         </AssociationConnector>
         <EntityTypeShape EntityType="meis007Model.BkgCancelPolicy" Width="1.5" PointX="6.625" PointY="23.375" Height="3.903300781249996" />
-        <EntityTypeShape EntityType="meis007Model.BkgMaster" Width="1.5" PointX="4.375" PointY="19.375" Height="11.979960937499996" />
+        <EntityTypeShape EntityType="meis007Model.BkgMaster" Width="1.5" PointX="4.375" PointY="19" Height="12.749166666666667" />
         <AssociationConnector Association="meis007Model.FK_BkgCancelPolicies_BkgMaster" >
           <ConnectorPoint PointX="5.875" PointY="25.326650390625" />
           <ConnectorPoint PointX="6.625" PointY="25.326650390625" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="meis007Model.SupplierMaster" Width="1.5" PointX="10.375" PointY="14.75" Height="5.4417122395833246" />
+        <EntityTypeShape EntityType="meis007Model.PGCreditCard" Width="1.5" PointX="17.375" PointY="4.75" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="meis007Model.PGMaster" Width="1.5" PointX="7.375" PointY="17.75" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="meis007Model.PGTransaction" Width="1.5" PointX="19.375" PointY="0.75" Height="3.5186979166666674" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -59,11 +59,25 @@
                     </tr>
                     <tr>
                      <td class="fieldKey">
+                         <label>Credit Card Type</label>
+                      </td>
+                      <td class="fieldValue">
+                        <asp:DropDownList ID="ddlCCType" runat="server">
+                          <asp:ListItem Value="visa">Visa</asp:ListItem>
+                          <asp:ListItem Value="mastercard">Master Card</asp:ListItem>
+                          <asp:ListItem Value="discover">Discover</asp:ListItem>
+                          <asp:ListItem Value="amex">Amex</asp:ListItem>
+                        </asp:DropDownList>
+                      </td>
+                    </tr>
+                    <tr>
+                     <td class="fieldKey">
                          <label>Credit Card Number</label>
                       </td>
                       <td class="fieldValue">
-                        <asp:TextBox ID="txtCreditCardNumber" runat="server" MaxLength="14"></asp:TextBox>
+                        <asp:TextBox ID="txtCreditCardNumber" runat="server" MaxLength="16"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfCreditCardNumber" runat="server" ControlToValidate="txtCreditCardNumber" ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revCreditCardNumber" ControlToValidate="txtCreditCardNumber" runat="server"  ForeColor="#FF3300"  ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                       </td>
                     </tr>
                     <tr>
@@ -71,8 +85,9 @@
                         <label>CVV</label>
                       </td>
                       <td class="fieldValue">
-                        <asp:TextBox ID="txtCCCVV" runat="server" MaxLength="300"></asp:TextBox>
+                        <asp:TextBox ID="txtCCCVV" runat="server" MaxLength="4"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvCCCVV" runat="server" ControlToValidate="txtCCCVV" ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revCCCVV" ControlToValidate="txtCCCVV" runat="server"  ForeColor="#FF3300"  ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                       </td>
                     </tr>
                     <tr>
@@ -96,8 +111,18 @@
                         <label>Billing Address</label>
                       </td>
                        <td class="fieldValue">
-                        <asp:TextBox ID="txtBillingAddress" runat="server" MaxLength="300"></asp:TextBox>
+                        <asp:TextBox ID="txtBillingAddress" runat="server" MaxLength="100" TextMode="MultiLine"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvBillingAddress" runat="server" ControlToValidate="txtBillingAddress" ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                      </td>
+                    </tr>        
+                    <tr>
+                     <td class="fieldKey">
+                        <label>Postal Code</label>
+                      </td>
+                       <td class="fieldValue">
+                        <asp:TextBox ID="txtPostalCode" runat="server" MaxLength="15"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="refPostalCode" runat="server" ControlToValidate="txtPostalCode" ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="revPostalCode" ControlToValidate="txtPostalCode" runat="server"  ForeColor="#FF3300"  ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                       </td>
                     </tr>        
                     <tr>
@@ -120,7 +145,7 @@
                       </td>
                       <td class="fieldValue">
                         <asp:DropDownList ID="ddlBillingCity" runat="server" 
-                        DataSourceID="SqlDataSource2" DataTextField="CityName" DataValueField="CityID"></asp:DropDownList>
+                        DataSourceID="SqlDataSource2" DataTextField="CityName" DataValueField="CityName"></asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
                         ConnectionString="<%$ ConnectionStrings:meis007ConnectionString %>" 
                         SelectCommand="SELECT [CityID], [CityName] FROM [CityMaster] WHERE ([CountryID] = @CountryID) ORDER BY [CityName]">
