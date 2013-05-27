@@ -121,6 +121,8 @@ public class LocalBooking
           suppliersHotelsInfo = Shi
         };
     bkgCancelPolicyHelper.CreateBkgCancelPolicies();
+    var paxName = Bhd.guestDetails.First().firstName + " " + Bhd.guestDetails.First().middleName + " " + Bhd.guestDetails.First().lastName;
+    EmailProcessor.Create(_meis007Entities, "bookingConfirmed", bkgMaster, "hotel", paxName);
   }
 
   public void CreatePackageBooking()
@@ -177,6 +179,8 @@ public class LocalBooking
       _meis007Entities.AddToPaxDetails(paxDetail);
       _meis007Entities.SaveChanges();
     }
+    var paxName = Bpd.Passengers.First().FirstName + " " + Bpd.Passengers.First().MiddleName + " " + Bpd.Passengers.First().LastName;
+    EmailProcessor.Create(_meis007Entities, "bookingConfirmed", bkgMaster, "package", paxName);
   }
 
 }
