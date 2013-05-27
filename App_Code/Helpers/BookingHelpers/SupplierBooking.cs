@@ -53,7 +53,7 @@ public class SupplierBooking
     bookingInfo.SessionId = Shi.SessionID;
     bookingInfo.SearchId = int.Parse(Shi.SearchID.ToString());
     bookingInfo.SupplierId = Shi.SupplierID;
-    bookingInfo.CustomerId = "1015"; //DbParameter.GetCustomerId();
+    bookingInfo.CustomerId = DbParameter.GetCustomerId();
     bookingInfo.HotelInfoId = int.Parse(Bhd.hotelInfoId.ToString());
     RepositoryFactory supplierFactory = new RepositoryFactory(null, Bhd.sessionId);
     return supplierFactory.HotelRoomBooking(bookingInfo);

@@ -18,6 +18,7 @@
           <EntitySet Name="Classifications" EntityType="meis007Model.Store.Classifications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CountryMaster" EntityType="meis007Model.Store.CountryMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CurrencyMaster" EntityType="meis007Model.Store.CurrencyMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CustomerMaster" EntityType="meis007Model.Store.CustomerMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Facilities" EntityType="meis007Model.Store.Facilities" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="HotelBooking" EntityType="meis007Model.Store.HotelBooking" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PackageDescription" EntityType="meis007Model.Store.PackageDescription" store:Type="Tables" Schema="dbo" />
@@ -51,6 +52,7 @@
       [TouricoCancelationPolicy].[UnitMultiplier] AS [UnitMultiplier]
       FROM [dbo].[TouricoCancelationPolicy] AS [TouricoCancelationPolicy]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="UserMaster" EntityType="meis007Model.Store.UserMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="XMLHotels" EntityType="meis007Model.Store.XMLHotels" store:Type="Tables" store:Schema="dbo" store:Name="XMLHotels">
             <DefiningQuery>SELECT 
       [XMLHotels].[Sno] AS [Sno], 
@@ -91,6 +93,10 @@
           <AssociationSet Name="FK_Classifications_ServicesMaster" Association="meis007Model.Store.FK_Classifications_ServicesMaster">
             <End Role="ServicesMaster" EntitySet="ServicesMaster" />
             <End Role="Classifications" EntitySet="Classifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerMaster_CityMaster" Association="meis007Model.Store.FK_CustomerMaster_CityMaster">
+            <End Role="CityMaster" EntitySet="CityMaster" />
+            <End Role="CustomerMaster" EntitySet="CustomerMaster" />
           </AssociationSet>
           <AssociationSet Name="FK_PackageDescription_PackageHeader" Association="meis007Model.Store.FK_PackageDescription_PackageHeader">
             <End Role="PackageHeader" EntitySet="PackageHeader" />
@@ -347,6 +353,39 @@
           <Property Name="IsVisibleB2C" Type="bit" />
           <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="ModDate" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerMaster">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="bigint" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="CTID" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" />
+          <Property Name="CityID" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="30" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="30" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="1" />
+          <Property Name="CrFacility" Type="nvarchar" Nullable="false" MaxLength="1" />
+          <Property Name="CreditDays" Type="int" />
+          <Property Name="CreditAmount" Type="numeric" Precision="12" />
+          <Property Name="CreditLimit" Type="numeric" Precision="12" />
+          <Property Name="GraceLimit" Type="numeric" Precision="12" />
+          <Property Name="GraceTillDate" Type="smalldatetime" />
+          <Property Name="CurID" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="SalesmanagerID" Type="nvarchar" MaxLength="50" />
+          <Property Name="InhouseConsultantID" Type="nvarchar" MaxLength="50" />
+          <Property Name="WebUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="WebPassword" Type="nvarchar" MaxLength="300" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ModDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="LogoName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AcCPerson" Type="nvarchar" MaxLength="100" />
+          <Property Name="AcCPEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="AcCPMobile" Type="nvarchar" MaxLength="30" />
+          <Property Name="LocalMarkup" Type="int" />
         </EntityType>
         <EntityType Name="Facilities">
           <Key>
@@ -639,6 +678,20 @@
           <Property Name="OffSetUnit" Type="varchar" MaxLength="255" />
           <Property Name="UnitMultiplier" Type="int" />
         </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeptID" Type="int" />
+          <Property Name="IsSa" Type="nvarchar" MaxLength="1" />
+          <Property Name="IsFreeze" Type="tinyint" />
+          <Property Name="emailID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModDate" Type="smalldatetime" />
+          <Property Name="ModUserID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'meis007.dbo.XMLHotels' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
@@ -746,6 +799,18 @@
             </Principal>
             <Dependent Role="Classifications">
               <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerMaster_CityMaster">
+          <End Role="CityMaster" Type="meis007Model.Store.CityMaster" Multiplicity="1" />
+          <End Role="CustomerMaster" Type="meis007Model.Store.CustomerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityMaster">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="CustomerMaster">
+              <PropertyRef Name="CityID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -992,6 +1057,12 @@
           <EntitySet Name="PGCreditCards" EntityType="meis007Model.PGCreditCard" />
           <EntitySet Name="PGMasters" EntityType="meis007Model.PGMaster" />
           <EntitySet Name="PGTransactions" EntityType="meis007Model.PGTransaction" />
+          <EntitySet Name="CustomerMasters" EntityType="meis007Model.CustomerMaster" />
+          <EntitySet Name="UserMasters" EntityType="meis007Model.UserMaster" />
+          <AssociationSet Name="FK_CustomerMaster_CityMaster" Association="meis007Model.FK_CustomerMaster_CityMaster">
+            <End Role="CityMaster" EntitySet="CityMasters" />
+            <End Role="CustomerMaster" EntitySet="CustomerMasters" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AmadeusTable">
           <Key>
@@ -1087,6 +1158,7 @@
           <Property Name="DisplaySeqNo" Type="Int64" />
           <Property Name="Bkgcount" Type="Int64" />
           <NavigationProperty Name="CountryMaster" Relationship="meis007Model.FK_CityMaster_CountryMaster" FromRole="CityMaster" ToRole="CountryMaster" />
+          <NavigationProperty Name="CustomerMasters" Relationship="meis007Model.FK_CustomerMaster_CityMaster" FromRole="CityMaster" ToRole="CustomerMaster" />
         </EntityType>
         <EntityType Name="Classification">
           <Key>
@@ -1767,6 +1839,66 @@
           <Property Type="String" Name="Field2" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Field3" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="CustomerMaster">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Type="Int64" Name="CustomerID" Nullable="false" />
+          <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CTID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CityID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Telephone" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Fax" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CrFacility" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CreditDays" />
+          <Property Type="Decimal" Name="CreditAmount" Precision="12" Scale="0" />
+          <Property Type="Decimal" Name="CreditLimit" Precision="12" Scale="0" />
+          <Property Type="Decimal" Name="GraceLimit" Precision="12" Scale="0" />
+          <Property Type="DateTime" Name="GraceTillDate" />
+          <Property Type="String" Name="CurID" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SalesmanagerID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="InhouseConsultantID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WebUserName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WebPassword" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AccountCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModDate" Nullable="false" />
+          <Property Type="String" Name="LogoName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AcCPerson" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AcCPEmail" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AcCPMobile" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="LocalMarkup" />
+          <NavigationProperty Name="CityMaster" Relationship="meis007Model.FK_CustomerMaster_CityMaster" FromRole="CustomerMaster" ToRole="CityMaster" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Type="String" Name="userid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DeptID" />
+          <Property Type="String" Name="IsSa" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Byte" Name="IsFreeze" />
+          <Property Type="String" Name="emailID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModDate" />
+          <Property Type="String" Name="ModUserID" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_CustomerMaster_CityMaster">
+          <End Type="meis007Model.CityMaster" Role="CityMaster" Multiplicity="1" />
+          <End Type="meis007Model.CustomerMaster" Role="CustomerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityMaster">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="CustomerMaster">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2229,6 +2361,55 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CustomerMasters">
+            <EntityTypeMapping TypeName="meis007Model.CustomerMaster">
+              <MappingFragment StoreEntitySet="CustomerMaster">
+                <ScalarProperty Name="LocalMarkup" ColumnName="LocalMarkup" />
+                <ScalarProperty Name="AcCPMobile" ColumnName="AcCPMobile" />
+                <ScalarProperty Name="AcCPEmail" ColumnName="AcCPEmail" />
+                <ScalarProperty Name="AcCPerson" ColumnName="AcCPerson" />
+                <ScalarProperty Name="LogoName" ColumnName="LogoName" />
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="WebPassword" ColumnName="WebPassword" />
+                <ScalarProperty Name="WebUserName" ColumnName="WebUserName" />
+                <ScalarProperty Name="InhouseConsultantID" ColumnName="InhouseConsultantID" />
+                <ScalarProperty Name="SalesmanagerID" ColumnName="SalesmanagerID" />
+                <ScalarProperty Name="CurID" ColumnName="CurID" />
+                <ScalarProperty Name="GraceTillDate" ColumnName="GraceTillDate" />
+                <ScalarProperty Name="GraceLimit" ColumnName="GraceLimit" />
+                <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+                <ScalarProperty Name="CreditAmount" ColumnName="CreditAmount" />
+                <ScalarProperty Name="CreditDays" ColumnName="CreditDays" />
+                <ScalarProperty Name="CrFacility" ColumnName="CrFacility" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CTID" ColumnName="CTID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="meis007Model.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="ModUserID" ColumnName="ModUserID" />
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="emailID" ColumnName="emailID" />
+                <ScalarProperty Name="IsFreeze" ColumnName="IsFreeze" />
+                <ScalarProperty Name="IsSa" ColumnName="IsSa" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2377,6 +2558,13 @@
         <EntityTypeShape EntityType="meis007Model.PGCreditCard" Width="1.5" PointX="17.375" PointY="4.75" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="meis007Model.PGMaster" Width="1.5" PointX="7.375" PointY="17.75" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="meis007Model.PGTransaction" Width="1.5" PointX="19.375" PointY="0.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="meis007Model.CustomerMaster" Width="1.5" PointX="14.25" PointY="23" Height="6.5955208333333246" />
+        <EntityTypeShape EntityType="meis007Model.UserMaster" Width="1.5" PointX="19.375" PointY="5.75" Height="2.7494921875000102" />
+        <AssociationConnector Association="meis007Model.FK_CustomerMaster_CityMaster" >
+          <ConnectorPoint PointX="12.34375" PointY="4.326396484375" />
+          <ConnectorPoint PointX="12.34375" PointY="26.297760416666662" />
+          <ConnectorPoint PointX="14.25" PointY="26.297760416666662" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>

@@ -131,7 +131,7 @@ public class SupplierHotelObjectHelper
         int[] ages =  lstAges.Count == 0 ? null : lstAges.ToArray();
         _search.ChildCount = lstAges.Count;
         _search.ChildAges = ages;
-        _search.CustomerID = "1015";//DbParameter.GetCustomerId();
+        _search.CustomerID = DbParameter.GetCustomerId();
         status = string.Empty;
         RepositoryFactory supplierFactory = new RepositoryFactory(_search, shoppingHotelHelper.SessionId);
         return supplierFactory.GetSuppliersHotelsInfo(out status);

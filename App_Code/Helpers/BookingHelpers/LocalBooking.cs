@@ -57,8 +57,7 @@ public class LocalBooking
       BkgDate = DateTime.Now,
       BkgType = DbParameter.GetBookingType(),
       BkgStatus = DbParameter.GetBookingStatus(),
-      CustomerID = 1015,
-      //DbParameter.GetCustomerId
+      CustomerID = long.Parse(DbParameter.GetCustomerId()),
       CustConsultantID = CurrentUser.Id(),
       CustomerDisplayPrice = Shi.LCAP,
       CustomerMarkup = Shi.MarkUp,
@@ -135,8 +134,7 @@ public class LocalBooking
       BkgDate = DateTime.Now,
       BkgType = DbParameter.GetBookingType(),
       BkgStatus = DbParameter.GetBookingStatus(),
-      CustomerID = 1015,
-      //DbParameter.GetCustomerId
+      CustomerID = long.Parse(DbParameter.GetCustomerId()),
       CustConsultantID = CurrentUser.Id(),
       CustomerDisplayPrice = decimal.Parse(Bpd.PricePerPerson.ToString()),
       CustomerMarkup = 0,

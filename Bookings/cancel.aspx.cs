@@ -93,8 +93,7 @@ public partial class Bookings_cancel : System.Web.UI.Page
             BkgDate = DateTime.Now,
             BkgType = DbParameter.GetBookingType(),
             BkgStatus = DbParameter.GetBookingStatus("cancel"),
-            CustomerID = 1015,
-            //DbParameter.GetCustomerId
+            CustomerID = long.Parse(DbParameter.GetCustomerId()),
             CustConsultantID = CurrentUser.Id(),
             CustomerDisplayPrice = x.CustomerDisplayPrice,
             FCSalesAmt = x.FCSalesAmt,
