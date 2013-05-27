@@ -7,4 +7,6 @@
 <h2>
         About
     </h2>
+    <asp:GridView ID="GridView1" runat="server">
+</asp:GridView>    
 </asp:Content>
