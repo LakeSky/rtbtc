@@ -38,11 +38,11 @@ public class EmailProcessor
         {
             name = _meis007Entities.PackageHeaders.Where(x => x.PacId == id).First().PacName;
         }
-        body += "Booking Confirmed for Service Name ";
-        body += name;
-        body += ". Pax Name is " + paxName;
-        body += ". Customer ID is " + customerId;
-        body += ". Client ID is " + bkg.UserID.ToString();
+        body += "Booked - Customer ID: " + bkg.CustomerID.ToString();
+        body += "- Customer's Consultant ID: " + bkg.CustConsultantID.ToString();
+        body += "- Booking No: " + bkg.BkgID.ToString();
+        body += "- PAX Name: " + paxName;
+        body += "- Service Name: " + name;
         if (serviceName == "hotel")
         {
            body += ". Suplier Name is " +  DbParameter.GetSupplierName(bkg.SupplierID.ToString());
@@ -66,10 +66,11 @@ public class EmailProcessor
         {
             name = _meis007Entities.PackageHeaders.Where(x => x.PacId == id).First().PacName;
         }
-        body += "Booking Cancelled for Service Name ";
-        body += name;
-        body += ". Customer ID is " + customerId;
-        body += ". Client ID is " + bkg.UserID.ToString();
+        body += "Cancelled - Customer ID: " + bkg.CustomerID.ToString();
+        body += "- Customer's Consultant ID: " + bkg.CustConsultantID.ToString();
+        body += "- Booking No: " + bkg.BkgID.ToString();
+        body += "- PAX Name: " + paxName;
+        body += "- Service Name: " + name;
         if (serviceName == "hotel")
         {
             body += ". Suplier Name is " + DbParameter.GetSupplierName(bkg.SupplierID.ToString());

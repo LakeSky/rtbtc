@@ -136,7 +136,8 @@ public partial class Bookings_cancel : System.Web.UI.Page
         _meis007Entities.AddToBkgMasters(bkgMaster);
         x.BkgStatus = DbParameter.GetBookingStatus("existingCancel");
         _meis007Entities.SaveChanges();
-        EmailProcessor.Create(_meis007Entities, "bookingCancelled", bkgMaster, "hotel", "");
+        var pax = _meis007Entities.PaxDetails.Where(y => y.BkgID == x.BkgID).First();
+        EmailProcessor.Create(_meis007Entities, "bookingCancelled", bkgMaster, "hotel", pax.PaxName);
     }
     
 }
