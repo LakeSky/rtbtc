@@ -37,6 +37,17 @@ public static class DbParameter
         return _customerId;
     }
 
+    public static CustomerMaster GetCustomer(meis007Entities _meis007Entities) {
+        CustomerMaster cust = (CustomerMaster)(HttpContext.Current.Session["CustomerMaster"]);
+        if (_meis007Entities == null)
+        {
+            _meis007Entities = new meis007Entities();
+        }
+        var customerId = long.Parse(GetCustomerId());
+        cust = _meis007Entities.CustomerMasters.Where(x => x.CustomerID == customerId).First();
+        return cust;
+    }
+
     public static UserMaster GetInternalCnsultant(meis007Entities _meis007Entities)
     {
         UserMaster user = (UserMaster)(HttpContext.Current.Session["InternalConsultant"]);
@@ -48,8 +59,7 @@ public static class DbParameter
         {
             _meis007Entities = new meis007Entities();
         }
-        var customerId = long.Parse(GetCustomerId());
-        var customer = _meis007Entities.CustomerMasters.Where(x => x.CustomerID == customerId).First();
+        var customer = GetCustomer(_meis007Entities);
         user = _meis007Entities.UserMasters.Where(x => x.userid == customer.InhouseConsultantID).First();
         HttpContext.Current.Session["InternalConsultant"] = user;
         return user;

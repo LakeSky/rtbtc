@@ -35,8 +35,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_RoomTypeDetail_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.RoomTypeHeader), "RoomTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.RoomTypeDetail), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__HotelBook__Hotel__28A2FA0E", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "HotelBooking", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.HotelBooking), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_BkgCancelPolicies_BkgMaster", "BkgMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.BkgMaster), "BkgCancelPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.BkgCancelPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_CustomerMaster_CityMaster", "CityMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.CityMaster), "CustomerMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CustomerMaster), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_BkgCancelPolicies_BkgMaster", "BkgMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.BkgMaster), "BkgCancelPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.BkgCancelPolicy), true)]
 
 #endregion
 
@@ -555,22 +555,6 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<BkgMaster> BkgMasters
-        {
-            get
-            {
-                if ((_BkgMasters == null))
-                {
-                    _BkgMasters = base.CreateObjectSet<BkgMaster>("BkgMasters");
-                }
-                return _BkgMasters;
-            }
-        }
-        private ObjectSet<BkgMaster> _BkgMasters;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<SupplierMaster> SupplierMasters
         {
             get
@@ -663,6 +647,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<UserMaster> _UserMasters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BkgMaster> BkgMasters
+        {
+            get
+            {
+                if ((_BkgMasters == null))
+                {
+                    _BkgMasters = base.CreateObjectSet<BkgMaster>("BkgMasters");
+                }
+                return _BkgMasters;
+            }
+        }
+        private ObjectSet<BkgMaster> _BkgMasters;
 
         #endregion
         #region AddTo Methods
@@ -900,14 +900,6 @@ namespace meis007Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the BkgMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToBkgMasters(BkgMaster bkgMaster)
-        {
-            base.AddObject("BkgMasters", bkgMaster);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the SupplierMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToSupplierMasters(SupplierMaster supplierMaster)
@@ -953,6 +945,14 @@ namespace meis007Model
         public void AddToUserMasters(UserMaster userMaster)
         {
             base.AddObject("UserMasters", userMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BkgMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBkgMasters(BkgMaster bkgMaster)
+        {
+            base.AddObject("BkgMasters", bkgMaster);
         }
 
         #endregion
@@ -3492,24 +3492,24 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String CompanyConsultant
+        public global::System.String InHouseConsultantid
         {
             get
             {
-                return _CompanyConsultant;
+                return _InHouseConsultantid;
             }
             set
             {
-                OnCompanyConsultantChanging(value);
-                ReportPropertyChanging("CompanyConsultant");
-                _CompanyConsultant = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("CompanyConsultant");
-                OnCompanyConsultantChanged();
+                OnInHouseConsultantidChanging(value);
+                ReportPropertyChanging("InHouseConsultantid");
+                _InHouseConsultantid = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("InHouseConsultantid");
+                OnInHouseConsultantidChanged();
             }
         }
-        private global::System.String _CompanyConsultant;
-        partial void OnCompanyConsultantChanging(global::System.String value);
-        partial void OnCompanyConsultantChanged();
+        private global::System.String _InHouseConsultantid;
+        partial void OnInHouseConsultantidChanging(global::System.String value);
+        partial void OnInHouseConsultantidChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

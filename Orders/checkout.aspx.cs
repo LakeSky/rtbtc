@@ -54,7 +54,7 @@ public partial class Orders_checkout : PublicApplicationPage
         var cc = PaypalGateway.AssignCVV(adrs, txtCreditCardNumber.Text, txtCCCVV.Text, txtFirstName.Text, txtCCLastName.Text, ddlCCExpirationMonth.SelectedValue, ddlCCExpirationYear.SelectedValue, ddlCCType.SelectedValue);
         var res = PaypalGateway.CreateCreditCard(cc, basketHelper.totalPrice.ToString());       
         if (!res.Valid) {
-          ShowError("Please Correct the credit card fields one!");
+          ShowError("Please Correct the credit card fields!");
           return;
         }
         var localCC = LocalGateway.CreateCreditCard(res, _meis007Entities);

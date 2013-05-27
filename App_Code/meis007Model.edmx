@@ -270,7 +270,7 @@
           <Property Name="PayAmt" Type="numeric" Scale="5" />
           <Property Name="ServiceName" Type="nvarchar" MaxLength="50" />
           <Property Name="CompanyID" Type="nvarchar" MaxLength="10" />
-          <Property Name="CompanyConsultant" Type="nvarchar" MaxLength="10" />
+          <Property Name="InHouseConsultantid" Type="nvarchar" MaxLength="10" />
           <Property Name="ConsultantDisplayAmt" Type="numeric" Precision="8" />
           <Property Name="CheckIN" Type="datetime" />
           <Property Name="checkOUT" Type="datetime" />
@@ -1048,11 +1048,6 @@
             <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicies" />
           </AssociationSet>
           <EntitySet Name="BkgCancelPolicies" EntityType="meis007Model.BkgCancelPolicy" />
-          <EntitySet Name="BkgMasters" EntityType="meis007Model.BkgMaster" />
-          <AssociationSet Name="FK_BkgCancelPolicies_BkgMaster" Association="meis007Model.FK_BkgCancelPolicies_BkgMaster">
-            <End Role="BkgMaster" EntitySet="BkgMasters" />
-            <End Role="BkgCancelPolicy" EntitySet="BkgCancelPolicies" />
-          </AssociationSet>
           <EntitySet Name="SupplierMasters" EntityType="meis007Model.SupplierMaster" />
           <EntitySet Name="PGCreditCards" EntityType="meis007Model.PGCreditCard" />
           <EntitySet Name="PGMasters" EntityType="meis007Model.PGMaster" />
@@ -1062,6 +1057,11 @@
           <AssociationSet Name="FK_CustomerMaster_CityMaster" Association="meis007Model.FK_CustomerMaster_CityMaster">
             <End Role="CityMaster" EntitySet="CityMasters" />
             <End Role="CustomerMaster" EntitySet="CustomerMasters" />
+          </AssociationSet>
+          <EntitySet Name="BkgMasters" EntityType="meis007Model.BkgMaster" />
+          <AssociationSet Name="FK_BkgCancelPolicies_BkgMaster" Association="meis007Model.FK_BkgCancelPolicies_BkgMaster">
+            <End Role="BkgMaster" EntitySet="BkgMasters" />
+            <End Role="BkgCancelPolicy" EntitySet="BkgCancelPolicies" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AmadeusTable">
@@ -1684,84 +1684,6 @@
           <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
           <NavigationProperty Name="BkgMaster" Relationship="meis007Model.FK_BkgCancelPolicies_BkgMaster" FromRole="BkgCancelPolicy" ToRole="BkgMaster" />
         </EntityType>
-        <EntityType Name="BkgMaster">
-          <Key>
-            <PropertyRef Name="BkgID" />
-          </Key>
-          <Property Type="Int64" Name="BkgID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="BasketID" Nullable="false" />
-          <Property Type="Int64" Name="SearchID" Nullable="false" />
-          <Property Type="Int64" Name="HotelInfoID" Nullable="false" />
-          <Property Type="DateTime" Name="BkgDate" Nullable="false" />
-          <Property Type="String" Name="BkgType" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="BkgStatus" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="CustomerMarkup" />
-          <Property Type="String" Name="FromAllocation" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Type="Int64" Name="CustomerID" />
-          <Property Type="Int64" Name="CustConsultantID" />
-          <Property Type="String" Name="CustomerRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CustomerRefNo" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="CustomerDisplayPrice" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="FCSalesAmt" Precision="18" Scale="5" />
-          <Property Type="String" Name="FCurrencyID" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="BaseCurrencyID" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="ExRate" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="SalesAmt" Precision="18" Scale="5" />
-          <Property Type="Int64" Name="SupplierID" />
-          <Property Type="String" Name="SupplierRefNo" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="SupplierConfNo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="SuppreMarks" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PayCurrID" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="PayExRate" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="PayAmt" Precision="18" Scale="5" />
-          <Property Type="String" Name="ServiceName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CompanyID" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CompanyConsultant" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="ConsultantDisplayAmt" Precision="8" Scale="0" />
-          <Property Type="DateTime" Name="CheckIN" />
-          <Property Type="DateTime" Name="checkOUT" />
-          <Property Type="Int32" Name="NoOfNights" />
-          <Property Type="Int64" Name="ProductID" />
-          <Property Type="Int64" Name="RateSDID" />
-          <Property Type="String" Name="LeadPaxName" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="NoOfRooms" />
-          <Property Type="Int32" Name="Adults" />
-          <Property Type="Int32" Name="Children" />
-          <Property Type="Int32" Name="Infants" />
-          <Property Type="Boolean" Name="HasExtraPaxs" />
-          <Property Type="String" Name="SalesInvNo" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PurchaseBillNo" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="CancellationRec" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="CancellationPay" Precision="18" Scale="5" />
-          <Property Type="Int32" Name="supplierHotelID" />
-          <Property Type="Decimal" Name="StarsLevel" Precision="5" Scale="3" />
-          <Property Type="Int32" Name="SupplierRoomID" />
-          <Property Type="Int64" Name="SupplierRoomTypeID" />
-          <Property Type="String" Name="SupplierRoomType" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="SupplierRoomName" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="BBID" />
-          <Property Type="String" Name="BBName" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="CustomerMarkUpApplied" />
-          <Property Type="DateTime" Name="ModDate" />
-          <Property Type="String" Name="UserID" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PaxRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="SupplierRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ConsultantRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="Int64" Name="TransactionId" />
-          <NavigationProperty Name="BkgCancelPolicies" Relationship="meis007Model.FK_BkgCancelPolicies_BkgMaster" FromRole="BkgMaster" ToRole="BkgCancelPolicy" />
-        </EntityType>
-        <Association Name="FK_BkgCancelPolicies_BkgMaster">
-          <End Type="meis007Model.BkgMaster" Role="BkgMaster" Multiplicity="1" />
-          <End Type="meis007Model.BkgCancelPolicy" Role="BkgCancelPolicy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BkgMaster">
-              <PropertyRef Name="BkgID" />
-            </Principal>
-            <Dependent Role="BkgCancelPolicy">
-              <PropertyRef Name="LocalBookingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="SupplierMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -1896,6 +1818,84 @@
             </Principal>
             <Dependent Role="CustomerMaster">
               <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BkgMaster">
+          <Key>
+            <PropertyRef Name="BkgID" />
+          </Key>
+          <Property Type="Int64" Name="BkgID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="BasketID" Nullable="false" />
+          <Property Type="Int64" Name="SearchID" Nullable="false" />
+          <Property Type="Int64" Name="HotelInfoID" Nullable="false" />
+          <Property Type="DateTime" Name="BkgDate" Nullable="false" />
+          <Property Type="String" Name="BkgType" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BkgStatus" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CustomerMarkup" />
+          <Property Type="String" Name="FromAllocation" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="CustomerID" />
+          <Property Type="Int64" Name="CustConsultantID" />
+          <Property Type="String" Name="CustomerRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CustomerRefNo" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="CustomerDisplayPrice" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="FCSalesAmt" Precision="18" Scale="5" />
+          <Property Type="String" Name="FCurrencyID" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BaseCurrencyID" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ExRate" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="SalesAmt" Precision="18" Scale="5" />
+          <Property Type="Int64" Name="SupplierID" />
+          <Property Type="String" Name="SupplierRefNo" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SupplierConfNo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SuppreMarks" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PayCurrID" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="PayExRate" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="PayAmt" Precision="18" Scale="5" />
+          <Property Type="String" Name="ServiceName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CompanyID" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="InHouseConsultantid" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="ConsultantDisplayAmt" Precision="8" Scale="0" />
+          <Property Type="DateTime" Name="CheckIN" />
+          <Property Type="DateTime" Name="checkOUT" />
+          <Property Type="Int32" Name="NoOfNights" />
+          <Property Type="Int64" Name="ProductID" />
+          <Property Type="Int64" Name="RateSDID" />
+          <Property Type="String" Name="LeadPaxName" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="NoOfRooms" />
+          <Property Type="Int32" Name="Adults" />
+          <Property Type="Int32" Name="Children" />
+          <Property Type="Int32" Name="Infants" />
+          <Property Type="Boolean" Name="HasExtraPaxs" />
+          <Property Type="String" Name="SalesInvNo" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PurchaseBillNo" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="CancellationRec" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="CancellationPay" Precision="18" Scale="5" />
+          <Property Type="Int32" Name="supplierHotelID" />
+          <Property Type="Decimal" Name="StarsLevel" Precision="5" Scale="3" />
+          <Property Type="Int32" Name="SupplierRoomID" />
+          <Property Type="Int64" Name="SupplierRoomTypeID" />
+          <Property Type="String" Name="SupplierRoomType" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SupplierRoomName" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="BBID" />
+          <Property Type="String" Name="BBName" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CustomerMarkUpApplied" />
+          <Property Type="DateTime" Name="ModDate" />
+          <Property Type="String" Name="UserID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PaxRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SupplierRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ConsultantRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="TransactionId" />
+          <NavigationProperty Name="BkgCancelPolicies" Relationship="meis007Model.FK_BkgCancelPolicies_BkgMaster" FromRole="BkgMaster" ToRole="BkgCancelPolicy" />
+        </EntityType>
+        <Association Name="FK_BkgCancelPolicies_BkgMaster">
+          <End Type="meis007Model.BkgMaster" Role="BkgMaster" Multiplicity="1" />
+          <End Type="meis007Model.BkgCancelPolicy" Role="BkgCancelPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BkgMaster">
+              <PropertyRef Name="BkgID" />
+            </Principal>
+            <Dependent Role="BkgCancelPolicy">
+              <PropertyRef Name="LocalBookingId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2214,72 +2214,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BkgMasters">
-            <EntityTypeMapping TypeName="meis007Model.BkgMaster">
-              <MappingFragment StoreEntitySet="BkgMaster">
-                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
-                <ScalarProperty Name="ConsultantRemarks" ColumnName="ConsultantRemarks" />
-                <ScalarProperty Name="SupplierRemarks" ColumnName="SupplierRemarks" />
-                <ScalarProperty Name="PaxRemarks" ColumnName="PaxRemarks" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
-                <ScalarProperty Name="CustomerMarkUpApplied" ColumnName="CustomerMarkUpApplied" />
-                <ScalarProperty Name="BBName" ColumnName="BBName" />
-                <ScalarProperty Name="BBID" ColumnName="BBID" />
-                <ScalarProperty Name="SupplierRoomName" ColumnName="SupplierRoomName" />
-                <ScalarProperty Name="SupplierRoomType" ColumnName="SupplierRoomType" />
-                <ScalarProperty Name="SupplierRoomTypeID" ColumnName="SupplierRoomTypeID" />
-                <ScalarProperty Name="SupplierRoomID" ColumnName="SupplierRoomID" />
-                <ScalarProperty Name="StarsLevel" ColumnName="StarsLevel" />
-                <ScalarProperty Name="supplierHotelID" ColumnName="supplierHotelID" />
-                <ScalarProperty Name="CancellationPay" ColumnName="CancellationPay" />
-                <ScalarProperty Name="CancellationRec" ColumnName="CancellationRec" />
-                <ScalarProperty Name="PurchaseBillNo" ColumnName="PurchaseBillNo" />
-                <ScalarProperty Name="SalesInvNo" ColumnName="SalesInvNo" />
-                <ScalarProperty Name="HasExtraPaxs" ColumnName="HasExtraPaxs" />
-                <ScalarProperty Name="Infants" ColumnName="Infants" />
-                <ScalarProperty Name="Children" ColumnName="Children" />
-                <ScalarProperty Name="Adults" ColumnName="Adults" />
-                <ScalarProperty Name="NoOfRooms" ColumnName="NoOfRooms" />
-                <ScalarProperty Name="LeadPaxName" ColumnName="LeadPaxName" />
-                <ScalarProperty Name="RateSDID" ColumnName="RateSDID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="NoOfNights" ColumnName="NoOfNights" />
-                <ScalarProperty Name="checkOUT" ColumnName="checkOUT" />
-                <ScalarProperty Name="CheckIN" ColumnName="CheckIN" />
-                <ScalarProperty Name="ConsultantDisplayAmt" ColumnName="ConsultantDisplayAmt" />
-                <ScalarProperty Name="CompanyConsultant" ColumnName="CompanyConsultant" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
-                <ScalarProperty Name="PayAmt" ColumnName="PayAmt" />
-                <ScalarProperty Name="PayExRate" ColumnName="PayExRate" />
-                <ScalarProperty Name="PayCurrID" ColumnName="PayCurrID" />
-                <ScalarProperty Name="SuppreMarks" ColumnName="SuppreMarks" />
-                <ScalarProperty Name="SupplierConfNo" ColumnName="SupplierConfNo" />
-                <ScalarProperty Name="SupplierRefNo" ColumnName="SupplierRefNo" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-                <ScalarProperty Name="SalesAmt" ColumnName="SalesAmt" />
-                <ScalarProperty Name="ExRate" ColumnName="ExRate" />
-                <ScalarProperty Name="BaseCurrencyID" ColumnName="BaseCurrencyID" />
-                <ScalarProperty Name="FCurrencyID" ColumnName="FCurrencyID" />
-                <ScalarProperty Name="FCSalesAmt" ColumnName="FCSalesAmt" />
-                <ScalarProperty Name="CustomerDisplayPrice" ColumnName="CustomerDisplayPrice" />
-                <ScalarProperty Name="CustomerRefNo" ColumnName="CustomerRefNo" />
-                <ScalarProperty Name="CustomerRemarks" ColumnName="CustomerRemarks" />
-                <ScalarProperty Name="CustConsultantID" ColumnName="CustConsultantID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="FromAllocation" ColumnName="FromAllocation" />
-                <ScalarProperty Name="CustomerMarkup" ColumnName="CustomerMarkup" />
-                <ScalarProperty Name="BkgStatus" ColumnName="BkgStatus" />
-                <ScalarProperty Name="BkgType" ColumnName="BkgType" />
-                <ScalarProperty Name="BkgDate" ColumnName="BkgDate" />
-                <ScalarProperty Name="HotelInfoID" ColumnName="HotelInfoID" />
-                <ScalarProperty Name="SearchID" ColumnName="SearchID" />
-                <ScalarProperty Name="BasketID" ColumnName="BasketID" />
-                <ScalarProperty Name="BkgID" ColumnName="BkgID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SupplierMasters">
             <EntityTypeMapping TypeName="meis007Model.SupplierMaster">
               <MappingFragment StoreEntitySet="SupplierMaster">
@@ -2407,6 +2341,72 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BkgMasters">
+            <EntityTypeMapping TypeName="meis007Model.BkgMaster">
+              <MappingFragment StoreEntitySet="BkgMaster">
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="ConsultantRemarks" ColumnName="ConsultantRemarks" />
+                <ScalarProperty Name="SupplierRemarks" ColumnName="SupplierRemarks" />
+                <ScalarProperty Name="PaxRemarks" ColumnName="PaxRemarks" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="CustomerMarkUpApplied" ColumnName="CustomerMarkUpApplied" />
+                <ScalarProperty Name="BBName" ColumnName="BBName" />
+                <ScalarProperty Name="BBID" ColumnName="BBID" />
+                <ScalarProperty Name="SupplierRoomName" ColumnName="SupplierRoomName" />
+                <ScalarProperty Name="SupplierRoomType" ColumnName="SupplierRoomType" />
+                <ScalarProperty Name="SupplierRoomTypeID" ColumnName="SupplierRoomTypeID" />
+                <ScalarProperty Name="SupplierRoomID" ColumnName="SupplierRoomID" />
+                <ScalarProperty Name="StarsLevel" ColumnName="StarsLevel" />
+                <ScalarProperty Name="supplierHotelID" ColumnName="supplierHotelID" />
+                <ScalarProperty Name="CancellationPay" ColumnName="CancellationPay" />
+                <ScalarProperty Name="CancellationRec" ColumnName="CancellationRec" />
+                <ScalarProperty Name="PurchaseBillNo" ColumnName="PurchaseBillNo" />
+                <ScalarProperty Name="SalesInvNo" ColumnName="SalesInvNo" />
+                <ScalarProperty Name="HasExtraPaxs" ColumnName="HasExtraPaxs" />
+                <ScalarProperty Name="Infants" ColumnName="Infants" />
+                <ScalarProperty Name="Children" ColumnName="Children" />
+                <ScalarProperty Name="Adults" ColumnName="Adults" />
+                <ScalarProperty Name="NoOfRooms" ColumnName="NoOfRooms" />
+                <ScalarProperty Name="LeadPaxName" ColumnName="LeadPaxName" />
+                <ScalarProperty Name="RateSDID" ColumnName="RateSDID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="NoOfNights" ColumnName="NoOfNights" />
+                <ScalarProperty Name="checkOUT" ColumnName="checkOUT" />
+                <ScalarProperty Name="CheckIN" ColumnName="CheckIN" />
+                <ScalarProperty Name="ConsultantDisplayAmt" ColumnName="ConsultantDisplayAmt" />
+                <ScalarProperty Name="InHouseConsultantid" ColumnName="InHouseConsultantid" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="PayAmt" ColumnName="PayAmt" />
+                <ScalarProperty Name="PayExRate" ColumnName="PayExRate" />
+                <ScalarProperty Name="PayCurrID" ColumnName="PayCurrID" />
+                <ScalarProperty Name="SuppreMarks" ColumnName="SuppreMarks" />
+                <ScalarProperty Name="SupplierConfNo" ColumnName="SupplierConfNo" />
+                <ScalarProperty Name="SupplierRefNo" ColumnName="SupplierRefNo" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="SalesAmt" ColumnName="SalesAmt" />
+                <ScalarProperty Name="ExRate" ColumnName="ExRate" />
+                <ScalarProperty Name="BaseCurrencyID" ColumnName="BaseCurrencyID" />
+                <ScalarProperty Name="FCurrencyID" ColumnName="FCurrencyID" />
+                <ScalarProperty Name="FCSalesAmt" ColumnName="FCSalesAmt" />
+                <ScalarProperty Name="CustomerDisplayPrice" ColumnName="CustomerDisplayPrice" />
+                <ScalarProperty Name="CustomerRefNo" ColumnName="CustomerRefNo" />
+                <ScalarProperty Name="CustomerRemarks" ColumnName="CustomerRemarks" />
+                <ScalarProperty Name="CustConsultantID" ColumnName="CustConsultantID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FromAllocation" ColumnName="FromAllocation" />
+                <ScalarProperty Name="CustomerMarkup" ColumnName="CustomerMarkup" />
+                <ScalarProperty Name="BkgStatus" ColumnName="BkgStatus" />
+                <ScalarProperty Name="BkgType" ColumnName="BkgType" />
+                <ScalarProperty Name="BkgDate" ColumnName="BkgDate" />
+                <ScalarProperty Name="HotelInfoID" ColumnName="HotelInfoID" />
+                <ScalarProperty Name="SearchID" ColumnName="SearchID" />
+                <ScalarProperty Name="BasketID" ColumnName="BasketID" />
+                <ScalarProperty Name="BkgID" ColumnName="BkgID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2549,11 +2549,6 @@
           <ConnectorPoint PointX="17" PointY="20.869863281249998" />
         </AssociationConnector>
         <EntityTypeShape EntityType="meis007Model.BkgCancelPolicy" Width="1.5" PointX="6.625" PointY="23.375" Height="3.903300781249996" />
-        <EntityTypeShape EntityType="meis007Model.BkgMaster" Width="1.5" PointX="4.375" PointY="19" Height="12.749166666666667" />
-        <AssociationConnector Association="meis007Model.FK_BkgCancelPolicies_BkgMaster" >
-          <ConnectorPoint PointX="5.875" PointY="25.326650390625" />
-          <ConnectorPoint PointX="6.625" PointY="25.326650390625" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="meis007Model.SupplierMaster" Width="1.5" PointX="10.375" PointY="14.75" Height="5.4417122395833246" />
         <EntityTypeShape EntityType="meis007Model.PGCreditCard" Width="1.5" PointX="17.375" PointY="4.75" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="meis007Model.PGMaster" Width="1.5" PointX="7.375" PointY="17.75" Height="2.9417936197916674" />
@@ -2564,6 +2559,11 @@
           <ConnectorPoint PointX="12.34375" PointY="4.326396484375" />
           <ConnectorPoint PointX="12.34375" PointY="26.297760416666662" />
           <ConnectorPoint PointX="14.25" PointY="26.297760416666662" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="meis007Model.BkgMaster" Width="1.5" PointX="4.375" PointY="19" Height="12.749166666666667" />
+        <AssociationConnector Association="meis007Model.FK_BkgCancelPolicies_BkgMaster" >
+          <ConnectorPoint PointX="5.875" PointY="25.326650390625" />
+          <ConnectorPoint PointX="6.625" PointY="25.326650390625" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
