@@ -221,7 +221,7 @@
                                     </div>
                                 </div>
                                 <a id="storeLogo" href="<%= rootPath + "home.aspx" %>" style="padding:1px 0 0 1px">
-                                    <img src="/rtbtc/images/template/company_logo.png" alt="Riyadh Travels" title="osCommerce" width="258"
+                                    <img src="/rtbtc/images/company_log0N.gif" alt="Riyadh Travels" title="" width="400px"
                                         height="111" /></a>
                             </div>
                         </div>

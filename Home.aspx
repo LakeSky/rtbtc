@@ -15,6 +15,10 @@
         {
             display: none;
         }
+        div.camera_caption span.slider_text_2 
+        {
+            width: 250px;
+        }
     </style>
     <script type="text/javascript">
         function ShowDialogBox() {
