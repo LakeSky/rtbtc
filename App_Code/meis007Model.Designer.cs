@@ -635,22 +635,6 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<UserMaster> UserMasters
-        {
-            get
-            {
-                if ((_UserMasters == null))
-                {
-                    _UserMasters = base.CreateObjectSet<UserMaster>("UserMasters");
-                }
-                return _UserMasters;
-            }
-        }
-        private ObjectSet<UserMaster> _UserMasters;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<BkgMaster> BkgMasters
         {
             get
@@ -663,6 +647,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<BkgMaster> _BkgMasters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<UserMaster> UserMasters
+        {
+            get
+            {
+                if ((_UserMasters == null))
+                {
+                    _UserMasters = base.CreateObjectSet<UserMaster>("UserMasters");
+                }
+                return _UserMasters;
+            }
+        }
+        private ObjectSet<UserMaster> _UserMasters;
 
         #endregion
         #region AddTo Methods
@@ -940,19 +940,19 @@ namespace meis007Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the UserMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToUserMasters(UserMaster userMaster)
-        {
-            base.AddObject("UserMasters", userMaster);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the BkgMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToBkgMasters(BkgMaster bkgMaster)
         {
             base.AddObject("BkgMasters", bkgMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the UserMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUserMasters(UserMaster userMaster)
+        {
+            base.AddObject("UserMasters", userMaster);
         }
 
         #endregion
@@ -3348,24 +3348,24 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String SuppreMarks
+        public global::System.String ServiceDescription
         {
             get
             {
-                return _SuppreMarks;
+                return _ServiceDescription;
             }
             set
             {
-                OnSuppreMarksChanging(value);
-                ReportPropertyChanging("SuppreMarks");
-                _SuppreMarks = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("SuppreMarks");
-                OnSuppreMarksChanged();
+                OnServiceDescriptionChanging(value);
+                ReportPropertyChanging("ServiceDescription");
+                _ServiceDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ServiceDescription");
+                OnServiceDescriptionChanged();
             }
         }
-        private global::System.String _SuppreMarks;
-        partial void OnSuppreMarksChanging(global::System.String value);
-        partial void OnSuppreMarksChanged();
+        private global::System.String _ServiceDescription;
+        partial void OnServiceDescriptionChanging(global::System.String value);
+        partial void OnServiceDescriptionChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -12197,10 +12197,12 @@ namespace meis007Model
         /// <summary>
         /// Create a new UserMaster object.
         /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
         /// <param name="userid">Initial value of the userid property.</param>
-        public static UserMaster CreateUserMaster(global::System.String userid)
+        public static UserMaster CreateUserMaster(global::System.Int64 id, global::System.String userid)
         {
             UserMaster userMaster = new UserMaster();
+            userMaster.Id = id;
             userMaster.userid = userid;
             return userMaster;
         }
@@ -12213,6 +12215,33 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Int64 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.String userid
         {
             get
@@ -12221,14 +12250,11 @@ namespace meis007Model
             }
             set
             {
-                if (_userid != value)
-                {
-                    OnuseridChanging(value);
-                    ReportPropertyChanging("userid");
-                    _userid = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("userid");
-                    OnuseridChanged();
-                }
+                OnuseridChanging(value);
+                ReportPropertyChanging("userid");
+                _userid = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("userid");
+                OnuseridChanged();
             }
         }
         private global::System.String _userid;

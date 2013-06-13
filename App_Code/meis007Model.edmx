@@ -264,7 +264,7 @@
           <Property Name="SupplierID" Type="bigint" />
           <Property Name="SupplierRefNo" Type="nvarchar" MaxLength="50" />
           <Property Name="SupplierConfNo" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="SuppreMarks" Type="nvarchar" MaxLength="500" />
+          <Property Name="ServiceDescription" Type="nvarchar" MaxLength="500" />
           <Property Name="PayCurrID" Type="nvarchar" MaxLength="10" />
           <Property Name="PayExRate" Type="numeric" Scale="5" />
           <Property Name="PayAmt" Type="numeric" Scale="5" />
@@ -680,8 +680,9 @@
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
-            <PropertyRef Name="userid" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="userid" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="UserName" Type="nvarchar" MaxLength="100" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
@@ -1053,7 +1054,6 @@
           <EntitySet Name="PGMasters" EntityType="meis007Model.PGMaster" />
           <EntitySet Name="PGTransactions" EntityType="meis007Model.PGTransaction" />
           <EntitySet Name="CustomerMasters" EntityType="meis007Model.CustomerMaster" />
-          <EntitySet Name="UserMasters" EntityType="meis007Model.UserMaster" />
           <AssociationSet Name="FK_CustomerMaster_CityMaster" Association="meis007Model.FK_CustomerMaster_CityMaster">
             <End Role="CityMaster" EntitySet="CityMasters" />
             <End Role="CustomerMaster" EntitySet="CustomerMasters" />
@@ -1063,6 +1063,7 @@
             <End Role="BkgMaster" EntitySet="BkgMasters" />
             <End Role="BkgCancelPolicy" EntitySet="BkgCancelPolicies" />
           </AssociationSet>
+          <EntitySet Name="UserMasters" EntityType="meis007Model.UserMaster" />
         </EntityContainer>
         <EntityType Name="AmadeusTable">
           <Key>
@@ -1795,20 +1796,6 @@
           <Property Type="Int32" Name="LocalMarkup" />
           <NavigationProperty Name="CityMaster" Relationship="meis007Model.FK_CustomerMaster_CityMaster" FromRole="CustomerMaster" ToRole="CityMaster" />
         </EntityType>
-        <EntityType Name="UserMaster">
-          <Key>
-            <PropertyRef Name="userid" />
-          </Key>
-          <Property Type="String" Name="userid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="UserName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="DeptID" />
-          <Property Type="String" Name="IsSa" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Type="Byte" Name="IsFreeze" />
-          <Property Type="String" Name="emailID" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="ModDate" />
-          <Property Type="String" Name="ModUserID" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_CustomerMaster_CityMaster">
           <End Type="meis007Model.CityMaster" Role="CityMaster" Multiplicity="1" />
           <End Type="meis007Model.CustomerMaster" Role="CustomerMaster" Multiplicity="*" />
@@ -1847,7 +1834,7 @@
           <Property Type="Int64" Name="SupplierID" />
           <Property Type="String" Name="SupplierRefNo" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="SupplierConfNo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="SuppreMarks" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ServiceDescription" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="PayCurrID" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="PayExRate" Precision="18" Scale="5" />
           <Property Type="Decimal" Name="PayAmt" Precision="18" Scale="5" />
@@ -1899,6 +1886,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="userid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DeptID" />
+          <Property Type="String" Name="IsSa" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Byte" Name="IsFreeze" />
+          <Property Type="String" Name="emailID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModDate" />
+          <Property Type="String" Name="ModUserID" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2329,21 +2331,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserMasters">
-            <EntityTypeMapping TypeName="meis007Model.UserMaster">
-              <MappingFragment StoreEntitySet="UserMaster">
-                <ScalarProperty Name="ModUserID" ColumnName="ModUserID" />
-                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
-                <ScalarProperty Name="emailID" ColumnName="emailID" />
-                <ScalarProperty Name="IsFreeze" ColumnName="IsFreeze" />
-                <ScalarProperty Name="IsSa" ColumnName="IsSa" />
-                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="userid" ColumnName="userid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="BkgMasters">
             <EntityTypeMapping TypeName="meis007Model.BkgMaster">
               <MappingFragment StoreEntitySet="BkgMaster">
@@ -2384,7 +2371,7 @@
                 <ScalarProperty Name="PayAmt" ColumnName="PayAmt" />
                 <ScalarProperty Name="PayExRate" ColumnName="PayExRate" />
                 <ScalarProperty Name="PayCurrID" ColumnName="PayCurrID" />
-                <ScalarProperty Name="SuppreMarks" ColumnName="SuppreMarks" />
+                <ScalarProperty Name="ServiceDescription" ColumnName="ServiceDescription" />
                 <ScalarProperty Name="SupplierConfNo" ColumnName="SupplierConfNo" />
                 <ScalarProperty Name="SupplierRefNo" ColumnName="SupplierRefNo" />
                 <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
@@ -2407,6 +2394,22 @@
                 <ScalarProperty Name="SearchID" ColumnName="SearchID" />
                 <ScalarProperty Name="BasketID" ColumnName="BasketID" />
                 <ScalarProperty Name="BkgID" ColumnName="BkgID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="meis007Model.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="ModUserID" ColumnName="ModUserID" />
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="emailID" ColumnName="emailID" />
+                <ScalarProperty Name="IsFreeze" ColumnName="IsFreeze" />
+                <ScalarProperty Name="IsSa" ColumnName="IsSa" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2554,7 +2557,6 @@
         <EntityTypeShape EntityType="meis007Model.PGMaster" Width="1.5" PointX="7.375" PointY="17.75" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="meis007Model.PGTransaction" Width="1.5" PointX="19.375" PointY="0.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="meis007Model.CustomerMaster" Width="1.5" PointX="14.25" PointY="23" Height="6.5955208333333246" />
-        <EntityTypeShape EntityType="meis007Model.UserMaster" Width="1.5" PointX="19.375" PointY="5.75" Height="2.7494921875000102" />
         <AssociationConnector Association="meis007Model.FK_CustomerMaster_CityMaster" >
           <ConnectorPoint PointX="12.34375" PointY="4.326396484375" />
           <ConnectorPoint PointX="12.34375" PointY="26.297760416666662" />
@@ -2565,6 +2567,7 @@
           <ConnectorPoint PointX="5.875" PointY="25.326650390625" />
           <ConnectorPoint PointX="6.625" PointY="25.326650390625" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="meis007Model.UserMaster" Width="1.5" PointX="19.375" PointY="5.75" Height="2.9417936197916674" />
       </Diagram>
     </Diagrams>
   </Designer>
