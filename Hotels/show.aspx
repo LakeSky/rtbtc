@@ -53,7 +53,7 @@
     function loadScript() {
         var script = document.createElement("script");
         script.type = "text/javascript";
-        script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAgRF5oG3fdfkCADHZLPyXMBu3WjUkn8GY&sensor=false&callback=initialize";
+        script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAg01VbP_azqa_x2pEJYcPu83WfaCoo9sI&sensor=false&callback=initialize";
         document.body.appendChild(script);
     }
 

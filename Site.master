@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head runat="server">
@@ -42,6 +43,16 @@
         charset="utf-8"></script>
     <script type="text/javascript" src="/rtbtc/scripts/template/js.js"></script>
     <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+
+            }, 'google_translate_element');
+        }
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
         window.CurrencyChangeUrl = '<%=ResolveUrl("~/ApplicationWebService.asmx/CurrencyChange") %>';
     </script>
     <script type="text/javascript" src="/rtbtc/scripts/master_page.js"></script>
@@ -58,19 +69,29 @@
 </head>
 <body>
     <form runat="server">
+         
     <% var rootPath = Route.GetRootPath(""); %>
     <p id="back-top">
         <a href="#top"><span>Top</span></a></p>
+            
     <div id="bodyWrapper" class="page_index en">
+
         <div id="mainWrapper">
+            
             <div id="wrapper">
+                   
                 <div class="container">
                     <div class="master-currency-wrap">
-                      <asp:HiddenField ID="hdnMasterCurrencySelectedValue" runat="server" />
+                        <asp:HiddenField ID="hdnMasterCurrencySelectedValue" runat="server" />
                     </div>
+                 
+                 
                     <div class="row row_1 container_24">
+                          
                         <div class="grid_24">
+
                             <div id="header">
+                               
                                 <div class="boxes_header">
                                     <div id="box_header_cart">
                                         <div class="cart_header_wrapper">
@@ -81,59 +102,62 @@
                                                     </label>
                                                     <strong id="cart_header_count"><%= basketItemsCount %></strong> items.
                                                     <ul id="submenu" class="submenu">
-                                                      <% if (hasBasketItems) { %>
-                                                        <% foreach(var x in masterBasketHelper.packageDetails) {%>
-                                                          <li class="items first" id="li_<%= x.Id  %>">
+                                                        <% if (hasBasketItems)
+                                                           { %>
+                                                        <% foreach (var x in masterBasketHelper.packageDetails)
+                                                           {%>
+                                                        <li class="items first" id="li_<%= x.Id  %>">
                                                             <img src="<%= x.DisplayImage %>" alt="" width="80" height="80" alt="" />
                                                             <div class="item">
-                                                              <h5 class="item1">
-                                                                <%= x.PackageName %>
-                                                              </h5>
+                                                                <h5 class="item1">
+                                                                    <%= x.PackageName %>
+                                                                </h5>
                                                             </div>
-                                                          </li>
+                                                        </li>
                                                         <% } %>
-                                                        <% foreach(var x in masterBasketHelper.hotelDetails) {%>
-                                                          <li class="items first" id="li_<%= x.hotelInfoId %>">
+                                                        <% foreach (var x in masterBasketHelper.hotelDetails)
+                                                           {%>
+                                                        <li class="items first" id="li_<%= x.hotelInfoId %>">
                                                             <img src="<%= x.productDefaultImagePath %>" alt="" width="80" height="80" alt="" />
                                                             <div class="item">
-                                                              <h5 class="item1">
-                                                                <%= x.productName %>
-                                                              </h5>
+                                                                <h5 class="item1">
+                                                                    <%= x.productName %>
+                                                                </h5>
                                                             </div>
-                                                          </li>
+                                                        </li>
                                                         <% } %>
                                                         <li class="total">
-                                                          <span class="productSpecialPrice">
-                                                            <%= ApplicationObject.GetMasterCurrency(hdnMasterCurrencySelectedValue.Value) %>
+                                                            <span class="productSpecialPrice">
+                                                                <%= ApplicationObject.GetMasterCurrency(hdnMasterCurrencySelectedValue.Value) %>
                                                             &nbsp;
                                                             <span id="cart_header_amount">
-                                                              <%= ApplicationObject.FormattedCurrencyDisplayPrice(masterBasketHelper.totalPrice, hdnMasterCurrencySelectedValue.Value) %>
+                                                                <%= ApplicationObject.FormattedCurrencyDisplayPrice(masterBasketHelper.totalPrice, hdnMasterCurrencySelectedValue.Value) %>
                                                             </span>
-                                                          </span>
+                                                            </span>
                                                         </li>
                                                         <li class="last">
-                                                          <strong class="button_content button_content2">
-                                                            <strong class="button bg_button"  style="margin-left:0;">
-                                                              <a href="<%= Route.GetRootPath("basket/show.aspx") %>">
-                                                                <span class="ui-button-text">
-                                                                  Shopping cart
-                                                                </span>
-                                                              </a>
+                                                            <strong class="button_content button_content2">
+                                                                <strong class="button bg_button" style="margin-left: 0;">
+                                                                    <a href="<%= Route.GetRootPath("basket/show.aspx") %>">
+                                                                        <span class="ui-button-text">Shopping cart
+                                                                        </span>
+                                                                    </a>
+                                                                </strong>
                                                             </strong>
-                                                          </strong>
-                                                          <strong class="button_content button_content1">
-                                                            <strong class="button bg_button"  style="margin-left:35px;">
-                                                              <a href="<%= Route.GetRootPath("orders/checkout.aspx") %>">
-                                                                <span class="ui-button-text">
-                                                                  Checkout
-                                                                </span>
-                                                              </a>
+                                                            <strong class="button_content button_content1">
+                                                                <strong class="button bg_button" style="margin-left: 35px;">
+                                                                    <a href="<%= Route.GetRootPath("orders/checkout.aspx") %>">
+                                                                        <span class="ui-button-text">Checkout
+                                                                        </span>
+                                                                    </a>
+                                                                </strong>
                                                             </strong>
-                                                          </strong>
                                                         </li>
-                                                      <%} else {%>
+                                                        <%}
+                                                           else
+                                                           {%>
                                                         <li>Your shopping cart is empty! </li>
-                                                      <%} %>
+                                                        <%} %>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -145,62 +169,82 @@
                                         <span>Call us:</span> <b>(123)-456-78901</b>
                                     </div>
                                 </div>
+
                                 <div class="boxes_above_header">
+
+
                                     <div class="menu">
-                                      <div>
-                                      </div>
-                                    </div>
-                                    <div class="box_header_user_menu">
-                                        <div class="user_menu">
-                                            <% if (Page.User.Identity.IsAuthenticated){%>
-                                              <a class="in user_menu_account" href="<%= rootPath + "currentuser/myaccount.aspx" %>">
-                                                <i></i>
-                                                <span>My Account</span>
-                                              </a>
-                                              <a class="in user_menu_login" href="<%= rootPath + "account/logout.aspx" %>">
-                                                <i></i>
-                                                <span>Log off</span>
-                                              </a>
-                                            <%}else{ %>
-                                              <% var _forgotPasswordPath = Route.GetRootPath("account/forgotpassword.aspx"); %>
-                                              <a class=" out user_menu_account" href="<%= rootPath + "account/register.aspx" %>">
-                                                <i></i>
-                                                <span>Create an Account</span>
-                                              </a>
-                                              <a class="out user_menu_login" href="<%= rootPath + "account/login.aspx" %>">
-                                                <i></i>
-                                                <span>Log in</span> 
-                                              </a>
-                                              <a class="out user_menu_login" href="<%= rootPath + "account/forgotpassword.aspx" %>">
-                                                <i></i>
-                                                <span>Forgot Password?</span> 
-                                              </a>
-                                            <%} %>
+                                        <div>
                                         </div>
                                     </div>
-                                    <div id="box_currencies" class="box_currencies">
-                                      <div class="drop_down" style="width:60px;">
-                                        <asp:Repeater ID="rptrCurrencies" runat="server">
-                                          <HeaderTemplate>
-                                            <label>
-                                              <%# MasterCurrnecySelectedValue() %>
-                                              <i></i>
-                                            </label>
-                                            <ul>
-                                          </HeaderTemplate>
-                                          <ItemTemplate>
-                                            <li>
-                                              <a href="/ <%# Eval("Text") %>" data-value="<%# Eval("Text") %>">
-                                                <%# Eval("Text") %>
-                                              </a>
-                                            </li>
-                                          </ItemTemplate>
-                                          <FooterTemplate>
-                                            </ul>
-                                          </FooterTemplate>
-                                        </asp:Repeater>
-                                      </div>
+                               
+                                    <div class="box_header_user_menu">
+                                        
+                                        <div class="user_menu">
+                                           
+
+                                            <% if (Page.User.Identity.IsAuthenticated)
+                                               {%>
+                                                 
+                                 
+                                            <a class="in user_menu_account" href="<%= rootPath + "currentuser/myaccount.aspx" %>">
+                                                <i></i>
+                                                <span>   <b> Welcome, <%=UserName %> </b> &nbsp;&nbsp;     My Account</span>
+                                            </a>
+                                                  
+                                            <a class="in user_menu_login" href="<%= rootPath + "account/logout.aspx" %>">
+                                                <i></i>
+                                                <span>Log off</span>
+                                            </a>
+                         
+                                            <%}
+                                               else
+                                               { %>
+                                            <% var _forgotPasswordPath = Route.GetRootPath("account/forgotpassword.aspx"); %>
+                                            <a class=" out user_menu_account" href="<%= rootPath + "account/register.aspx" %>">
+                                                <i></i>
+                                                <span>Create an Account</span>
+                                            </a>
+                                            <a class="out user_menu_login" href="<%= rootPath + "account/login.aspx" %>">
+                                                <i></i>
+                                                <span>Log in</span>
+                                            </a>
+                                            <a class="out user_menu_login" href="<%= rootPath + "account/forgotpassword.aspx" %>">
+                                                <i></i>
+                                                <span>Forgot Password?</span>
+                                            </a>
+                                             
+                                            <%} %>
+                                             
+                                        </div>
+                                        
                                     </div>
+                                  
+
+                                    <div id="box_currencies" class="box_currencies">
+                                        <div class="drop_down" style="width: 60px;">
+                                            <asp:Repeater ID="rptrCurrencies" runat="server">
+                                                <HeaderTemplate>
+                                                    <label>
+                                                        <%# MasterCurrnecySelectedValue() %>
+                                                        <i></i>
+                                                    </label>
+                                                    <ul>
+                                                </HeaderTemplate>
+                                                <ItemTemplate>
+                                                    <li>
+                                                        <a href="/ <%# Eval("Text") %>" data-value="<%# Eval("Text") %>">
+                                                            <%# Eval("Text") %>
+                                                        </a>
+                                                    </li>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    </ul>
+                                                </FooterTemplate>
+                                            </asp:Repeater>
+                                        </div>
+                                    </div>
+                                      
                                     <div id="box_languages" class="box_languages hide">
                                         <div class="drop_down">
                                             <label>
@@ -218,13 +262,22 @@
                                                         width="18" height="12" />Spain</a></li>
                                             </ul>
                                         </div>
+
                                     </div>
+                                    
+                                        <div id="google_translate_element" style="position:relative;bottom:10px;right:2px" ></div>
                                 </div>
-                                <a id="storeLogo" href="<%= rootPath + "home.aspx" %>" style="padding:1px 0 0 1px">
+                              
+
+                                <a id="storeLogo" href="<%= rootPath + "home.aspx" %>" style="padding: 1px 0 0 1px">
                                     <img src="/rtbtc/images/company_log0N.gif" alt="Riyadh Travels" title="" width="400px"
                                         height="111" /></a>
+                                  
                             </div>
+                           
                         </div>
+                        
+                    
                         <div class="grid_24">
                             <div class="cat_navbar">
                                 <div class="wpapper">
@@ -253,7 +306,10 @@
                                 </div>
                             </div>
                         </div>
+                           
                     </div>
+
+                
                     <% if ((Session["NoticeMessage"] != null) || (Session["ErrorMessage"] != null)) {%>
                       <div class="row row_2 container_24">
                         <div class="grid_24">
@@ -283,6 +339,7 @@
                     <div class="custom-div-wrapper">
                       <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
                     </div>
+
                     <div class="row row_5 container_24">
                         <div class="col grid_24">
                             <div class="boxes_footer">
@@ -438,9 +495,12 @@
                         </div>
                     </div>
                 </div>
+                   
             </div>
+            
         </div>
     </div>
+        
     </form>
 </body>
 </html>

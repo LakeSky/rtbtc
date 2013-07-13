@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="Riyadh Travels | Home" Language="C#" MasterPageFile="~/Site.master"
     AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" %>
 
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
     <link href="/rtbtc/styles/search_box.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
@@ -11,14 +13,100 @@
     <script type="text/javascript" src="/rtbtc/scripts/custom_tabbing.js"></script>
     <script type="text/javascript" src="/rtbtc/scripts/hotel_search.js"></script>
     <style type="text/css">
-        .no-close .ui-dialog-titlebar-close
-        {
+        .no-close .ui-dialog-titlebar-close {
             display: none;
         }
-        div.camera_caption span.slider_text_2 
-        {
+
+        div.camera_caption span.slider_text_2 {
             width: 250px;
         }
+
+        .HPnewsLetterText {
+            float: left;
+            margin-top: 7px;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'Signika Negative', Arial, serif;
+            letter-spacing: -1px;
+            color: #00436E;
+            top: -8px;
+            margin-right: 16px;
+        }
+
+        #HPnewsLetterIcon {
+            float: left;
+            height: 30px;
+            width: 42px;
+            background-image: url('http://media.expedia.com/media/content/expus/graphics/launch/home/20120511_hp_mail.png');
+            margin-right: 11px;
+        }
+
+        .HPnewsLetterForm {
+            
+           
+            text-align:center;
+         
+        }
+
+            .HPnewsLetterForm .emailField {
+                font-weight: normal;
+                font-size: 14px;
+                float: left;
+                display: inline-block;
+                border: 1px solid #ccc;
+                color: #8f8f8f;
+                padding: 3px 3px 3px 7px;
+                width: 450px;
+                height: 28px;
+                margin-right: 6px;
+            }
+
+            .HPnewsLetterForm .submitButton {
+                /*float: right;
+                display: inline-block;*/
+              
+                height: 36px;
+                width: 78px;
+           position:relative;
+           bottom:20px;
+           left:130px;
+                margin: 0;
+       color:#000;
+                border: 0;
+              
+                text-transform: uppercase;
+                font-size: 11px;
+                cursor: pointer;
+                outline: none;
+                font-weight: bold;
+                
+            }
+
+                .HPnewsLetterForm .submitButton:hover {
+                    background-position: -216px 0px;
+                }
+
+            .HPnewsLetterForm .errorMsg {
+                position: relative;
+                display: none;
+                padding-left: 20px;
+                color: #df3400;
+                background: url(http://media.expedia.com/media/content/shared/graphics/home/graphics/travelAlert.gif) no-repeat left center;
+            }
+
+            .HPnewsLetterForm .errorEmail {
+                border: 1px solid red;
+                background-color: #ffe8ed;
+                color: #df3400;
+            }
+
+        #HPnewsLetterContent {
+            width: 954px;
+            height: 36px;
+        }
+        .dividerLine { margin: 25px 0px 25px 0px; border-top:1px solid #ddd; width:956px;}
+        .btn-primary {}
     </style>
     <script type="text/javascript">
         function ShowDialogBox() {
@@ -31,6 +119,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
+
   <div class="row row_2 container_24">
     <div class="grid_24 main_slider">
       <div id="search-bar">
@@ -206,8 +295,36 @@
       <div class="clear"></div>
     </div>
   </div>
-  <% if (!User.Identity.IsAuthenticated) {%>
-    <div class="row row_2 container_24">
+    <% if (!User.Identity.IsAuthenticated)
+       {%>
+
+    <div class="dividerLine clear top16"></div>
+    <div id="HPnewsLetterContent">
+        <div id="HPnewsLetterIcon"></div>
+        <div class="HPnewsLetterText">Get the Best Deals in your Inbox!</div>
+           <div class="alert alert-danger" runat="server" id="errorDiv"></div>
+        <div id="HPformDiv" class="HPnewsLetterForm">
+
+         
+
+            <form id="HPnewsForm" action="#">
+                <asp:TextBox ID="txtEmail" runat="server" placeholder="Sign up for Riyadh Travels" CssClass="emailField"></asp:TextBox>
+
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEmail" ForeColor="#FF3300"
+                    SetFocusOnError="True" ValidationGroup="subscribe">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ForeColor="#FF3300"
+                    ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" ControlToValidate="txtEmail"
+                    SetFocusOnError="True" ValidationGroup="subscribe"> Please enter valid email !
+                </asp:RegularExpressionValidator>
+
+                <asp:Button ID="Button1" runat="server" Text="Subscribe" CssClass="submitButton"
+                    OnClick="btnSubscribe_Click" ValidationGroup="subscribe" Width="89px" />
+            </form>
+        </div>
+    </div>
+
+
+    <%-- <div class="row row_2 container_24">
       <div class="grid_24">
         <div class="contentContainer page_search">
           <div class="contentBlock" style="width:32%;">
@@ -239,7 +356,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>--%>
   <%} %>
   <div class="clear"></div>
   <div class="margin10"></div>

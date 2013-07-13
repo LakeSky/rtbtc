@@ -15,8 +15,11 @@ public partial class Home : PublicApplicationPage
     public int RoomsCount;
     public string CityCode;
     public string masterCurrencyValue;
+    public B2CCustomerinfo b2CCustomerinfo;
+    public string UserName;
     protected void Page_Load(object sender, EventArgs e)
     {
+    
         masterCurrencyValue = GetMasteCurrencySelectedValue();
         if (!IsPostBack)
         {
@@ -42,6 +45,8 @@ public partial class Home : PublicApplicationPage
             rptrHotels.DataBind();
             rptrCities.DataSource = _meis007Entities.CityMasters.Where(x => x.DisplaySeqNo < 5).OrderBy(x => x.DisplaySeqNo).Take(4);
             rptrCities.DataBind();
+
+         
         }
     }
 

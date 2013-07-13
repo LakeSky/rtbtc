@@ -11,6 +11,9 @@ public partial class SiteMaster : System.Web.UI.MasterPage
     public bool hasBasketItems;
     public int basketItemsCount;
     public BasketHelper masterBasketHelper;
+    public B2CCustomerinfo b2CCustomerinfo;
+    public string UserName;
+    protected meis007Entities _meis007Entities;
     protected void Page_Load(object sender, EventArgs e)
     {
         hasBasketItems = false;
@@ -24,7 +27,16 @@ public partial class SiteMaster : System.Web.UI.MasterPage
         if (!IsPostBack)
         {
             BindMasterCurrencyDropDown();
+      
         }
+        if (Page.User.Identity.IsAuthenticated)
+        {
+            _meis007Entities = new meis007Entities();
+            var _currentUserId = CurrentUser.Id();
+            b2CCustomerinfo = _meis007Entities.B2CCustomerinfo.Where(x => x.CustomerSNo == _currentUserId).First();
+            UserName = b2CCustomerinfo.PaxFirstName;
+        }
+
     }
 
    protected List<CurrencyHelper> GetCurrencies() {
