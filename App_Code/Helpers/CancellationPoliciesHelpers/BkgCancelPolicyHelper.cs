@@ -34,7 +34,7 @@ public class BkgCancelPolicyHelper
                 SearchId = suppliersHotelsInfo.SearchID,
                 SupplierId = suppliersHotelsInfo.SupplierID,
                 UnitMultiplier = x.UnitMultiplier,
-                XMLBookingId = hotelBooking.BookingId,
+                XMLBookingId = hotelBooking.BookingId.ToString(),
                 CreatedAt = DateTime.Now
             };
             _meis007Entities.AddToBkgCancelPolicies(bkgCancelPolicy);

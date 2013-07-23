@@ -65,7 +65,8 @@ public partial class Bookings_cancel : System.Web.UI.Page
         }
         var reservationId = booking.SupplierRefNo + " ~ " + booking.SupplierConfNo;
         supplierFactory = new RepositoryFactory(null, Guid.NewGuid().ToString());
-        var cancelled = supplierFactory.CancelHotelRoomBooking(Session.SessionID, int.Parse(booking.SearchID.ToString()), int.Parse(booking.HotelInfoID.ToString()), reservationId, DbParameter.GetSupplierName(booking.SupplierID.ToString()));
+        //var cancelled = supplierFactory.CancelHotelRoomBooking(Session.SessionID, int.Parse(booking.SearchID.ToString()), int.Parse(booking.HotelInfoID.ToString()), reservationId, DbParameter.GetSupplierName(booking.SupplierID.ToString()));
+        var cancelled = supplierFactory.CancelHotelRoomBooking(Session.SessionID, null, DbParameter.GetSupplierName(booking.SupplierID.ToString()));
         if (true){//cancelled) {
             CreateBooking(booking, _meis007Entities);
             Session["NoticeMessage"] = "Successfully cancelled booking";

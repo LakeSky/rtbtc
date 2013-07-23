@@ -56,8 +56,8 @@ public class SupplierCancellationPolicies
             var cancellationEntity = new CancelationEntity()
             {
                 HotelInfoId = int.Parse(suppliersHotelsInfo.HotelInfoID.ToString()),
-                HotelId = int.Parse(suppliersHotelsInfo.HotelID.ToString()),
-                RoomTypeId = int.Parse(suppliersHotelsInfo.RoomTypeID.ToString()),
+                HotelId = suppliersHotelsInfo.HotelID.ToString(),
+                RoomTypeId = suppliersHotelsInfo.RoomTypeID.ToString(),
                 CheckIn = startDate,
                 CheckOut = endDate,
                 SearchId = int.Parse(suppliersHotelsInfo.SearchID.ToString())

@@ -15,8 +15,8 @@ using System.Data.SqlClient;
 public class SupplierHotelObjectHelper
 {
     int searchId;
-    int supplierHotelId;
-    int supplierHotelRoomId;
+    string supplierHotelId;
+    string supplierHotelRoomId;
     long productMasterId;
     long hotelInfoId;
     string status;
@@ -62,8 +62,8 @@ public class SupplierHotelObjectHelper
         _sqlDataReader = _sqlCommand.ExecuteReader();
         while (_sqlDataReader.Read())
         {
-            supplierHotelRoomId = int.Parse(_sqlDataReader["RoomID"].ToString());
-            supplierHotelId = int.Parse(_sqlDataReader["HotelID"].ToString());
+            supplierHotelRoomId = _sqlDataReader["RoomID"].ToString();
+            supplierHotelId = _sqlDataReader["HotelID"].ToString();
             productMasterId = long.Parse(_sqlDataReader["ProductID"].ToString());
             price = decimal.Parse("0.0");
             hotelInfoId = long.Parse(_sqlDataReader["HotelInfoID"].ToString());

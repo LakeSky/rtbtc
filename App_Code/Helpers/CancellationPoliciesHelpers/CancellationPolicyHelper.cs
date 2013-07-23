@@ -16,6 +16,7 @@ public class CancellationPolicyHelper
     public static List<CancellationPolicyHelper> GetCancelPolicies(string id, string supplierName, string startDateTime, string endDateTime)
     {
         long hotelInfoId = long.Parse(id);
+        
         var startDate = DateTime.Parse(startDateTime);
         var endDate = DateTime.Parse(startDateTime);
         meis007Entities _meis007Entities = new meis007Entities();

@@ -19,16 +19,16 @@ public static class RoomObjectHelper
         decimal price = decimal.Parse("0.0");
         string sessionId;
         string supplierId;
-        int supplierHotelId;
+        string supplierHotelId;
         int nights;
         int passengers;
         int children;
-        int roomId = -1;
+        string roomId = string.Empty;
         if (basketHelper == null){
             var supplierHotelInfo = _meis007Model.SuppliersHotelsInfoes.Where(x => x.HotelInfoID == supplierHotelInfoId).First();
             sessionId = supplierHotelInfo.SessionID;
             supplierId = supplierHotelInfo.SupplierID;
-            supplierHotelId = int.Parse(supplierHotelInfo.HotelID.ToString());
+            supplierHotelId = supplierHotelInfo.HotelID.ToString();
             nights = int.Parse(supplierHotelInfo.NumOfNights.ToString());
             passengers = int.Parse(supplierHotelInfo.NumOfPassengers.ToString());
             children = int.Parse(supplierHotelInfo.NumOfChildrens.ToString());
@@ -57,7 +57,7 @@ public static class RoomObjectHelper
         var _sqlDataReader = _sqlCommand.ExecuteReader();
         while (_sqlDataReader.Read())
         {
-            if (basketHelper == null || (roomId == int.Parse(_sqlDataReader["RoomID"].ToString())))
+            if (basketHelper == null || (roomId == _sqlDataReader["RoomID"].ToString()))
             {
                 price = decimal.Parse("0.0");
                 if (!string.IsNullOrEmpty(_sqlDataReader["LCAP"].ToString()))
@@ -68,7 +68,7 @@ public static class RoomObjectHelper
                 {
                     HotelInfoId = long.Parse(_sqlDataReader["HotelInfoID"].ToString()),
                     SupplierName = _sqlDataReader["SupplierName"].ToString(),
-                    RoomId = int.Parse(_sqlDataReader["RoomID"].ToString()),
+                    RoomId = _sqlDataReader["RoomID"].ToString(),
                     RoomName = _sqlDataReader["RoomName"].ToString(),
                     RoomType = _sqlDataReader["RoomType"].ToString(),
                     Price = price

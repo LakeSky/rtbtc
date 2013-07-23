@@ -9,8 +9,8 @@ public class BasketHotelDetails
     public string sessionId { get; set; }
     public string supplierId { get; set; }
     public string SupplierName { get; set; }
-    public int supplierHotelId { get; set; }
-    public int supplierRoomId { get; set; }
+    public string supplierHotelId { get; set; }
+    public string supplierRoomId { get; set; }
     public int NoOfNights { get; set; }
     public int NoOfPassengers { get; set; }
     public int NoOfChildren { get; set; }

@@ -70,11 +70,27 @@
             <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
             <End Role="HotelBooking" EntitySet="HotelBooking" />
           </AssociationSet>
-          <AssociationSet Name="FK__TouricoCa__Hotel__1FA39FB9" Association="meis007Model.Store.FK__TouricoCa__Hotel__1FA39FB9">
+          <AssociationSet Name="FK__TouricoCa__Hotel__28F7FFC9" Association="meis007Model.Store.FK__TouricoCa__Hotel__28F7FFC9">
             <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
             <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicy" />
           </AssociationSet>
-          <AssociationSet Name="FK__TouricoCa__Hotel__218BE82B" Association="meis007Model.Store.FK__TouricoCa__Hotel__218BE82B">
+          <AssociationSet Name="FK__TouricoCa__Hotel__29EC2402" Association="meis007Model.Store.FK__TouricoCa__Hotel__29EC2402">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TouricoCa__Hotel__2AE0483B" Association="meis007Model.Store.FK__TouricoCa__Hotel__2AE0483B">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TouricoCa__Hotel__2BD46C74" Association="meis007Model.Store.FK__TouricoCa__Hotel__2BD46C74">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TouricoCa__Hotel__2CC890AD" Association="meis007Model.Store.FK__TouricoCa__Hotel__2CC890AD">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TouricoCa__Hotel__2DBCB4E6" Association="meis007Model.Store.FK__TouricoCa__Hotel__2DBCB4E6">
             <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfo" />
             <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicy" />
           </AssociationSet>
@@ -288,8 +304,8 @@
           <Property Name="CancellationRec" Type="numeric" Scale="5" />
           <Property Name="CancellationPay" Type="numeric" Scale="5" />
           <Property Name="supplierHotelID" Type="int" />
-          <Property Name="StarsLevel" Type="decimal" Precision="5" Scale="3" />
-          <Property Name="SupplierRoomID" Type="int" />
+          <Property Name="StarsLevel" Type="varchar" MaxLength="255" />
+          <Property Name="SupplierRoomID" Type="varchar" MaxLength="255" />
           <Property Name="SupplierRoomTypeID" Type="bigint" />
           <Property Name="SupplierRoomType" Type="varchar" MaxLength="255" />
           <Property Name="SupplierRoomName" Type="varchar" MaxLength="255" />
@@ -633,10 +649,10 @@
           <Property Name="SearchID" Type="int" />
           <Property Name="SupplierID" Type="varchar" MaxLength="100" />
           <Property Name="LocHotelID" Type="bigint" />
-          <Property Name="HotelID" Type="bigint" />
+          <Property Name="HotelID" Type="varchar" MaxLength="255" />
           <Property Name="HotelName" Type="varchar" MaxLength="255" />
-          <Property Name="StarsLevel" Type="decimal" Precision="5" Scale="3" />
-          <Property Name="RoomID" Type="int" />
+          <Property Name="StarsLevel" Type="varchar" MaxLength="255" />
+          <Property Name="RoomID" Type="varchar" MaxLength="255" />
           <Property Name="RoomTypeID" Type="bigint" />
           <Property Name="RoomType" Type="varchar" MaxLength="255" />
           <Property Name="RoomName" Type="varchar" MaxLength="255" />
@@ -731,7 +747,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TouricoCa__Hotel__1FA39FB9">
+        <Association Name="FK__TouricoCa__Hotel__28F7FFC9">
           <End Role="SuppliersHotelsInfo" Type="meis007Model.Store.SuppliersHotelsInfo" Multiplicity="0..1" />
           <End Role="TouricoCancelationPolicy" Type="meis007Model.Store.TouricoCancelationPolicy" Multiplicity="*" />
           <ReferentialConstraint>
@@ -743,7 +759,55 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TouricoCa__Hotel__218BE82B">
+        <Association Name="FK__TouricoCa__Hotel__29EC2402">
+          <End Role="SuppliersHotelsInfo" Type="meis007Model.Store.SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Role="TouricoCancelationPolicy" Type="meis007Model.Store.TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TouricoCa__Hotel__2AE0483B">
+          <End Role="SuppliersHotelsInfo" Type="meis007Model.Store.SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Role="TouricoCancelationPolicy" Type="meis007Model.Store.TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TouricoCa__Hotel__2BD46C74">
+          <End Role="SuppliersHotelsInfo" Type="meis007Model.Store.SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Role="TouricoCancelationPolicy" Type="meis007Model.Store.TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TouricoCa__Hotel__2CC890AD">
+          <End Role="SuppliersHotelsInfo" Type="meis007Model.Store.SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Role="TouricoCancelationPolicy" Type="meis007Model.Store.TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TouricoCa__Hotel__2DBCB4E6">
           <End Role="SuppliersHotelsInfo" Type="meis007Model.Store.SuppliersHotelsInfo" Multiplicity="0..1" />
           <End Role="TouricoCancelationPolicy" Type="meis007Model.Store.TouricoCancelationPolicy" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1038,16 +1102,7 @@
             <End Role="RoomTypeDetail" EntitySet="RoomTypeDetails" />
           </AssociationSet>
           <EntitySet Name="HotelBookings" EntityType="meis007Model.HotelBooking" />
-          <EntitySet Name="SuppliersHotelsInfoes" EntityType="meis007Model.SuppliersHotelsInfo" />
-          <AssociationSet Name="FK__HotelBook__Hotel__28A2FA0E" Association="meis007Model.FK__HotelBook__Hotel__28A2FA0E">
-            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
-            <End Role="HotelBooking" EntitySet="HotelBookings" />
-          </AssociationSet>
           <EntitySet Name="TouricoCancelationPolicies" EntityType="meis007Model.TouricoCancelationPolicy" />
-          <AssociationSet Name="FK__TouricoCa__Hotel__40457975" Association="meis007Model.FK__TouricoCa__Hotel__40457975">
-            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
-            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicies" />
-          </AssociationSet>
           <EntitySet Name="BkgCancelPolicies" EntityType="meis007Model.BkgCancelPolicy" />
           <EntitySet Name="SupplierMasters" EntityType="meis007Model.SupplierMaster" />
           <EntitySet Name="PGCreditCards" EntityType="meis007Model.PGCreditCard" />
@@ -1058,12 +1113,41 @@
             <End Role="CityMaster" EntitySet="CityMasters" />
             <End Role="CustomerMaster" EntitySet="CustomerMasters" />
           </AssociationSet>
+          <EntitySet Name="UserMasters" EntityType="meis007Model.UserMaster" />
+          <EntitySet Name="SuppliersHotelsInfoes" EntityType="meis007Model.SuppliersHotelsInfo" />
+          <AssociationSet Name="FK__HotelBook__Hotel__28A2FA0E" Association="meis007Model.FK__HotelBook__Hotel__28A2FA0E">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
+            <End Role="HotelBooking" EntitySet="HotelBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TouricoCa__Hotel__28F7FFC9" Association="meis007Model.FK__TouricoCa__Hotel__28F7FFC9">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TouricoCa__Hotel__29EC2402" Association="meis007Model.FK__TouricoCa__Hotel__29EC2402">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TouricoCa__Hotel__2AE0483B" Association="meis007Model.FK__TouricoCa__Hotel__2AE0483B">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TouricoCa__Hotel__2BD46C74" Association="meis007Model.FK__TouricoCa__Hotel__2BD46C74">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TouricoCa__Hotel__2CC890AD" Association="meis007Model.FK__TouricoCa__Hotel__2CC890AD">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TouricoCa__Hotel__2DBCB4E6" Association="meis007Model.FK__TouricoCa__Hotel__2DBCB4E6">
+            <End Role="SuppliersHotelsInfo" EntitySet="SuppliersHotelsInfoes" />
+            <End Role="TouricoCancelationPolicy" EntitySet="TouricoCancelationPolicies" />
+          </AssociationSet>
           <EntitySet Name="BkgMasters" EntityType="meis007Model.BkgMaster" />
           <AssociationSet Name="FK_BkgCancelPolicies_BkgMaster" Association="meis007Model.FK_BkgCancelPolicies_BkgMaster">
             <End Role="BkgMaster" EntitySet="BkgMasters" />
             <End Role="BkgCancelPolicy" EntitySet="BkgCancelPolicies" />
           </AssociationSet>
-          <EntitySet Name="UserMasters" EntityType="meis007Model.UserMaster" />
         </EntityContainer>
         <EntityType Name="AmadeusTable">
           <Key>
@@ -1587,56 +1671,6 @@
           <Property Type="Boolean" Name="IsCancelled" />
           <NavigationProperty Name="SuppliersHotelsInfo" Relationship="meis007Model.FK__HotelBook__Hotel__28A2FA0E" FromRole="HotelBooking" ToRole="SuppliersHotelsInfo" />
         </EntityType>
-        <EntityType Name="SuppliersHotelsInfo">
-          <Key>
-            <PropertyRef Name="HotelInfoID" />
-          </Key>
-          <Property Type="Int64" Name="HotelInfoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="SessionID" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="SearchID" />
-          <Property Type="String" Name="SupplierID" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int64" Name="LocHotelID" />
-          <Property Type="Int64" Name="HotelID" />
-          <Property Type="String" Name="HotelName" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="StarsLevel" Precision="5" Scale="3" />
-          <Property Type="Int32" Name="RoomID" />
-          <Property Type="Int64" Name="RoomTypeID" />
-          <Property Type="String" Name="RoomType" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RoomName" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IsAvailable" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="NumOfNights" />
-          <Property Type="Int32" Name="NumOfPassengers" />
-          <Property Type="Int32" Name="NumOfChildrens" />
-          <Property Type="String" Name="CurrencyCode" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="FCAP" Precision="12" Scale="4" />
-          <Property Type="Decimal" Name="ExchRate" Precision="12" Scale="9" />
-          <Property Type="Decimal" Name="LCAP" Precision="12" Scale="4" />
-          <Property Type="Decimal" Name="AvrNightPricePay" Precision="9" Scale="2" />
-          <Property Type="Decimal" Name="AvrNightPriceSale" Precision="9" Scale="2" />
-          <Property Type="Int32" Name="MarkUp" />
-          <Property Type="Decimal" Name="TPABC" Precision="9" Scale="2" />
-          <Property Type="Int32" Name="RateSDID" />
-          <Property Type="Int32" Name="BBID" />
-          <Property Type="String" Name="BBName" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="CityId" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="CountryID" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Address" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="ModDate" />
-          <NavigationProperty Name="HotelBookings" Relationship="meis007Model.FK__HotelBook__Hotel__28A2FA0E" FromRole="SuppliersHotelsInfo" ToRole="HotelBooking" />
-          <NavigationProperty Name="TouricoCancelationPolicies" Relationship="meis007Model.FK__TouricoCa__Hotel__40457975" FromRole="SuppliersHotelsInfo" ToRole="TouricoCancelationPolicy" />
-        </EntityType>
-        <Association Name="FK__HotelBook__Hotel__28A2FA0E">
-          <End Type="meis007Model.SuppliersHotelsInfo" Role="SuppliersHotelsInfo" Multiplicity="0..1" />
-          <End Type="meis007Model.HotelBooking" Role="HotelBooking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SuppliersHotelsInfo">
-              <PropertyRef Name="HotelInfoID" />
-            </Principal>
-            <Dependent Role="HotelBooking">
-              <PropertyRef Name="HotelInfoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="TouricoCancelationPolicy">
           <Key>
             <PropertyRef Name="CID" />
@@ -1651,20 +1685,13 @@
           <Property Type="Int32" Name="NumberOfNights" />
           <Property Type="String" Name="OffSetUnit" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="UnitMultiplier" />
-          <NavigationProperty Name="SuppliersHotelsInfo" Relationship="meis007Model.FK__TouricoCa__Hotel__40457975" FromRole="TouricoCancelationPolicy" ToRole="SuppliersHotelsInfo" />
+          <NavigationProperty Name="SuppliersHotelsInfo" Relationship="meis007Model.FK__TouricoCa__Hotel__28F7FFC9" FromRole="TouricoCancelationPolicy" ToRole="SuppliersHotelsInfo" />
+          <NavigationProperty Name="SuppliersHotelsInfo1" Relationship="meis007Model.FK__TouricoCa__Hotel__29EC2402" FromRole="TouricoCancelationPolicy" ToRole="SuppliersHotelsInfo" />
+          <NavigationProperty Name="SuppliersHotelsInfo2" Relationship="meis007Model.FK__TouricoCa__Hotel__2AE0483B" FromRole="TouricoCancelationPolicy" ToRole="SuppliersHotelsInfo" />
+          <NavigationProperty Name="SuppliersHotelsInfo3" Relationship="meis007Model.FK__TouricoCa__Hotel__2BD46C74" FromRole="TouricoCancelationPolicy" ToRole="SuppliersHotelsInfo" />
+          <NavigationProperty Name="SuppliersHotelsInfo4" Relationship="meis007Model.FK__TouricoCa__Hotel__2CC890AD" FromRole="TouricoCancelationPolicy" ToRole="SuppliersHotelsInfo" />
+          <NavigationProperty Name="SuppliersHotelsInfo5" Relationship="meis007Model.FK__TouricoCa__Hotel__2DBCB4E6" FromRole="TouricoCancelationPolicy" ToRole="SuppliersHotelsInfo" />
         </EntityType>
-        <Association Name="FK__TouricoCa__Hotel__40457975">
-          <End Type="meis007Model.SuppliersHotelsInfo" Role="SuppliersHotelsInfo" Multiplicity="0..1" />
-          <End Type="meis007Model.TouricoCancelationPolicy" Role="TouricoCancelationPolicy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SuppliersHotelsInfo">
-              <PropertyRef Name="HotelInfoID" />
-            </Principal>
-            <Dependent Role="TouricoCancelationPolicy">
-              <PropertyRef Name="HotelInfoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="BkgCancelPolicy">
           <Key>
             <PropertyRef Name="Id" />
@@ -1808,6 +1835,148 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="userid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DeptID" />
+          <Property Type="String" Name="IsSa" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Type="Byte" Name="IsFreeze" />
+          <Property Type="String" Name="emailID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModDate" />
+          <Property Type="String" Name="ModUserID" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SuppliersHotelsInfo">
+          <Key>
+            <PropertyRef Name="HotelInfoID" />
+          </Key>
+          <Property Type="Int64" Name="HotelInfoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SessionID" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="SearchID" />
+          <Property Type="String" Name="SupplierID" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="LocHotelID" />
+          <Property Type="String" Name="HotelID" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="HotelName" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="StarsLevel" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RoomID" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="RoomTypeID" />
+          <Property Type="String" Name="RoomType" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RoomName" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IsAvailable" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="NumOfNights" />
+          <Property Type="Int32" Name="NumOfPassengers" />
+          <Property Type="Int32" Name="NumOfChildrens" />
+          <Property Type="String" Name="CurrencyCode" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="FCAP" Precision="12" Scale="4" />
+          <Property Type="Decimal" Name="ExchRate" Precision="12" Scale="9" />
+          <Property Type="Decimal" Name="LCAP" Precision="12" Scale="4" />
+          <Property Type="Decimal" Name="AvrNightPricePay" Precision="9" Scale="2" />
+          <Property Type="Decimal" Name="AvrNightPriceSale" Precision="9" Scale="2" />
+          <Property Type="Int32" Name="MarkUp" />
+          <Property Type="Decimal" Name="TPABC" Precision="9" Scale="2" />
+          <Property Type="Int32" Name="RateSDID" />
+          <Property Type="Int32" Name="BBID" />
+          <Property Type="String" Name="BBName" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CityId" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CountryID" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ModDate" />
+          <NavigationProperty Name="HotelBookings" Relationship="meis007Model.FK__HotelBook__Hotel__28A2FA0E" FromRole="SuppliersHotelsInfo" ToRole="HotelBooking" />
+          <NavigationProperty Name="TouricoCancelationPolicies" Relationship="meis007Model.FK__TouricoCa__Hotel__28F7FFC9" FromRole="SuppliersHotelsInfo" ToRole="TouricoCancelationPolicy" />
+          <NavigationProperty Name="TouricoCancelationPolicies1" Relationship="meis007Model.FK__TouricoCa__Hotel__29EC2402" FromRole="SuppliersHotelsInfo" ToRole="TouricoCancelationPolicy" />
+          <NavigationProperty Name="TouricoCancelationPolicies2" Relationship="meis007Model.FK__TouricoCa__Hotel__2AE0483B" FromRole="SuppliersHotelsInfo" ToRole="TouricoCancelationPolicy" />
+          <NavigationProperty Name="TouricoCancelationPolicies3" Relationship="meis007Model.FK__TouricoCa__Hotel__2BD46C74" FromRole="SuppliersHotelsInfo" ToRole="TouricoCancelationPolicy" />
+          <NavigationProperty Name="TouricoCancelationPolicies4" Relationship="meis007Model.FK__TouricoCa__Hotel__2CC890AD" FromRole="SuppliersHotelsInfo" ToRole="TouricoCancelationPolicy" />
+          <NavigationProperty Name="TouricoCancelationPolicies5" Relationship="meis007Model.FK__TouricoCa__Hotel__2DBCB4E6" FromRole="SuppliersHotelsInfo" ToRole="TouricoCancelationPolicy" />
+        </EntityType>
+        <Association Name="FK__HotelBook__Hotel__28A2FA0E">
+          <End Type="meis007Model.SuppliersHotelsInfo" Role="SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Type="meis007Model.HotelBooking" Role="HotelBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="HotelBooking">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TouricoCa__Hotel__28F7FFC9">
+          <End Type="meis007Model.SuppliersHotelsInfo" Role="SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Type="meis007Model.TouricoCancelationPolicy" Role="TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TouricoCa__Hotel__29EC2402">
+          <End Type="meis007Model.SuppliersHotelsInfo" Role="SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Type="meis007Model.TouricoCancelationPolicy" Role="TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TouricoCa__Hotel__2AE0483B">
+          <End Type="meis007Model.SuppliersHotelsInfo" Role="SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Type="meis007Model.TouricoCancelationPolicy" Role="TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TouricoCa__Hotel__2BD46C74">
+          <End Type="meis007Model.SuppliersHotelsInfo" Role="SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Type="meis007Model.TouricoCancelationPolicy" Role="TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TouricoCa__Hotel__2CC890AD">
+          <End Type="meis007Model.SuppliersHotelsInfo" Role="SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Type="meis007Model.TouricoCancelationPolicy" Role="TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TouricoCa__Hotel__2DBCB4E6">
+          <End Type="meis007Model.SuppliersHotelsInfo" Role="SuppliersHotelsInfo" Multiplicity="0..1" />
+          <End Type="meis007Model.TouricoCancelationPolicy" Role="TouricoCancelationPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuppliersHotelsInfo">
+              <PropertyRef Name="HotelInfoID" />
+            </Principal>
+            <Dependent Role="TouricoCancelationPolicy">
+              <PropertyRef Name="HotelInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="BkgMaster">
           <Key>
             <PropertyRef Name="BkgID" />
@@ -1858,8 +2027,8 @@
           <Property Type="Decimal" Name="CancellationRec" Precision="18" Scale="5" />
           <Property Type="Decimal" Name="CancellationPay" Precision="18" Scale="5" />
           <Property Type="Int32" Name="supplierHotelID" />
-          <Property Type="Decimal" Name="StarsLevel" Precision="5" Scale="3" />
-          <Property Type="Int32" Name="SupplierRoomID" />
+          <Property Type="String" Name="StarsLevel" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SupplierRoomID" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="Int64" Name="SupplierRoomTypeID" />
           <Property Type="String" Name="SupplierRoomType" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="SupplierRoomName" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -1886,21 +2055,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="UserMaster">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="userid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="UserName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="DeptID" />
-          <Property Type="String" Name="IsSa" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Type="Byte" Name="IsFreeze" />
-          <Property Type="String" Name="emailID" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="ModDate" />
-          <Property Type="String" Name="ModUserID" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2143,43 +2297,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SuppliersHotelsInfoes">
-            <EntityTypeMapping TypeName="meis007Model.SuppliersHotelsInfo">
-              <MappingFragment StoreEntitySet="SuppliersHotelsInfo">
-                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="BBName" ColumnName="BBName" />
-                <ScalarProperty Name="BBID" ColumnName="BBID" />
-                <ScalarProperty Name="RateSDID" ColumnName="RateSDID" />
-                <ScalarProperty Name="TPABC" ColumnName="TPABC" />
-                <ScalarProperty Name="MarkUp" ColumnName="MarkUp" />
-                <ScalarProperty Name="AvrNightPriceSale" ColumnName="AvrNightPriceSale" />
-                <ScalarProperty Name="AvrNightPricePay" ColumnName="AvrNightPricePay" />
-                <ScalarProperty Name="LCAP" ColumnName="LCAP" />
-                <ScalarProperty Name="ExchRate" ColumnName="ExchRate" />
-                <ScalarProperty Name="FCAP" ColumnName="FCAP" />
-                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
-                <ScalarProperty Name="NumOfChildrens" ColumnName="NumOfChildrens" />
-                <ScalarProperty Name="NumOfPassengers" ColumnName="NumOfPassengers" />
-                <ScalarProperty Name="NumOfNights" ColumnName="NumOfNights" />
-                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
-                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
-                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
-                <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
-                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
-                <ScalarProperty Name="StarsLevel" ColumnName="StarsLevel" />
-                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
-                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
-                <ScalarProperty Name="LocHotelID" ColumnName="LocHotelID" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-                <ScalarProperty Name="SearchID" ColumnName="SearchID" />
-                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
-                <ScalarProperty Name="HotelInfoID" ColumnName="HotelInfoID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TouricoCancelationPolicies">
             <EntityTypeMapping TypeName="meis007Model.TouricoCancelationPolicy">
               <MappingFragment StoreEntitySet="TouricoCancelationPolicy">
@@ -2331,6 +2448,59 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="meis007Model.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="ModUserID" ColumnName="ModUserID" />
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="emailID" ColumnName="emailID" />
+                <ScalarProperty Name="IsFreeze" ColumnName="IsFreeze" />
+                <ScalarProperty Name="IsSa" ColumnName="IsSa" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuppliersHotelsInfoes">
+            <EntityTypeMapping TypeName="meis007Model.SuppliersHotelsInfo">
+              <MappingFragment StoreEntitySet="SuppliersHotelsInfo">
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="BBName" ColumnName="BBName" />
+                <ScalarProperty Name="BBID" ColumnName="BBID" />
+                <ScalarProperty Name="RateSDID" ColumnName="RateSDID" />
+                <ScalarProperty Name="TPABC" ColumnName="TPABC" />
+                <ScalarProperty Name="MarkUp" ColumnName="MarkUp" />
+                <ScalarProperty Name="AvrNightPriceSale" ColumnName="AvrNightPriceSale" />
+                <ScalarProperty Name="AvrNightPricePay" ColumnName="AvrNightPricePay" />
+                <ScalarProperty Name="LCAP" ColumnName="LCAP" />
+                <ScalarProperty Name="ExchRate" ColumnName="ExchRate" />
+                <ScalarProperty Name="FCAP" ColumnName="FCAP" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="NumOfChildrens" ColumnName="NumOfChildrens" />
+                <ScalarProperty Name="NumOfPassengers" ColumnName="NumOfPassengers" />
+                <ScalarProperty Name="NumOfNights" ColumnName="NumOfNights" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="StarsLevel" ColumnName="StarsLevel" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="LocHotelID" ColumnName="LocHotelID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="SearchID" ColumnName="SearchID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="HotelInfoID" ColumnName="HotelInfoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BkgMasters">
             <EntityTypeMapping TypeName="meis007Model.BkgMaster">
               <MappingFragment StoreEntitySet="BkgMaster">
@@ -2394,22 +2564,6 @@
                 <ScalarProperty Name="SearchID" ColumnName="SearchID" />
                 <ScalarProperty Name="BasketID" ColumnName="BasketID" />
                 <ScalarProperty Name="BkgID" ColumnName="BkgID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserMasters">
-            <EntityTypeMapping TypeName="meis007Model.UserMaster">
-              <MappingFragment StoreEntitySet="UserMaster">
-                <ScalarProperty Name="ModUserID" ColumnName="ModUserID" />
-                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
-                <ScalarProperty Name="emailID" ColumnName="emailID" />
-                <ScalarProperty Name="IsFreeze" ColumnName="IsFreeze" />
-                <ScalarProperty Name="IsSa" ColumnName="IsSa" />
-                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="userid" ColumnName="userid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2541,16 +2695,7 @@
           <ConnectorPoint PointX="3" PointY="7.5574446614583337" />
         </AssociationConnector>
         <EntityTypeShape EntityType="meis007Model.HotelBooking" Width="1.5" PointX="17" PointY="15.875" Height="2.749492187499996" />
-        <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="14.75" PointY="14.625" Height="7.1724251302083246" />
-        <AssociationConnector Association="meis007Model.FK__HotelBook__Hotel__28A2FA0E" >
-          <ConnectorPoint PointX="16.25" PointY="17.249746093749998" />
-          <ConnectorPoint PointX="17" PointY="17.249746093749998" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="meis007Model.TouricoCancelationPolicy" Width="1.5" PointX="17" PointY="19.75" Height="3.1340950520833246" />
-        <AssociationConnector Association="meis007Model.FK__TouricoCa__Hotel__40457975" >
-          <ConnectorPoint PointX="16.25" PointY="20.869863281249998" />
-          <ConnectorPoint PointX="17" PointY="20.869863281249998" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="meis007Model.BkgCancelPolicy" Width="1.5" PointX="6.625" PointY="23.375" Height="3.903300781249996" />
         <EntityTypeShape EntityType="meis007Model.SupplierMaster" Width="1.5" PointX="10.375" PointY="14.75" Height="5.4417122395833246" />
         <EntityTypeShape EntityType="meis007Model.PGCreditCard" Width="1.5" PointX="17.375" PointY="4.75" Height="3.1340950520833246" />
@@ -2562,12 +2707,41 @@
           <ConnectorPoint PointX="12.34375" PointY="26.297760416666662" />
           <ConnectorPoint PointX="14.25" PointY="26.297760416666662" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="meis007Model.BkgMaster" Width="1.5" PointX="4.375" PointY="19" Height="12.749166666666667" />
-        <AssociationConnector Association="meis007Model.FK_BkgCancelPolicies_BkgMaster" >
-          <ConnectorPoint PointX="5.875" PointY="25.326650390625" />
-          <ConnectorPoint PointX="6.625" PointY="25.326650390625" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="meis007Model.UserMaster" Width="1.5" PointX="19.375" PointY="5.75" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="14.75" PointY="15" Height="7.1801155598958246" />
+        <AssociationConnector Association="meis007Model.FK__HotelBook__Hotel__28A2FA0E" >
+          <ConnectorPoint PointX="16.25" PointY="17.082021484375" />
+          <ConnectorPoint PointX="17" PointY="17.082021484375" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK__TouricoCa__Hotel__28F7FFC9" >
+          <ConnectorPoint PointX="16.25" PointY="20.965057779947912" />
+          <ConnectorPoint PointX="17" PointY="20.965057779947912" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK__TouricoCa__Hotel__29EC2402" >
+          <ConnectorPoint PointX="16.25" PointY="20.295028889973956" />
+          <ConnectorPoint PointX="17" PointY="20.295028889973956" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK__TouricoCa__Hotel__2AE0483B" >
+          <ConnectorPoint PointX="16.25" PointY="21.635086669921868" />
+          <ConnectorPoint PointX="17" PointY="21.635086669921868" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK__TouricoCa__Hotel__2BD46C74" >
+          <ConnectorPoint PointX="16.25" PointY="21.30007222493489" />
+          <ConnectorPoint PointX="17" PointY="21.30007222493489" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK__TouricoCa__Hotel__2CC890AD" >
+          <ConnectorPoint PointX="16.25" PointY="20.630043334960934" />
+          <ConnectorPoint PointX="17" PointY="20.630043334960934" />
+        </AssociationConnector>
+        <AssociationConnector Association="meis007Model.FK__TouricoCa__Hotel__2DBCB4E6" >
+          <ConnectorPoint PointX="16.25" PointY="19.960014444986978" />
+          <ConnectorPoint PointX="17" PointY="19.960014444986978" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="meis007Model.BkgMaster" Width="1.5" PointX="4.375" PointY="19.625" Height="10.960104166666667" />
+        <AssociationConnector Association="meis007Model.FK_BkgCancelPolicies_BkgMaster" >
+          <ConnectorPoint PointX="5.875" PointY="25.0750634765625" />
+          <ConnectorPoint PointX="6.625" PointY="25.0750634765625" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>

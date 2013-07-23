@@ -9,7 +9,7 @@ using System.Web;
 public class SupplierHotelRoomHelper
 {
     public long HotelInfoId { get; set; }
-    public int RoomId { get; set; }
+    public string RoomId { get; set; }
     public string SupplierName { get; set; }
     public string RoomType { get; set; }
     public string RoomName { get; set; }

@@ -34,9 +34,14 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_RoomTypeDetail", "RoomTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.RoomTypeDetail), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.RoomTypeHeader), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_RoomTypeDetail_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.RoomTypeHeader), "RoomTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.RoomTypeDetail), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK__HotelBook__Hotel__28A2FA0E", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "HotelBooking", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.HotelBooking), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_CustomerMaster_CityMaster", "CityMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.CityMaster), "CustomerMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CustomerMaster), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK__HotelBook__Hotel__28A2FA0E", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "HotelBooking", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.HotelBooking), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__28F7FFC9", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__29EC2402", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2AE0483B", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2BD46C74", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2CC890AD", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2DBCB4E6", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_BkgCancelPolicies_BkgMaster", "BkgMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.BkgMaster), "BkgCancelPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.BkgCancelPolicy), true)]
 
 #endregion
@@ -508,22 +513,6 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<SuppliersHotelsInfo> SuppliersHotelsInfoes
-        {
-            get
-            {
-                if ((_SuppliersHotelsInfoes == null))
-                {
-                    _SuppliersHotelsInfoes = base.CreateObjectSet<SuppliersHotelsInfo>("SuppliersHotelsInfoes");
-                }
-                return _SuppliersHotelsInfoes;
-            }
-        }
-        private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<TouricoCancelationPolicy> TouricoCancelationPolicies
         {
             get
@@ -636,22 +625,6 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<BkgMaster> BkgMasters
-        {
-            get
-            {
-                if ((_BkgMasters == null))
-                {
-                    _BkgMasters = base.CreateObjectSet<BkgMaster>("BkgMasters");
-                }
-                return _BkgMasters;
-            }
-        }
-        private ObjectSet<BkgMaster> _BkgMasters;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<UserMaster> UserMasters
         {
             get
@@ -664,6 +637,38 @@ namespace meis007Model
             }
         }
         private ObjectSet<UserMaster> _UserMasters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SuppliersHotelsInfo> SuppliersHotelsInfoes
+        {
+            get
+            {
+                if ((_SuppliersHotelsInfoes == null))
+                {
+                    _SuppliersHotelsInfoes = base.CreateObjectSet<SuppliersHotelsInfo>("SuppliersHotelsInfoes");
+                }
+                return _SuppliersHotelsInfoes;
+            }
+        }
+        private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BkgMaster> BkgMasters
+        {
+            get
+            {
+                if ((_BkgMasters == null))
+                {
+                    _BkgMasters = base.CreateObjectSet<BkgMaster>("BkgMasters");
+                }
+                return _BkgMasters;
+            }
+        }
+        private ObjectSet<BkgMaster> _BkgMasters;
 
         #endregion
 
@@ -878,14 +883,6 @@ namespace meis007Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the SuppliersHotelsInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
-        {
-            base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the TouricoCancelationPolicies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToTouricoCancelationPolicies(TouricoCancelationPolicy touricoCancelationPolicy)
@@ -942,19 +939,27 @@ namespace meis007Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the BkgMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToBkgMasters(BkgMaster bkgMaster)
-        {
-            base.AddObject("BkgMasters", bkgMaster);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the UserMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToUserMasters(UserMaster userMaster)
         {
             base.AddObject("UserMasters", userMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SuppliersHotelsInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
+        {
+            base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BkgMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBkgMasters(BkgMaster bkgMaster)
+        {
+            base.AddObject("BkgMasters", bkgMaster);
         }
 
         #endregion
@@ -2488,7 +2493,7 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> XMLBookingId
+        public global::System.String XMLBookingId
         {
             get
             {
@@ -2498,13 +2503,13 @@ namespace meis007Model
             {
                 OnXMLBookingIdChanging(value);
                 ReportPropertyChanging("XMLBookingId");
-                _XMLBookingId = StructuralObject.SetValidValue(value);
+                _XMLBookingId = value;
                 ReportPropertyChanged("XMLBookingId");
                 OnXMLBookingIdChanged();
             }
         }
-        private Nullable<global::System.Int64> _XMLBookingId;
-        partial void OnXMLBookingIdChanging(Nullable<global::System.Int64> value);
+        private global::System.String _XMLBookingId;
+        partial void OnXMLBookingIdChanging(global::System.String value);
         partial void OnXMLBookingIdChanged();
     
         /// <summary>
@@ -3945,7 +3950,7 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> StarsLevel
+        public global::System.String StarsLevel
         {
             get
             {
@@ -3955,13 +3960,13 @@ namespace meis007Model
             {
                 OnStarsLevelChanging(value);
                 ReportPropertyChanging("StarsLevel");
-                _StarsLevel = StructuralObject.SetValidValue(value);
+                _StarsLevel = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("StarsLevel");
                 OnStarsLevelChanged();
             }
         }
-        private Nullable<global::System.Decimal> _StarsLevel;
-        partial void OnStarsLevelChanging(Nullable<global::System.Decimal> value);
+        private global::System.String _StarsLevel;
+        partial void OnStarsLevelChanging(global::System.String value);
         partial void OnStarsLevelChanged();
     
         /// <summary>
@@ -3969,7 +3974,7 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SupplierRoomID
+        public global::System.String SupplierRoomID
         {
             get
             {
@@ -3979,13 +3984,13 @@ namespace meis007Model
             {
                 OnSupplierRoomIDChanging(value);
                 ReportPropertyChanging("SupplierRoomID");
-                _SupplierRoomID = StructuralObject.SetValidValue(value);
+                _SupplierRoomID = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("SupplierRoomID");
                 OnSupplierRoomIDChanged();
             }
         }
-        private Nullable<global::System.Int32> _SupplierRoomID;
-        partial void OnSupplierRoomIDChanging(Nullable<global::System.Int32> value);
+        private global::System.String _SupplierRoomID;
+        partial void OnSupplierRoomIDChanging(global::System.String value);
         partial void OnSupplierRoomIDChanged();
     
         /// <summary>
@@ -11289,7 +11294,7 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> HotelID
+        public global::System.String HotelID
         {
             get
             {
@@ -11299,13 +11304,13 @@ namespace meis007Model
             {
                 OnHotelIDChanging(value);
                 ReportPropertyChanging("HotelID");
-                _HotelID = StructuralObject.SetValidValue(value);
+                _HotelID = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("HotelID");
                 OnHotelIDChanged();
             }
         }
-        private Nullable<global::System.Int64> _HotelID;
-        partial void OnHotelIDChanging(Nullable<global::System.Int64> value);
+        private global::System.String _HotelID;
+        partial void OnHotelIDChanging(global::System.String value);
         partial void OnHotelIDChanged();
     
         /// <summary>
@@ -11337,7 +11342,7 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> StarsLevel
+        public global::System.String StarsLevel
         {
             get
             {
@@ -11347,13 +11352,13 @@ namespace meis007Model
             {
                 OnStarsLevelChanging(value);
                 ReportPropertyChanging("StarsLevel");
-                _StarsLevel = StructuralObject.SetValidValue(value);
+                _StarsLevel = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("StarsLevel");
                 OnStarsLevelChanged();
             }
         }
-        private Nullable<global::System.Decimal> _StarsLevel;
-        partial void OnStarsLevelChanging(Nullable<global::System.Decimal> value);
+        private global::System.String _StarsLevel;
+        partial void OnStarsLevelChanging(global::System.String value);
         partial void OnStarsLevelChanged();
     
         /// <summary>
@@ -11361,7 +11366,7 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> RoomID
+        public global::System.String RoomID
         {
             get
             {
@@ -11371,13 +11376,13 @@ namespace meis007Model
             {
                 OnRoomIDChanging(value);
                 ReportPropertyChanging("RoomID");
-                _RoomID = StructuralObject.SetValidValue(value);
+                _RoomID = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("RoomID");
                 OnRoomIDChanged();
             }
         }
-        private Nullable<global::System.Int32> _RoomID;
-        partial void OnRoomIDChanging(Nullable<global::System.Int32> value);
+        private global::System.String _RoomID;
+        partial void OnRoomIDChanging(global::System.String value);
         partial void OnRoomIDChanged();
     
         /// <summary>
@@ -11941,18 +11946,128 @@ namespace meis007Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__40457975", "TouricoCancelationPolicy")]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__28F7FFC9", "TouricoCancelationPolicy")]
         public EntityCollection<TouricoCancelationPolicy> TouricoCancelationPolicies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__40457975", "TouricoCancelationPolicy");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__28F7FFC9", "TouricoCancelationPolicy");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__40457975", "TouricoCancelationPolicy", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__28F7FFC9", "TouricoCancelationPolicy", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__29EC2402", "TouricoCancelationPolicy")]
+        public EntityCollection<TouricoCancelationPolicy> TouricoCancelationPolicies1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__29EC2402", "TouricoCancelationPolicy");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__29EC2402", "TouricoCancelationPolicy", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__2AE0483B", "TouricoCancelationPolicy")]
+        public EntityCollection<TouricoCancelationPolicy> TouricoCancelationPolicies2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__2AE0483B", "TouricoCancelationPolicy");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__2AE0483B", "TouricoCancelationPolicy", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__2BD46C74", "TouricoCancelationPolicy")]
+        public EntityCollection<TouricoCancelationPolicy> TouricoCancelationPolicies3
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__2BD46C74", "TouricoCancelationPolicy");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__2BD46C74", "TouricoCancelationPolicy", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__2CC890AD", "TouricoCancelationPolicy")]
+        public EntityCollection<TouricoCancelationPolicy> TouricoCancelationPolicies4
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__2CC890AD", "TouricoCancelationPolicy");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__2CC890AD", "TouricoCancelationPolicy", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__2DBCB4E6", "TouricoCancelationPolicy")]
+        public EntityCollection<TouricoCancelationPolicy> TouricoCancelationPolicies5
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__2DBCB4E6", "TouricoCancelationPolicy");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TouricoCancelationPolicy>("meis007Model.FK__TouricoCa__Hotel__2DBCB4E6", "TouricoCancelationPolicy", value);
                 }
             }
         }
@@ -12240,16 +12355,16 @@ namespace meis007Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo")]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__28F7FFC9", "SuppliersHotelsInfo")]
         public SuppliersHotelsInfo SuppliersHotelsInfo
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__28F7FFC9", "SuppliersHotelsInfo").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__28F7FFC9", "SuppliersHotelsInfo").Value = value;
             }
         }
         /// <summary>
@@ -12261,13 +12376,203 @@ namespace meis007Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__28F7FFC9", "SuppliersHotelsInfo");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__40457975", "SuppliersHotelsInfo", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__28F7FFC9", "SuppliersHotelsInfo", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__29EC2402", "SuppliersHotelsInfo")]
+        public SuppliersHotelsInfo SuppliersHotelsInfo1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__29EC2402", "SuppliersHotelsInfo").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__29EC2402", "SuppliersHotelsInfo").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SuppliersHotelsInfo> SuppliersHotelsInfo1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__29EC2402", "SuppliersHotelsInfo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__29EC2402", "SuppliersHotelsInfo", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__2AE0483B", "SuppliersHotelsInfo")]
+        public SuppliersHotelsInfo SuppliersHotelsInfo2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2AE0483B", "SuppliersHotelsInfo").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2AE0483B", "SuppliersHotelsInfo").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SuppliersHotelsInfo> SuppliersHotelsInfo2Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2AE0483B", "SuppliersHotelsInfo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2AE0483B", "SuppliersHotelsInfo", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__2BD46C74", "SuppliersHotelsInfo")]
+        public SuppliersHotelsInfo SuppliersHotelsInfo3
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2BD46C74", "SuppliersHotelsInfo").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2BD46C74", "SuppliersHotelsInfo").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SuppliersHotelsInfo> SuppliersHotelsInfo3Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2BD46C74", "SuppliersHotelsInfo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2BD46C74", "SuppliersHotelsInfo", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__2CC890AD", "SuppliersHotelsInfo")]
+        public SuppliersHotelsInfo SuppliersHotelsInfo4
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2CC890AD", "SuppliersHotelsInfo").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2CC890AD", "SuppliersHotelsInfo").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SuppliersHotelsInfo> SuppliersHotelsInfo4Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2CC890AD", "SuppliersHotelsInfo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2CC890AD", "SuppliersHotelsInfo", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK__TouricoCa__Hotel__2DBCB4E6", "SuppliersHotelsInfo")]
+        public SuppliersHotelsInfo SuppliersHotelsInfo5
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2DBCB4E6", "SuppliersHotelsInfo").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2DBCB4E6", "SuppliersHotelsInfo").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SuppliersHotelsInfo> SuppliersHotelsInfo5Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2DBCB4E6", "SuppliersHotelsInfo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SuppliersHotelsInfo>("meis007Model.FK__TouricoCa__Hotel__2DBCB4E6", "SuppliersHotelsInfo", value);
                 }
             }
         }
