@@ -53,16 +53,16 @@ public partial class Orders_checkout : PublicApplicationPage
         var adrs = PaypalGateway.AssignAddress(txtBillingAddress.Text, ddlBillingCity.SelectedValue, ddlBillingCity.SelectedValue, ddlCountry.SelectedValue, txtPostalCode.Text);
         var cc = PaypalGateway.AssignCVV(adrs, txtCreditCardNumber.Text, txtCCCVV.Text, txtFirstName.Text, txtCCLastName.Text, ddlCCExpirationMonth.SelectedValue, ddlCCExpirationYear.SelectedValue, ddlCCType.SelectedValue);
         var res = PaypalGateway.CreateCreditCard(cc, basketHelper.totalPrice.ToString());       
-        if (!res.Valid) {
+        if (false){//!res.Valid) {
           ShowError("Please Correct the credit card fields!");
           return;
         }
-        var localCC = LocalGateway.CreateCreditCard(res, _meis007Entities);
+        //var localCC = LocalGateway.CreateCreditCard(res, _meis007Entities);
         var sequence = _meis007Entities.BasketSequences.OrderBy(x => x.Id).First();
         var basketSequence = sequence.SequenceNumber + 1;
         sequence.SequenceNumber = basketSequence;
         _meis007Entities.SaveChanges();
-        var localTrans = LocalGateway.CreateTransaction(localCC, res, basketSequence, _meis007Entities);
+        //var localTrans = LocalGateway.CreateTransaction(localCC, res, basketSequence, _meis007Entities);
         SuppliersHotelsInfo suppliersHotelsInfo;
         var hotelsToRemove = new List<BasketHotelDetails>();
         SupplierBooking supplierBooking;
@@ -76,14 +76,14 @@ public partial class Orders_checkout : PublicApplicationPage
                 var obj = _meis007Entities.HotelBookings.Where(y => y.HotelInfoId == x.hotelInfoId).FirstOrDefault();
                 if (obj != null) {
                     var array = obj.ReservationId.Split('~');
-                    localBooking = new LocalBooking(_meis007Entities, suppliersHotelsInfo, x, null, obj, basketSequence, array[0].ToString().Trim(), array[1].ToString().Trim(), name, "Hotel", txtRemarks.Text, localTrans.Id);
+                    localBooking = new LocalBooking(_meis007Entities, suppliersHotelsInfo, x, null, obj, basketSequence, array[0].ToString().Trim(), array[1].ToString().Trim(), name, "Hotel", txtRemarks.Text, "999");// localTrans.Id);
                     localBooking.Create();
                     hotelsToRemove.Add(x);
                 }
             }
         }
         foreach (var x in basketHelper.packageDetails) {
-          localBooking = new LocalBooking(_meis007Entities, null, null, x, null, basketSequence, "", "", name, "Package", txtRemarks.Text, localTrans.Id);
+            localBooking = new LocalBooking(_meis007Entities, null, null, x, null, basketSequence, "", "", name, "Package", txtRemarks.Text, "999");// localTrans.Id);
           localBooking.Create();
         }
         RemoveHotels(basketHelper, hotelsToRemove);

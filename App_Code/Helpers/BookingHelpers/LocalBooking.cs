@@ -21,8 +21,8 @@ public class LocalBooking
     string Name;
     string BookingType;
     string Remarks;
-    long TransactionId;
-    public LocalBooking(meis007Entities entity, SuppliersHotelsInfo shi, BasketHotelDetails bhd, BasketPackageDetails bpd, HotelBooking hb, long basketSequence, string refNo, string confNo, string name, string type, string remarks, long transId)
+    string TransactionId;
+    public LocalBooking(meis007Entities entity, SuppliersHotelsInfo shi, BasketHotelDetails bhd, BasketPackageDetails bpd, HotelBooking hb, long basketSequence, string refNo, string confNo, string name, string type, string remarks, string transId)
     {
         this.bkgMaster = new BkgMaster();
         this._meis007Entities = entity;
@@ -89,13 +89,13 @@ public class LocalBooking
             Infants = Bhd.guestDetails.Where(y => y.type == "Infant").Count(),
             HasExtraPaxs = true,
             RateSDID = Shi.RateSDID,
-            supplierHotelID = int.Parse(Shi.HotelID.ToString()),
+            supplierHotelID = Shi.HotelID.ToString(),
             StarsLevel = Shi.StarsLevel,
             SupplierRoomID = Shi.RoomID,
             SupplierRoomName = Shi.RoomName,
             SupplierRoomType = Shi.RoomType,
-            SupplierRoomTypeID = Shi.RoomTypeID,
-            BBID = Shi.BBID,
+            SupplierRoomTypeID = Shi.RoomTypeID.ToString(),
+            BBID = Shi.BBID.ToString(),
             BBName = Shi.BBName,
             CustomerRemarks = Remarks,
             ModDate = DateTime.Now,
