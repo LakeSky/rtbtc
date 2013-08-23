@@ -43,8 +43,16 @@ public class SupplierBooking
         bookingInfo.LastName = LastName;
         bookingInfo.MobilePhone = Mobile;
         bookingInfo.HomePhone = Telephone;
-        bookingInfo.HotelId = int.Parse(Shi.HotelID.ToString());
-        bookingInfo.RoomId = int.Parse(Shi.RoomID.ToString());
+        if (Shi.SupplierID == "TOH")
+        {
+            bookingInfo.HotelId = int.Parse(Shi.HotelID.ToString());
+            bookingInfo.RoomId = int.Parse(Shi.RoomID.ToString());
+        }
+        else
+        {
+            bookingInfo.HotelCode = Shi.HotelID.ToString();
+            bookingInfo.RoomCode = Shi.RoomID.ToString();
+        }
         bookingInfo.RoomTypeId = int.Parse(Shi.RoomTypeID.ToString());
         bookingInfo.Supplier = DbParameter.GetSupplierName(Shi.SupplierID);
         bookingInfo.IsAvailable = true;
