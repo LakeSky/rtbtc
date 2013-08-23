@@ -62,7 +62,8 @@ public class SupplierCancellationPolicies
                 CheckOut = endDate,
                 SearchId = int.Parse(suppliersHotelsInfo.SearchID.ToString())
             };
-            policyAvailable = supplierFactory.GetCancelationPolicy(cancellationEntity, SupplierName);
+            //policyAvailable = supplierFactory.GetCancelationPolicy(cancellationEntity, SupplierName);
+            policyAvailable = supplierFactory.GetCancelationPolicy(int.Parse(suppliersHotelsInfo.HotelInfoID.ToString()), startDate, endDate);
         }
         return policyAvailable;
     }

@@ -52,7 +52,7 @@ public partial class Orders_checkout : PublicApplicationPage
         basketHelper = GetBasketHelperObject();
         var adrs = PaypalGateway.AssignAddress(txtBillingAddress.Text, ddlBillingCity.SelectedValue, ddlBillingCity.SelectedValue, ddlCountry.SelectedValue, txtPostalCode.Text);
         var cc = PaypalGateway.AssignCVV(adrs, txtCreditCardNumber.Text, txtCCCVV.Text, txtFirstName.Text, txtCCLastName.Text, ddlCCExpirationMonth.SelectedValue, ddlCCExpirationYear.SelectedValue, ddlCCType.SelectedValue);
-        var res = PaypalGateway.CreateCreditCard(cc, basketHelper.totalPrice.ToString());       
+        //var res = PaypalGateway.CreateCreditCard(cc, basketHelper.totalPrice.ToString());       
         if (false){//!res.Valid) {
           ShowError("Please Correct the credit card fields!");
           return;
