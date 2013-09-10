@@ -18,30 +18,30 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductAmenities_Amenities", "Amenities", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Amenity), "ProductAmenities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductAmenity), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_B2CPaxinfo_B2CCustomerinfo1", "B2CCustomerinfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.B2CCustomerinfo), "B2CPaxinfo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.B2CPaxinfo), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductAmenities_Amenities", "Amenity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Amenity), "ProductAmenity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductAmenity), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_BkgCancelPolicies_BkgMaster", "BkgMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.BkgMaster), "BkgCancelPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.BkgCancelPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_CityMaster_CountryMaster", "CountryMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.CountryMaster), "CityMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CityMaster), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_Classifications_ServicesMaster", "ServicesMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.ServicesMaster), "Classifications", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.Classification), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductMaster_Classifications", "Classifications", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Classification), "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductMaster), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductFacilities_Facilities", "Facilities", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Facility), "ProductFacilities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductFacility), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_PackageDescription_PackageHeader", "PackageHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.PackageHeader), "PackageDescription", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.PackageDescription), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_PackageImages_PackageHeader", "PackageHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.PackageHeader), "PackageImages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.PackageImage), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductAmenities_ProductMaster", "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.ProductMaster), "ProductAmenities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductAmenity), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductFacilities_ProductRRC", "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.ProductRRC), "ProductFacilities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductFacility), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductImages_ProductMaster", "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.ProductMaster), "ProductImages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductImage), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_ProductMaster", "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.ProductMaster), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_RoomTypeDetail", "RoomTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.RoomTypeDetail), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.RoomTypeHeader), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_RoomTypeDetail_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.RoomTypeHeader), "RoomTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.RoomTypeDetail), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_CustomerMaster_CityMaster", "CityMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.CityMaster), "CustomerMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CustomerMaster), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_Classifications_ServicesMaster", "ServicesMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.ServicesMaster), "Classification", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.Classification), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductMaster_Classifications", "Classification", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Classification), "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductMaster), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductFacilities_Facilities", "Facility", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Facility), "ProductFacility", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductFacility), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__HotelBook__Hotel__28A2FA0E", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "HotelBooking", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.HotelBooking), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_PackageDescription_PackageHeader", "PackageHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.PackageHeader), "PackageDescription", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.PackageDescription), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_PackageImages_PackageHeader", "PackageHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.PackageHeader), "PackageImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.PackageImage), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductAmenities_ProductMaster", "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.ProductMaster), "ProductAmenity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductAmenity), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductImages_ProductMaster", "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.ProductMaster), "ProductImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductImage), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_B2CPaxinfo_B2CCustomerinfo1", "B2CCustomerinfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.B2CCustomerinfo), "B2CPaxinfo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.B2CPaxinfo), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__28F7FFC9", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__29EC2402", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2AE0483B", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2BD46C74", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2CC890AD", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2DBCB4E6", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_BkgCancelPolicies_BkgMaster", "BkgMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.BkgMaster), "BkgCancelPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.BkgCancelPolicy), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductFacilities_ProductRRC", "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.ProductRRC), "ProductFacility", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductFacility), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_ProductMaster", "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.ProductMaster), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_RoomTypeDetail", "RoomTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.RoomTypeDetail), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.RoomTypeHeader), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_RoomTypeDetail_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.RoomTypeHeader), "RoomTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.RoomTypeDetail), true)]
 
 #endregion
 
@@ -144,22 +144,6 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<B2CPaxinfo> B2CPaxinfo
-        {
-            get
-            {
-                if ((_B2CPaxinfo == null))
-                {
-                    _B2CPaxinfo = base.CreateObjectSet<B2CPaxinfo>("B2CPaxinfo");
-                }
-                return _B2CPaxinfo;
-            }
-        }
-        private ObjectSet<B2CPaxinfo> _B2CPaxinfo;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<B2CSiteImages> B2CSiteImages
         {
             get
@@ -188,6 +172,38 @@ namespace meis007Model
             }
         }
         private ObjectSet<BasketSequence> _BasketSequences;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BkgCancelPolicy> BkgCancelPolicies
+        {
+            get
+            {
+                if ((_BkgCancelPolicies == null))
+                {
+                    _BkgCancelPolicies = base.CreateObjectSet<BkgCancelPolicy>("BkgCancelPolicies");
+                }
+                return _BkgCancelPolicies;
+            }
+        }
+        private ObjectSet<BkgCancelPolicy> _BkgCancelPolicies;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BkgMaster> BkgMasters
+        {
+            get
+            {
+                if ((_BkgMasters == null))
+                {
+                    _BkgMasters = base.CreateObjectSet<BkgMaster>("BkgMasters");
+                }
+                return _BkgMasters;
+            }
+        }
+        private ObjectSet<BkgMaster> _BkgMasters;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -256,6 +272,22 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<CustomerMaster> CustomerMasters
+        {
+            get
+            {
+                if ((_CustomerMasters == null))
+                {
+                    _CustomerMasters = base.CreateObjectSet<CustomerMaster>("CustomerMasters");
+                }
+                return _CustomerMasters;
+            }
+        }
+        private ObjectSet<CustomerMaster> _CustomerMasters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Facility> Facilities
         {
             get
@@ -268,6 +300,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<Facility> _Facilities;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<HotelBooking> HotelBookings
+        {
+            get
+            {
+                if ((_HotelBookings == null))
+                {
+                    _HotelBookings = base.CreateObjectSet<HotelBooking>("HotelBookings");
+                }
+                return _HotelBookings;
+            }
+        }
+        private ObjectSet<HotelBooking> _HotelBookings;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -336,6 +384,54 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<PGCreditCard> PGCreditCards
+        {
+            get
+            {
+                if ((_PGCreditCards == null))
+                {
+                    _PGCreditCards = base.CreateObjectSet<PGCreditCard>("PGCreditCards");
+                }
+                return _PGCreditCards;
+            }
+        }
+        private ObjectSet<PGCreditCard> _PGCreditCards;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PGMaster> PGMasters
+        {
+            get
+            {
+                if ((_PGMasters == null))
+                {
+                    _PGMasters = base.CreateObjectSet<PGMaster>("PGMasters");
+                }
+                return _PGMasters;
+            }
+        }
+        private ObjectSet<PGMaster> _PGMasters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PGTransaction> PGTransactions
+        {
+            get
+            {
+                if ((_PGTransactions == null))
+                {
+                    _PGTransactions = base.CreateObjectSet<PGTransaction>("PGTransactions");
+                }
+                return _PGTransactions;
+            }
+        }
+        private ObjectSet<PGTransaction> _PGTransactions;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<ProductAmenity> ProductAmenities
         {
             get
@@ -400,38 +496,6 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<ProductRRC> ProductRRCs
-        {
-            get
-            {
-                if ((_ProductRRCs == null))
-                {
-                    _ProductRRCs = base.CreateObjectSet<ProductRRC>("ProductRRCs");
-                }
-                return _ProductRRCs;
-            }
-        }
-        private ObjectSet<ProductRRC> _ProductRRCs;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<RoomTypeDetail> RoomTypeDetails
-        {
-            get
-            {
-                if ((_RoomTypeDetails == null))
-                {
-                    _RoomTypeDetails = base.CreateObjectSet<RoomTypeDetail>("RoomTypeDetails");
-                }
-                return _RoomTypeDetails;
-            }
-        }
-        private ObjectSet<RoomTypeDetail> _RoomTypeDetails;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<RoomTypeHeader> RoomTypeHeaders
         {
             get
@@ -460,6 +524,54 @@ namespace meis007Model
             }
         }
         private ObjectSet<ServicesMaster> _ServicesMasters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SupplierMaster> SupplierMasters
+        {
+            get
+            {
+                if ((_SupplierMasters == null))
+                {
+                    _SupplierMasters = base.CreateObjectSet<SupplierMaster>("SupplierMasters");
+                }
+                return _SupplierMasters;
+            }
+        }
+        private ObjectSet<SupplierMaster> _SupplierMasters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SuppliersHotelsInfo> SuppliersHotelsInfoes
+        {
+            get
+            {
+                if ((_SuppliersHotelsInfoes == null))
+                {
+                    _SuppliersHotelsInfoes = base.CreateObjectSet<SuppliersHotelsInfo>("SuppliersHotelsInfoes");
+                }
+                return _SuppliersHotelsInfoes;
+            }
+        }
+        private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<UserMaster> UserMasters
+        {
+            get
+            {
+                if ((_UserMasters == null))
+                {
+                    _UserMasters = base.CreateObjectSet<UserMaster>("UserMasters");
+                }
+                return _UserMasters;
+            }
+        }
+        private ObjectSet<UserMaster> _UserMasters;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -496,18 +608,18 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<HotelBooking> HotelBookings
+        public ObjectSet<B2CPaxinfo> B2CPaxinfo
         {
             get
             {
-                if ((_HotelBookings == null))
+                if ((_B2CPaxinfo == null))
                 {
-                    _HotelBookings = base.CreateObjectSet<HotelBooking>("HotelBookings");
+                    _B2CPaxinfo = base.CreateObjectSet<B2CPaxinfo>("B2CPaxinfo");
                 }
-                return _HotelBookings;
+                return _B2CPaxinfo;
             }
         }
-        private ObjectSet<HotelBooking> _HotelBookings;
+        private ObjectSet<B2CPaxinfo> _B2CPaxinfo;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -528,146 +640,34 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<SupplierMaster> SupplierMasters
+        public ObjectSet<ProductRRC> ProductRRCs
         {
             get
             {
-                if ((_SupplierMasters == null))
+                if ((_ProductRRCs == null))
                 {
-                    _SupplierMasters = base.CreateObjectSet<SupplierMaster>("SupplierMasters");
+                    _ProductRRCs = base.CreateObjectSet<ProductRRC>("ProductRRCs");
                 }
-                return _SupplierMasters;
+                return _ProductRRCs;
             }
         }
-        private ObjectSet<SupplierMaster> _SupplierMasters;
+        private ObjectSet<ProductRRC> _ProductRRCs;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<PGCreditCard> PGCreditCards
+        public ObjectSet<RoomTypeDetail> RoomTypeDetails
         {
             get
             {
-                if ((_PGCreditCards == null))
+                if ((_RoomTypeDetails == null))
                 {
-                    _PGCreditCards = base.CreateObjectSet<PGCreditCard>("PGCreditCards");
+                    _RoomTypeDetails = base.CreateObjectSet<RoomTypeDetail>("RoomTypeDetails");
                 }
-                return _PGCreditCards;
+                return _RoomTypeDetails;
             }
         }
-        private ObjectSet<PGCreditCard> _PGCreditCards;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<PGMaster> PGMasters
-        {
-            get
-            {
-                if ((_PGMasters == null))
-                {
-                    _PGMasters = base.CreateObjectSet<PGMaster>("PGMasters");
-                }
-                return _PGMasters;
-            }
-        }
-        private ObjectSet<PGMaster> _PGMasters;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<PGTransaction> PGTransactions
-        {
-            get
-            {
-                if ((_PGTransactions == null))
-                {
-                    _PGTransactions = base.CreateObjectSet<PGTransaction>("PGTransactions");
-                }
-                return _PGTransactions;
-            }
-        }
-        private ObjectSet<PGTransaction> _PGTransactions;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<CustomerMaster> CustomerMasters
-        {
-            get
-            {
-                if ((_CustomerMasters == null))
-                {
-                    _CustomerMasters = base.CreateObjectSet<CustomerMaster>("CustomerMasters");
-                }
-                return _CustomerMasters;
-            }
-        }
-        private ObjectSet<CustomerMaster> _CustomerMasters;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<UserMaster> UserMasters
-        {
-            get
-            {
-                if ((_UserMasters == null))
-                {
-                    _UserMasters = base.CreateObjectSet<UserMaster>("UserMasters");
-                }
-                return _UserMasters;
-            }
-        }
-        private ObjectSet<UserMaster> _UserMasters;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<SuppliersHotelsInfo> SuppliersHotelsInfoes
-        {
-            get
-            {
-                if ((_SuppliersHotelsInfoes == null))
-                {
-                    _SuppliersHotelsInfoes = base.CreateObjectSet<SuppliersHotelsInfo>("SuppliersHotelsInfoes");
-                }
-                return _SuppliersHotelsInfoes;
-            }
-        }
-        private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<BkgCancelPolicy> BkgCancelPolicies
-        {
-            get
-            {
-                if ((_BkgCancelPolicies == null))
-                {
-                    _BkgCancelPolicies = base.CreateObjectSet<BkgCancelPolicy>("BkgCancelPolicies");
-                }
-                return _BkgCancelPolicies;
-            }
-        }
-        private ObjectSet<BkgCancelPolicy> _BkgCancelPolicies;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<BkgMaster> BkgMasters
-        {
-            get
-            {
-                if ((_BkgMasters == null))
-                {
-                    _BkgMasters = base.CreateObjectSet<BkgMaster>("BkgMasters");
-                }
-                return _BkgMasters;
-            }
-        }
-        private ObjectSet<BkgMaster> _BkgMasters;
+        private ObjectSet<RoomTypeDetail> _RoomTypeDetails;
 
         #endregion
         #region AddTo Methods
@@ -697,14 +697,6 @@ namespace meis007Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the B2CPaxinfo EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToB2CPaxinfo(B2CPaxinfo b2CPaxinfo)
-        {
-            base.AddObject("B2CPaxinfo", b2CPaxinfo);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the B2CSiteImages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToB2CSiteImages(B2CSiteImages b2CSiteImages)
@@ -718,6 +710,22 @@ namespace meis007Model
         public void AddToBasketSequences(BasketSequence basketSequence)
         {
             base.AddObject("BasketSequences", basketSequence);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BkgCancelPolicies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBkgCancelPolicies(BkgCancelPolicy bkgCancelPolicy)
+        {
+            base.AddObject("BkgCancelPolicies", bkgCancelPolicy);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BkgMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBkgMasters(BkgMaster bkgMaster)
+        {
+            base.AddObject("BkgMasters", bkgMaster);
         }
     
         /// <summary>
@@ -753,11 +761,27 @@ namespace meis007Model
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the CustomerMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCustomerMasters(CustomerMaster customerMaster)
+        {
+            base.AddObject("CustomerMasters", customerMaster);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Facilities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToFacilities(Facility facility)
         {
             base.AddObject("Facilities", facility);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the HotelBookings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToHotelBookings(HotelBooking hotelBooking)
+        {
+            base.AddObject("HotelBookings", hotelBooking);
         }
     
         /// <summary>
@@ -793,6 +817,30 @@ namespace meis007Model
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the PGCreditCards EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPGCreditCards(PGCreditCard pGCreditCard)
+        {
+            base.AddObject("PGCreditCards", pGCreditCard);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PGMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPGMasters(PGMaster pGMaster)
+        {
+            base.AddObject("PGMasters", pGMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PGTransactions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPGTransactions(PGTransaction pGTransaction)
+        {
+            base.AddObject("PGTransactions", pGTransaction);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the ProductAmenities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToProductAmenities(ProductAmenity productAmenity)
@@ -825,22 +873,6 @@ namespace meis007Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the ProductRRCs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToProductRRCs(ProductRRC productRRC)
-        {
-            base.AddObject("ProductRRCs", productRRC);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the RoomTypeDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToRoomTypeDetails(RoomTypeDetail roomTypeDetail)
-        {
-            base.AddObject("RoomTypeDetails", roomTypeDetail);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the RoomTypeHeaders EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToRoomTypeHeaders(RoomTypeHeader roomTypeHeader)
@@ -854,6 +886,30 @@ namespace meis007Model
         public void AddToServicesMasters(ServicesMaster servicesMaster)
         {
             base.AddObject("ServicesMasters", servicesMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SupplierMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSupplierMasters(SupplierMaster supplierMaster)
+        {
+            base.AddObject("SupplierMasters", supplierMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SuppliersHotelsInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
+        {
+            base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the UserMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUserMasters(UserMaster userMaster)
+        {
+            base.AddObject("UserMasters", userMaster);
         }
     
         /// <summary>
@@ -873,11 +929,11 @@ namespace meis007Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the HotelBookings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the B2CPaxinfo EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToHotelBookings(HotelBooking hotelBooking)
+        public void AddToB2CPaxinfo(B2CPaxinfo b2CPaxinfo)
         {
-            base.AddObject("HotelBookings", hotelBooking);
+            base.AddObject("B2CPaxinfo", b2CPaxinfo);
         }
     
         /// <summary>
@@ -889,75 +945,19 @@ namespace meis007Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the SupplierMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the ProductRRCs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToSupplierMasters(SupplierMaster supplierMaster)
+        public void AddToProductRRCs(ProductRRC productRRC)
         {
-            base.AddObject("SupplierMasters", supplierMaster);
+            base.AddObject("ProductRRCs", productRRC);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the PGCreditCards EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the RoomTypeDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToPGCreditCards(PGCreditCard pGCreditCard)
+        public void AddToRoomTypeDetails(RoomTypeDetail roomTypeDetail)
         {
-            base.AddObject("PGCreditCards", pGCreditCard);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the PGMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToPGMasters(PGMaster pGMaster)
-        {
-            base.AddObject("PGMasters", pGMaster);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the PGTransactions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToPGTransactions(PGTransaction pGTransaction)
-        {
-            base.AddObject("PGTransactions", pGTransaction);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CustomerMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCustomerMasters(CustomerMaster customerMaster)
-        {
-            base.AddObject("CustomerMasters", customerMaster);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the UserMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToUserMasters(UserMaster userMaster)
-        {
-            base.AddObject("UserMasters", userMaster);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the SuppliersHotelsInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
-        {
-            base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the BkgCancelPolicies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToBkgCancelPolicies(BkgCancelPolicy bkgCancelPolicy)
-        {
-            base.AddObject("BkgCancelPolicies", bkgCancelPolicy);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the BkgMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToBkgMasters(BkgMaster bkgMaster)
-        {
-            base.AddObject("BkgMasters", bkgMaster);
+            base.AddObject("RoomTypeDetails", roomTypeDetail);
         }
 
         #endregion
@@ -1232,18 +1232,18 @@ namespace meis007Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductAmenities_Amenities", "ProductAmenities")]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductAmenities_Amenities", "ProductAmenity")]
         public EntityCollection<ProductAmenity> ProductAmenities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProductAmenity>("meis007Model.FK_ProductAmenities_Amenities", "ProductAmenities");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProductAmenity>("meis007Model.FK_ProductAmenities_Amenities", "ProductAmenity");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductAmenity>("meis007Model.FK_ProductAmenities_Amenities", "ProductAmenities", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductAmenity>("meis007Model.FK_ProductAmenities_Amenities", "ProductAmenity", value);
                 }
             }
         }
@@ -6183,18 +6183,18 @@ namespace meis007Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductFacilities_Facilities", "ProductFacilities")]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductFacilities_Facilities", "ProductFacility")]
         public EntityCollection<ProductFacility> ProductFacilities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProductFacility>("meis007Model.FK_ProductFacilities_Facilities", "ProductFacilities");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProductFacility>("meis007Model.FK_ProductFacilities_Facilities", "ProductFacility");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductFacility>("meis007Model.FK_ProductFacilities_Facilities", "ProductFacilities", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductFacility>("meis007Model.FK_ProductFacilities_Facilities", "ProductFacility", value);
                 }
             }
         }
@@ -7005,18 +7005,18 @@ namespace meis007Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_PackageImages_PackageHeader", "PackageImages")]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_PackageImages_PackageHeader", "PackageImage")]
         public EntityCollection<PackageImage> PackageImages
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PackageImage>("meis007Model.FK_PackageImages_PackageHeader", "PackageImages");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PackageImage>("meis007Model.FK_PackageImages_PackageHeader", "PackageImage");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PackageImage>("meis007Model.FK_PackageImages_PackageHeader", "PackageImages", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PackageImage>("meis007Model.FK_PackageImages_PackageHeader", "PackageImage", value);
                 }
             }
         }
@@ -8361,16 +8361,16 @@ namespace meis007Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductAmenities_Amenities", "Amenities")]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductAmenities_Amenities", "Amenity")]
         public Amenity Amenity
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Amenity>("meis007Model.FK_ProductAmenities_Amenities", "Amenities").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Amenity>("meis007Model.FK_ProductAmenities_Amenities", "Amenity").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Amenity>("meis007Model.FK_ProductAmenities_Amenities", "Amenities").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Amenity>("meis007Model.FK_ProductAmenities_Amenities", "Amenity").Value = value;
             }
         }
         /// <summary>
@@ -8382,13 +8382,13 @@ namespace meis007Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Amenity>("meis007Model.FK_ProductAmenities_Amenities", "Amenities");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Amenity>("meis007Model.FK_ProductAmenities_Amenities", "Amenity");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Amenity>("meis007Model.FK_ProductAmenities_Amenities", "Amenities", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Amenity>("meis007Model.FK_ProductAmenities_Amenities", "Amenity", value);
                 }
             }
         }
@@ -8545,16 +8545,16 @@ namespace meis007Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductFacilities_Facilities", "Facilities")]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductFacilities_Facilities", "Facility")]
         public Facility Facility
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Facility>("meis007Model.FK_ProductFacilities_Facilities", "Facilities").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Facility>("meis007Model.FK_ProductFacilities_Facilities", "Facility").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Facility>("meis007Model.FK_ProductFacilities_Facilities", "Facilities").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Facility>("meis007Model.FK_ProductFacilities_Facilities", "Facility").Value = value;
             }
         }
         /// <summary>
@@ -8566,13 +8566,13 @@ namespace meis007Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Facility>("meis007Model.FK_ProductFacilities_Facilities", "Facilities");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Facility>("meis007Model.FK_ProductFacilities_Facilities", "Facility");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Facility>("meis007Model.FK_ProductFacilities_Facilities", "Facilities", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Facility>("meis007Model.FK_ProductFacilities_Facilities", "Facility", value);
                 }
             }
         }
@@ -9481,16 +9481,16 @@ namespace meis007Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductMaster_Classifications", "Classifications")]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductMaster_Classifications", "Classification")]
         public Classification Classification
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Classification>("meis007Model.FK_ProductMaster_Classifications", "Classifications").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Classification>("meis007Model.FK_ProductMaster_Classifications", "Classification").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Classification>("meis007Model.FK_ProductMaster_Classifications", "Classifications").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Classification>("meis007Model.FK_ProductMaster_Classifications", "Classification").Value = value;
             }
         }
         /// <summary>
@@ -9502,13 +9502,13 @@ namespace meis007Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Classification>("meis007Model.FK_ProductMaster_Classifications", "Classifications");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Classification>("meis007Model.FK_ProductMaster_Classifications", "Classification");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Classification>("meis007Model.FK_ProductMaster_Classifications", "Classifications", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Classification>("meis007Model.FK_ProductMaster_Classifications", "Classification", value);
                 }
             }
         }
@@ -9519,18 +9519,18 @@ namespace meis007Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductAmenities_ProductMaster", "ProductAmenities")]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductAmenities_ProductMaster", "ProductAmenity")]
         public EntityCollection<ProductAmenity> ProductAmenities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProductAmenity>("meis007Model.FK_ProductAmenities_ProductMaster", "ProductAmenities");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProductAmenity>("meis007Model.FK_ProductAmenities_ProductMaster", "ProductAmenity");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductAmenity>("meis007Model.FK_ProductAmenities_ProductMaster", "ProductAmenities", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductAmenity>("meis007Model.FK_ProductAmenities_ProductMaster", "ProductAmenity", value);
                 }
             }
         }
@@ -9541,18 +9541,18 @@ namespace meis007Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductImages_ProductMaster", "ProductImages")]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductImages_ProductMaster", "ProductImage")]
         public EntityCollection<ProductImage> ProductImages
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProductImage>("meis007Model.FK_ProductImages_ProductMaster", "ProductImages");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProductImage>("meis007Model.FK_ProductImages_ProductMaster", "ProductImage");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductImage>("meis007Model.FK_ProductImages_ProductMaster", "ProductImages", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductImage>("meis007Model.FK_ProductImages_ProductMaster", "ProductImage", value);
                 }
             }
         }
@@ -9739,18 +9739,18 @@ namespace meis007Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductFacilities_ProductRRC", "ProductFacilities")]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_ProductFacilities_ProductRRC", "ProductFacility")]
         public EntityCollection<ProductFacility> ProductFacilities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProductFacility>("meis007Model.FK_ProductFacilities_ProductRRC", "ProductFacilities");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProductFacility>("meis007Model.FK_ProductFacilities_ProductRRC", "ProductFacility");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductFacility>("meis007Model.FK_ProductFacilities_ProductRRC", "ProductFacilities", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductFacility>("meis007Model.FK_ProductFacilities_ProductRRC", "ProductFacility", value);
                 }
             }
         }
@@ -10449,18 +10449,18 @@ namespace meis007Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_Classifications_ServicesMaster", "Classifications")]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_Classifications_ServicesMaster", "Classification")]
         public EntityCollection<Classification> Classifications
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Classification>("meis007Model.FK_Classifications_ServicesMaster", "Classifications");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Classification>("meis007Model.FK_Classifications_ServicesMaster", "Classification");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Classification>("meis007Model.FK_Classifications_ServicesMaster", "Classifications", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Classification>("meis007Model.FK_Classifications_ServicesMaster", "Classification", value);
                 }
             }
         }
