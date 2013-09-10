@@ -15,8 +15,8 @@ public partial class Orders_checkout : PublicApplicationPage
 {
     public BasketHelper basketHelper;
     meis007Entities _meis007Entities;
-    PayPal.Api.Payments.CreditCard creditCard;
-    PayPal.Api.Payments.Address address;
+    //PayPal.Api.Payments.CreditCard creditCard;
+    //PayPal.Api.Payments.Address address;
     PaypalGateway gateway;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -50,8 +50,8 @@ public partial class Orders_checkout : PublicApplicationPage
         }
         _meis007Entities = new meis007Entities();
         basketHelper = GetBasketHelperObject();
-        var adrs = PaypalGateway.AssignAddress(txtBillingAddress.Text, ddlBillingCity.SelectedValue, ddlBillingCity.SelectedValue, ddlCountry.SelectedValue, txtPostalCode.Text);
-        var cc = PaypalGateway.AssignCVV(adrs, txtCreditCardNumber.Text, txtCCCVV.Text, txtFirstName.Text, txtCCLastName.Text, ddlCCExpirationMonth.SelectedValue, ddlCCExpirationYear.SelectedValue, ddlCCType.SelectedValue);
+        //var adrs = PaypalGateway.AssignAddress(txtBillingAddress.Text, ddlBillingCity.SelectedValue, ddlBillingCity.SelectedValue, ddlCountry.SelectedValue, txtPostalCode.Text);
+        //var cc = PaypalGateway.AssignCVV(adrs, txtCreditCardNumber.Text, txtCCCVV.Text, txtFirstName.Text, txtCCLastName.Text, ddlCCExpirationMonth.SelectedValue, ddlCCExpirationYear.SelectedValue, ddlCCType.SelectedValue);
         //var res = PaypalGateway.CreateCreditCard(cc, basketHelper.totalPrice.ToString());       
         if (false){//!res.Valid) {
           ShowError("Please Correct the credit card fields!");
