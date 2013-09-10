@@ -37,6 +37,23 @@
           <EntitySet Name="RoomTypeHeader" EntityType="meis007Model.Store.RoomTypeHeader" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ServicesMaster" EntityType="meis007Model.Store.ServicesMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SupplierMaster" EntityType="meis007Model.Store.SupplierMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SuppliersCancelationPolicy" EntityType="meis007Model.Store.SuppliersCancelationPolicy" store:Type="Tables" store:Schema="dbo" store:Name="SuppliersCancelationPolicy">
+            <DefiningQuery>SELECT 
+      [SuppliersCancelationPolicy].[CID] AS [CID], 
+      [SuppliersCancelationPolicy].[HotelInfoId] AS [HotelInfoId], 
+      [SuppliersCancelationPolicy].[SearchId] AS [SearchId], 
+      [SuppliersCancelationPolicy].[HotelID] AS [HotelID], 
+      [SuppliersCancelationPolicy].[HotelRoomTypeId] AS [HotelRoomTypeId], 
+      [SuppliersCancelationPolicy].[BasisType] AS [BasisType], 
+      [SuppliersCancelationPolicy].[Percentage] AS [Percentage], 
+      [SuppliersCancelationPolicy].[NumberOfNights] AS [NumberOfNights], 
+      [SuppliersCancelationPolicy].[OffSetUnit] AS [OffSetUnit], 
+      [SuppliersCancelationPolicy].[UnitMultiplier] AS [UnitMultiplier], 
+      [SuppliersCancelationPolicy].[Policy] AS [Policy], 
+      [SuppliersCancelationPolicy].[Price] AS [Price], 
+      [SuppliersCancelationPolicy].[LastPossibleCancellationDate] AS [LastPossibleCancellationDate]
+      FROM [dbo].[SuppliersCancelationPolicy] AS [SuppliersCancelationPolicy]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="SuppliersHotelsInfo" EntityType="meis007Model.Store.SuppliersHotelsInfo" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TouricoCancelationPolicy" EntityType="meis007Model.Store.TouricoCancelationPolicy" store:Type="Tables" store:Schema="dbo" store:Name="TouricoCancelationPolicy">
             <DefiningQuery>SELECT 
@@ -644,6 +661,27 @@
           <Property Name="UserID" Type="nvarchar" MaxLength="10" />
           <Property Name="ModDate" Type="smalldatetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'meis007.dbo.SuppliersCancelationPolicy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="SuppliersCancelationPolicy">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HotelInfoId" Type="bigint" />
+          <Property Name="SearchId" Type="int" />
+          <Property Name="HotelID" Type="varchar(max)" />
+          <Property Name="HotelRoomTypeId" Type="varchar(max)" />
+          <Property Name="BasisType" Type="varchar" MaxLength="1000" />
+          <Property Name="Percentage" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="NumberOfNights" Type="int" />
+          <Property Name="OffSetUnit" Type="varchar" MaxLength="255" />
+          <Property Name="UnitMultiplier" Type="int" />
+          <Property Name="Policy" Type="varchar(max)" />
+          <Property Name="Price" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="LastPossibleCancellationDate" Type="varchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SuppliersHotelsInfo">
           <Key>
             <PropertyRef Name="HotelInfoID" />
@@ -1164,6 +1202,7 @@
             <End Role="RoomTypeHeader" EntitySet="RoomTypeHeaders" />
             <End Role="RoomTypeDetail" EntitySet="RoomTypeDetails" />
           </AssociationSet>
+          <EntitySet Name="SuppliersCancelationPolicies" EntityType="meis007Model.SuppliersCancelationPolicy" />
         </EntityContainer>
         <EntityType Name="AmadeusTable">
           <Key>
@@ -2071,6 +2110,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SuppliersCancelationPolicy">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Type="Int32" Name="CID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="HotelInfoId" />
+          <Property Type="Int32" Name="SearchId" />
+          <Property Type="String" Name="HotelID" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="HotelRoomTypeId" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BasisType" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Percentage" Precision="5" Scale="2" />
+          <Property Type="Int32" Name="NumberOfNights" />
+          <Property Type="String" Name="OffSetUnit" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="UnitMultiplier" />
+          <Property Type="String" Name="Policy" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Price" Precision="7" Scale="2" />
+          <Property Type="String" Name="LastPossibleCancellationDate" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2683,6 +2740,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SuppliersCancelationPolicies">
+            <EntityTypeMapping TypeName="meis007Model.SuppliersCancelationPolicy">
+              <MappingFragment StoreEntitySet="SuppliersCancelationPolicy">
+                <ScalarProperty Name="LastPossibleCancellationDate" ColumnName="LastPossibleCancellationDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Policy" ColumnName="Policy" />
+                <ScalarProperty Name="UnitMultiplier" ColumnName="UnitMultiplier" />
+                <ScalarProperty Name="OffSetUnit" ColumnName="OffSetUnit" />
+                <ScalarProperty Name="NumberOfNights" ColumnName="NumberOfNights" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="BasisType" ColumnName="BasisType" />
+                <ScalarProperty Name="HotelRoomTypeId" ColumnName="HotelRoomTypeId" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="SearchId" ColumnName="SearchId" />
+                <ScalarProperty Name="HotelInfoId" ColumnName="HotelInfoId" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2886,6 +2962,7 @@
           <ConnectorPoint PointX="7.3125" PointY="14.682444661458334" />
           <ConnectorPoint PointX="7.5" PointY="14.682444661458334" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="meis007Model.SuppliersCancelationPolicy" Width="1.5" PointX="13.375" PointY="19" Height="3.5186979166666674" />
       </Diagram>
     </Diagrams>
   </Designer>

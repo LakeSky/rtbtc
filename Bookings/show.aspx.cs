@@ -64,7 +64,7 @@ public partial class Bookings_show : System.Web.UI.Page
                 BasisType = x.RateBasisType,
                 HotelId = x.LocalHotelId,
                 HotelInfoId = x.HotelInfoId,
-                HotelRoomTypeId = int.Parse(x.HotelRoomTypeId.ToString()),
+                HotelRoomTypeId = x.HotelRoomTypeId.ToString(),
                 OffSetUnit = x.OffSetUnit,
                 Percentage = x.Percentage,
                 SearchId = x.SearchId,

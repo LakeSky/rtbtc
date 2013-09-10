@@ -12,7 +12,7 @@ public class BaseCancellationPolicy
     public string BasisType;
     public long? HotelId { get; set; }
     public long? HotelInfoId { get; set; }
-    public int? HotelRoomTypeId { get; set; }
+    public string HotelRoomTypeId { get; set; }
     public string OffSetUnit { get; set; }
     public decimal? Percentage { get; set; }
     public int? SearchId { get; set; }

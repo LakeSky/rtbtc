@@ -30,51 +30,42 @@ public class SupplierCancellationPolicies
 
     public bool CheckPoliciesAvailable() {
         
-        var policyAvailable = CheckTouricoCancellationPolicies();
+        var policyAvailable = CheckCancellationPolicies();
         return policyAvailable;
     }
 
     public List<BaseCancellationPolicy> GetPolicies() {
         BaseCancellationPolicies = new List<BaseCancellationPolicy>();
-        GetTouricoPolicies();
+        GetCancellationPolicies();
         return BaseCancellationPolicies;
     }
 
-    protected bool CheckTouricoCancellationPolicies() {
-        var count = _meis007Entities.TouricoCancelationPolicies.Where(x => x.HotelInfoId == HotelInfoId).Count();
+    protected bool CheckCancellationPolicies() {
+        var count = _meis007Entities.SuppliersCancelationPolicies.Where(x => x.HotelInfoId == HotelInfoId).Count();
         var policyAvailable = true;
         if (count == 0)
         {
             RepositoryFactory supplierFactory = new RepositoryFactory(null, suppliersHotelsInfo.SessionID);
             var startDate = DateTime.Parse(StartDate);
             var endDate = DateTime.Parse(EndDate);
-            var cancellationEntity = new CancelationEntity()
-            {
-                HotelInfoId = int.Parse(suppliersHotelsInfo.HotelInfoID.ToString()),
-                HotelId = suppliersHotelsInfo.HotelID.ToString(),
-                RoomTypeId = suppliersHotelsInfo.RoomTypeID.ToString(),
-                CheckIn = startDate,
-                CheckOut = endDate,
-                SearchId = int.Parse(suppliersHotelsInfo.SearchID.ToString())
-            };
             policyAvailable = supplierFactory.GetCancelationPolicy(int.Parse(suppliersHotelsInfo.HotelInfoID.ToString()), startDate, endDate);
         }
         return policyAvailable;
     }
 
-    protected void GetTouricoPolicies() {
+    protected void GetCancellationPolicies() {
         BaseCancellationPolicy baseCancellationPolicy;
-        foreach (var x in _meis007Entities.TouricoCancelationPolicies.Where(x => x.HotelInfoId == HotelInfoId)) {
+        foreach (var x in _meis007Entities.SuppliersCancelationPolicies.Where(x => x.HotelInfoId == HotelInfoId)) {
             baseCancellationPolicy = new BaseCancellationPolicy { 
                 Id = x.CID,
                 BasisType = x.BasisType,
-                HotelId = x.HotelID,
+                HotelId = long.Parse(x.HotelID.ToString()),
                 HotelInfoId = x.HotelInfoId,
                 HotelRoomTypeId = x.HotelRoomTypeId,
                 OffSetUnit = x.OffSetUnit,
                 Percentage = x.Percentage,
                 SearchId = x.SearchId,
-                suppliersHotelsInfo = x.SuppliersHotelsInfo,
+                suppliersHotelsInfo = _meis007Entities.SuppliersHotelsInfoes.Where(y => y.HotelInfoID == x.HotelInfoId).First(),
                 UnitMultiplier = x.UnitMultiplier,
                 NumberOfNights= x.NumberOfNights
             };
