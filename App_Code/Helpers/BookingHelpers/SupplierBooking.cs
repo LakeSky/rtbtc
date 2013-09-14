@@ -43,7 +43,7 @@ public class SupplierBooking
         bookingInfo.LastName = LastName;
         bookingInfo.MobilePhone = Mobile;
         bookingInfo.HomePhone = Telephone;
-        if (Shi.SupplierID == "TOH")
+        if (Shi.SupplierID == "1006")
         {
             bookingInfo.HotelId = int.Parse(Shi.HotelID.ToString());
             bookingInfo.RoomId = int.Parse(Shi.RoomID.ToString());
