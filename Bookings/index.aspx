@@ -1,75 +1,84 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="Bookings_index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
+    CodeFile="index.aspx.cs" Inherits="Bookings_index" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
-  <script type="text/javascript">
-      $(function () {
-          $(".txtBookingSearch").autocomplete({
-              change: function (event, ui) {
-                  if (ui.item == null) {
-                      $(".txtBookingSearch").val('');
-                      $(".txtBookingSearch").focus();
-                  }
-              },
-              source: function (request, response) {
-                  $.ajax({
-                      type: "POST",
-                      contentType: "application/json; charset=utf-8",
-                      url: '<%=ResolveUrl("~/ApplicationWebService.asmx/SearchBooking") %>',
-                      data: "{ 'q': '" + request.term + "'}",
-                      dataType: "json",
-                      success: function (data) {
-                          var array = [];
-                          $.each(data.d, function (i, x) {
-                              var obj = {}
-                              obj['id'] = x.Id;
-                              obj['label'] = x.Text;
-                              obj['name'] = x.Text;
-                              array.push(obj);
-                          });
-                          response(array);
-                      },
-                      error: function (result) {
-                          console.log(result);
-                      }
-                  });
-              },
-              select: function (e, ui) {
-                  window.location = "show.aspx?id=" + ui.item.id;
-              }
-          });
-      });
-  </script>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
+    <script type="text/javascript">
+        $(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+
+            function endRequestHandler(sender, args) {
+                $(".checkin-date").datepicker({
+                    constrainInput: true,
+                    dateFormat: "dd-mm-yy",
+                    changeMonth: true,
+                    changeYear: true
+                });
+
+                $(".checkin-date").attr("readonly", true);
+            }
+        });
+    </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-  <div class="row row_2 container_24">
-    <div class="grid_24">
-      <strong class="button_content button_content1 left">
-        <strong class="button bg_button" style="margin-bottom: 9px;">
-          <a href="cancelled.aspx">
-            <span class="ui-button-text">
-              Show Cancelled Bookings
-            </span>
-          </a>
-        </strong>
-      </strong>
-       <strong class="button_content button_content1 right">
-        <strong class="button bg_button" style="margin-bottom: 9px;">
-          <a href="packages.aspx">
-            <span class="ui-button-text">
-              Show Packages Bookings
-            </span>
-          </a>
-        </strong>
-      </strong>
-      <div class="clear"></div>
-      <input id="txtBookingSearch" type="text" class="txtBookingSearch right" placeholder="Search Booking" />
-      <div class="clear"></div>
-      <asp:GridView ID="gvBookings" runat="server" 
-          onpageindexchanging="gvBookings_PageIndexChanging" 
-          onrowdatabound="gvBookings_RowDataBound" Width="100%" 
-          CssClass="table table-bordered" AllowPaging="True" PageSize="10">
-      </asp:GridView>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <div class="row row_2 container_24">
+        <div class="grid_24">
+            <strong class="button_content button_content1 right"><strong class="button bg_button"
+                style="margin-bottom: 9px;"><a href="packages.aspx"><span class="ui-button-text">Show
+                    Package Bookings </span></a></strong></strong>
+            <div class="clear">
+            </div>
+            <asp:UpdatePanel ID="updatePanelCity" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    Search Field
+                                </th>
+                                <th>
+                                    Search Value
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:DropDownList ID="ddlStatus" runat="server">
+                                    </asp:DropDownList>
+                                </td>
+                                <td>
+                                    <asp:DropDownList ID="ddlSearchFields" runat="server" CssClass="search-fields" OnSelectedIndexChanged="ddlSearchFields_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </td>
+                                <td>
+                                    <div id="checkInDateDiv" runat="server" class="checkin-date-div">
+                                        <asp:TextBox ID="txtCheckinDate" runat="server" CssClass="checkin-date"></asp:TextBox>
+                                    </div>
+                                    <div id="statusDiv" runat="server" class="status-value-div">
+                                        <asp:TextBox ID="txtSearchValue" runat="server" CssClass="search-value"></asp:TextBox>
+                                    </div>
+                                </td>
+                                <td>
+                                    <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click"
+                                        CssClass="btn btn-save btn-primary" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <asp:UpdatePanel ID="updatePanelGV" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <asp:GridView ID="gvBookings" runat="server" OnRowDataBound="gvBookings_RowDataBound"
+                        Width="100%" CssClass="table table-bordered">
+                    </asp:GridView>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
     </div>
-  </div>
 </asp:Content>
-

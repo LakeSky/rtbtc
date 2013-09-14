@@ -16,7 +16,6 @@
 
                 $(".checkin-date").attr("readonly", true);
             }
-
         });
     </script>
 </asp:Content>
