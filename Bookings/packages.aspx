@@ -65,7 +65,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" OnClick="btnSearch_Click" />
+                                    <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-save btn-primary" />
                                 </td>
                             </tr>
                         </tbody>

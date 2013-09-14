@@ -123,5 +123,34 @@ public static class BookingsIndexObjectHelper
         payCancellationFee = supplierFactory.GetCancelationFee(booking.SupplierConfNo, supplierName, out markupCancellationFee, int.Parse(booking.CustomerMarkup.ToString()));
         return payCancellationFee;
     }
+
+    public static List<BasketPackageDetails> GetPackageBooking(meis007Entities _meis007Entities, BkgMaster booking)
+    {
+        var package = _meis007Entities.PackageHeaders.Where(x => x.PacId == booking.ProductID).First();
+        var city = _meis007Entities.CityMasters.Where(x => x.CityID == package.CityId).First();
+        var list = new List<BasketPackageDetails>();
+        BasketPackageDetails basketPackageDetails = new BasketPackageDetails();
+        basketPackageDetails.DisplayImage = package.DisplayImage;
+        basketPackageDetails.PackageName = package.PacName;
+        basketPackageDetails.ValidFrom = package.Validfrom;
+        basketPackageDetails.ValidTo = package.Validto;
+        basketPackageDetails.From = (DateTime)(booking.CheckIN);
+        basketPackageDetails.PricePerPerson = double.Parse(booking.CustomerDisplayPrice.ToString());
+        basketPackageDetails.TotalPrice = double.Parse(booking.SalesAmt.ToString());
+        basketPackageDetails.City = city.CityName;
+        basketPackageDetails.Country = city.CountryMaster.CountryName;
+        basketPackageDetails.CurrencyCode = booking.FCurrencyID;
+        var paxList = new List<BasketPackagePassengersDetails>();
+        BasketPackagePassengersDetails pax;
+        foreach (var x in _meis007Entities.PaxDetails.Where(x => x.BkgID == booking.BkgID))
+        {
+            pax = new BasketPackagePassengersDetails();
+            pax.FirstName = x.PaxName;
+            paxList.Add(pax);
+        }
+        basketPackageDetails.Passengers = paxList;
+        list.Add(basketPackageDetails);
+        return list;
+    }
 	
 }

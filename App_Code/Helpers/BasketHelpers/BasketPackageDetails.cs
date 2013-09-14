@@ -9,6 +9,9 @@ public class BasketPackageDetails
         public long PackageId { get; set; }
         public string PackageName { get; set; }
         public string DisplayImage { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string CurrencyCode { get; set; }
         public DateTime ValidFrom { get; set; }
         public DateTime ValidTo { get; set; }
         public double PricePerPerson { get; set; }
