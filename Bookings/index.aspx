@@ -52,6 +52,15 @@
           </a>
         </strong>
       </strong>
+       <strong class="button_content button_content1 right">
+        <strong class="button bg_button" style="margin-bottom: 9px;">
+          <a href="packages.aspx">
+            <span class="ui-button-text">
+              Show Packages Bookings
+            </span>
+          </a>
+        </strong>
+      </strong>
       <div class="clear"></div>
       <input id="txtBookingSearch" type="text" class="txtBookingSearch right" placeholder="Search Booking" />
       <div class="clear"></div>

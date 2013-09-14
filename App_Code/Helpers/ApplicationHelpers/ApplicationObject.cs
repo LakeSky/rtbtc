@@ -58,4 +58,76 @@ public static  class ApplicationObject
         var obj = GetMasterCurrencyObject(selectedValue);
         return Math.Floor(formattedPrice / decimal.Parse(obj.SellingExRate.ToString()));
     }
+
+    public static string FormatBookingStatus(string type = "CC")
+    {
+        string status = "Confirmed";
+        if (type == "XX" || type == "OX")
+        {
+            status = "Cancelled";
+        }
+        else if (type == "CX")
+        {
+            status = "Cancelled";
+        }
+        else if (type == "OR")
+        {
+            status = "On Request";
+        }
+        return status;
+    }
+
+    public static List<string> SearchFields(string type = "Hotel")
+    {
+        List<string> list = new List<string>();
+        list.Add("No Search Field");
+        list.Add("Booking Id");
+        list.Add("Pax Name");
+        if (type != "Others")
+        {
+            list.Add("City Name");
+            if (type == "Hotel")
+            {
+                list.Add("Hotel Name");
+            }
+            else
+            {
+                list.Add("Package Name");
+            }
+        }
+        list.Add("Checkin Date");
+        list.Add("Price");
+        return list;
+    }
+
+    public static List<TextValue> GetBookingStatus()
+    {
+        List<TextValue> list = new List<TextValue>();
+        TextValue obj;
+        obj = new TextValue { Text = "All", Value = "all" };
+        list.Add(obj);
+        obj = new TextValue { Text = "Confirmed", Value = "CC" };
+        list.Add(obj);
+        obj = new TextValue { Text = "Cancelled", Value = "XX" };
+        list.Add(obj);
+        return list;
+    }
+
+    public static string GetServiceName(string type)
+    {
+        string name = string.Empty;
+        if (type == "hotel")
+        {
+            name = DbParameter.GetServiceName(1);
+        }
+        else if (type == "package")
+        {
+            name = DbParameter.GetServiceName(4);
+        }
+        else
+        {
+            name = DbParameter.GetServiceName(7);
+        }
+        return name;
+    }
 }

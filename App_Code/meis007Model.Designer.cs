@@ -19,29 +19,29 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductAmenities_Amenities", "Amenity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Amenity), "ProductAmenity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductAmenity), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_BkgCancelPolicies_BkgMaster", "BkgMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.BkgMaster), "BkgCancelPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.BkgCancelPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_CityMaster_CountryMaster", "CountryMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.CountryMaster), "CityMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CityMaster), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_CustomerMaster_CityMaster", "CityMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.CityMaster), "CustomerMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CustomerMaster), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_Classifications_ServicesMaster", "ServicesMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.ServicesMaster), "Classification", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.Classification), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductMaster_Classifications", "Classification", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Classification), "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductMaster), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductFacilities_Facilities", "Facility", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Facility), "ProductFacility", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductFacility), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK__HotelBook__Hotel__28A2FA0E", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "HotelBooking", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.HotelBooking), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_PackageDescription_PackageHeader", "PackageHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.PackageHeader), "PackageDescription", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.PackageDescription), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_PackageImages_PackageHeader", "PackageHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.PackageHeader), "PackageImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.PackageImage), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductAmenities_ProductMaster", "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.ProductMaster), "ProductAmenity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductAmenity), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductImages_ProductMaster", "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.ProductMaster), "ProductImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductImage), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_B2CPaxinfo_B2CCustomerinfo1", "B2CCustomerinfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.B2CCustomerinfo), "B2CPaxinfo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.B2CPaxinfo), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductFacilities_ProductRRC", "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.ProductRRC), "ProductFacility", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductFacility), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_ProductMaster", "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.ProductMaster), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_RoomTypeDetail", "RoomTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.RoomTypeDetail), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.RoomTypeHeader), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_RoomTypeDetail_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.RoomTypeHeader), "RoomTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.RoomTypeDetail), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK__HotelBook__Hotel__28A2FA0E", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "HotelBooking", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.HotelBooking), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__28F7FFC9", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__29EC2402", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2AE0483B", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2BD46C74", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2CC890AD", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2DBCB4E6", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductFacilities_ProductRRC", "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.ProductRRC), "ProductFacility", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductFacility), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_ProductMaster", "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.ProductMaster), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_RoomTypeDetail", "RoomTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.RoomTypeDetail), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductRRC_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.RoomTypeHeader), "ProductRRC", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductRRC), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_RoomTypeDetail_RoomTypeHeader", "RoomTypeHeader", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.RoomTypeHeader), "RoomTypeDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.RoomTypeDetail), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_BkgCancelPolicies_BkgMaster", "BkgMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.BkgMaster), "BkgCancelPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.BkgCancelPolicy), true)]
 
 #endregion
 
@@ -172,22 +172,6 @@ namespace meis007Model
             }
         }
         private ObjectSet<BasketSequence> _BasketSequences;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<BkgCancelPolicy> BkgCancelPolicies
-        {
-            get
-            {
-                if ((_BkgCancelPolicies == null))
-                {
-                    _BkgCancelPolicies = base.CreateObjectSet<BkgCancelPolicy>("BkgCancelPolicies");
-                }
-                return _BkgCancelPolicies;
-            }
-        }
-        private ObjectSet<BkgCancelPolicy> _BkgCancelPolicies;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -544,22 +528,6 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<SuppliersHotelsInfo> SuppliersHotelsInfoes
-        {
-            get
-            {
-                if ((_SuppliersHotelsInfoes == null))
-                {
-                    _SuppliersHotelsInfoes = base.CreateObjectSet<SuppliersHotelsInfo>("SuppliersHotelsInfoes");
-                }
-                return _SuppliersHotelsInfoes;
-            }
-        }
-        private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<UserMaster> UserMasters
         {
             get
@@ -684,6 +652,38 @@ namespace meis007Model
             }
         }
         private ObjectSet<SuppliersCancelationPolicy> _SuppliersCancelationPolicies;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SuppliersHotelsInfo> SuppliersHotelsInfoes
+        {
+            get
+            {
+                if ((_SuppliersHotelsInfoes == null))
+                {
+                    _SuppliersHotelsInfoes = base.CreateObjectSet<SuppliersHotelsInfo>("SuppliersHotelsInfoes");
+                }
+                return _SuppliersHotelsInfoes;
+            }
+        }
+        private ObjectSet<SuppliersHotelsInfo> _SuppliersHotelsInfoes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BkgCancelPolicy> BkgCancelPolicies
+        {
+            get
+            {
+                if ((_BkgCancelPolicies == null))
+                {
+                    _BkgCancelPolicies = base.CreateObjectSet<BkgCancelPolicy>("BkgCancelPolicies");
+                }
+                return _BkgCancelPolicies;
+            }
+        }
+        private ObjectSet<BkgCancelPolicy> _BkgCancelPolicies;
 
         #endregion
         #region AddTo Methods
@@ -726,14 +726,6 @@ namespace meis007Model
         public void AddToBasketSequences(BasketSequence basketSequence)
         {
             base.AddObject("BasketSequences", basketSequence);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the BkgCancelPolicies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToBkgCancelPolicies(BkgCancelPolicy bkgCancelPolicy)
-        {
-            base.AddObject("BkgCancelPolicies", bkgCancelPolicy);
         }
     
         /// <summary>
@@ -913,14 +905,6 @@ namespace meis007Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the SuppliersHotelsInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
-        {
-            base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the UserMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToUserMasters(UserMaster userMaster)
@@ -982,6 +966,22 @@ namespace meis007Model
         public void AddToSuppliersCancelationPolicies(SuppliersCancelationPolicy suppliersCancelationPolicy)
         {
             base.AddObject("SuppliersCancelationPolicies", suppliersCancelationPolicy);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SuppliersHotelsInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSuppliersHotelsInfoes(SuppliersHotelsInfo suppliersHotelsInfo)
+        {
+            base.AddObject("SuppliersHotelsInfoes", suppliersHotelsInfo);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BkgCancelPolicies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBkgCancelPolicies(BkgCancelPolicy bkgCancelPolicy)
+        {
+            base.AddObject("BkgCancelPolicies", bkgCancelPolicy);
         }
 
         #endregion
@@ -2595,7 +2595,7 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> HotelRoomTypeId
+        public global::System.String HotelRoomTypeId
         {
             get
             {
@@ -2605,13 +2605,13 @@ namespace meis007Model
             {
                 OnHotelRoomTypeIdChanging(value);
                 ReportPropertyChanging("HotelRoomTypeId");
-                _HotelRoomTypeId = StructuralObject.SetValidValue(value);
+                _HotelRoomTypeId = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("HotelRoomTypeId");
                 OnHotelRoomTypeIdChanged();
             }
         }
-        private Nullable<global::System.Int64> _HotelRoomTypeId;
-        partial void OnHotelRoomTypeIdChanging(Nullable<global::System.Int64> value);
+        private global::System.String _HotelRoomTypeId;
+        partial void OnHotelRoomTypeIdChanging(global::System.String value);
         partial void OnHotelRoomTypeIdChanged();
     
         /// <summary>
@@ -11670,7 +11670,7 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> RoomTypeID
+        public global::System.String RoomTypeID
         {
             get
             {
@@ -11680,13 +11680,13 @@ namespace meis007Model
             {
                 OnRoomTypeIDChanging(value);
                 ReportPropertyChanging("RoomTypeID");
-                _RoomTypeID = StructuralObject.SetValidValue(value);
+                _RoomTypeID = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("RoomTypeID");
                 OnRoomTypeIDChanged();
             }
         }
-        private Nullable<global::System.Int64> _RoomTypeID;
-        partial void OnRoomTypeIDChanging(Nullable<global::System.Int64> value);
+        private global::System.String _RoomTypeID;
+        partial void OnRoomTypeIDChanging(global::System.String value);
         partial void OnRoomTypeIDChanged();
     
         /// <summary>
