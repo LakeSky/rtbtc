@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Account_Register" %>
-<%@ Register src="/rtbtc/MyCaptcha.ascx" tagname="MyCaptcha" tagprefix="uc1" %>
+<%@ Register src="~/MyCaptcha.ascx" tagname="MyCaptcha" tagprefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
   <style type="text/css">
       .fieldValue input[type="text"] {

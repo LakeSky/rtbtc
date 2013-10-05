@@ -232,7 +232,7 @@ div[id*="foo"] a
 
 #wrapper .row_2 .main_slider
 {
-    background-image: url("/rtbtc/images/template/slider_banner.jpg")
+    background-image: url("../images/template/slider_banner.jpg")
 }
 
 #cancellation_policy_dialog .loading-image{

@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="search.aspx.cs" Inherits="Hotels_Index" %>
-<%@ Register Src="/rtbtc/Pager.ascx" TagName="Pager" TagPrefix="userControl" %>
+<%@ Register Src="~/Pager.ascx" TagName="Pager" TagPrefix="userControl" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
   <style type="text/css">
       .infoBoxContents .inner label {
@@ -9,14 +9,14 @@
       .no-close .ui-dialog-titlebar-close {display: none}
       
   </style>
-  <link href="/rtbtc/styles/search_box.css" rel="stylesheet" type="text/css" />
+  <link href="../styles/search_box.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript">
       window.city_autocomplete_url = '<%=ResolveUrl("~/ViewHelperWebService.asmx/CitySearch") %>';
       window.cancellation_policy_url = '<%=ResolveUrl("~/ApplicationWebService.asmx/CancellationPolicies") %>';
       window.room_index = <%= RoomsCount + 1 %>;
   </script>
-  <script type="text/javascript" src="/rtbtc/Scripts/hotel_search.js"></script>
-  <script type="text/javascript" src="/rtbtc/Scripts/cancellation_policy.js"></script>
+  <script type="text/javascript" src="../Scripts/hotel_search.js"></script>
+  <script type="text/javascript" src="../Scripts/cancellation_policy.js"></script>
   <script type = "text/javascript">
       function ShowDialogBox() {
           setTimeout(function () {

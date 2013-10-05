@@ -4,14 +4,14 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
-    <link href="/rtbtc/styles/search_box.css" rel="stylesheet" type="text/css" />
+    <link href="../styles/search_box.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
       window.city_autocomplete_url = '<%=ResolveUrl("~/ViewHelperWebService.asmx/CitySearch") %>';
       window.room_index = <%= RoomsCount + 1 %>;
     </script>
-    <script type="text/javascript" src="/rtbtc/scripts/home_page.js"></script>
-    <script type="text/javascript" src="/rtbtc/scripts/custom_tabbing.js"></script>
-    <script type="text/javascript" src="/rtbtc/scripts/hotel_search.js"></script>
+    <script type="text/javascript" src="../scripts/home_page.js"></script>
+    <script type="text/javascript" src="../scripts/custom_tabbing.js"></script>
+    <script type="text/javascript" src="../scripts/hotel_search.js"></script>
     <style type="text/css">
         .no-close .ui-dialog-titlebar-close {
             display: none;
@@ -453,7 +453,7 @@
           </ItemTemplate>
           <SeparatorTemplate>
              <li class="prods_vseparator equal-height_new_products_block">
-              <img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/>
+              <img src="../images/template/spacer.gif" alt="" width="1" height="1"/>
             </li>
           </SeparatorTemplate>
           <FooterTemplate>
@@ -516,7 +516,7 @@
           </ItemTemplate>
           <SeparatorTemplate>
              <li class="prods_vseparator equal-height_new_products_block">
-              <img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/>
+              <img src="../images/template/spacer.gif" alt="" width="1" height="1"/>
             </li>
           </SeparatorTemplate>
           <FooterTemplate>
@@ -566,7 +566,7 @@
           </ItemTemplate>
           <SeparatorTemplate>
              <li class="prods_vseparator equal-height_new_products_block">
-              <img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/>
+              <img src="../images/template/spacer.gif" alt="" width="1" height="1"/>
             </li>
           </SeparatorTemplate>
           <FooterTemplate>
@@ -588,7 +588,7 @@
         <ul>
           <li class="item-1 grid_8">
             <div class="bannershow_block">
-              <img src="/rtbtc/images/template/slider/banner_static_01.png" alt="Banner01 for banner-show" title="Banner01 for banner-show" width="78" height="66" />
+              <img src="../images/template/slider/banner_static_01.png" alt="Banner01 for banner-show" title="Banner01 for banner-show" width="78" height="66" />
             <div class="bannershow_wrapper">
             <div class="bannershow_caption">
               <span class="slider_text_1">
@@ -616,7 +616,7 @@
      </li>
      <li class="item-2 grid_8">
        <div class="bannershow_block">
-         <img src="/rtbtc/images/template/slider/banner_static_02.png" alt="Banner02 for banner-show" title="Banner02 for banner-show" width="78" height="66" />
+         <img src="../images/template/slider/banner_static_02.png" alt="Banner02 for banner-show" title="Banner02 for banner-show" width="78" height="66" />
          <div class="bannershow_wrapper">
            <div class="bannershow_caption">
              <span class="slider_text_1">become a fan</span>
@@ -636,7 +636,7 @@
      </li>
      <li class="item-3 grid_8">
        <div class="bannershow_block">
-         <img src="/rtbtc/images/template/slider/banner_static_03.png" alt="Banner03 for banner-show" title="Banner03 for banner-show" width="78" height="54" />
+         <img src="../images/template/slider/banner_static_03.png" alt="Banner03 for banner-show" title="Banner03 for banner-show" width="78" height="54" />
            <div class="bannershow_wrapper">
              <div class="bannershow_caption">
                <span class="slider_text_1">
@@ -663,25 +663,25 @@
    <div class="brands_wrapper">
      <div id="foo1">
        <a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-1?osCsid=qKSS-ugxZQ37A3jke2owD0">
-         <img src="/rtbtc/images/template/manufacturers/brand_example_1.png" alt="manufacturers/brand_example_1.png" title="manufacturers/brand_example_1.png" width="152" height="101" />
+         <img src="../images/template/manufacturers/brand_example_1.png" alt="manufacturers/brand_example_1.png" title="manufacturers/brand_example_1.png" width="152" height="101" />
        </a>
        <a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-2?osCsid=qKSS-ugxZQ37A3jke2owD0">
-         <img src="/rtbtc/images/template/manufacturers/brand_example_2.png" alt="manufacturers/brand_example_2.png"  title="manufacturers/brand_example_2.png" width="152" height="101" />
+         <img src="../images/template/manufacturers/brand_example_2.png" alt="manufacturers/brand_example_2.png"  title="manufacturers/brand_example_2.png" width="152" height="101" />
        </a>
        <a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-3?osCsid=qKSS-ugxZQ37A3jke2owD0">
-         <img src="/rtbtc/images/template/manufacturers/brand_example_3.png" alt="manufacturers/brand_example_3.png" title="manufacturers/brand_example_3.png" width="152" height="101" />
+         <img src="../images/template/manufacturers/brand_example_3.png" alt="manufacturers/brand_example_3.png" title="manufacturers/brand_example_3.png" width="152" height="101" />
        </a>
        <a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-4?osCsid=qKSS-ugxZQ37A3jke2owD0">
-         <img src="/rtbtc/images/template/manufacturers/brand_example_4.png" alt="manufacturers/brand_example_4.png" title="manufacturers/brand_example_4.png" width="152" height="101" />
+         <img src="../images/template/manufacturers/brand_example_4.png" alt="manufacturers/brand_example_4.png" title="manufacturers/brand_example_4.png" width="152" height="101" />
        </a>
        <a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-5?osCsid=qKSS-ugxZQ37A3jke2owD0">
-         <img src="/rtbtc/images/template/manufacturers/brand_example_5.png" alt="manufacturers/brand_example_5.png" title="manufacturers/brand_example_5.png" width="152" height="102" />
+         <img src="../images/template/manufacturers/brand_example_5.png" alt="manufacturers/brand_example_5.png" title="manufacturers/brand_example_5.png" width="152" height="102" />
        </a>
        <a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-6?osCsid=qKSS-ugxZQ37A3jke2owD0">
-         <img src="/rtbtc/images/template/manufacturers/brand_example_6.png" alt="manufacturers/brand_example_6.png" title="manufacturers/brand_example_6.png" width="152" height="102" />
+         <img src="../images/template/manufacturers/brand_example_6.png" alt="manufacturers/brand_example_6.png" title="manufacturers/brand_example_6.png" width="152" height="102" />
        </a>
        <a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-7?osCsid=qKSS-ugxZQ37A3jke2owD0">
-         <img src="/rtbtc/images/template/manufacturers/brand_example_7.png" alt="manufacturers/brand_example_7.png" title="manufacturers/brand_example_7.png" width="152" height="102" />
+         <img src="../images/template/manufacturers/brand_example_7.png" alt="manufacturers/brand_example_7.png" title="manufacturers/brand_example_7.png" width="152" height="102" />
        </a>
      </div>
      <div class="clearfix">

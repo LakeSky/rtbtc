@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="show.aspx.cs" Inherits="Packages_show" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
-  <link rel="stylesheet" href="/rtbtc/Styles/slider_default.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/rtbtc/Styles/slider.css" type="text/css" media="screen" />
-  <script type="text/javascript" src="/rtbtc/Scripts/slider.js"></script>
+  <link rel="stylesheet" href="../Styles/slider_default.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="../Styles/slider.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="../Scripts/slider.js"></script>
   <script type="text/javascript">
     $(function () {
         $('#slider').nivoSlider({

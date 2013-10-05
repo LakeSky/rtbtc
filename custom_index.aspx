@@ -177,24 +177,24 @@
                                     <div id="box_languages" class="box_languages">
                                         <div class="drop_down">
                                             <label>
-                                                <img src="/rtbtc/images/template/includes/en_icon.gif" alt="English" title="English"
+                                                <img src="../images/template/includes/en_icon.gif" alt="English" title="English"
                                                     width="18" height="12" />English<i></i></label>
                                             <ul>
                                                 <li class="activ"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php?language=en&amp;osCsid=qKSS-ugxZQ37A3jke2owD0">
-                                                    <img src="/rtbtc/images/template/includes/en_icon.gif" alt="English" title="English"
+                                                    <img src="../images/template/includes/en_icon.gif" alt="English" title="English"
                                                         width="18" height="12" />English</a></li>
                                                 <li class=""><a href="http://www.responsive-shop.com/osc/tstore/3/index.php?language=de&amp;osCsid=qKSS-ugxZQ37A3jke2owD0">
-                                                    <img src="/rtbtc/images/template/includes/ge_icon.gif" alt="German" title="German"
+                                                    <img src="../images/template/includes/ge_icon.gif" alt="German" title="German"
                                                         width="18" height="12" />German</a></li>
                                                 <li class=""><a href="http://www.responsive-shop.com/osc/tstore/3/index.php?language=es&amp;osCsid=qKSS-ugxZQ37A3jke2owD0">
-                                                    <img src="/rtbtc/images/template/includes/sp_icon.gif" alt="Spain" title="Spain"
+                                                    <img src="../images/template/includes/sp_icon.gif" alt="Spain" title="Spain"
                                                         width="18" height="12" />Spain</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <a id="storeLogo" href="http://www.responsive-shop.com/osc/tstore/3/index.php?osCsid=qKSS-ugxZQ37A3jke2owD0">
-                                    <img src="/rtbtc/images/template/logo.png" alt="osCommerce" title="osCommerce" width="258"
+                                    <img src="../images/template/logo.png" alt="osCommerce" title="osCommerce" width="258"
                                         height="59" /></a>
                             </div>
                         </div>
@@ -216,119 +216,119 @@
                                     <div class="navbar_bg">
                                         <ul class="sf-menu">
                                             <li class="current_0"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/hardware-c-1?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                class="current" data-rel="/rtbtc/images/template/category/category_hardware.gif"
+                                                class="current" data-rel="../images/template/category/category_hardware.gif"
                                                 data-desc="This is Category Description & Category Image. Etiam accumsan sem at nibh gravida condimen...">
                                                 Hardware</a>
                                                 <div class="cat_panel">
                                                     <ul>
                                                         <li class="current_1"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/hardware-donec-pellentesque-c-1_5?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                            class="current" data-rel="/rtbtc/images/template/category/sub_1.png" data-desc="This is Category Description & Category Image. In ut tellus ut velit consectetur vulputate...">
+                                                            class="current" data-rel="../images/template/category/sub_1.png" data-desc="This is Category Description & Category Image. In ut tellus ut velit consectetur vulputate...">
                                                             Donec pellentesque&nbsp;(55)</a>
                                                             <ul>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/donec-pellentesque-maecenas-sapien-c-1_5_8?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_4.png" data-desc="This is Category Description & Category Image. Fusce eu sapien eget dolor sodales tempor e...">
+                                                                    data-rel="../images/template/category/sub_4.png" data-desc="This is Category Description & Category Image. Fusce eu sapien eget dolor sodales tempor e...">
                                                                     Maecenas et sapien&nbsp;(8)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/donec-pellentesque-donec-nisl-elit-feugiat-adipisc-c-1_5_10?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_6.png" data-desc="This is Category Description & Category Image. Sed tristique ornare ligula. Nam liber temp...">
+                                                                    data-rel="../images/template/category/sub_6.png" data-desc="This is Category Description & Category Image. Sed tristique ornare ligula. Nam liber temp...">
                                                                     Donec nisl elit, feug...&nbsp;(8)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/donec-pellentesque-sed-tristique-ornare-ligula-nul-c-1_5_11?osCsid=qKSS-ugxZQ37A3jke2owD0"
                                                                     class="current" data-rel="/rtbtc/images/template/category/sub_7.png" data-desc="This is Category Description & Category Image. Ac tristique at nibh gravida consequat. Sed...">
                                                                     Sed tristique ornare ...&nbsp;(17)</a>
                                                                     <ul>
                                                                         <li class="current_3"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/sed-tristique-ornare-ligula-nul-quisque-placerat-ultrices-c-1_5_11_33?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                            data-rel="/rtbtc/images/template/category/sub_1.png" data-desc="This is Category Description & Category Image. Quisque placerat ultrices tellus liber temp...">
+                                                                            data-rel="../images/template/category/sub_1.png" data-desc="This is Category Description & Category Image. Quisque placerat ultrices tellus liber temp...">
                                                                             Quisque placerat ultr...&nbsp;(10)</a></li>
                                                                         <li class="current_3"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/sed-tristique-ornare-ligula-nul-cras-tempor-est-c-1_5_11_36?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                            data-rel="/rtbtc/images/template/category/sub_4.png" data-desc="This is Category Description & Category Image. Donec elit augue, adipiscing vitae sollicit...">
+                                                                            data-rel="../images/template/category/sub_4.png" data-desc="This is Category Description & Category Image. Donec elit augue, adipiscing vitae sollicit...">
                                                                             Cras et tempor est&nbsp;(7)</a></li>
                                                                     </ul>
                                                                 </li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/donec-pellentesque-cras-tempor-est-duis-eget-c-1_5_12?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_8.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
+                                                                    data-rel="../images/template/category/sub_8.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
                                                                     Cras et tempor est. D...&nbsp;(12)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/donec-pellentesque-quisque-placerat-ultrices-c-1_5_13?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/category_dvd_movies.gif" data-desc="This is Category Description & Category Image. Quisque placerat ultrices tellus liber temp...">
+                                                                    data-rel="../images/template/category/category_dvd_movies.gif" data-desc="This is Category Description & Category Image. Quisque placerat ultrices tellus liber temp...">
                                                                     Quisque placerat ultr...&nbsp;(10)</a></li>
                                                             </ul>
                                                         </li>
                                                         <li class="current_1"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/hardware-cras-tempor-est-c-1_6?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                            class="current" data-rel="/rtbtc/images/template/category/sub_2.png" data-desc="This is Category Description & Category Image. Donec elit augue, adipiscing vitae sollicit...">
+                                                            class="current" data-rel="../images/template/category/sub_2.png" data-desc="This is Category Description & Category Image. Donec elit augue, adipiscing vitae sollicit...">
                                                             Cras et tempor est&nbsp;(39)</a>
                                                             <ul>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/cras-tempor-est-sollicitudin-vitae-c-1_6_14?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/category_gadgets.png" data-desc="This is Category Description & Category Image. Etiam accumsan sem at nibh gravida condimen...">
+                                                                    data-rel="../images/template/category/category_gadgets.png" data-desc="This is Category Description & Category Image. Etiam accumsan sem at nibh gravida condimen...">
                                                                     Sollicitudin vitae&nbsp;(10)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/cras-tempor-est-proin-consequat-tellus-non-velit-c-1_6_15?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_1.png" data-desc="This is Category Description & Category Image. In ut tellus ut velit consectetur vulputate...">
+                                                                    data-rel="../images/template/category/sub_1.png" data-desc="This is Category Description & Category Image. In ut tellus ut velit consectetur vulputate...">
                                                                     Proin consequat tellu...&nbsp;(8)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/cras-tempor-est-cras-tempor-est-c-1_6_16?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_2.png" data-desc="This is Category Description & Category Image. Donec elit augue, adipiscing vitae sollicit...">
+                                                                    data-rel="../images/template/category/sub_2.png" data-desc="This is Category Description & Category Image. Donec elit augue, adipiscing vitae sollicit...">
                                                                     Cras et tempor est&nbsp;(9)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/cras-tempor-est-vestibulum-posuere-tristique-c-1_6_17?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_3.png" data-desc="This is Category Description & Category Image. Proin consequat tellus non velit viverra a ...">
+                                                                    data-rel="../images/template/category/sub_3.png" data-desc="This is Category Description & Category Image. Proin consequat tellus non velit viverra a ...">
                                                                     Vestibulum posuere t...&nbsp;(12)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/cras-tempor-est-maecenas-sapien-c-1_6_18?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_4.png" data-desc="This is Category Description & Category Image. Fusce eu sapien eget dolor sodales tempor e...">
+                                                                    data-rel="../images/template/category/sub_4.png" data-desc="This is Category Description & Category Image. Fusce eu sapien eget dolor sodales tempor e...">
                                                                     Maecenas et sapien</a></li>
                                                             </ul>
                                                         </li>
                                                         <li class="current_1"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/hardware-vestibulum-posuere-tristique-c-1_7?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                            class="current" data-rel="/rtbtc/images/template/category/sub_3.png" data-desc="This is Category Description & Category Image. Proin consequat tellus non velit viverra a ...">
+                                                            class="current" data-rel="../images/template/category/sub_3.png" data-desc="This is Category Description & Category Image. Proin consequat tellus non velit viverra a ...">
                                                             Vestibulum posuere t...&nbsp;(118)</a>
                                                             <ul>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/vestibulum-posuere-tristique-etiam-accumsan-sem-nibh-gravi-c-1_7_9?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    class="current" data-rel="/rtbtc/images/template/category/sub_5.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
+                                                                    class="current" data-rel="../images/template/category/sub_5.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
                                                                     Etiam accumsan sem at...&nbsp;(80)</a>
                                                                     <ul>
                                                                         <li class="current_3"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/etiam-accumsan-sem-nibh-gravi-cras-tempor-est-duis-eget-c-1_7_9_22?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                            data-rel="/rtbtc/images/template/category/sub_8.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
+                                                                            data-rel="../images/template/category/sub_8.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
                                                                             Cras et tempor est. D...&nbsp;(8)</a></li>
                                                                         <li class="current_3"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/etiam-accumsan-sem-nibh-gravi-donec-nisl-elit-feugiat-adipisc-c-1_7_9_30?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                            data-rel="/rtbtc/images/template/category/sub_6.png" data-desc="This is Category Description & Category Image. Sed tristique ornare ligula. Nam liber temp...">
+                                                                            data-rel="../images/template/category/sub_6.png" data-desc="This is Category Description & Category Image. Sed tristique ornare ligula. Nam liber temp...">
                                                                             Donec nisl elit, feug...&nbsp;(8)</a></li>
                                                                         <li class="current_3"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/etiam-accumsan-sem-nibh-gravi-sollicitudin-vitae-c-1_7_9_34?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                            class="current" data-rel="/rtbtc/images/template/category/sub_2.png" data-desc="This is Category Description & Category Image. Etiam accumsan sem at nibh gravida condimen...">
+                                                                            class="current" data-rel="../images/template/category/sub_2.png" data-desc="This is Category Description & Category Image. Etiam accumsan sem at nibh gravida condimen...">
                                                                             Sollicitudin vitae&nbsp;(44)</a>
                                                                             <ul>
                                                                                 <li class="current_4"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/sollicitudin-vitae-vestibulum-posuere-tristique-c-1_7_9_34_37?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                                    data-rel="/rtbtc/images/template/category/sub_5.png" data-desc="This is Category Description & Category Image. Proin consequat tellus non velit viverra a ...">
+                                                                                    data-rel="../images/template/category/sub_5.png" data-desc="This is Category Description & Category Image. Proin consequat tellus non velit viverra a ...">
                                                                                     Vestibulum posuere t...&nbsp;(12)</a></li>
                                                                                 <li class="current_4"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/sollicitudin-vitae-maecenas-sapien-c-1_7_9_34_38?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                                    class="current" data-rel="/rtbtc/images/template/category/sub_6.png" data-desc="This is Category Description & Category Image. Fusce eu sapien eget dolor sodales tempor e...">
+                                                                                    class="current" data-rel="../images/template/category/sub_6.png" data-desc="This is Category Description & Category Image. Fusce eu sapien eget dolor sodales tempor e...">
                                                                                     Maecenas et sapien&nbsp;(20)</a>
                                                                                     <ul>
                                                                                         <li class="current_5"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/maecenas-sapien-donec-nisl-elit-feugiat-adipisc-c-1_7_9_34_38_40?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                                            data-rel="/rtbtc/images/template/category/sub_8.png" data-desc="This is Category Description & Category Image. Sed tristique ornare ligula. Nam liber temp...">
+                                                                                            data-rel="../images/template/category/sub_8.png" data-desc="This is Category Description & Category Image. Sed tristique ornare ligula. Nam liber temp...">
                                                                                             Donec nisl elit, feug...&nbsp;(10)</a></li>
                                                                                         <li class="current_5"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/maecenas-sapien-sed-tristique-ornare-ligula-nul-c-1_7_9_34_38_41?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                                            data-rel="/rtbtc/images/template/category/sub_1.png" data-desc="This is Category Description & Category Image. Ac tristique at nibh gravida consequat. Sed...">
+                                                                                            data-rel="../images/template/category/sub_1.png" data-desc="This is Category Description & Category Image. Ac tristique at nibh gravida consequat. Sed...">
                                                                                             Sed tristique ornare ...&nbsp;(10)</a></li>
                                                                                     </ul>
                                                                                 </li>
                                                                                 <li class="current_4"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/sollicitudin-vitae-etiam-accumsan-sem-nibh-gravi-c-1_7_9_34_39?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                                    data-rel="/rtbtc/images/template/category/sub_7.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
+                                                                                    data-rel="../images/template/category/sub_7.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
                                                                                     Etiam accumsan sem at...&nbsp;(12)</a></li>
                                                                             </ul>
                                                                         </li>
                                                                         <li class="current_3"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/etiam-accumsan-sem-nibh-gravi-cras-tempor-est-duis-eget-c-1_7_9_32?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                            data-rel="/rtbtc/images/template/category/sub_8.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
+                                                                            data-rel="../images/template/category/sub_8.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
                                                                             Cras et tempor est. D...&nbsp;(12)</a></li>
                                                                         <li class="current_3"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/etiam-accumsan-sem-nibh-gravi-proin-consequat-tellus-non-velit-c-1_7_9_35?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                            data-rel="/rtbtc/images/template/category/sub_3.png" data-desc="This is Category Description & Category Image. In ut tellus ut velit consectetur vulputate...">
+                                                                            data-rel="../images/template/category/sub_3.png" data-desc="This is Category Description & Category Image. In ut tellus ut velit consectetur vulputate...">
                                                                             Proin consequat tellu...&nbsp;(8)</a></li>
                                                                     </ul>
                                                                 </li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/vestibulum-posuere-tristique-etiam-accumsan-sem-nibh-gravi-c-1_7_19?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_5.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
+                                                                    data-rel="../images/template/category/sub_5.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
                                                                     Etiam accumsan sem at...&nbsp;(12)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/vestibulum-posuere-tristique-donec-nisl-elit-feugiat-adipisc-c-1_7_20?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_6.png" data-desc="This is Category Description & Category Image. Sed tristique ornare ligula. Nam liber temp...">
+                                                                    data-rel="../images/template/category/sub_6.png" data-desc="This is Category Description & Category Image. Sed tristique ornare ligula. Nam liber temp...">
                                                                     Donec nisl elit, feug...&nbsp;(8)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/vestibulum-posuere-tristique-sed-tristique-ornare-ligula-nul-c-1_7_21?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_7.png" data-desc="This is Category Description & Category Image. Ac tristique at nibh gravida consequat. Sed...">
+                                                                    data-rel="../images/template/category/sub_7.png" data-desc="This is Category Description & Category Image. Ac tristique at nibh gravida consequat. Sed...">
                                                                     Sed tristique ornare ...&nbsp;(8)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/vestibulum-posuere-tristique-gadgets-c-1_7_24?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/category_gadgets.png" data-desc="This is Category Description & Category Image. Etiam accumsan sem at nibh gravida condimen...">
+                                                                    data-rel="../images/template/category/category_gadgets.png" data-desc="This is Category Description & Category Image. Etiam accumsan sem at nibh gravida condimen...">
                                                                     Gadgets&nbsp;(10)</a></li>
                                                             </ul>
                                                         </li>
@@ -336,36 +336,36 @@
                                                 </div>
                                             </li>
                                             <li class="current_0"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/software-c-2?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                data-rel="/rtbtc/images/template/category/category_software.gif" data-desc="This is Category Description & Category Image. Aenean mollis convallis ante dolor sodales ...">
+                                                data-rel="../images/template/category/category_software.gif" data-desc="This is Category Description & Category Image. Aenean mollis convallis ante dolor sodales ...">
                                                 Software</a></li>
                                             <li class="current_0"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/dvd-movies-c-3?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                class="current" data-rel="/rtbtc/images/template/category/category_dvd_movies.gif"
+                                                class="current" data-rel="../images/template/category/category_dvd_movies.gif"
                                                 data-desc="This is Category Description & Category Image. Quisque placerat ultrices tellus liber temp...">
                                                 DVD Movies</a>
                                                 <div class="cat_panel">
                                                     <ul>
                                                         <li class="current_1"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/dvd-movies-proin-consequat-tellus-non-c-3_23?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                            class="current" data-rel="/rtbtc/images/template/category/category_dvd_movies.gif"
+                                                            class="current" data-rel="../images/template/category/category_dvd_movies.gif"
                                                             data-desc="This is Category Description & Category Image. Quisque placerat ultrices tellus liber temp...">
                                                             Proin consequat tellu...&nbsp;(58)</a>
                                                             <ul>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/proin-consequat-tellus-non-donec-pellentesque-c-3_23_25?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_1.png" data-desc="In ut tellus ut velit consectetur vulputate. Fusce eu sapien eget dolor sodales tempor eu ...">
+                                                                    data-rel="../images/template/category/sub_1.png" data-desc="In ut tellus ut velit consectetur vulputate. Fusce eu sapien eget dolor sodales tempor eu ...">
                                                                     Donec pellentesque&nbsp;(10)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/proin-consequat-tellus-non-cras-tempor-est-c-3_23_26?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_2.png" data-desc="This is Category Description & Category Image. Donec elit augue, adipiscing vitae sollicit...">
+                                                                    data-rel="../images/template/category/sub_2.png" data-desc="This is Category Description & Category Image. Donec elit augue, adipiscing vitae sollicit...">
                                                                     Cras et tempor est&nbsp;(7)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/proin-consequat-tellus-non-vestibulum-posuere-tristique-c-3_23_27?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_3.png" data-desc="Proin consequat tellus non velit viverra a tempor nibh tincidunt. Donec elit augue, adipis...">
+                                                                    data-rel="../images/template/category/sub_3.png" data-desc="Proin consequat tellus non velit viverra a tempor nibh tincidunt. Donec elit augue, adipis...">
                                                                     Vestibulum posuere t...&nbsp;(10)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/proin-consequat-tellus-non-maecenas-sapien-c-3_23_28?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_4.png" data-desc="This is Category Description & Category Image. Fusce eu sapien eget dolor sodales tempor e...">
+                                                                    data-rel="../images/template/category/sub_4.png" data-desc="This is Category Description & Category Image. Fusce eu sapien eget dolor sodales tempor e...">
                                                                     Maecenas et sapien&nbsp;(7)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/proin-consequat-tellus-non-etiam-accumsan-sem-nibh-gravi-c-3_23_29?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_5.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
+                                                                    data-rel="../images/template/category/sub_5.png" data-desc="This is Category Description & Category Image. Nulla pulvinar amet sem feugiat adipiscing ...">
                                                                     Etiam accumsan sem at...&nbsp;(12)</a></li>
                                                                 <li class="current_2"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/proin-consequat-tellus-non-sed-tristique-ornare-ligula-nul-c-3_23_31?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                                    data-rel="/rtbtc/images/template/category/sub_7.png" data-desc="This is Category Description & Category Image. Ac tristique at nibh gravida consequat. Sed...">
+                                                                    data-rel="../images/template/category/sub_7.png" data-desc="This is Category Description & Category Image. Ac tristique at nibh gravida consequat. Sed...">
                                                                     Sed tristique ornare ...&nbsp;(12)</a></li>
                                                             </ul>
                                                         </li>
@@ -373,7 +373,7 @@
                                                 </div>
                                             </li>
                                             <li class="current_0"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/gadgets-c-4?osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                data-rel="/rtbtc/images/template/category/category_gadgets.png" data-desc="This is Category Description & Category Image. Etiam accumsan sem at nibh gravida condimen...">
+                                                data-rel="../images/template/category/category_gadgets.png" data-desc="This is Category Description & Category Image. Etiam accumsan sem at nibh gravida condimen...">
                                                 Gadgets</a></li>
                                         </ul>
                                     </div>
@@ -404,7 +404,7 @@
 
                             </script>
                             <div class="camera_wrap" id="camera_wrap_1">
-                                <div data-src="/rtbtc/images/template/slider/banner_slider_01.jpg" data-thumb="/rtbtc/images/template/slider/banner_slider_01.jpg"
+                                <div data-src="../images/template/slider/banner_slider_01.jpg" data-thumb="../images/template/slider/banner_slider_01.jpg"
                                     class="slider_block">
                                     <div class="camera_caption moveFromRight">
                                         <span class="slider_text_1">The New Canon PowerShot SX240 HS</span> <span class="slider_text_2">
@@ -416,7 +416,7 @@
                                             </strong><strong class="button_text">SHOP NOW!</strong></strong></a></span>
                                     </div>
                                 </div>
-                                <div data-src="/rtbtc/images/template/slider/banner_slider_02.jpg" data-thumb="/rtbtc/images/template/slider/banner_slider_02.jpg"
+                                <div data-src="../images/template/slider/banner_slider_02.jpg" data-thumb="../images/template/slider/banner_slider_02.jpg"
                                     class="slider_block">
                                     <div class="camera_caption moveFromRight">
                                         <span class="slider_text_1">iMac All-in-One Poweful Desktop</span> <span class="slider_text_2">
@@ -428,7 +428,7 @@
                                             </strong><strong class="button_text">SHOP NOW!</strong></strong></a></span>
                                     </div>
                                 </div>
-                                <div data-src="/rtbtc/images/template/slider/banner_slider_03.jpg" data-thumb="/rtbtc/images/template/slider/banner_slider_03.jpg"
+                                <div data-src="../images/template/slider/banner_slider_03.jpg" data-thumb="../images/template/slider/banner_slider_03.jpg"
                                     class="slider_block">
                                     <div class="camera_caption moveFromRight">
                                         <span class="slider_text_1">iPod Touch The Brilliant New Design</span> <span class="slider_text_2">
@@ -473,7 +473,7 @@
 <div class="contentBlock grid_view"><div class="content "><ul class="row_new_products_name  row_new_products_block" id="view_grid-0">
 <li class="responsive_block" style="width:258px">
 <div class="product_block equal-height_new_products_block">
-<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-001-p-1?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="/rtbtc/images/template/product/item-001_1.jpg" alt="Product #001" title="Product #001" width="218" height="218" style="width:218px;height:218px;"/></a></div>
+<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-001-p-1?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="../images/template/product/item-001_1.jpg" alt="Product #001" title="Product #001" width="218" height="218" style="width:218px;height:218px;"/></a></div>
 <div class="featured_label "><strong></strong></div>
 <div class="sale_percent "><strong>-90%</strong></div>
 <div class="product_info_wrapper">
@@ -487,10 +487,10 @@
 </div>
 </div>
 </div>
-</li><li class="prods_vseparator equal-height_new_products_block"><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/>
+</li><li class="prods_vseparator equal-height_new_products_block"><img src="../images/template/spacer.gif" alt="" width="1" height="1"/>
 <li class="responsive_block" style="width:258px">
 <div class="product_block equal-height_new_products_block">
-<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-012-convallis-magna-diam-egestas-vitae-p-12?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="/rtbtc/images/template/product/item-012_1.jpg" alt="Product #012 convallis magna a diam egestas vitae" title="Product #012 convallis magna a diam egestas vitae" width="218" height="218" style="width:218px;height:218px;"/></a></div>
+<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-012-convallis-magna-diam-egestas-vitae-p-12?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="../images/template/product/item-012_1.jpg" alt="Product #012 convallis magna a diam egestas vitae" title="Product #012 convallis magna a diam egestas vitae" width="218" height="218" style="width:218px;height:218px;"/></a></div>
 <div class="featured_label "><strong></strong></div>
 <div class="product_info_wrapper">
 <div class="row_01">
@@ -503,10 +503,10 @@
 </div>
 </div>
 </div>
-</li><li class="prods_vseparator equal-height_new_products_block"><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/>
+</li><li class="prods_vseparator equal-height_new_products_block"><img src="../images/template/spacer.gif" alt="" width="1" height="1"/>
 <li class="responsive_block" style="width:258px">
 <div class="product_block equal-height_new_products_block">
-<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-011-p-11?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="/rtbtc/images/template/product/item-011_1.jpg" alt="Product #011" title="Product #011" width="218" height="218" style="width:218px;height:218px;"/></a></div>
+<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-011-p-11?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="../images/template/product/item-011_1.jpg" alt="Product #011" title="Product #011" width="218" height="218" style="width:218px;height:218px;"/></a></div>
 <div class="featured_label "><strong></strong></div>
 <div class="sale_percent "><strong>-88%</strong></div>
 <div class="product_info_wrapper">
@@ -520,10 +520,10 @@
 </div>
 </div>
 </div>
-</li><li class="prods_vseparator equal-height_new_products_block"><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/>
+</li><li class="prods_vseparator equal-height_new_products_block"><img src="../images/template/spacer.gif" alt="" width="1" height="1"/>
 <li class="responsive_block" style="width:258px">
 <div class="product_block equal-height_new_products_block">
-<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-010-p-10?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="/rtbtc/images/template/product/item-010_1.jpg" alt="Product #010" title="Product #010" width="218" height="218" style="width:218px;height:218px;"/></a></div>
+<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-010-p-10?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="../images/template/product/item-010_1.jpg" alt="Product #010" title="Product #010" width="218" height="218" style="width:218px;height:218px;"/></a></div>
 <div class="featured_label "><strong></strong></div>
 <div class="product_info_wrapper">
 <div class="row_01">
@@ -562,7 +562,7 @@
 <div class="contentBlock grid_view"><div class="content t_view"><ul class="row_featured_name  row_featured_block" id="view2_grid-0">
 <li class="responsive_block" style="width:258px">
 <div class="product_block equal-height_featured_block">
-<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-001-p-1?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="/rtbtc/images/template/product/item-001_1.jpg" alt="Product #001" title="Product #001" width="218" height="218" style="width:218px;height:218px;"/></a></div>
+<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-001-p-1?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="../images/template/product/item-001_1.jpg" alt="Product #001" title="Product #001" width="218" height="218" style="width:218px;height:218px;"/></a></div>
 <div class="featured_label "><strong></strong></div>
 <div class="sale_percent "><strong>-90%</strong></div>
 <div class="product_info_wrapper">
@@ -576,10 +576,10 @@
 </div>
 </div>
 </div>
-</li><li class="prods_vseparator equal-height_featured_block"><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/>
+</li><li class="prods_vseparator equal-height_featured_block"><img src="../images/template/spacer.gif" alt="" width="1" height="1"/>
 <li class="responsive_block" style="width:258px">
 <div class="product_block equal-height_featured_block">
-<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-012-convallis-magna-diam-egestas-vitae-p-12?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="/rtbtc/images/template/product/item-012_1.jpg" alt="Product #012 convallis magna a diam egestas vitae" title="Product #012 convallis magna a diam egestas vitae" width="218" height="218" style="width:218px;height:218px;"/></a></div>
+<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-012-convallis-magna-diam-egestas-vitae-p-12?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="../images/template/product/item-012_1.jpg" alt="Product #012 convallis magna a diam egestas vitae" title="Product #012 convallis magna a diam egestas vitae" width="218" height="218" style="width:218px;height:218px;"/></a></div>
 <div class="featured_label "><strong></strong></div>
 <div class="product_info_wrapper">
 <div class="row_01">
@@ -592,10 +592,10 @@
 </div>
 </div>
 </div>
-</li><li class="prods_vseparator equal-height_featured_block"><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/>
+</li><li class="prods_vseparator equal-height_featured_block"><img src="../images/template/spacer.gif" alt="" width="1" height="1"/>
 <li class="responsive_block" style="width:258px">
 <div class="product_block equal-height_featured_block">
-<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-010-p-10?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="/rtbtc/images/template/product/item-010_1.jpg" alt="Product #010" title="Product #010" width="218" height="218" style="width:218px;height:218px;"/></a></div>
+<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-010-p-10?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="../images/template/product/item-010_1.jpg" alt="Product #010" title="Product #010" width="218" height="218" style="width:218px;height:218px;"/></a></div>
 <div class="featured_label "><strong></strong></div>
 <div class="product_info_wrapper">
 <div class="row_01">
@@ -608,10 +608,10 @@
 </div>
 </div>
 </div>
-</li><li class="prods_vseparator equal-height_featured_block"><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/>
+</li><li class="prods_vseparator equal-height_featured_block"><img src="../images/template/spacer.gif" alt="" width="1" height="1"/>
 <li class="responsive_block" style="width:258px">
 <div class="product_block equal-height_featured_block">
-<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-007-p-7?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="/rtbtc/images/template/product/item-007_1.jpg" alt="Product #007" title="Product #007" width="218" height="218" style="width:218px;height:218px;"/></a></div>
+<div class="product_pic_wrapper" style="width:218px;height:218px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-007-p-7?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:218px;height:218px;"><img src="../images/template/product/item-007_1.jpg" alt="Product #007" title="Product #007" width="218" height="218" style="width:218px;height:218px;"/></a></div>
 <div class="featured_label "><strong></strong></div>
 <div class="product_info_wrapper">
 <div class="row_01">
@@ -649,7 +649,7 @@
 <div class="product_block "><div>
 <h3 class="product_name_wrapper name equal-height_products_name_11"><span><a href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-008-tempus-elementum-magna-p-8?osCsid=qKSS-ugxZQ37A3jke2owD0">Product #008 tempus elementum magna</a></span></h3>
 <div class="row_00">
-<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-008-tempus-elementum-magna-p-8?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="/rtbtc/images/template/product/item-008_1.jpg" alt="Product #008 tempus elementum magna" title="Product #008 tempus elementum magna" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-94%</strong></div></div>
+<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-008-tempus-elementum-magna-p-8?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="../images/template/product/item-008_1.jpg" alt="Product #008 tempus elementum magna" title="Product #008 tempus elementum magna" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-94%</strong></div></div>
 </div>
 <div class="row_01">
 <div class="product_price_wrapper price "><b>Price:&nbsp;&nbsp;</b><del>$&nbsp;35.99</del> <span class="productSpecialPrice">$&nbsp;2.00</span></div>
@@ -660,12 +660,12 @@
 <div class="product_desc_wrapper desc">Suspendisse bibendum consequat elit, non convallis mauris ornare et. Vestibulum mollis ante libero. Donec...</div>
 </div>
 </div></div>
-</li><li class="prods_vseparator"><div><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/></div>
+</li><li class="prods_vseparator"><div><img src="../images/template/spacer.gif" alt="" width="1" height="1"/></div>
 <li class="responsive_block" style="width:258px">
 <div class="product_block "><div>
 <h3 class="product_name_wrapper name equal-height_products_name_11"><span><a href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-009-p-9?osCsid=qKSS-ugxZQ37A3jke2owD0">Product #009</a></span></h3>
 <div class="row_00">
-<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-009-p-9?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="/rtbtc/images/template/product/item-009_1.jpg" alt="Product #009" title="Product #009" width="103" height="103" style="width:103px;height:103px;"/></a></div>
+<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-009-p-9?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="../images/template/product/item-009_1.jpg" alt="Product #009" title="Product #009" width="103" height="103" style="width:103px;height:103px;"/></a></div>
 </div>
 <div class="row_01">
 <div class="product_price_wrapper price extra"><b>Price:&nbsp;&nbsp;</b><span class="productSpecialPrice">$&nbsp;29.99</span></div>
@@ -676,13 +676,13 @@
 <div class="product_desc_wrapper desc">Ut tellus elit, ultricies at porttitor non, vulputate at dolor. Vivamus vehicula libero et sem varius dap...</div>
 </div>
 </div></div>
-</li><li class="prods_vseparator"><div><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/></div>
+</li><li class="prods_vseparator"><div><img src="../images/template/spacer.gif" alt="" width="1" height="1"/></div>
 <li class="responsive_block" style="width:258px">
 <div class="product_block "><div>
 <div class="featured_label "><strong></strong></div>
 <h3 class="product_name_wrapper name equal-height_products_name_11"><span><a href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-010-p-10?osCsid=qKSS-ugxZQ37A3jke2owD0">Product #010</a></span></h3>
 <div class="row_00">
-<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-010-p-10?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="/rtbtc/images/template/product/item-010_1.jpg" alt="Product #010" title="Product #010" width="103" height="103" style="width:103px;height:103px;"/></a></div>
+<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-010-p-10?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="../images/template/product/item-010_1.jpg" alt="Product #010" title="Product #010" width="103" height="103" style="width:103px;height:103px;"/></a></div>
 </div>
 <div class="row_01">
 <div class="product_price_wrapper price "><b>Price:&nbsp;&nbsp;</b><span class="productSpecialPrice">$&nbsp;29.99</span></div>
@@ -693,13 +693,13 @@
 <div class="product_desc_wrapper desc">In hac habitasse platea dictumst. Pellentesque ornare, justo non dignissim auctor, arcu nunc congue lorem...</div>
 </div>
 </div></div>
-</li><li class="prods_vseparator"><div><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/></div>
+</li><li class="prods_vseparator"><div><img src="../images/template/spacer.gif" alt="" width="1" height="1"/></div>
 <li class="responsive_block" style="width:258px">
 <div class="product_block "><div>
 <div class="featured_label "><strong></strong></div>
 <h3 class="product_name_wrapper name equal-height_products_name_11"><span><a href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-012-convallis-magna-diam-egestas-vitae-p-12?osCsid=qKSS-ugxZQ37A3jke2owD0">Product #012 convallis magna a diam egestas vitae</a></span></h3>
 <div class="row_00">
-<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-012-convallis-magna-diam-egestas-vitae-p-12?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="/rtbtc/images/template/product/item-012_1.jpg" alt="Product #012 convallis magna a diam egestas vitae" title="Product #012 convallis magna a diam egestas vitae" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-94%</strong></div></div>
+<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-012-convallis-magna-diam-egestas-vitae-p-12?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="../images/template/product/item-012_1.jpg" alt="Product #012 convallis magna a diam egestas vitae" title="Product #012 convallis magna a diam egestas vitae" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-94%</strong></div></div>
 </div>
 <div class="row_01">
 <div class="product_price_wrapper price "><b>Price:&nbsp;&nbsp;</b><del>$&nbsp;49.99</del> <span class="productSpecialPrice">$&nbsp;2.99</span></div>
@@ -729,7 +729,7 @@
 <div class="product_block "><div>
 <h3 class="product_name_wrapper name equal-height_products_name_12"><span><a href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-003-p-3?osCsid=qKSS-ugxZQ37A3jke2owD0">Product #003</a></span></h3>
 <div class="row_00">
-<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-003-p-3?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="/rtbtc/images/template/product/item-003_1.jpg" alt="Product #003" title="Product #003" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-20%</strong></div></div>
+<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-003-p-3?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="../images/template/product/item-003_1.jpg" alt="Product #003" title="Product #003" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-20%</strong></div></div>
 </div>
 <div class="row_01">
 <div class="product_price_wrapper price "><b>Price:&nbsp;&nbsp;</b><del>$&nbsp;49.99</del> <span class="productSpecialPrice">$&nbsp;39.99</span></div>
@@ -740,12 +740,12 @@
 <div class="product_desc_wrapper desc">Ut tellus elit, ultricies at porttitor non, vulputate at dolor. Vivamus vehicula libero et sem variu...</div>
 </div>
 </div></div>
-</li><li class="prods_vseparator"><div><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/></div>
+</li><li class="prods_vseparator"><div><img src="../images/template/spacer.gif" alt="" width="1" height="1"/></div>
 <li class="responsive_block" style="width:258px">
 <div class="product_block "><div>
 <h3 class="product_name_wrapper name equal-height_products_name_12"><span><a href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-005-p-5?osCsid=qKSS-ugxZQ37A3jke2owD0">Product #005</a></span></h3>
 <div class="row_00">
-<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-005-p-5?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="/rtbtc/images/template/product/item-005_1.jpg" alt="Product #005" title="Product #005" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-17%</strong></div></div>
+<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-005-p-5?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="../images/template/product/item-005_1.jpg" alt="Product #005" title="Product #005" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-17%</strong></div></div>
 </div>
 <div class="row_01">
 <div class="product_price_wrapper price extra"><b>Price:&nbsp;&nbsp;</b><del>$&nbsp;35.99</del> <span class="productSpecialPrice">$&nbsp;30.00</span></div>
@@ -756,12 +756,12 @@
 <div class="product_desc_wrapper desc">Aliquam ut justo ipsum. Integer euismod tempor odio ut fermentum. Fusce arcu sem, ultrices id ullamc...</div>
 </div>
 </div></div>
-</li><li class="prods_vseparator"><div><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/></div>
+</li><li class="prods_vseparator"><div><img src="../images/template/spacer.gif" alt="" width="1" height="1"/></div>
 <li class="responsive_block" style="width:258px">
 <div class="product_block "><div>
 <h3 class="product_name_wrapper name equal-height_products_name_12"><span><a href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-006-p-6?osCsid=qKSS-ugxZQ37A3jke2owD0">Product #006</a></span></h3>
 <div class="row_00">
-<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-006-p-6?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="/rtbtc/images/template/product/item-006_1.jpg" alt="Product #006" title="Product #006" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-88%</strong></div></div>
+<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-006-p-6?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="../images/template/product/item-006_1.jpg" alt="Product #006" title="Product #006" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-88%</strong></div></div>
 </div>
 <div class="row_01">
 <div class="product_price_wrapper price extra"><b>Price:&nbsp;&nbsp;</b><del>$&nbsp;39.99</del> <span class="productSpecialPrice">$&nbsp;4.99</span></div>
@@ -772,13 +772,13 @@
 <div class="product_desc_wrapper desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices convallis sodales. Curabitur...</div>
 </div>
 </div></div>
-</li><li class="prods_vseparator"><div><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/></div>
+</li><li class="prods_vseparator"><div><img src="../images/template/spacer.gif" alt="" width="1" height="1"/></div>
 <li class="responsive_block" style="width:258px">
 <div class="product_block "><div>
 <div class="featured_label "><strong></strong></div>
 <h3 class="product_name_wrapper name equal-height_products_name_12"><span><a href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-001-p-1?osCsid=qKSS-ugxZQ37A3jke2owD0">Product #001</a></span></h3>
 <div class="row_00">
-<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-001-p-1?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="/rtbtc/images/template/product/item-001_1.jpg" alt="Product #001" title="Product #001" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-90%</strong></div></div>
+<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_info.php/product-001-p-1?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="../images/template/product/item-001_1.jpg" alt="Product #001" title="Product #001" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-90%</strong></div></div>
 </div>
 <div class="row_01">
 <div class="product_price_wrapper price extra"><b>Price:&nbsp;&nbsp;</b><del>$&nbsp;299.99</del> <span class="productSpecialPrice">$&nbsp;29.19</span></div>
@@ -809,32 +809,32 @@
 <div class="featured_label "><strong></strong></div>
 <h3 class="product_name_wrapper name equal-height_products_name_13"><span><a href="http://www.responsive-shop.com/osc/tstore/3/product_reviews_info.php/product-001-pri-1?osCsid=qKSS-ugxZQ37A3jke2owD0">Product #001</a></span></h3>
 <div class="row_00">
-<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_reviews_info.php/product-001-pri-1?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="/rtbtc/images/template/product/item-001_1.jpg" alt="Product #001" title="Product #001" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-90%</strong></div></div>
+<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_reviews_info.php/product-001-pri-1?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="../images/template/product/item-001_1.jpg" alt="Product #001" title="Product #001" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-90%</strong></div></div>
 </div>
 <div class="product_desc_wrapper desc"><a href="http://www.responsive-shop.com/osc/tstore/3/product_reviews_info.php/product-001-pri-1?osCsid=qKSS-ugxZQ37A3jke2owD0">English Reviews Nullam male suada suscipit velit faucibus pulvinar. Vivamus a tortor in leo luctus hendrerit ut in risu</a>...</div>
-<div class="stars"><img src="/rtbtc/images/template/icons/stars_3.png" alt="MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS" title="MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS" width="96" height="15"/></div>
+<div class="stars"><img src="../images/template/icons/stars_3.png" alt="MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS" title="MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS" width="96" height="15"/></div>
 </div></div>
-</li><li class="prods_vseparator"><div><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/></div>
+</li><li class="prods_vseparator"><div><img src="../images/template/spacer.gif" alt="" width="1" height="1"/></div>
 <li class="responsive_block" style="width:354px">
 <div class="product_block "><div>
 <div class="featured_label "><strong></strong></div>
 <h3 class="product_name_wrapper name equal-height_products_name_13"><span><a href="http://www.responsive-shop.com/osc/tstore/3/product_reviews_info.php/product-001-pri-1?osCsid=qKSS-ugxZQ37A3jke2owD0">Product #001</a></span></h3>
 <div class="row_00">
-<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_reviews_info.php/product-001-pri-1?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="/rtbtc/images/template/product/item-001_1.jpg" alt="Product #001" title="Product #001" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-90%</strong></div></div>
+<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_reviews_info.php/product-001-pri-1?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="../images/template/product/item-001_1.jpg" alt="Product #001" title="Product #001" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-90%</strong></div></div>
 </div>
 <div class="product_desc_wrapper desc"><a href="http://www.responsive-shop.com/osc/tstore/3/product_reviews_info.php/product-001-pri-1?osCsid=qKSS-ugxZQ37A3jke2owD0">English Reviews Integer adipiscing arcu a nisl imperdiet vulputate. In magna justo, suscipit non rhoncus sit amet, laor</a>...</div>
-<div class="stars"><img src="/rtbtc/images/template/icons/stars_5.png" alt="MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS" title="MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS" width="96" height="15"/></div>
+<div class="stars"><img src="../images/template/icons/stars_5.png" alt="MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS" title="MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS" width="96" height="15"/></div>
 </div></div>
-</li><li class="prods_vseparator"><div><img src="/rtbtc/images/template/spacer.gif" alt="" width="1" height="1"/></div>
+</li><li class="prods_vseparator"><div><img src="../images/template/spacer.gif" alt="" width="1" height="1"/></div>
 <li class="responsive_block" style="width:354px">
 <div class="product_block "><div>
 <div class="featured_label "><strong></strong></div>
 <h3 class="product_name_wrapper name equal-height_products_name_13"><span><a href="http://www.responsive-shop.com/osc/tstore/3/product_reviews_info.php/product-001-pri-1?osCsid=qKSS-ugxZQ37A3jke2owD0">Product #001</a></span></h3>
 <div class="row_00">
-<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_reviews_info.php/product-001-pri-1?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="/rtbtc/images/template/product/item-001_1.jpg" alt="Product #001" title="Product #001" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-90%</strong></div></div>
+<div class="product_pic_wrapper" style="width:103px;"><a class="product_img" href="http://www.responsive-shop.com/osc/tstore/3/product_reviews_info.php/product-001-pri-1?osCsid=qKSS-ugxZQ37A3jke2owD0" style="width:103px;"><img src="../images/template/product/item-001_1.jpg" alt="Product #001" title="Product #001" width="103" height="103" style="width:103px;height:103px;"/></a><div class="sale_percent "><strong>-90%</strong></div></div>
 </div>
 <div class="product_desc_wrapper desc"><a href="http://www.responsive-shop.com/osc/tstore/3/product_reviews_info.php/product-001-pri-1?osCsid=qKSS-ugxZQ37A3jke2owD0">English Reviews Maecenas nibh magna, viverra et posuere id, pharetra vel augue. Donec sed diam dolor, et varius ante. P</a>...</div>
-<div class="stars"><img src="/rtbtc/images/template/icons/stars_1.png" alt="MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS" title="MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS" width="96" height="15"/></div>
+<div class="stars"><img src="../images/template/icons/stars_1.png" alt="MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS" title="MODULE_BOXES_REVIEWS_BOX_TEXT_OF_5_STARS" width="96" height="15"/></div>
 </div></div>
 </li></ul></div><strong class="button_content button_content3"><strong class="button bg_button"><a href="http://www.responsive-shop.com/osc/tstore/3/reviews.php?osCsid=qKSS-ugxZQ37A3jke2owD0" role="button"><span class="ui-button-text">See all Reviews</span></a></strong></strong>
 </div></div>
@@ -856,7 +856,7 @@
                                     <ul>
                                         <li class="item-1 grid_8">
                                             <div class="bannershow_block">
-                                                <img src="/rtbtc/images/template/slider/banner_static_01.png" alt="Banner01 for banner-show"
+                                                <img src="../images/template/slider/banner_static_01.png" alt="Banner01 for banner-show"
                                                     title="Banner01 for banner-show" width="78" height="66" /><div class="bannershow_wrapper">
                                                         <div class="bannershow_caption">
                                                             <span class="slider_text_1"><b>AUTUMN SALE</b></span> <span class="slider_text_2">up
@@ -870,7 +870,7 @@
                                         </li>
                                         <li class="item-2 grid_8">
                                             <div class="bannershow_block">
-                                                <img src="/rtbtc/images/template/slider/banner_static_02.png" alt="Banner02 for banner-show"
+                                                <img src="../images/template/slider/banner_static_02.png" alt="Banner02 for banner-show"
                                                     title="Banner02 for banner-show" width="78" height="66" /><div class="bannershow_wrapper">
                                                         <div class="bannershow_caption">
                                                             <span class="slider_text_1">become a fan</span> <span class="slider_text_2"><b>ON FACEBOOK</b></span>
@@ -883,7 +883,7 @@
                                         </li>
                                         <li class="item-3 grid_8">
                                             <div class="bannershow_block">
-                                                <img src="/rtbtc/images/template/slider/banner_static_03.png" alt="Banner03 for banner-show"
+                                                <img src="../images/template/slider/banner_static_03.png" alt="Banner03 for banner-show"
                                                     title="Banner03 for banner-show" width="78" height="54" /><div class="bannershow_wrapper">
                                                         <div class="bannershow_caption">
                                                             <span class="slider_text_1"><b>FREE SHIPPING</b></span> <span class="slider_text_2">
@@ -919,19 +919,19 @@
                                 <div class="brands_wrapper">
                                     <div id="foo1">
                                         <a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-1?osCsid=qKSS-ugxZQ37A3jke2owD0">
-                                            <img src="/rtbtc/images/template/manufacturers/brand_example_1.png" alt="manufacturers/brand_example_1.png"
+                                            <img src="../images/template/manufacturers/brand_example_1.png" alt="manufacturers/brand_example_1.png"
                                                 title="manufacturers/brand_example_1.png" width="152" height="101" /></a><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-2?osCsid=qKSS-ugxZQ37A3jke2owD0"><img
-                                                    src="/rtbtc/images/template/manufacturers/brand_example_2.png" alt="manufacturers/brand_example_2.png"
+                                                    src="../images/template/manufacturers/brand_example_2.png" alt="manufacturers/brand_example_2.png"
                                                     title="manufacturers/brand_example_2.png" width="152" height="101" /></a><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-3?osCsid=qKSS-ugxZQ37A3jke2owD0"><img
-                                                        src="/rtbtc/images/template/manufacturers/brand_example_3.png" alt="manufacturers/brand_example_3.png"
+                                                        src="../images/template/manufacturers/brand_example_3.png" alt="manufacturers/brand_example_3.png"
                                                         title="manufacturers/brand_example_3.png" width="152" height="101" /></a><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-4?osCsid=qKSS-ugxZQ37A3jke2owD0"><img
-                                                            src="/rtbtc/images/template/manufacturers/brand_example_4.png" alt="manufacturers/brand_example_4.png"
+                                                            src="../images/template/manufacturers/brand_example_4.png" alt="manufacturers/brand_example_4.png"
                                                             title="manufacturers/brand_example_4.png" width="152" height="101" /></a><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-5?osCsid=qKSS-ugxZQ37A3jke2owD0"><img
-                                                                src="/rtbtc/images/template/manufacturers/brand_example_5.png" alt="manufacturers/brand_example_5.png"
+                                                                src="../images/template/manufacturers/brand_example_5.png" alt="manufacturers/brand_example_5.png"
                                                                 title="manufacturers/brand_example_5.png" width="152" height="102" /></a><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-6?osCsid=qKSS-ugxZQ37A3jke2owD0"><img
-                                                                    src="/rtbtc/images/template/manufacturers/brand_example_6.png" alt="manufacturers/brand_example_6.png"
+                                                                    src="../images/template/manufacturers/brand_example_6.png" alt="manufacturers/brand_example_6.png"
                                                                     title="manufacturers/brand_example_6.png" width="152" height="102" /></a><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-7?osCsid=qKSS-ugxZQ37A3jke2owD0"><img
-                                                                        src="/rtbtc/images/template/manufacturers/brand_example_7.png" alt="manufacturers/brand_example_7.png"
+                                                                        src="../images/template/manufacturers/brand_example_7.png" alt="manufacturers/brand_example_7.png"
                                                                         title="manufacturers/brand_example_7.png" width="152" height="102" /></a>
                                     </div>
                                     <div class="clearfix">

@@ -1,15 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="show.aspx.cs" Inherits="Hotels_Details" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
-<link rel="stylesheet" href="/rtbtc/Styles/slider_default.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/rtbtc/Styles/slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../Styles/slider_default.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../Styles/slider.css" type="text/css" media="screen" />
 <style type="text/css">
      .ui-dialog
     {
         background-color: #FFF;
     }
 </style>
-<script type="text/javascript" src="/rtbtc/Scripts/slider.js"></script>
+<script type="text/javascript" src="../Scripts/slider.js"></script>
 <script type="text/javascript">
   window.cancellation_policy_url = '<%=ResolveUrl("~/ApplicationWebService.asmx/CancellationPolicies") %>';
   $(function(){
@@ -25,7 +25,7 @@
     });
   });
 </script>
- <script type="text/javascript" src="/rtbtc/Scripts/cancellation_policy.js"></script>
+ <script type="text/javascript" src="../Scripts/cancellation_policy.js"></script>
 <script type="text/javascript">
     function initialize() {
         var myLatlng = new google.maps.LatLng(parseFloat("<%= latitude %>"),parseFloat("<%= longitude %>"));

@@ -11,7 +11,7 @@
     window.minDate = "<%= minDate %>";
     window.maxDate = "<%= maxDate %>";
   </script>
-  <script type="text/javascript" src="/rtbtc/Scripts/package_book.js"></script>
+  <script type="text/javascript" src="../Scripts/package_book.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
  <div class="row row_4 container_24">
