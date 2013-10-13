@@ -270,7 +270,7 @@
                               
 
                                 <a id="storeLogo" href="<%= rootPath + "home.aspx" %>" style="padding: 1px 0 0 1px">
-                                    <img src="/rtbtc/images/company_log0N.gif" alt="Riyadh Travels" title="" width="400px"
+                                    <img src="/rtbtc/images/logo.jpg" alt="Riyadh Travels" title="" width="400px"
                                         height="111" /></a>
                                   
                             </div>
