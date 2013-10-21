@@ -21,6 +21,9 @@ public partial class SiteMaster : System.Web.UI.MasterPage
             rootPath = Route.GetRootPath(string.Empty);
             BindMasterCurrencyDropDown();
             BindBasket();
+            BindLogo();
+            BindNavigation();
+            BindFooter();
             if (Page.User.Identity.IsAuthenticated)
             {
                 logged_in_div.Visible = true;
@@ -154,5 +157,25 @@ public partial class SiteMaster : System.Web.UI.MasterPage
                 "</strong>" +
                 "</strong>";
         }
+    }
+
+    protected void BindLogo()
+    {
+        storeLogo.HRef = rootPath + "home.aspx";
+        storeLogo.InnerHtml = "<img src='" + rootPath + "images/logo.jpg" + "' alt='Riyadh Travels' title='' width='400px' height='111' />";
+    }
+
+    protected void BindNavigation()
+    {
+        rptrHeaderNavigation.DataSource = NavigationData.Get(rootPath);
+        rptrHeaderNavigation.DataBind();
+    }
+
+    protected void BindFooter()
+    {
+        footerDiv.InnerHtml= "<p>"+
+                             "<a href='" + rootPath + "home.aspx" + "'>Riyadh Travels</a>&nbsp;&nbsp; &copy;" +
+                             DateTime.Now.Year+
+                             "</p>";
     }
 }

@@ -89,35 +89,35 @@
                                                     <label>
                                                         My Cart
                                                     </label>
-                                                    <strong id="cart_header_count" runat="server"></strong> items.
+                                                    <strong id="cart_header_count" runat="server"></strong>items.
                                                     <ul id="submenu" class="submenu">
-                                                      <asp:Repeater ID="rptrCartPackages" runat="server">
-                                                        <ItemTemplate>
-                                                          <li class="items first" id="li_<%# Eval("Id") %>">
-                                                            <img src="<%# Eval("DisplayImage") %>" alt="" width="80" height="80" alt="" />
-                                                            <div class="item">
-                                                              <h5 class="item1">
-                                                                <%# Eval("PackageName")%>
-                                                              </h5>
-                                                            </div>
-                                                          </li>
-                                                        </ItemTemplate>
-                                                      </asp:Repeater>
-                                                      <asp:Repeater ID="rptrCartHotels" runat="server">
-                                                        <ItemTemplate>
-                                                          <li class="items first" id="li_<%# Eval("hotelInfoId") %>">
-                                                            <img src="<%# Eval("productDefaultImagePath") %>" alt="" width="80" height="80" alt="" />
-                                                            <div class="item">
-                                                                <h5 class="item1">
-                                                                    <%# Eval("productName")%>
-                                                                </h5>
-                                                            </div>
-                                                        </li>
-                                                        </ItemTemplate>
-                                                      </asp:Repeater>
-                                                      <li class="total" id="totalBasketItems" runat="server"></li>
-                                                      <li class="last" id="basketButtons" runat="server"></li>
-                                                      <li id="emptyBasketItems" runat="server"></li>
+                                                        <asp:Repeater ID="rptrCartPackages" runat="server">
+                                                            <ItemTemplate>
+                                                                <li class="items first" id="li_<%# Eval("Id") %>">
+                                                                    <img src="<%# Eval("DisplayImage") %>" alt="" width="80" height="80" alt="" />
+                                                                    <div class="item">
+                                                                        <h5 class="item1">
+                                                                            <%# Eval("PackageName")%>
+                                                                        </h5>
+                                                                    </div>
+                                                                </li>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+                                                        <asp:Repeater ID="rptrCartHotels" runat="server">
+                                                            <ItemTemplate>
+                                                                <li class="items first" id="li_<%# Eval("hotelInfoId") %>">
+                                                                    <img src="<%# Eval("productDefaultImagePath") %>" alt="" width="80" height="80" alt="" />
+                                                                    <div class="item">
+                                                                        <h5 class="item1">
+                                                                            <%# Eval("productName")%>
+                                                                        </h5>
+                                                                    </div>
+                                                                </li>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+                                                        <li class="total" id="totalBasketItems" runat="server"></li>
+                                                        <li class="last" id="basketButtons" runat="server"></li>
+                                                        <li id="emptyBasketItems" runat="server"></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -137,27 +137,15 @@
                                     <div class="box_header_user_menu">
                                         <div class="user_menu">
                                             <div runat="server" id="logged_in_div">
-                                              <a class="in user_menu_account" id="logged_in_account_link" runat="server">
-                                                <i></i>
-                                                <span id="logged_in_text" runat="server">
-                                                </span>
-                                              </a>
-                                              <a class="in user_menu_login" runat="server" id="log_out_link">
-                                                <i></i>
-                                                <span>Log off</span>
-                                              </a>
+                                                <a class="in user_menu_account" id="logged_in_account_link" runat="server"><i></i><span
+                                                    id="logged_in_text" runat="server"></span></a><a class="in user_menu_login" runat="server"
+                                                        id="log_out_link"><i></i><span>Log off</span> </a>
                                             </div>
                                             <div runat="server" id="log_out_div">
-                                              <a class="out user_menu_account" runat="server" id="create_account_link">
-                                                <i></i>
-                                                <span>Create an Account</span>
-                                               </a>
-                                               <a class="out user_menu_login" runat="server" id="log_in_link">
-                                                  <i></i><span>Log in</span> 
-                                                </a>
-                                                <a class="out user_menu_login" runat="server" id="forgot_password_link">
-                                                  <i></i><span>Forgot Password?</span> 
-                                                </a>
+                                                <a class="out user_menu_account" runat="server" id="create_account_link"><i></i><span>
+                                                    Create an Account</span> </a><a class="out user_menu_login" runat="server" id="log_in_link">
+                                                        <i></i><span>Log in</span> </a><a class="out user_menu_login" runat="server" id="forgot_password_link">
+                                                            <i></i><span>Forgot Password?</span> </a>
                                             </div>
                                         </div>
                                     </div>
@@ -203,8 +191,7 @@
                                     <div id="google_translate_element" style="position: relative; bottom: 10px; right: 2px">
                                     </div>
                                 </div>
-                                <a id="storeLogo" href="<%= rootPath + "home.aspx" %>" style="padding: 1px 0 0 1px">
-                                    <img src="/rtbtc/images/logo.jpg" alt="Riyadh Travels" title="" width="400px" height="111" /></a>
+                                <a id="storeLogo" runat="server" style="padding: 1px 0 0 1px"></a>
                             </div>
                         </div>
                         <div class="grid_24">
@@ -212,18 +199,13 @@
                                 <div class="wpapper">
                                     <div class="navbar_bg">
                                         <ul class="sf-menu">
-                                            <li class="current_0 <%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/home.aspx" ? "active" : "" %>">
-                                                <a href="<%= rootPath + "home.aspx" %>">Home</a> </li>
-                                            <li class="current_0 <%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/hotels/search.aspx" ? "active" : "" %>">
-                                                <a href="<%= rootPath + "hotels/search.aspx" %>">Hotels</a> </li>
-                                            <li class="current_0 <%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/flights.aspx" ? "active" : "" %>">
-                                                <a href="<%= rootPath + "flights.aspx" %>">Flights</a> </li>
-                                            <li class="current_0 <%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/cars.aspx" ? "active" : "" %>">
-                                                <a href="<%= rootPath + "cars.aspx" %>">Cars</a> </li>
-                                            <li class="current_0 <%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/about.aspx" ? "active" : "" %>">
-                                                <a href="<%= rootPath + "about.aspx" %>">About Us</a> </li>
-                                            <li class="current_0 <%= Request.Url.AbsolutePath.ToString().ToLower() == "/rtbtc/contact.aspx" ? "active" : "" %>">
-                                                <a href="<%= rootPath + "contact.aspx" %>">Contact Us</a> </li>
+                                            <asp:Repeater ID="rptrHeaderNavigation" runat="server">
+                                                <ItemTemplate>
+                                                  <li class="current_0">
+                                                    <a href="<%# Eval("Path") %>"><%# Eval("Name") %></a>
+                                                  </li>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
                                         </ul>
                                     </div>
                                 </div>
@@ -411,10 +393,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="footer">
-                                <p>
-                                    <a href="#">Riyadh Travels</a>&nbsp;&nbsp; &copy;
-                                    <%= DateTime.Now.Year %></p>
+                            <div class="footer" id="footerDiv" runat="server">
                             </div>
                         </div>
                     </div>
