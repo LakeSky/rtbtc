@@ -89,49 +89,35 @@
                                                     <label>
                                                         My Cart
                                                     </label>
-                                                    <strong id="cart_header_count">
-                                                        <%= basketItemsCount %></strong> items.
+                                                    <strong id="cart_header_count" runat="server"></strong> items.
                                                     <ul id="submenu" class="submenu">
-                                                        <% if (hasBasketItems)
-                                                           { %>
-                                                        <% foreach (var x in masterBasketHelper.packageDetails)
-                                                           {%>
-                                                        <li class="items first" id="li_<%= x.Id  %>">
-                                                            <img src="<%= x.DisplayImage %>" alt="" width="80" height="80" alt="" />
+                                                      <asp:Repeater ID="rptrCartPackages" runat="server">
+                                                        <ItemTemplate>
+                                                          <li class="items first" id="li_<%# Eval("Id") %>">
+                                                            <img src="<%# Eval("DisplayImage") %>" alt="" width="80" height="80" alt="" />
+                                                            <div class="item">
+                                                              <h5 class="item1">
+                                                                <%# Eval("PackageName")%>
+                                                              </h5>
+                                                            </div>
+                                                          </li>
+                                                        </ItemTemplate>
+                                                      </asp:Repeater>
+                                                      <asp:Repeater ID="rptrCartHotels" runat="server">
+                                                        <ItemTemplate>
+                                                          <li class="items first" id="li_<%# Eval("hotelInfoId") %>">
+                                                            <img src="<%# Eval("productDefaultImagePath") %>" alt="" width="80" height="80" alt="" />
                                                             <div class="item">
                                                                 <h5 class="item1">
-                                                                    <%= x.PackageName %>
+                                                                    <%# Eval("productName")%>
                                                                 </h5>
                                                             </div>
                                                         </li>
-                                                        <% } %>
-                                                        <% foreach (var x in masterBasketHelper.hotelDetails)
-                                                           {%>
-                                                        <li class="items first" id="li_<%= x.hotelInfoId %>">
-                                                            <img src="<%= x.productDefaultImagePath %>" alt="" width="80" height="80" alt="" />
-                                                            <div class="item">
-                                                                <h5 class="item1">
-                                                                    <%= x.productName %>
-                                                                </h5>
-                                                            </div>
-                                                        </li>
-                                                        <% } %>
-                                                        <li class="total"><span class="productSpecialPrice">
-                                                            <%= ApplicationObject.GetMasterCurrency(hdnMasterCurrencySelectedValue.Value) %>
-                                                            &nbsp; <span id="cart_header_amount">
-                                                                <%= ApplicationObject.FormattedCurrencyDisplayPrice(masterBasketHelper.totalPrice, hdnMasterCurrencySelectedValue.Value) %>
-                                                            </span></span></li>
-                                                        <li class="last"><strong class="button_content button_content2"><strong class="button bg_button"
-                                                            style="margin-left: 0;"><a href="<%= Route.GetRootPath("basket/show.aspx") %>"><span
-                                                                class="ui-button-text">Shopping cart </span></a></strong></strong><strong class="button_content button_content1">
-                                                                    <strong class="button bg_button" style="margin-left: 35px;"><a href="<%= Route.GetRootPath("orders/checkout.aspx") %>">
-                                                                        <span class="ui-button-text">Checkout </span></a></strong></strong>
-                                                        </li>
-                                                        <%}
-                                                           else
-                                                           {%>
-                                                        <li>Your shopping cart is empty! </li>
-                                                        <%} %>
+                                                        </ItemTemplate>
+                                                      </asp:Repeater>
+                                                      <li class="total" id="totalBasketItems" runat="server"></li>
+                                                      <li class="last" id="basketButtons" runat="server"></li>
+                                                      <li id="emptyBasketItems" runat="server"></li>
                                                     </ul>
                                                 </div>
                                             </div>
