@@ -20,7 +20,6 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductAmenities_Amenities", "Amenity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Amenity), "ProductAmenity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductAmenity), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_CityMaster_CountryMaster", "CountryMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.CountryMaster), "CityMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CityMaster), true)]
-[assembly: EdmRelationshipAttribute("meis007Model", "FK_CustomerMaster_CityMaster", "CityMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.CityMaster), "CustomerMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CustomerMaster), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_Classifications_ServicesMaster", "ServicesMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.ServicesMaster), "Classification", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.Classification), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductMaster_Classifications", "Classification", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Classification), "ProductMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductMaster), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_ProductFacilities_Facilities", "Facility", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.Facility), "ProductFacility", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.ProductFacility), true)]
@@ -42,6 +41,9 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2CC890AD", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK__TouricoCa__Hotel__2DBCB4E6", "SuppliersHotelsInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.SuppliersHotelsInfo), "TouricoCancelationPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.TouricoCancelationPolicy), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_BkgCancelPolicies_BkgMaster", "BkgMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.BkgMaster), "BkgCancelPolicy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.BkgCancelPolicy), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_CustomerMaster_CityMaster", "CityMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.CityMaster), "CustomerMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CustomerMaster), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_CustomerMaster_UserMaster", "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.UserMaster), "CustomerMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CustomerMaster), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_CustomerMaster_UserMaster1", "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.UserMaster), "CustomerMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CustomerMaster), true)]
 
 #endregion
 
@@ -252,22 +254,6 @@ namespace meis007Model
             }
         }
         private ObjectSet<CurrencyMaster> _CurrencyMasters;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<CustomerMaster> CustomerMasters
-        {
-            get
-            {
-                if ((_CustomerMasters == null))
-                {
-                    _CustomerMasters = base.CreateObjectSet<CustomerMaster>("CustomerMasters");
-                }
-                return _CustomerMasters;
-            }
-        }
-        private ObjectSet<CustomerMaster> _CustomerMasters;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -684,6 +670,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<BkgCancelPolicy> _BkgCancelPolicies;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CustomerMaster> CustomerMasters
+        {
+            get
+            {
+                if ((_CustomerMasters == null))
+                {
+                    _CustomerMasters = base.CreateObjectSet<CustomerMaster>("CustomerMasters");
+                }
+                return _CustomerMasters;
+            }
+        }
+        private ObjectSet<CustomerMaster> _CustomerMasters;
 
         #endregion
         #region AddTo Methods
@@ -766,14 +768,6 @@ namespace meis007Model
         public void AddToCurrencyMasters(CurrencyMaster currencyMaster)
         {
             base.AddObject("CurrencyMasters", currencyMaster);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CustomerMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCustomerMasters(CustomerMaster customerMaster)
-        {
-            base.AddObject("CustomerMasters", customerMaster);
         }
     
         /// <summary>
@@ -982,6 +976,14 @@ namespace meis007Model
         public void AddToBkgCancelPolicies(BkgCancelPolicy bkgCancelPolicy)
         {
             base.AddObject("BkgCancelPolicies", bkgCancelPolicy);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CustomerMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCustomerMasters(CustomerMaster customerMaster)
+        {
+            base.AddObject("CustomerMasters", customerMaster);
         }
 
         #endregion
@@ -5377,19 +5379,17 @@ namespace meis007Model
         /// </summary>
         /// <param name="customerID">Initial value of the CustomerID property.</param>
         /// <param name="customerName">Initial value of the CustomerName property.</param>
-        /// <param name="cTID">Initial value of the CTID property.</param>
         /// <param name="cityID">Initial value of the CityID property.</param>
         /// <param name="status">Initial value of the Status property.</param>
         /// <param name="crFacility">Initial value of the CrFacility property.</param>
         /// <param name="curID">Initial value of the CurID property.</param>
         /// <param name="userID">Initial value of the UserID property.</param>
         /// <param name="modDate">Initial value of the ModDate property.</param>
-        public static CustomerMaster CreateCustomerMaster(global::System.Int64 customerID, global::System.String customerName, global::System.String cTID, global::System.String cityID, global::System.String status, global::System.String crFacility, global::System.String curID, global::System.String userID, global::System.DateTime modDate)
+        public static CustomerMaster CreateCustomerMaster(global::System.Int64 customerID, global::System.String customerName, global::System.String cityID, global::System.String status, global::System.String crFacility, global::System.String curID, global::System.String userID, global::System.DateTime modDate)
         {
             CustomerMaster customerMaster = new CustomerMaster();
             customerMaster.CustomerID = customerID;
             customerMaster.CustomerName = customerName;
-            customerMaster.CTID = cTID;
             customerMaster.CityID = cityID;
             customerMaster.Status = status;
             customerMaster.CrFacility = crFacility;
@@ -5456,9 +5456,9 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String CTID
+        public Nullable<global::System.Int32> CTID
         {
             get
             {
@@ -5468,13 +5468,13 @@ namespace meis007Model
             {
                 OnCTIDChanging(value);
                 ReportPropertyChanging("CTID");
-                _CTID = StructuralObject.SetValidValue(value, false);
+                _CTID = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("CTID");
                 OnCTIDChanged();
             }
         }
-        private global::System.String _CTID;
-        partial void OnCTIDChanging(global::System.String value);
+        private Nullable<global::System.Int32> _CTID;
+        partial void OnCTIDChanging(Nullable<global::System.Int32> value);
         partial void OnCTIDChanged();
     
         /// <summary>
@@ -5936,6 +5936,54 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> FSalesManagerId
+        {
+            get
+            {
+                return _FSalesManagerId;
+            }
+            set
+            {
+                OnFSalesManagerIdChanging(value);
+                ReportPropertyChanging("FSalesManagerId");
+                _FSalesManagerId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FSalesManagerId");
+                OnFSalesManagerIdChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _FSalesManagerId;
+        partial void OnFSalesManagerIdChanging(Nullable<global::System.Int64> value);
+        partial void OnFSalesManagerIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> FInHouseConsultantId
+        {
+            get
+            {
+                return _FInHouseConsultantId;
+            }
+            set
+            {
+                OnFInHouseConsultantIdChanging(value);
+                ReportPropertyChanging("FInHouseConsultantId");
+                _FInHouseConsultantId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FInHouseConsultantId");
+                OnFInHouseConsultantIdChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _FInHouseConsultantId;
+        partial void OnFInHouseConsultantIdChanging(Nullable<global::System.Int64> value);
+        partial void OnFInHouseConsultantIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.DateTime ModDate
@@ -5986,30 +6034,6 @@ namespace meis007Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String AcCPerson
-        {
-            get
-            {
-                return _AcCPerson;
-            }
-            set
-            {
-                OnAcCPersonChanging(value);
-                ReportPropertyChanging("AcCPerson");
-                _AcCPerson = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("AcCPerson");
-                OnAcCPersonChanged();
-            }
-        }
-        private global::System.String _AcCPerson;
-        partial void OnAcCPersonChanging(global::System.String value);
-        partial void OnAcCPersonChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String AcCPEmail
         {
             get
@@ -6028,6 +6052,30 @@ namespace meis007Model
         private global::System.String _AcCPEmail;
         partial void OnAcCPEmailChanging(global::System.String value);
         partial void OnAcCPEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AcCPerson
+        {
+            get
+            {
+                return _AcCPerson;
+            }
+            set
+            {
+                OnAcCPersonChanging(value);
+                ReportPropertyChanging("AcCPerson");
+                _AcCPerson = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AcCPerson");
+                OnAcCPersonChanged();
+            }
+        }
+        private global::System.String _AcCPerson;
+        partial void OnAcCPersonChanging(global::System.String value);
+        partial void OnAcCPersonChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6115,6 +6163,82 @@ namespace meis007Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CityMaster>("meis007Model.FK_CustomerMaster_CityMaster", "CityMaster", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_CustomerMaster_UserMaster", "UserMaster")]
+        public UserMaster UserMaster
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("meis007Model.FK_CustomerMaster_UserMaster", "UserMaster").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("meis007Model.FK_CustomerMaster_UserMaster", "UserMaster").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<UserMaster> UserMasterReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("meis007Model.FK_CustomerMaster_UserMaster", "UserMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserMaster>("meis007Model.FK_CustomerMaster_UserMaster", "UserMaster", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_CustomerMaster_UserMaster1", "UserMaster")]
+        public UserMaster UserMaster1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("meis007Model.FK_CustomerMaster_UserMaster1", "UserMaster").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("meis007Model.FK_CustomerMaster_UserMaster1", "UserMaster").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<UserMaster> UserMaster1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("meis007Model.FK_CustomerMaster_UserMaster1", "UserMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserMaster>("meis007Model.FK_CustomerMaster_UserMaster1", "UserMaster", value);
                 }
             }
         }
@@ -13127,6 +13251,53 @@ namespace meis007Model
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_CustomerMaster_UserMaster", "CustomerMaster")]
+        public EntityCollection<CustomerMaster> CustomerMasters
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CustomerMaster>("meis007Model.FK_CustomerMaster_UserMaster", "CustomerMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CustomerMaster>("meis007Model.FK_CustomerMaster_UserMaster", "CustomerMaster", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_CustomerMaster_UserMaster1", "CustomerMaster")]
+        public EntityCollection<CustomerMaster> CustomerMasters1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CustomerMaster>("meis007Model.FK_CustomerMaster_UserMaster1", "CustomerMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CustomerMaster>("meis007Model.FK_CustomerMaster_UserMaster1", "CustomerMaster", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
