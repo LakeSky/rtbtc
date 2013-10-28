@@ -660,17 +660,16 @@
             <div class="boxes_above_footer">
                 <div class="banner_set">
                     <ul>
-                        <li class="item-1 grid_8">
+                        <li class="item-2 grid_8">
                             <div class="bannershow_block">
                                 <img src="images/template/slider/banner_static_01.png" alt="Banner01 for banner-show"
                                     title="Banner01 for banner-show" width="78" height="66" />
                                 <div class="bannershow_wrapper">
                                     <div class="bannershow_caption">
-                                        <span class="slider_text_1"><b>AUTUMN SALE</b> </span><span class="slider_text_2">up
-                                            to 70% off </span><span class="slider_text_3"></span><span class="slider_text_4"><a
-                                                href="http://www.responsive-shop.com/osc/tstore/3/redirect.php?action=slideshow_banner&amp;goto=111&amp;osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                target="_blank"><strong class="button_bannershow"><strong class="button_bg"></strong>
-                                                    <strong class="button_text">SHOP NOW! </strong></strong></a></span>
+                                        <span class="slider_text_1"><b>CRUISE</b> </span><span class="slider_text_2"></span>
+                                        &nbsp; <span class="slider_text_3"></span><span class="slider_text_4"><a href="#"
+                                            target="_blank"><strong class="button_bannershow"><strong class="button_bg"></strong>
+                                                <strong class="button_text">CLICK HERE! </strong></strong></a></span>
                                     </div>
                                 </div>
                             </div>
@@ -681,25 +680,24 @@
                                     title="Banner02 for banner-show" width="78" height="66" />
                                 <div class="bannershow_wrapper">
                                     <div class="bannershow_caption">
-                                        <span class="slider_text_1">become a fan</span> <span class="slider_text_2"><b>ON FACEBOOK</b></span>
-                                        <span class="slider_text_3"></span><span class="slider_text_4"><a href="http://www.responsive-shop.com/osc/tstore/3/redirect.php?action=slideshow_banner&amp;goto=112&amp;osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                            target="_blank"><strong class="button_bannershow"><strong class="button_bg"></strong>
-                                                <strong class="button_text">CLICK HERE!</strong> </strong></a></span>
+                                        <span class="slider_text_1"></span><span class="slider_text_2"><b>TRAINS</b></span>&nbsp;
+                                        <span class="slider_text_3"></span><span class="slider_text_4"><a href="#" target="_blank">
+                                            <strong class="button_bannershow"><strong class="button_bg"></strong><strong class="button_text">
+                                                CLICK HERE!</strong> </strong></a></span>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="item-3 grid_8">
+                        <li class="item-2 grid_8">
                             <div class="bannershow_block">
                                 <img src="images/template/slider/banner_static_03.png" alt="Banner03 for banner-show"
                                     title="Banner03 for banner-show" width="78" height="54" />
                                 <div class="bannershow_wrapper">
                                     <div class="bannershow_caption">
-                                        <span class="slider_text_1"><b>FREE SHIPPING</b> </span><span class="slider_text_2">
-                                            on orders over $399</span> <span class="slider_text_3"></span><span class="slider_text_4">
-                                                <a href="http://www.responsive-shop.com/osc/tstore/3/redirect.php?action=slideshow_banner&amp;goto=113&amp;osCsid=qKSS-ugxZQ37A3jke2owD0"
-                                                    target="_blank"><strong class="button_bannershow"><strong class="button_bg"></strong>
-                                                        <strong class="button_text">LEARN MORE!</strong> </strong></a></span>
+                                        <span class="slider_text_1"><b>TRAVEL</b> </span><span class="slider_text_2">INSURANCE
+                                        </span><span class="slider_text_3"></span><span class="slider_text_4"><a href="#"
+                                            target="_blank"><strong class="button_bannershow"><strong class="button_bg"></strong>
+                                                <strong class="button_text">CLICK HERE!</strong> </strong></a></span>
                                     </div>
                                 </div>
                             </div>
@@ -709,26 +707,25 @@
                 <div class="brands_wrapper">
                     <div id="foo1">
                         <a href="#">
-                            <img src="images/home_slider/accor-hi.jpg" alt="Accor"
-                                title="Accor" width="152" height="101" />
+                            <img src="images/home_slider/accor-hi.jpg" alt="Accor" title="Accor" width="152"
+                                height="101" />
                         </a><a href="#">
-                            <img src="images/home_slider/dotw-logo.png" alt=""
-                                title="" width="152" height="101" />
+                            <img src="images/home_slider/dotw-logo.png" alt="" title="" width="152" height="101" />
                         </a><a href="#">
-                            <img src="images/home_slider/Holiday_Inn_Logo_fullsize.jpg" alt="Holiday Inn"
-                                title="Holiday Inn" width="152" height="101" />
+                            <img src="images/home_slider/Holiday_Inn_Logo_fullsize.jpg" alt="Holiday Inn" title="Holiday Inn"
+                                width="152" height="101" />
                         </a><a href="#">
-                            <img src="images/home_slider/hotelbeds.jpg" alt="Hotel Beds"
-                                title="Hotel Beds" width="152" height="101" />
+                            <img src="images/home_slider/hotelbeds.jpg" alt="Hotel Beds" title="Hotel Beds" width="152"
+                                height="101" />
                         </a><a href="#">
-                            <img src="images/home_slider/logo_tourico_big.gif" alt="Tourico"
-                                title="Tourico" width="152" height="102" />
+                            <img src="images/home_slider/logo_tourico_big.gif" alt="Tourico" title="Tourico"
+                                width="152" height="102" />
                         </a><a href="#">
-                            <img src="images/home_slider/logo_travco.gif" alt="Travco"
-                                title="Travco" width="152" height="102" />
+                            <img src="images/home_slider/logo_travco.gif" alt="Travco" title="Travco" width="152"
+                                height="102" />
                         </a><a href="#">
-                            <img src="images/home_slider/logo_tourico_big.gif" alt="Tourico"
-                                title="Tourico" width="152" height="102" />
+                            <img src="images/home_slider/logo_tourico_big.gif" alt="Tourico" title="Tourico"
+                                width="152" height="102" />
                         </a>
                     </div>
                     <div class="clearfix">
