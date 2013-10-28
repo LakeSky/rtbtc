@@ -126,7 +126,7 @@
                                     <div class="search">
                                     </div>
                                     <div class="box_header_phone">
-                                        <span>Call us:</span> <b>(123)-456-78901</b>
+                                        <span>Call us:</span> <b>(+966)-11-292-7777</b>
                                     </div>
                                 </div>
                                 <div class="boxes_above_header">
@@ -201,9 +201,8 @@
                                         <ul class="sf-menu">
                                             <asp:Repeater ID="rptrHeaderNavigation" runat="server">
                                                 <ItemTemplate>
-                                                  <li class="current_0">
-                                                    <a href="<%# Eval("Path") %>"><%# Eval("Name") %></a>
-                                                  </li>
+                                                    <li class="current_0"><a href="<%# Eval("Path") %>">
+                                                        <%# Eval("Name") %></a> </li>
                                                 </ItemTemplate>
                                             </asp:Repeater>
                                         </ul>
@@ -256,27 +255,27 @@
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Our Store</a> </li>
+                                            <a href="#">About Us</a> </li>
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Contact Us</a> </li>
+                                            <a href="<%= rootPath %>hotels/search.aspx">Hotels</a> </li>
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Packaging</a> </li>
+                                            <a href="<%= rootPath %>packages/index.aspx">Packages</a> </li>
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Shipping &amp; Returns</a> </li>
+                                            <a href="#">Cruise</a> </li>
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Privacy Notice</a> </li>
+                                            <a href="#">Trains</a> </li>
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Conditions of Use</a> </li>
+                                            <a href="#">Travel Insurance</a> </li>
                                     </ul>
                                 </div>
                                 <div class="Footer_BoxWrapper">
@@ -286,7 +285,7 @@
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Featured</a> </li>
+                                            <a href="#">Promotions</a> </li>
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
@@ -294,19 +293,19 @@
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">New products</a> </li>
+                                            <a href="<%= rootPath %>hotels/search.aspx">Top Hotels</a> </li>
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Top sellers</a> </li>
+                                            <a href="<%= rootPath %>packages/index.aspx">Top Packages</a> </li>
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Manufacturers</a> </li>
+                                            <a href="#">Top Cruise</a> </li>
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Reviews</a> </li>
+                                            <a href="#">Top Trains</a> </li>
                                     </ul>
                                 </div>
                                 <div class="Footer_BoxWrapper">
@@ -316,23 +315,23 @@
                                         <li class="0">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Log in</a> </li>
+                                            <a href="<%= rootPath %>account/login.aspx">Log in</a> </li>
                                         <li class="0">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Create an Account</a> </li>
+                                            <a href="<%= rootPath %>account/register.aspx">Create an Account</a> </li>
                                         <li class="0">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Shipping & Returns</a> </li>
+                                            <a href="<%= rootPath %>bookings/index.aspx">View Booking</a> </li>
                                         <li class="">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Order History</a> </li>
+                                            <a href="<%= rootPath %>hotels/search.aspx">View Search</a> </li>
                                         <li class="0">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#">Advanced Search</a> </li>
+                                            <a href="<%= rootPath %>hotels/search.aspx">Advanced Search</a> </li>
                                         <li class="0">
                                             <div class="list_bg">
                                             </div>
@@ -350,16 +349,16 @@
                                         <li class="field2">
                                             <div class="list_bg">
                                             </div>
-                                            +1 800 603 6035 </li>
+                                            +966 11 292 7777 </li>
                                         <li class="field3">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#"><span class="__cf_email__" data-cfemail="8be6eae2e7cbe8e4e6fbeae5f2e5eae6eea5e8e4e6">
-                                                [email&nbsp;protected]</span></a> </li>
+                                            <a href="#"><span class="__cf_email__" data-cfemail="info@riyadhtravel.com">
+                                                info@riyadhtravel.com</span></a> </li>
                                         <li class="field4">
                                             <div class="list_bg">
                                             </div>
-                                            technostore </li>
+                                            riyadhtravel</li>
                                     </ul>
                                 </div>
                                 <div class="Footer_BoxWrapper">

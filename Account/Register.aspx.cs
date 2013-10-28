@@ -12,7 +12,10 @@ public partial class Account_Register : System.Web.UI.Page
     protected meis007Entities _meis007Entities;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (!IsPostBack && User.Identity.IsAuthenticated)
+        {
+            Response.Redirect(Route.GetRootPath("home.aspx"));
+        }
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {

@@ -23,13 +23,7 @@ public partial class Hotels_Index : PublicApplicationPage
         masterCurrencyValue = GetMasteCurrencySelectedValue();
         RoomsCount = 1;
         _ShoppingHelper = GetShoppingHelperObject();
-        if (_ShoppingHelper == null || _ShoppingHelper.HotelDetails == null)
-        { 
-            Session["ErrorMessage"] = "Please provide hotel search details!";
-            Response.Redirect(Route.GetRootPath("home.aspx"));
-            return;
-        }
-        if (!IsPostBack)
+        if (_ShoppingHelper != null && _ShoppingHelper.HotelDetails != null && !IsPostBack)
         {
             _ShoppingHotel = _ShoppingHelper.HotelDetails;
             ShoppingRoomsList = _ShoppingHotel.RoomDetails;
