@@ -662,8 +662,8 @@
                     <ul>
                         <li class="item-2 grid_8">
                             <div class="bannershow_block">
-                                <img src="images/template/slider/banner_static_01.png" alt="Banner01 for banner-show"
-                                    title="Banner01 for banner-show" width="78" height="66" />
+                                <img src="images/ship.png" alt="CRUISE"
+                                    title="CRUISE" width="78" height="66" />
                                 <div class="bannershow_wrapper">
                                     <div class="bannershow_caption">
                                         <span class="slider_text_1"><b>CRUISE</b> </span><span class="slider_text_2"></span>
@@ -676,8 +676,8 @@
                         </li>
                         <li class="item-2 grid_8">
                             <div class="bannershow_block">
-                                <img src="images/template/slider/banner_static_02.png" alt="Banner02 for banner-show"
-                                    title="Banner02 for banner-show" width="78" height="66" />
+                                <img src="images/train.png" alt="TRAIN"
+                                    title="TRAIN" width="78" height="66" />
                                 <div class="bannershow_wrapper">
                                     <div class="bannershow_caption">
                                         <span class="slider_text_1"></span><span class="slider_text_2"><b>TRAINS</b></span>&nbsp;
@@ -690,8 +690,8 @@
                         </li>
                         <li class="item-2 grid_8">
                             <div class="bannershow_block">
-                                <img src="images/template/slider/banner_static_03.png" alt="Banner03 for banner-show"
-                                    title="Banner03 for banner-show" width="78" height="54" />
+                                <img src="images/travel_insurance.png" alt="Travel Insurance"
+                                    title="Travel Insurance" width="78" height="54" />
                                 <div class="bannershow_wrapper">
                                     <div class="bannershow_caption">
                                         <span class="slider_text_1"><b>TRAVEL</b> </span><span class="slider_text_2">INSURANCE
