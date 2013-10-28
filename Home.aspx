@@ -708,27 +708,27 @@
                 </div>
                 <div class="brands_wrapper">
                     <div id="foo1">
-                        <a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-1?osCsid=qKSS-ugxZQ37A3jke2owD0">
-                            <img src="images/template/manufacturers/brand_example_1.png" alt="manufacturers/brand_example_1.png"
-                                title="manufacturers/brand_example_1.png" width="152" height="101" />
-                        </a><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-2?osCsid=qKSS-ugxZQ37A3jke2owD0">
-                            <img src="images/template/manufacturers/brand_example_2.png" alt="manufacturers/brand_example_2.png"
-                                title="manufacturers/brand_example_2.png" width="152" height="101" />
-                        </a><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-3?osCsid=qKSS-ugxZQ37A3jke2owD0">
-                            <img src="images/template/manufacturers/brand_example_3.png" alt="manufacturers/brand_example_3.png"
-                                title="manufacturers/brand_example_3.png" width="152" height="101" />
-                        </a><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-4?osCsid=qKSS-ugxZQ37A3jke2owD0">
-                            <img src="images/template/manufacturers/brand_example_4.png" alt="manufacturers/brand_example_4.png"
-                                title="manufacturers/brand_example_4.png" width="152" height="101" />
-                        </a><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-5?osCsid=qKSS-ugxZQ37A3jke2owD0">
-                            <img src="images/template/manufacturers/brand_example_5.png" alt="manufacturers/brand_example_5.png"
-                                title="manufacturers/brand_example_5.png" width="152" height="102" />
-                        </a><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-6?osCsid=qKSS-ugxZQ37A3jke2owD0">
-                            <img src="images/template/manufacturers/brand_example_6.png" alt="manufacturers/brand_example_6.png"
-                                title="manufacturers/brand_example_6.png" width="152" height="102" />
-                        </a><a href="http://www.responsive-shop.com/osc/tstore/3/index.php/brand-name-m-7?osCsid=qKSS-ugxZQ37A3jke2owD0">
-                            <img src="images/template/manufacturers/brand_example_7.png" alt="manufacturers/brand_example_7.png"
-                                title="manufacturers/brand_example_7.png" width="152" height="102" />
+                        <a href="#">
+                            <img src="images/home_slider/accor-hi.jpg" alt="Accor"
+                                title="Accor" width="152" height="101" />
+                        </a><a href="#">
+                            <img src="images/home_slider/dotw-logo.png" alt=""
+                                title="" width="152" height="101" />
+                        </a><a href="#">
+                            <img src="images/home_slider/Holiday_Inn_Logo_fullsize.jpg" alt="Holiday Inn"
+                                title="Holiday Inn" width="152" height="101" />
+                        </a><a href="#">
+                            <img src="images/home_slider/hotelbeds.jpg" alt="Hotel Beds"
+                                title="Hotel Beds" width="152" height="101" />
+                        </a><a href="#">
+                            <img src="images/home_slider/logo_tourico_big.gif" alt="Tourico"
+                                title="Tourico" width="152" height="102" />
+                        </a><a href="#">
+                            <img src="images/home_slider/logo_travco.gif" alt="Travco"
+                                title="Travco" width="152" height="102" />
+                        </a><a href="#">
+                            <img src="images/home_slider/logo_tourico_big.gif" alt="Tourico"
+                                title="Tourico" width="152" height="102" />
                         </a>
                     </div>
                     <div class="clearfix">
