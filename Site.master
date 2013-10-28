@@ -89,7 +89,7 @@
                                                     <label>
                                                         My Cart
                                                     </label>
-                                                    <strong id="cart_header_count" runat="server"></strong>items.
+                                                    <strong id="cart_header_count" runat="server"></strong>&nbsp;items.
                                                     <ul id="submenu" class="submenu">
                                                         <asp:Repeater ID="rptrCartPackages" runat="server">
                                                             <ItemTemplate>
