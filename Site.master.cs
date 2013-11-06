@@ -162,7 +162,7 @@ public partial class SiteMaster : System.Web.UI.MasterPage
     protected void BindLogo()
     {
         storeLogo.HRef = rootPath + "home.aspx";
-        storeLogo.InnerHtml = "<img src='" + rootPath + "images/logo_1.gif" + "' alt='Riyadh Travels' title='' width='163px' height='111' />";
+        storeLogo.InnerHtml = "<img src='" + rootPath + "images/all3.png" + "' alt='Riyadh Travels' title='' width='455px' height='111' />";
     }
 
     protected void BindNavigation()
