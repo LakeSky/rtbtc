@@ -37,7 +37,7 @@ public partial class Home : PublicApplicationPage
                 CityCode = _ShoppingHotel.CityCode;
             }
             _meis007Entities = new meis007Entities();
-            rptrSlider.DataSource = _meis007Entities.B2CSiteImages.Where(x => x.Panel == "MAINSLIDER").OrderBy(x => x.SeqID);
+            rptrSlider.DataSource = _meis007Entities.B2CSiteImages.Where(x => x.Panel == "MAINSLIDER" && x.Inservice == true).OrderBy(x => x.SeqID);
             rptrSlider.DataBind();
             rptrPackages.DataSource = _meis007Entities.PackageHeaders.Where(x => x.InService == true).OrderBy(x => x.DisplaySeq).Take(4).ToList();
             rptrPackages.DataBind();

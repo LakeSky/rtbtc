@@ -82,7 +82,7 @@ public partial class Hotels_Index : PublicApplicationPage
 
     protected void BindStarRatingsRepeater() {
         _meis007Entities = new meis007Entities();
-        rptrStarRatings.DataSource = _meis007Entities.Classifications.OrderBy(x => x.ClsName).ToList();
+        rptrStarRatings.DataSource = _meis007Entities.Classifications.Where(x => x.ServiceID == 1).OrderBy(x => x.ClsName).ToList();
         rptrStarRatings.DataBind();
     }
 
