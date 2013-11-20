@@ -37,7 +37,7 @@
                             <div class="product_block equal-height_products_block" style="min-height: 284px;">
                               <div>
                                 <div class="product_pic_wrapper" style="width:122px;height:122px;">
-                                  <a class="product_img" href="show.aspx?id=<%# Eval("PacId") %>" style="width:122px;height:122px;">
+                                  <a class="product_img" href='<%# Eval("ShowPath") %>' style="width:122px;height:122px;">
                                     <img src="<%# Eval("DisplayImage") %>" alt="" width="122" height="122" style="width:122px;height:122px;">
                                   </a>
                                 </div>
@@ -46,8 +46,8 @@
                                     <h3 class="name equal-height_products_name first_h3" style="min-height: 38px;">
                                       <div>
                                         <span>
-                                          <a href="<%= Route.GetRootPath("packages/show.aspx")%>?id=<%# Eval("PacId") %>">
-                                            <%# Eval("PacName")%>
+                                          <a href='<%# Eval("ShowPath") %>'>
+                                            <%# Eval("Name")%>
                                           </a>
                                         </span>
                                       </div>
@@ -57,16 +57,16 @@
                                     <div class="cl_both block">
                                       <div class="product_price_wrapper price ">
                                         <span class="productSpecialPrice">
-                                          <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %>
+                                          <%# Eval("Currency") %>
                                           &nbsp;
-                                          <%# ApplicationObject.FormattedCurrencyDisplayPrice(Eval("PacValueB2C"), masterCurrencyValue) %>
+                                          <%# Eval("Price") %>
                                         </span>
                                       </div>
                                     </div>
                                     <div class="product_button_wrapper">
                                       <strong class="button_content button_content1">
                                         <strong class="button bg_button">
-                                          <a href="book.aspx?id=<%# Eval("PacId") %>" role="button">
+                                          <a href='<%# Eval("BookPath") %>' role="button">
                                             <span class="ui-button-text">
                                               Add&nbsp;to&nbsp;Cart
                                             </span>
@@ -75,7 +75,7 @@
                                       </strong>
                                       <strong class="button_content button_content2">
                                         <strong class="button bg_button">
-                                          <a href="show.aspx?id=<%# Eval("PacId") %>" role="button">
+                                          <a href='<%# Eval("ShowPath") %>' role="button">
                                             <span class="ui-button-text">Details</span>
                                           </a>
                                         </strong>
@@ -86,16 +86,10 @@
                               </div>
                             </div>
                           </li>
-                          <%# Container.ItemIndex != 0 && Container.ItemIndex % 5 == 0 ? "<div class='clear'></div><div class='margin10'></div><div class='margin10'></div>" : ""%>
+                          <%# Eval("dividerHtml")%>
+                          <%# Eval("separaterHtml")%>
                         </ItemTemplate>
                         <SeparatorTemplate>
-                          <li class="prods_vseparator <%# Container.ItemIndex != 0 && Container.ItemIndex % 5 == 0 ? "custom-hide" : "" %>">
-                            <div class="equal-height_products_block" style="min-height: 286px;">
-                              <div>
-                                <img src="<%= Route.GetRootPath("images/template")%>/spacer.gif" alt="" width="10" height="1">
-                              </div>
-                            </div>
-                          </li>
                         </SeparatorTemplate>
                       </asp:Repeater>
                     </ContentTemplate>

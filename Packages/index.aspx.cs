@@ -9,14 +9,10 @@ using meis007Model;
 
 public partial class Packages_index : PublicApplicationPage
 {
-    meis007Entities _meis007Entities;
-    public string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
-        masterCurrencyValue = GetMasteCurrencySelectedValue();
         if (!IsPostBack)
         {
-            _meis007Entities = new meis007Entities();
             PopulateDataSource(1, this.Pager.PageSize);
         }
     }
@@ -28,8 +24,8 @@ public partial class Packages_index : PublicApplicationPage
 
     private void PopulateDataSource(int page, int pageSize)
     {
-        _meis007Entities = new meis007Entities();
-        var data = _meis007Entities.PackageHeaders.Where(x => x.InService == true).OrderBy(x => x.DisplaySeq).ToList();
+        _entity = GetEntity();
+        var data = PackageDisplayHelper.GetPackages(_entity, GetMasteCurrencySelectedValue());
         rptrPackages.DataSource = data.Skip((page - 1) * pageSize).Take(pageSize);
         rptrPackages.DataBind();
         this.Pager.TotalPages =

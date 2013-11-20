@@ -4,12 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Dynamic;
 using System.Web.UI.WebControls;
+using meis007Model;
 
 /// <summary>
 /// Summary description for PublicApplicationPage
 /// </summary>
 public class PublicApplicationPage : System.Web.UI.Page
 {
+    protected meis007Entities _entity;
+    protected meis007Entities GetEntity()
+    {
+        if (_entity == null)
+        {
+            _entity = new meis007Entities();
+        }
+        return _entity;
+    }
+
     protected void UpdateShoppingHelperObject(string hotel, string city, string startDate, string endDate) {
         string index = "";
         string childAge = "";
