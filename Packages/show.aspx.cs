@@ -8,40 +8,50 @@ using meis007Model;
 
 public partial class Packages_show : PublicApplicationPage
 {
-    meis007Entities _meis007Entities;
-    public PackageHeader packageHeader;
-    public string description = "";
+    PackageHeader packageHeader;
     PackageDescription packageDescription;
-    public string masterCurrencyValue;
+    string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
-        masterCurrencyValue = GetMasteCurrencySelectedValue();
         long id;
         if (Request.QueryString["id"] == null || !long.TryParse(Request.QueryString["id"], out id))
         {
-            Redirect();
+            ErrorRedirect("You are not authorized to access that package!");
             return;
         }
-        _meis007Entities = new meis007Entities();
-        packageHeader = _meis007Entities.PackageHeaders.Where(x => x.PacId == id && x.InService == true).FirstOrDefault();
+        _entity = GetEntity();
+        packageHeader = _entity.PackageHeaders.Where(x => x.PacId == id && x.InService == true).FirstOrDefault();
         if (packageHeader == null)
         {
-            Redirect();
+            ErrorRedirect("You are not authorized to access that package!");
             return;
         }
-        packageDescription = _meis007Entities.PackageDescriptions.Where(x => x.PacId == id).FirstOrDefault();
-        if (packageDescription != null)
-        {
-            description = packageDescription.PacDes;
-        }
-        var data = _meis007Entities.PackageImages.Where(x => x.PacId == id);
+        rootPath = Route.GetRootPath("");
+        var data = _entity.PackageImages.Where(x => x.PacId == id);
         rptrSlider.DataSource = data;
         rptrSlider.DataBind();
+        lblPacName.Text = packageHeader.PacName;
+        masterCurrencyValue = GetMasteCurrencySelectedValue();
+        lblPacPrice.Text = "Price Per Person " +
+            ApplicationObject.GetMasterCurrency(masterCurrencyValue) +
+            " " + ApplicationObject.FormattedCurrencyDisplayPrice(packageHeader.PacValueB2C, masterCurrencyValue);
+        packageDescription = _entity.PackageDescriptions.Where(x => x.PacId == id).FirstOrDefault();
+        if (packageDescription != null)
+        {
+            pacDescription.InnerHtml = packageDescription.PacDes;
+        }
+        if (Request.QueryString["from"] == "basket")
+        {
+            fromBasketDiv.Visible = true;
+            fromIndexDiv.Visible = false;
+            fromBasketDivAnchor.HRef = rootPath + "basket/show.aspx";
+        }
+        else
+        {
+            fromBasketDiv.Visible = false;
+            fromIndexDiv.Visible = true;
+            fromIndexDivAnchor.HRef = rootPath + "packages/book.aspx?id=" + packageHeader.PacId;
+        }
     }
 
-    protected void Redirect()
-    {
-        Session["ErrorMessage"] = "You are not authorized to access that package!";
-        Response.Redirect(Route.GetRootPath("packages/index.aspx"));
-    }
 }

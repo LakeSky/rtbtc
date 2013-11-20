@@ -12,6 +12,7 @@ using meis007Model;
 public class PublicApplicationPage : System.Web.UI.Page
 {
     protected meis007Entities _entity;
+    protected string rootPath;
     protected meis007Entities GetEntity()
     {
         if (_entity == null)
@@ -135,6 +136,12 @@ public class PublicApplicationPage : System.Web.UI.Page
     public string GetMasteCurrencySelectedValue() {
         var hdnFld = Page.Master.FindControl("hdnMasterCurrencySelectedValue") as HiddenField;
         return hdnFld.Value;
+    }
+
+    public void ErrorRedirect(string message)
+    {
+        Session["ErrorMessage"] = message;
+        Response.Redirect(Route.GetRootPath("packages/index.aspx"));
     }
 
 }
