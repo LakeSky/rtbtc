@@ -9,29 +9,50 @@ using meis007Model;
 public partial class Packages_book : PublicApplicationPage
 {
     meis007Entities _meis007Entities;
-    public PackageHeader packageHeader;
+    PackageHeader packageHeader;
     public string minDate;
     public string maxDate;
-    public string masterCurrencyValue;
+    string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
-        masterCurrencyValue = GetMasteCurrencySelectedValue();
         long id;
         if (Request.QueryString["id"] == null || !long.TryParse(Request.QueryString["id"], out id))
         {
-            Redirect();
+            ErrorRedirect("You are not authorized to access that package!");
             return;
         }
+        _entity = GetEntity();
         _meis007Entities = new meis007Entities();
         packageHeader = _meis007Entities.PackageHeaders.Where(x => x.PacId == id && x.InService == true).FirstOrDefault();
         if (packageHeader == null)
         {
-            Redirect();
+            ErrorRedirect("You are not authorized to access that package!");
             return;
         }
+        rootPath = Route.GetRootPath("");
         minDate = packageHeader.Validfrom.ToString("dd-MM-yyyy");
         maxDate = packageHeader.Validto.ToString("dd-MM-yyyy");
         hdnFldPackageId.Value = id.ToString();
+        masterCurrencyValue = GetMasteCurrencySelectedValue();
+        diplayImage.Src = packageHeader.DisplayImage;
+        lblPacName.Text = packageHeader.PacName;
+        lblPacPrice.Text = "Price Per Person&nbsp;" +
+            ApplicationObject.GetMasterCurrency(masterCurrencyValue) + "&nbsp;" +
+            ApplicationObject.FormattedCurrencyDisplayPrice(packageHeader.PacValueB2C, masterCurrencyValue);
+        lblStartDate.Text = "Package Start Date " + packageHeader.Validfrom.ToString("dd MMM yyyy");
+        lblEndDate.Text =  "Package End Date " + packageHeader.Validto.ToString("dd MMM yyyy");
+        if (User.Identity.IsAuthenticated)
+        {
+            divLoggedIn.Visible = true;
+            divNotLogin.Visible = false;
+        }
+        else
+        {
+            divLoggedIn.Visible = false;
+            divNotLogin.Visible = true;
+            existinAcnt.HRef = rootPath + "account/login.aspx?bookingtype=package&bookingid=" + id;
+            newAcnt.HRef = rootPath + "account/register.aspx?bookingtype=package&bookingeid=" + id;
+        }
     }
 
     protected void btnAddToBasket_Click(object sender, EventArgs e)
@@ -75,9 +96,4 @@ public partial class Packages_book : PublicApplicationPage
         Response.Redirect(Route.GetRootPath("packages/index.aspx"));
     }
 
-    protected void Redirect()
-    {
-        Session["ErrorMessage"] = "You are not authorized to access that package!";
-        Response.Redirect(Route.GetRootPath("packages/index.aspx"));
-    }
 }
