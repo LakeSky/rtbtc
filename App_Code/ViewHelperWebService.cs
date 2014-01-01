@@ -50,7 +50,24 @@ public class ViewHelperWebService : System.Web.Services.WebService {
             list.Add(obj);
         }
         return list;
-    }    
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public List<FormattedClass> HotelSearch(string q, string cityId)
+    {
+        meis007Entities _meis007Entities = new meis007Entities();
+        var serviceId = DbParameter.GetServiceId("HOTELS");
+        var data = _meis007Entities.ProductMasters.Where(x => x.ServiceID == serviceId && x.CityID == cityId && x.ProductName.Contains(q)).ToList();
+        var list = new List<FormattedClass>();
+        FormattedClass obj;
+        foreach (var x in data)
+        {
+            obj = new FormattedClass { Id = x.ProductID.ToString(), Text = x.ProductName };
+            list.Add(obj);
+        }
+        return list;
+    }
 }
 
 public class FormattedClass {

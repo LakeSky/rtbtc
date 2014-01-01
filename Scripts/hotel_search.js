@@ -106,6 +106,36 @@ $(function () {
         }
     });
 
+    $(".txtHotel").autocomplete({
+        source: function (request, response) {
+            var cityId = $("#cityCode").val();
+            if (cityId == "") {
+                return;
+            }
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: window.hotel_autocomplete_url,
+                data: "{ 'q': '" + request.term + "', 'cityId': '" + cityId + "'}",
+                dataType: "json",
+                success: function (data) {
+                    var array = [];
+                    $.each(data.d, function (i, x) {
+                        var obj = {}
+                        obj['id'] = x.Id;
+                        obj['label'] = x.Text;
+                        obj['name'] = x.Text;
+                        array.push(obj);
+                    });
+                    response(array);
+                },
+                error: function (result) {
+                    console.log(result);
+                }
+            });
+        }
+    });
+
     $('.add-room').click(function (e) {
         e.preventDefault();
         if (window.room_index == 4) {

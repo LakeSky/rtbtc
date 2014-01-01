@@ -12,6 +12,7 @@
   <link href="../styles/search_box.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript">
       window.city_autocomplete_url = '<%=ResolveUrl("~/ViewHelperWebService.asmx/CitySearch") %>';
+      window.hotel_autocomplete_url = '<%=ResolveUrl("~/ViewHelperWebService.asmx/HotelSearch") %>';
       window.cancellation_policy_url = '<%=ResolveUrl("~/ApplicationWebService.asmx/CancellationPolicies") %>';
       window.room_index = <%= RoomsCount + 1 %>;
   </script>
