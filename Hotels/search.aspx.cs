@@ -36,7 +36,7 @@ public partial class Hotels_Index : PublicApplicationPage
             RoomsCount = ShoppingRoomsList.Count;
             var supplierHotelObjectHelper = new SupplierHotelObjectHelper(_ShoppingHotel, true);
             var data = supplierHotelObjectHelper.GetHotels();
-            productMasters = new List<ProductMaster>();
+            productStarIds = new List<int>();
             productStarIds = data.Select(x => x.ProductStarsId).Distinct().ToList();
             BindStarRatingsRepeater();
             EnableOrDisableStarRatingCheckBoxes(data);
