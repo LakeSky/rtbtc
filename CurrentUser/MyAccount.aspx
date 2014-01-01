@@ -5,8 +5,11 @@
     $(function () {
 
         var minDate = new Date();
-        minDate.setFullYear(minDate.getFullYear() - 83);
+        var currentDate = new Date();
+        minDate.setFullYear(minDate.getFullYear() - 120);
+        var diffYears = currentDate.getFullYear() - minDate.getFullYear();
         $("#dob").datepicker({
+            yearRange: "-" + diffYears + ":+0",
             constrainInput: true,
             dateFormat: "dd-mm-yy",
             changeMonth: true,
@@ -14,7 +17,6 @@
             minDate: minDate,
             maxDate: 0
         });
-
         $("#dob").attr("readonly", true);
 
         $("#add-passenger-div").dialog({
