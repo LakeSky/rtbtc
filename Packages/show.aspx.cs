@@ -10,9 +10,11 @@ public partial class Packages_show : PublicApplicationPage
 {
     PackageHeader packageHeader;
     PackageDescription packageDescription;
+    DateTime currentDate;
     string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
+        currentDate = DateTime.Now;
         long id;
         if (Request.QueryString["id"] == null || !long.TryParse(Request.QueryString["id"], out id))
         {
@@ -20,7 +22,7 @@ public partial class Packages_show : PublicApplicationPage
             return;
         }
         _entity = GetEntity();
-        packageHeader = _entity.PackageHeaders.Where(x => x.PacId == id && x.InService == true).FirstOrDefault();
+        packageHeader = _entity.PackageHeaders.Where(x => x.PacId == id && x.InService == true && x.Validto >= currentDate).FirstOrDefault();
         if (packageHeader == null)
         {
             ErrorRedirect("You are not authorized to access that package!");

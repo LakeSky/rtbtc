@@ -10,11 +10,13 @@ public partial class Packages_book : PublicApplicationPage
 {
     meis007Entities _meis007Entities;
     PackageHeader packageHeader;
+    DateTime currentDate;
     public string minDate;
     public string maxDate;
     string masterCurrencyValue;
     protected void Page_Load(object sender, EventArgs e)
     {
+        currentDate = DateTime.Now;
         long id;
         if (Request.QueryString["id"] == null || !long.TryParse(Request.QueryString["id"], out id))
         {
@@ -23,7 +25,7 @@ public partial class Packages_book : PublicApplicationPage
         }
         _entity = GetEntity();
         _meis007Entities = new meis007Entities();
-        packageHeader = _meis007Entities.PackageHeaders.Where(x => x.PacId == id && x.InService == true).FirstOrDefault();
+        packageHeader = _meis007Entities.PackageHeaders.Where(x => x.PacId == id && x.InService == true && x.Validto >= currentDate).FirstOrDefault();
         if (packageHeader == null)
         {
             ErrorRedirect("You are not authorized to access that package!");
