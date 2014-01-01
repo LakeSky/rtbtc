@@ -199,15 +199,22 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
   <div class="row row_2 container_24">
     <div class="grid_24">
-     <strong class="button_content button_content1" style="float:right;">
-        <strong class="button bg_button" style="margin-bottom: 9px;">
-          <a href="<%= Route.GetRootPath("bookings/index.aspx") %>">
-            <span class="ui-button-text">
-              My Bookings
-            </span>
-          </a>
+      <div style="float: right;">
+        <strong class="button_content button_content1 marginR10">
+          <strong class="button bg_button" style="margin-bottom: 9px;">
+            <a href="<%= Route.GetRootPath("bookings/index.aspx") %>">
+              <span class="ui-button-text"> My Hotel Bookings </span>
+            </a>
+          </strong>
         </strong>
-      </strong>
+        <strong class="button_content button_content1">
+          <strong class="button bg_button" style="margin-bottom: 9px;">
+            <a href="<%= Route.GetRootPath("bookings/packages.aspx") %>">
+              <span class="ui-button-text"> My Package Bookings </span>
+            </a>
+          </strong>
+        </strong>
+      </div>
       <div class="clear"></div>
       <div class="contentContainer page_search">
         <div class="contentBlock">
