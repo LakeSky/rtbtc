@@ -17,8 +17,8 @@ public class CancellationPolicyHelper
     {
         long hotelInfoId = long.Parse(id);
         
-        var startDate = DateTime.Parse(startDateTime);
-        var endDate = DateTime.Parse(startDateTime);
+        var startDate = DateTimeHelper.ConvertToDateWithoutNull(startDateTime);
+        var endDate = DateTimeHelper.ConvertToDateWithoutNull(startDateTime);
         meis007Entities _meis007Entities = new meis007Entities();
         var obj = _meis007Entities.SuppliersHotelsInfoes.Where(x => x.HotelInfoID == hotelInfoId).First();
         SupplierCancellationPolicies supplierCancellationPolicies = new SupplierCancellationPolicies(_meis007Entities, obj, supplierName, startDateTime, endDateTime);

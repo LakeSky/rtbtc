@@ -46,8 +46,8 @@ public class SupplierCancellationPolicies
         if (count == 0)
         {
             RepositoryFactory supplierFactory = new RepositoryFactory(null, suppliersHotelsInfo.SessionID);
-            var startDate = DateTime.Parse(StartDate);
-            var endDate = DateTime.Parse(EndDate);
+            var startDate = DateTimeHelper.ConvertToDateWithoutNull(StartDate);
+            var endDate = DateTimeHelper.ConvertToDateWithoutNull(EndDate);
             policyAvailable = supplierFactory.GetCancelationPolicy(int.Parse(suppliersHotelsInfo.HotelInfoID.ToString()), startDate, endDate);
         }
         return policyAvailable;

@@ -93,7 +93,8 @@ public static class BookingsIndexObjectHelper
                     country = x.Country,
                     starsImagePath = x.StarsImage,
                     defaultImagePath = defaultImagePath,
-                    stay =  DateTime.Parse(x.From.ToString()).ToString("dd MMM yy") + " - " + DateTime.Parse(x.To.ToString()).ToString("dd MMM yy"),
+                    stay =  DateTimeHelper.ConvertToDateWithoutNull(x.From.ToString()).ToString("dd MMM yy") + " - " + 
+                    DateTimeHelper.ConvertToDateWithoutNull(x.To.ToString()).ToString("dd MMM yy"),
                     room = room,
                     guests = guests,
                     pricePerPassenger = Math.Floor(decimal.Parse(x.AvgAmount.ToString())),
