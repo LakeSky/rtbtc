@@ -94,6 +94,7 @@ public class SupplierHotelObjectHelper
                     CityCode = shoppingHotelHelper.CityCode,
                     ProdcutDescription = _sqlDataReader["ShortDescription"].ToString(), 
                     ProductMasterId = productMasterId, 
+                    ProductStarsId = int.Parse(_sqlDataReader["ClsID"].ToString()),
                     ProductStarsName = _sqlDataReader["ClsName"].ToString(), 
                     ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
                     ProductImagePath = _sqlDataReader["ThumbnailPath"].ToString()

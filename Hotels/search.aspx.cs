@@ -18,6 +18,7 @@ public partial class Hotels_Index : PublicApplicationPage
     public List<Classification> classifications;
     public List<ProductMaster> productMasters;
     public string masterCurrencyValue;
+    public List<int> productStarIds { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {
         masterCurrencyValue = GetMasteCurrencySelectedValue();
@@ -35,6 +36,8 @@ public partial class Hotels_Index : PublicApplicationPage
             RoomsCount = ShoppingRoomsList.Count;
             var supplierHotelObjectHelper = new SupplierHotelObjectHelper(_ShoppingHotel, true);
             var data = supplierHotelObjectHelper.GetHotels();
+            productMasters = new List<ProductMaster>();
+            productStarIds = data.Select(x => x.ProductStarsId).Distinct().ToList();
             BindStarRatingsRepeater();
             EnableOrDisableStarRatingCheckBoxes(data);
             PopulateDataSource(1, this.Pager.PageSize, true, data);
@@ -82,7 +85,7 @@ public partial class Hotels_Index : PublicApplicationPage
 
     protected void BindStarRatingsRepeater() {
         _meis007Entities = new meis007Entities();
-        rptrStarRatings.DataSource = _meis007Entities.Classifications.Where(x => x.ServiceID == 1).OrderBy(x => x.ClsName).ToList();
+        rptrStarRatings.DataSource = _meis007Entities.Classifications.Where(x => x.ServiceID == 1 && productStarIds.Contains(x.ClsID)).OrderBy(x => x.ClsName).ToList();
         rptrStarRatings.DataBind();
     }
 

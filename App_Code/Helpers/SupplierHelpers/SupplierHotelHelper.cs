@@ -13,6 +13,7 @@ public class SupplierHotelHelper
     public long ProductMasterId { get; set; }
     public string ProductName { get; set; }
     public string ProdcutDescription { get; set; }
+    public int ProductStarsId { get; set; }
     public string ProductStarsImagePath { get; set; }
     public string ProductStarsName { get; set; }
     public string ProductImagePath { get; set; }
