@@ -17,12 +17,14 @@ public partial class Home : PublicApplicationPage
     public string masterCurrencyValue;
     public B2CCustomerinfo b2CCustomerinfo;
     public string UserName;
+    DateTime currentDate;
     protected void Page_Load(object sender, EventArgs e)
     {
         subscribeDiv.Visible = !User.Identity.IsAuthenticated;
         masterCurrencyValue = GetMasteCurrencySelectedValue();
         if (!IsPostBack)
         {
+            currentDate = DateTime.Now;
             errorDiv.Visible = false;
             RoomsCount = 1;
             _ShoppingHelper = GetShoppingHelperObject();
@@ -39,7 +41,7 @@ public partial class Home : PublicApplicationPage
             _meis007Entities = new meis007Entities();
             rptrSlider.DataSource = _meis007Entities.B2CSiteImages.Where(x => x.Panel == "MAINSLIDER" && x.Inservice == true).OrderBy(x => x.SeqID);
             rptrSlider.DataBind();
-            rptrPackages.DataSource = _meis007Entities.PackageHeaders.Where(x => x.InService == true).OrderBy(x => x.DisplaySeq).Take(4).ToList();
+            rptrPackages.DataSource = _meis007Entities.PackageHeaders.Where(x => x.InService == true && x.Validto >= currentDate).OrderBy(x => x.DisplaySeq).Take(4).ToList();
             rptrPackages.DataBind();
             rptrHotels.DataSource = SupplierHotelObjectHelper.GetHomePageHotels(_meis007Entities);
             rptrHotels.DataBind();

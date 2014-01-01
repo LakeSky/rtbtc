@@ -18,8 +18,9 @@ public class PackageDisplayHelper
 
     public static List<PackageDisplayHelper> GetPackages(meis007Entities _entity, string masterCurrency)
     {
+        var currentDate = DateTime.Now;
         var rootPath = Route.GetRootPath("");
-        var packages = _entity.PackageHeaders.Where(x => x.InService == true).OrderBy(x => x.DisplaySeq).ToList();
+        var packages = _entity.PackageHeaders.Where(x => x.InService == true && x.Validto >= currentDate).OrderBy(x => x.DisplaySeq).ToList();
         PackageDisplayHelper obj;
         List<PackageDisplayHelper> list = new List<PackageDisplayHelper>();
         int i = 1;
