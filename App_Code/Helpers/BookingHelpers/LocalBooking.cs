@@ -21,8 +21,9 @@ public class LocalBooking
     string Name;
     string BookingType;
     string Remarks;
+  
     string TransactionId;
-    public LocalBooking(meis007Entities entity, SuppliersHotelsInfo shi, BasketHotelDetails bhd, BasketPackageDetails bpd, HotelBooking hb, long basketSequence, string refNo, string confNo, string name, string type, string remarks, string transId)
+    public LocalBooking(meis007Entities entity, SuppliersHotelsInfo shi, BasketHotelDetails bhd, BasketPackageDetails bpd, HotelBooking hb, long basketSequence, string refNo, string confNo, string name, string type, string remarks ,string transId)
     {
         this.bkgMaster = new BkgMaster();
         this._meis007Entities = entity;
@@ -37,6 +38,7 @@ public class LocalBooking
         this.BookingType = type;
         this.Remarks = remarks;
         this.TransactionId = transId;
+
         this.customer = DbParameter.GetCustomer(_meis007Entities);
     }
 
@@ -63,13 +65,14 @@ public class LocalBooking
             BkgType = DbParameter.GetBookingType(),
             BkgStatus = DbParameter.GetBookingStatus(),
             CustomerID = customer.CustomerID,
-            CustConsultantID = CurrentUser.Id(),
+            CustConsultantID = long.Parse(DbParameter.GetCustomerConsultantID(customer.CustomerID.ToString())),
             CustomerDisplayPrice = Shi.LCAP,
+            ConsultantDisplayAmt = Shi.LCAP,
             CustomerMarkup = Shi.MarkUp,
             FCSalesAmt = Shi.LCAP,
-            FCurrencyID = Shi.CurrencyCode,
+            FCurrencyID = ApplicationObject.GetBaseCurrency(),
             BaseCurrencyID = ApplicationObject.GetBaseCurrency(),
-            ExRate = Shi.ExchRate,
+            ExRate =  1 , //Shi.ExchRate,
             SalesAmt = Shi.LCAP,
             SupplierID = long.Parse(Shi.SupplierID.ToString()),
             SupplierRefNo = SupplierRefNo,
@@ -110,7 +113,9 @@ public class LocalBooking
             paxDetail = new PaxDetail
             {
                 BkgID = bkgMaster.BkgID,
-                PaxName = y.firstName + " " + y.middleName + " " + y.lastName
+                PaxName = y.firstName + " " + y.middleName + " " + y.lastName,
+                Title = y.title,
+                Age = y.title == "Master" ? int.Parse(y.age) : 0   //Shams Added 
             };
             _meis007Entities.AddToPaxDetails(paxDetail);
             _meis007Entities.SaveChanges();

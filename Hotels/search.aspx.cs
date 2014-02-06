@@ -33,6 +33,7 @@ public partial class Hotels_Index : PublicApplicationPage
             txtStartDate.Text = _ShoppingHotel.FromDate;
             txtEndDate.Text = _ShoppingHotel.ToDate;
             CityCode = _ShoppingHotel.CityCode;
+            Session["cityCode"] = CityCode;  //shams added 
             RoomsCount = ShoppingRoomsList.Count;
             var supplierHotelObjectHelper = new SupplierHotelObjectHelper(_ShoppingHotel, true);
             var data = supplierHotelObjectHelper.GetHotels();
@@ -85,7 +86,7 @@ public partial class Hotels_Index : PublicApplicationPage
 
     protected void BindStarRatingsRepeater() {
         _meis007Entities = new meis007Entities();
-        rptrStarRatings.DataSource = _meis007Entities.Classifications.Where(x => x.ServiceID == 1 && productStarIds.Contains(x.ClsID)).OrderBy(x => x.ClsName).ToList();
+        rptrStarRatings.DataSource = _meis007Entities.Classifications.Where(x => x.ServiceID == 1 ).OrderBy(x => x.ClsName).ToList();
         rptrStarRatings.DataBind();
     }
 

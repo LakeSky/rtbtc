@@ -59,7 +59,7 @@ public class SupplierCancellationPolicies
             baseCancellationPolicy = new BaseCancellationPolicy { 
                 Id = x.CID,
                 BasisType = x.BasisType,
-                HotelId = long.Parse(x.HotelID.ToString()),
+                HotelId = x.HotelID.ToString(),
                 HotelInfoId = x.HotelInfoId,
                 HotelRoomTypeId = x.HotelRoomTypeId,
                 OffSetUnit = x.OffSetUnit,

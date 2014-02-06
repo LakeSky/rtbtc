@@ -18,7 +18,11 @@ public class SupplierBooking
     string LastName;
     string Mobile;
     string Telephone;
-    public SupplierBooking(SuppliersHotelsInfo obj1, BasketHotelDetails obj2, string firstName, string middleName, string lastName, string mobile, string telephone)
+    string CustomerID;
+    string CityID;
+    string Title;
+    string CustomerRemarks;
+    public SupplierBooking(SuppliersHotelsInfo obj1, BasketHotelDetails obj2, string firstName, string middleName, string lastName, string mobile, string telephone,  string cityID, string title, string customerRemarks)
     {
         this.Shi = obj1;
         this.Bhd = obj2;
@@ -27,6 +31,10 @@ public class SupplierBooking
         this.LastName = lastName;
         this.Mobile = mobile;
         this.Telephone = telephone;
+        
+        this.CityID = cityID;//shams added 
+        this.Title = title;//shams added 
+        this.CustomerRemarks = customerRemarks;//shams added 
     }
 
     public string Book()
@@ -36,7 +44,11 @@ public class SupplierBooking
         bookingInfo.CheckOut = Bhd.toDate;
         bookingInfo.AdultNum = Bhd.guestDetails.Where(y => y.type == "Adult").Count();
         bookingInfo.ChildNum = Bhd.guestDetails.Where(y => y.type == "Kid").Count();
-        bookingInfo.ChildAges = Bhd.guestDetails.Where(y => y.type == "Kid").Select(y => int.Parse(y.age)).ToArray();
+        if (bookingInfo.ChildNum == 0)
+            bookingInfo.ChildAges = null; //ages;
+        else
+            bookingInfo.ChildAges = Bhd.guestDetails.Where(y => y.type == "Kid").Select(y => int.Parse(y.age)).ToArray(); //ages;
+       
         bookingInfo.AgentNumber = Bhd.hotelInfoId.ToString();
         bookingInfo.FirstName = FirstName;
         bookingInfo.MiddleName = MiddleName;
@@ -47,6 +59,14 @@ public class SupplierBooking
         {
             bookingInfo.HotelId = int.Parse(Shi.HotelID.ToString());
             bookingInfo.RoomId = int.Parse(Shi.RoomID.ToString());
+        }
+        else if (Shi.SupplierID == "1008")
+        {
+            bookingInfo.HotelCode = Shi.HotelID.ToString();
+            bookingInfo.RoomCode = Shi.RoomID.ToString();
+            bookingInfo.InfantNum = Bhd.InfantNum;
+            bookingInfo.AgentText = (Bhd.InfantNum > 0) ? "Cot Required" : (this.CustomerRemarks == null) ? null : this.CustomerRemarks;
+            bookingInfo.Title = Title;
         }
         else
         {
@@ -64,6 +84,11 @@ public class SupplierBooking
         bookingInfo.SupplierId = Shi.SupplierID;
         bookingInfo.CustomerId = DbParameter.GetCustomerId();
         bookingInfo.HotelInfoId = int.Parse(Bhd.hotelInfoId.ToString());
+         //shams add few fields
+        bookingInfo.ArrivalCity = Bhd.cityName;
+        bookingInfo.Destination = CityID;
+        // finish shams adding
+       
         RepositoryFactory supplierFactory = new RepositoryFactory(null, Bhd.sessionId);
         return supplierFactory.HotelRoomBooking(bookingInfo);
     }

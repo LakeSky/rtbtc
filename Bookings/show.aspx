@@ -21,7 +21,7 @@
             <div class="content t_view">
               <ul id="view_row-0">  
                 <li class="responsive_block first" style="width:100%;">
-                  <asp:Repeater ID="rptrBookingIndex" runat="server">
+                  <asp:Repeater ID="rptrBookingIndex" runat="server" >
                     <ItemTemplate>
                       <div class="product_block equal-height_products_block">
                         <div class="product_pic_wrapper" style="width:195px;height:195px;">
@@ -60,6 +60,7 @@
                       <h4>Stay: <%# Eval("stay") %></h4>
                       <h4>Room: <%# Eval("room") %></h4>
                       <h4>Guest: <%# Eval("guests") %></h4>
+                            
                       <asp:Repeater ID="rptrGuests" runat="server" DataSource='<%# Eval("guestDetails") %>'>
                         <HeaderTemplate>
                           <table class="table table-bordered">
@@ -77,6 +78,7 @@
                         </FooterTemplate>
                       </asp:Repeater>              
                       </div>
+                     
                     </div>
                   </ItemTemplate>
                 </asp:Repeater>
@@ -103,8 +105,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div><div><asp:Button ID="btnVoucher" runat="server" Text="Voucher" 
+                onclick="btnVoucher_Click" /></div>
   </div>
 </div>
+ 
 </asp:Content>
 

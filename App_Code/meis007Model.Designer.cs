@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -44,6 +45,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_CustomerMaster_CityMaster", "CityMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(meis007Model.CityMaster), "CustomerMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CustomerMaster), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_CustomerMaster_UserMaster", "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.UserMaster), "CustomerMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CustomerMaster), true)]
 [assembly: EdmRelationshipAttribute("meis007Model", "FK_CustomerMaster_UserMaster1", "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.UserMaster), "CustomerMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CustomerMaster), true)]
+[assembly: EdmRelationshipAttribute("meis007Model", "FK_CustConsultantMaster_CustomerMaster", "CustomerMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(meis007Model.CustomerMaster), "CustConsultantMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(meis007Model.CustConsultantMaster), true)]
 
 #endregion
 
@@ -334,22 +336,6 @@ namespace meis007Model
             }
         }
         private ObjectSet<PackageImage> _PackageImages;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<PaxDetail> PaxDetails
-        {
-            get
-            {
-                if ((_PaxDetails == null))
-                {
-                    _PaxDetails = base.CreateObjectSet<PaxDetail>("PaxDetails");
-                }
-                return _PaxDetails;
-            }
-        }
-        private ObjectSet<PaxDetail> _PaxDetails;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -686,8 +672,41 @@ namespace meis007Model
             }
         }
         private ObjectSet<CustomerMaster> _CustomerMasters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PaxDetail> PaxDetails
+        {
+            get
+            {
+                if ((_PaxDetails == null))
+                {
+                    _PaxDetails = base.CreateObjectSet<PaxDetail>("PaxDetails");
+                }
+                return _PaxDetails;
+            }
+        }
+        private ObjectSet<PaxDetail> _PaxDetails;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CustConsultantMaster> CustConsultantMasters
+        {
+            get
+            {
+                if ((_CustConsultantMasters == null))
+                {
+                    _CustConsultantMasters = base.CreateObjectSet<CustConsultantMaster>("CustConsultantMasters");
+                }
+                return _CustConsultantMasters;
+            }
+        }
+        private ObjectSet<CustConsultantMaster> _CustConsultantMasters;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -808,14 +827,6 @@ namespace meis007Model
         public void AddToPackageImages(PackageImage packageImage)
         {
             base.AddObject("PackageImages", packageImage);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the PaxDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToPaxDetails(PaxDetail paxDetail)
-        {
-            base.AddObject("PaxDetails", paxDetail);
         }
     
         /// <summary>
@@ -985,13 +996,29 @@ namespace meis007Model
         {
             base.AddObject("CustomerMasters", customerMaster);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PaxDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPaxDetails(PaxDetail paxDetail)
+        {
+            base.AddObject("PaxDetails", paxDetail);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CustConsultantMasters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCustConsultantMasters(CustConsultantMaster custConsultantMaster)
+        {
+            base.AddObject("CustConsultantMasters", custConsultantMaster);
+        }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -1018,6 +1045,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1144,6 +1172,7 @@ namespace meis007Model
         partial void OnAirportCodeChanged();
 
         #endregion
+
     
     }
     
@@ -1171,6 +1200,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1249,6 +1279,7 @@ namespace meis007Model
         partial void OnAmenitytypeChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1275,6 +1306,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1299,6 +1331,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1689,6 +1722,7 @@ namespace meis007Model
         partial void OnInServiceChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1715,6 +1749,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1739,6 +1774,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1961,6 +1997,7 @@ namespace meis007Model
         partial void OnNationalityChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2003,6 +2040,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2039,6 +2077,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2309,6 +2348,7 @@ namespace meis007Model
         partial void OnModDateChanged();
 
         #endregion
+
     
     }
     
@@ -2336,6 +2376,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2390,6 +2431,7 @@ namespace meis007Model
         partial void OnSequenceNumberChanged();
 
         #endregion
+
     
     }
     
@@ -2419,6 +2461,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2761,6 +2804,7 @@ namespace meis007Model
         partial void OnCreatedAtChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2803,6 +2847,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2841,6 +2886,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4287,6 +4333,7 @@ namespace meis007Model
         partial void OnTransactionIdChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4313,6 +4360,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4345,6 +4393,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4591,6 +4640,7 @@ namespace meis007Model
         partial void OnBkgcountChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4655,6 +4705,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4687,6 +4738,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4861,6 +4913,7 @@ namespace meis007Model
         partial void OnModDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4925,6 +4978,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4953,6 +5007,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -5079,6 +5134,7 @@ namespace meis007Model
         partial void OnH2HChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -5105,6 +5161,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5139,6 +5196,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -5361,7 +5419,355 @@ namespace meis007Model
         partial void OnModDateChanged();
 
         #endregion
+
     
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="meis007Model", Name="CustConsultantMaster")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class CustConsultantMaster : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new CustConsultantMaster object.
+        /// </summary>
+        /// <param name="consultantID">Initial value of the ConsultantID property.</param>
+        /// <param name="password">Initial value of the Password property.</param>
+        /// <param name="consultantName">Initial value of the ConsultantName property.</param>
+        /// <param name="webAccessIP">Initial value of the WebAccessIP property.</param>
+        /// <param name="modDate">Initial value of the ModDate property.</param>
+        public static CustConsultantMaster CreateCustConsultantMaster(global::System.Int64 consultantID, global::System.String password, global::System.String consultantName, global::System.String webAccessIP, global::System.DateTime modDate)
+        {
+            CustConsultantMaster custConsultantMaster = new CustConsultantMaster();
+            custConsultantMaster.ConsultantID = consultantID;
+            custConsultantMaster.Password = password;
+            custConsultantMaster.ConsultantName = consultantName;
+            custConsultantMaster.WebAccessIP = webAccessIP;
+            custConsultantMaster.ModDate = modDate;
+            return custConsultantMaster;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 ConsultantID
+        {
+            get
+            {
+                return _ConsultantID;
+            }
+            set
+            {
+                if (_ConsultantID != value)
+                {
+                    OnConsultantIDChanging(value);
+                    ReportPropertyChanging("ConsultantID");
+                    _ConsultantID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ConsultantID");
+                    OnConsultantIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _ConsultantID;
+        partial void OnConsultantIDChanging(global::System.Int64 value);
+        partial void OnConsultantIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Password
+        {
+            get
+            {
+                return _Password;
+            }
+            set
+            {
+                OnPasswordChanging(value);
+                ReportPropertyChanging("Password");
+                _Password = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Password");
+                OnPasswordChanged();
+            }
+        }
+        private global::System.String _Password;
+        partial void OnPasswordChanging(global::System.String value);
+        partial void OnPasswordChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ConsultantName
+        {
+            get
+            {
+                return _ConsultantName;
+            }
+            set
+            {
+                OnConsultantNameChanging(value);
+                ReportPropertyChanging("ConsultantName");
+                _ConsultantName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ConsultantName");
+                OnConsultantNameChanged();
+            }
+        }
+        private global::System.String _ConsultantName;
+        partial void OnConsultantNameChanging(global::System.String value);
+        partial void OnConsultantNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> CustomerID
+        {
+            get
+            {
+                return _CustomerID;
+            }
+            set
+            {
+                OnCustomerIDChanging(value);
+                ReportPropertyChanging("CustomerID");
+                _CustomerID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CustomerID");
+                OnCustomerIDChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _CustomerID;
+        partial void OnCustomerIDChanging(Nullable<global::System.Int64> value);
+        partial void OnCustomerIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Email
+        {
+            get
+            {
+                return _Email;
+            }
+            set
+            {
+                OnEmailChanging(value);
+                ReportPropertyChanging("Email");
+                _Email = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Email");
+                OnEmailChanged();
+            }
+        }
+        private global::System.String _Email;
+        partial void OnEmailChanging(global::System.String value);
+        partial void OnEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Fax
+        {
+            get
+            {
+                return _Fax;
+            }
+            set
+            {
+                OnFaxChanging(value);
+                ReportPropertyChanging("Fax");
+                _Fax = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Fax");
+                OnFaxChanged();
+            }
+        }
+        private global::System.String _Fax;
+        partial void OnFaxChanging(global::System.String value);
+        partial void OnFaxChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String phone
+        {
+            get
+            {
+                return _phone;
+            }
+            set
+            {
+                OnphoneChanging(value);
+                ReportPropertyChanging("phone");
+                _phone = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("phone");
+                OnphoneChanged();
+            }
+        }
+        private global::System.String _phone;
+        partial void OnphoneChanging(global::System.String value);
+        partial void OnphoneChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String WebAccessIP
+        {
+            get
+            {
+                return _WebAccessIP;
+            }
+            set
+            {
+                OnWebAccessIPChanging(value);
+                ReportPropertyChanging("WebAccessIP");
+                _WebAccessIP = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("WebAccessIP");
+                OnWebAccessIPChanged();
+            }
+        }
+        private global::System.String _WebAccessIP;
+        partial void OnWebAccessIPChanging(global::System.String value);
+        partial void OnWebAccessIPChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Markup
+        {
+            get
+            {
+                return _Markup;
+            }
+            set
+            {
+                OnMarkupChanging(value);
+                ReportPropertyChanging("Markup");
+                _Markup = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Markup");
+                OnMarkupChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Markup;
+        partial void OnMarkupChanging(Nullable<global::System.Int32> value);
+        partial void OnMarkupChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> InService
+        {
+            get
+            {
+                return _InService;
+            }
+            set
+            {
+                OnInServiceChanging(value);
+                ReportPropertyChanging("InService");
+                _InService = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("InService");
+                OnInServiceChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _InService;
+        partial void OnInServiceChanging(Nullable<global::System.Boolean> value);
+        partial void OnInServiceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime ModDate
+        {
+            get
+            {
+                return _ModDate;
+            }
+            set
+            {
+                OnModDateChanging(value);
+                ReportPropertyChanging("ModDate");
+                _ModDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ModDate");
+                OnModDateChanged();
+            }
+        }
+        private global::System.DateTime _ModDate;
+        partial void OnModDateChanging(global::System.DateTime value);
+        partial void OnModDateChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_CustConsultantMaster_CustomerMaster", "CustomerMaster")]
+        public CustomerMaster CustomerMaster
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CustomerMaster>("meis007Model.FK_CustConsultantMaster_CustomerMaster", "CustomerMaster").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CustomerMaster>("meis007Model.FK_CustConsultantMaster_CustomerMaster", "CustomerMaster").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<CustomerMaster> CustomerMasterReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CustomerMaster>("meis007Model.FK_CustConsultantMaster_CustomerMaster", "CustomerMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CustomerMaster>("meis007Model.FK_CustConsultantMaster_CustomerMaster", "CustomerMaster", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -5400,6 +5806,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6126,6 +6533,7 @@ namespace meis007Model
         partial void OnLocalMarkupChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6242,8 +6650,31 @@ namespace meis007Model
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("meis007Model", "FK_CustConsultantMaster_CustomerMaster", "CustConsultantMaster")]
+        public EntityCollection<CustConsultantMaster> CustConsultantMasters
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CustConsultantMaster>("meis007Model.FK_CustConsultantMaster_CustomerMaster", "CustConsultantMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CustConsultantMaster>("meis007Model.FK_CustConsultantMaster_CustomerMaster", "CustConsultantMaster", value);
+                }
+            }
+        }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6268,6 +6699,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6322,6 +6754,7 @@ namespace meis007Model
         partial void OnFacilityNameChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6348,6 +6781,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6372,6 +6806,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6570,6 +7005,7 @@ namespace meis007Model
         partial void OnIsCancelledChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6612,6 +7048,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6640,6 +7077,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6718,6 +7156,7 @@ namespace meis007Model
         partial void OnPacDesChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6760,6 +7199,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6804,6 +7244,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7122,6 +7563,7 @@ namespace meis007Model
         partial void OnPacValueB2CChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -7170,6 +7612,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7198,6 +7641,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7300,6 +7744,7 @@ namespace meis007Model
         partial void OnThumbnailImageChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -7342,6 +7787,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7366,6 +7812,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7442,8 +7889,57 @@ namespace meis007Model
         private global::System.String _PaxName;
         partial void OnPaxNameChanging(global::System.String value);
         partial void OnPaxNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Age
+        {
+            get
+            {
+                return _Age;
+            }
+            set
+            {
+                OnAgeChanging(value);
+                ReportPropertyChanging("Age");
+                _Age = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Age");
+                OnAgeChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Age;
+        partial void OnAgeChanging(Nullable<global::System.Int32> value);
+        partial void OnAgeChanged();
 
         #endregion
+
     
     }
     
@@ -7483,6 +7979,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7753,6 +8250,7 @@ namespace meis007Model
         partial void OnField3Changed();
 
         #endregion
+
     
     }
     
@@ -7790,6 +8288,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -8036,6 +8535,7 @@ namespace meis007Model
         partial void OnModDatetimeChanged();
 
         #endregion
+
     
     }
     
@@ -8079,6 +8579,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -8397,6 +8898,7 @@ namespace meis007Model
         partial void OnField3Changed();
 
         #endregion
+
     
     }
     
@@ -8422,6 +8924,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -8500,6 +9003,7 @@ namespace meis007Model
         partial void OnAmenitiesIdChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -8580,6 +9084,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -8606,6 +9111,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -8684,6 +9190,7 @@ namespace meis007Model
         partial void OnFIDChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -8764,6 +9271,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -8788,6 +9296,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -8866,6 +9375,7 @@ namespace meis007Model
         partial void OnImageAddressChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -8908,6 +9418,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -8942,6 +9453,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -9620,6 +10132,7 @@ namespace meis007Model
         partial void OnModDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -9728,6 +10241,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -9752,6 +10266,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -9878,6 +10393,7 @@ namespace meis007Model
         partial void OnRoomTDIDChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -10018,6 +10534,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -10044,6 +10561,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -10170,6 +10688,7 @@ namespace meis007Model
         partial void OnMaxChildChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -10234,6 +10753,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -10258,6 +10778,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -10408,6 +10929,7 @@ namespace meis007Model
         partial void OnModDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -10456,6 +10978,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -10486,6 +11009,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -10588,6 +11112,7 @@ namespace meis007Model
         partial void OnModDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -10614,6 +11139,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -10642,6 +11168,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -11200,6 +11727,7 @@ namespace meis007Model
         partial void OnModDateChanged();
 
         #endregion
+
     
     }
     
@@ -11225,6 +11753,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -11543,6 +12072,7 @@ namespace meis007Model
         partial void OnLastPossibleCancellationDateChanged();
 
         #endregion
+
     
     }
     
@@ -11568,6 +12098,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -12318,6 +12849,7 @@ namespace meis007Model
         partial void OnModDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -12476,6 +13008,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -12500,6 +13033,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -12746,6 +13280,7 @@ namespace meis007Model
         partial void OnUnitMultiplierChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -12978,6 +13513,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -13004,6 +13540,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -13250,6 +13787,7 @@ namespace meis007Model
         partial void OnModUserIDChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -13298,6 +13836,7 @@ namespace meis007Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -13322,6 +13861,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -13520,6 +14060,7 @@ namespace meis007Model
         partial void OnModUseridChanged();
 
         #endregion
+
     
     }
     
@@ -13545,6 +14086,7 @@ namespace meis007Model
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -13671,9 +14213,11 @@ namespace meis007Model
         partial void OnInternalSupplierIDChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     
 }

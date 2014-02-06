@@ -94,7 +94,7 @@ public class SupplierHotelObjectHelper
                     CityCode = shoppingHotelHelper.CityCode,
                     ProdcutDescription = _sqlDataReader["ShortDescription"].ToString(), 
                     ProductMasterId = productMasterId, 
-                    ProductStarsId = int.Parse(_sqlDataReader["ClsID"].ToString()),
+                    //ProductStarsId = int.Parse(_sqlDataReader["ClsID"].ToString()),
                     ProductStarsName = _sqlDataReader["ClsName"].ToString(), 
                     ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
                     ProductImagePath = _sqlDataReader["ThumbnailPath"].ToString()
@@ -134,8 +134,34 @@ public class SupplierHotelObjectHelper
         _search.ChildAges = ages;
         _search.CustomerID = DbParameter.GetCustomerId();
         status = string.Empty;
-        RepositoryFactory supplierFactory = new RepositoryFactory(_search, shoppingHotelHelper.SessionId);
-        return supplierFactory.GetSuppliersHotelsInfo(out status);
+        if (cityCode == "LON")  //shams addes this for Travco xml supplier to get only one roomtype
+        {
+            if ((_search.AdultCount == 3) && (_search.ChildCount == 1))
+            {
+                return 0;
+            }
+            else
+            {
+                if ((_search.AdultCount == 1) && (_search.ChildCount == 1))
+                {
+                    return 0;
+                }
+                else
+                {
+                    status = string.Empty;
+                    RepositoryFactory supplierFactory = new RepositoryFactory(_search, shoppingHotelHelper.SessionId);
+                    return supplierFactory.GetSuppliersHotelsInfo(out status);
+                }
+            }
+
+        }
+        else
+        {
+            status = string.Empty;
+            RepositoryFactory supplierFactory = new RepositoryFactory(_search, shoppingHotelHelper.SessionId);
+            return supplierFactory.GetSuppliersHotelsInfo(out status);
+
+        }
     }
 
     public static List<SupplierHotelHelper> GetHomePageHotels(meis007Entities _meis007Entities)

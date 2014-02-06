@@ -18,6 +18,7 @@ public static class BookingsIndexObjectHelper
         List<long> bookingIds = new List<long>();
         var _meis007Entities = new meis007Entities();
         var id = CurrentUser.Id();
+        string userDD = id.ToString();
         var room = string.Empty;
         var guests = string.Empty;
         var defaultImage = _meis007Entities.ProductImages.First().ImageAddress;
@@ -36,7 +37,7 @@ public static class BookingsIndexObjectHelper
                    on pm.CityID equals ci.CityID
                    join co in _meis007Entities.CountryMasters
                    on ci.CountryID equals co.CountryID
-                   where pd.BkgID != null && bg.CustConsultantID == id && bg.BkgID == bookingId
+                   where pd.BkgID != null && bg.UserID == userDD && bg.BkgID == bookingId
                    orderby bg.BkgID
                    select new
                    {

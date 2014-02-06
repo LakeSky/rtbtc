@@ -48,6 +48,24 @@ public static class DbParameter
         return cust;
     }
 
+    public static string  GetCustomerConsultantID(string CustomerID)
+    {
+
+        string CustConsultantID = "";
+        SqlConnection _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
+        _sqlConnection.Open();
+        SqlCommand _sqlCommand = new SqlCommand("SELECT top 1 ConsultantID FROM CustConsultantMaster WHERE CustomerID = @CustomerID;", _sqlConnection);
+        _sqlCommand.Parameters.AddWithValue("@CustomerID", CustomerID);
+        SqlDataReader _sqlDataReader = _sqlCommand.ExecuteReader();
+        while (_sqlDataReader.Read())
+        {
+            CustConsultantID = _sqlDataReader["ConsultantID"].ToString();
+        }
+        _sqlConnection.Close(); 
+        return CustConsultantID;
+       
+    }
+
     public static UserMaster GetInternalCnsultant(meis007Entities _meis007Entities)
     {
         UserMaster user = (UserMaster)(HttpContext.Current.Session["InternalConsultant"]);
@@ -93,6 +111,10 @@ public static class DbParameter
         if (supplierName == "TOURICO")
         {
             supplierName = Suppliers.Tourico.ToString();
+        }
+        if (supplierName == "TRAVCO")
+        {
+            supplierName = Suppliers.Travco.ToString();
         }
         return supplierName;
     }

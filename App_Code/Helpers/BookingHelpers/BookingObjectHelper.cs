@@ -32,6 +32,7 @@ public static class BookingObjectHelper
         _sqlCommand.CommandType = CommandType.StoredProcedure;
         _sqlCommand.Parameters.AddWithValue("@Trans", "SearchSingle");
         _sqlCommand.Parameters.AddWithValue("@HotelInfoId", supplierHotelInfoId);
+        _sqlCommand.Parameters.AddWithValue("@isAvailable", "True");//shams Added
         _sqlDataReader = _sqlCommand.ExecuteReader();
         while (_sqlDataReader.Read())
         {
@@ -85,7 +86,7 @@ public static class BookingObjectHelper
     {
         dynamic obj = new ExpandoObject();
         var childAgeMin = DateTime.Now.AddYears(-2);
-        var childAgeMax = DateTime.Now.AddYears(-12);
+        var childAgeMax = DateTime.Now.AddYears(-11);
         long userId;
         if (currentUserId != null) { 
             userId = long.Parse(currentUserId.ToString());

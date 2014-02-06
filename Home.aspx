@@ -41,7 +41,7 @@
             float: left;
             height: 30px;
             width: 42px;
-            background-image: url('http://media.expedia.com/media/content/expus/graphics/launch/home/20120511_hp_mail.png');
+            background-image: url('../Images/mail.png');
             margin-right: 11px;
         }
         
@@ -94,7 +94,7 @@
             display: none;
             padding-left: 20px;
             color: #df3400;
-            background: url(http://media.expedia.com/media/content/shared/graphics/home/graphics/travelAlert.gif) no-repeat left center;
+            background: url('../Images/travelAlert.gif') no-repeat left center;
         }
         
         .HPnewsLetterForm .errorEmail
@@ -182,7 +182,7 @@
                                     Adults
                                 </th>
                                 <th style="width: 67px;">
-                                    Kids(2-12)
+                                    Kids(2-11)
                                 </th>
                                 <th style="width: 75px;">
                                     Infants(0-1)
@@ -202,27 +202,21 @@
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
+                                       
                                     </select>
                                 </td>
                                 <td>
                                     <select name="rooms[1][kids]" class="ddl-small kids" data-id="1">
                                         <option>0</option>
                                         <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                       
                                     </select>
                                 </td>
                                 <td>
                                     <select name="rooms[1][infants]" class="ddl-small">
                                         <option>0</option>
                                         <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                       
                                     </select>
                                 </td>
                                 <td>
@@ -243,9 +237,7 @@
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
+                                      
                                     </select>
                                 </td>
                                 <td>
@@ -253,18 +245,14 @@
                                         data-value="<%= room.Kids %>">
                                         <option>0</option>
                                         <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                      
                                     </select>
                                 </td>
                                 <td>
                                     <select name="rooms[<%= i %>][infants]" class="ddl-small old-ddl" data-value="<%= room.Infants %>">
                                         <option>0</option>
                                         <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                       
                                     </select>
                                 </td>
                                 <% if ((i != 1) && (RoomsCount == i))
@@ -304,7 +292,7 @@
                                         <option>9</option>
                                         <option>10</option>
                                         <option>11</option>
-                                        <option>12</option>
+                                    
                                     </select>
                                 </td>
                                 <% x += 1; %>
@@ -328,7 +316,7 @@
                         <input type="hidden" value="<%= CityCode %>" id="cityCode" name="cityCode" />
                         <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn custom-button hotel-search-btn "
                             ValidationGroup="search" OnClick="btnSearch_Click" OnClientClick="ShowDialogBox();" />
-                        <a href="hotels/search.aspx" class="btn submitButton">Add More Rooms</a>
+                        <!--<a href="hotels/search.aspx" class="btn submitButton">Add More Rooms</a>-->
                         <div id="hotel-search-dialog">
                             <h3 class="blue-font">
                                 We are now searching hundreds of offers to find you the very best prices. This should
@@ -706,26 +694,35 @@
                     </ul>
                 </div>
                 <div class="brands_wrapper">
-                    <div id="foo1">
+                      <div id="foo1">
                         <a href="#">
-                            <img src="images/home_slider/accor-hi.jpg" alt="Accor" title="Accor" width="152"
+                            <img src="images/home_slider/accor-hi.jpg" alt="" title="" width="152"
                                 height="101" />
                         </a><a href="#">
-                            <img src="images/home_slider/dotw-logo.png" alt="" title="" width="152" height="101" />
+                            <img src="images/home_slider/best.png" alt="" title="" width="152" height="101" />
                         </a><a href="#">
-                            <img src="images/home_slider/Holiday_Inn_Logo_fullsize.jpg" alt="Holiday Inn" title="Holiday Inn"
+                            <img src="images/home_slider/Holiday_Inn_Logo_fullsize.jpg" alt="Holiday Inn" title=""
                                 width="152" height="101" />
                         </a><a href="#">
-                            <img src="images/home_slider/hotelbeds.jpg" alt="Hotel Beds" title="Hotel Beds" width="152"
+                            <img src="images/home_slider/ibis.png" alt="" title="" width="152"
                                 height="101" />
                         </a><a href="#">
-                            <img src="images/home_slider/logo_tourico_big.gif" alt="Tourico" title="Tourico"
+                            <img src="images/home_slider/lemeridien.png" alt="" title=""
                                 width="152" height="102" />
                         </a><a href="#">
-                            <img src="images/home_slider/logo_travco.gif" alt="Travco" title="Travco" width="152"
+                            <img src="images/home_slider/movenpick.jpg" alt="" title="" width="152"
                                 height="102" />
                         </a><a href="#">
-                            <img src="images/home_slider/logo_tourico_big.gif" alt="Tourico" title="Tourico"
+                            <img src="images/home_slider/park.png" alt="" title=""
+                                width="152" height="102" />
+                        </a><a href="#">
+                            <img src="images/home_slider/rad.jpg" alt="" title=""
+                                width="152" height="102" />
+                        </a><a href="#">
+                            <img src="images/home_slider/ring.png" alt="" title=""
+                                width="152" height="102" />
+                        </a><a href="#">
+                            <img src="images/home_slider/rom.png" alt="" title=""
                                 width="152" height="102" />
                         </a>
                     </div>

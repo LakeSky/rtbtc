@@ -37,6 +37,9 @@
                         <h3>Payment Information</h3>
                       </td>
                       <td class="fieldValue">
+                          <label>
+                          <asp:Label ID="lblTitle" runat="server" Text=""></asp:Label>
+                          </label>
                       </td>
                     </tr>
                     <tr>

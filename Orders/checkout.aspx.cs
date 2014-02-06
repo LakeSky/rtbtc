@@ -30,6 +30,7 @@ public partial class Orders_checkout : PublicApplicationPage
           _meis007Entities = new meis007Entities();
           var userId = CurrentUser.Id();
           var data = _meis007Entities.B2CPaxinfo.Where(x => x.ForeignCustomerSNo == userId).OrderBy(x => x.CustomerSno).First();
+          lblTitle.Text = data.Title;
           txtFirstName.Text = data.PaxFirstName;
           txtMiddleName.Text = data.PaxMiddleName;
           txtLastName.Text = data.PaxLastName;
@@ -71,14 +72,32 @@ public partial class Orders_checkout : PublicApplicationPage
         foreach (var x in basketHelper.hotelDetails) {
             if (!DbParameter.IsInetrnalSupplier(x.supplierId)) {
                 suppliersHotelsInfo = _meis007Entities.SuppliersHotelsInfoes.Where(y => y.HotelInfoID == x.hotelInfoId).First();
-                supplierBooking = new SupplierBooking(suppliersHotelsInfo, x, txtFirstName.Text, txtMiddleName.Text, txtLastName.Text, txtMobile.Text, txtTelephone.Text);
+                supplierBooking = new SupplierBooking(suppliersHotelsInfo, x, txtFirstName.Text, txtMiddleName.Text, txtLastName.Text, txtMobile.Text, txtTelephone.Text, Session["cityCode"].ToString(), lblTitle.Text, txtRemarks.Text);
                 string reservartionId = supplierBooking.Book();
                 var obj = _meis007Entities.HotelBookings.Where(y => y.HotelInfoId == x.hotelInfoId).FirstOrDefault();
                 if (obj != null) {
-                    var array = obj.ReservationId.Split('~');
-                    localBooking = new LocalBooking(_meis007Entities, suppliersHotelsInfo, x, null, obj, basketSequence, array[0].ToString().Trim(), array[1].ToString().Trim(), name, "Hotel", txtRemarks.Text, "999");// localTrans.Id);
-                    localBooking.Create();
-                    hotelsToRemove.Add(x);
+                    //var array = obj.ReservationId.Split('~');
+                    //localBooking = new LocalBooking(_meis007Entities, suppliersHotelsInfo, x, null, obj, basketSequence, array[0].ToString().Trim(), array[1].ToString().Trim(), name, "Hotel", txtRemarks.Text, "999");// localTrans.Id);
+                    //localBooking.Create();
+                    //hotelsToRemove.Add(x);
+                    //shams adding if condition 
+                    if (suppliersHotelsInfo.SupplierID == "1006")
+                    {
+                        var array = obj.ReservationId.Split('~');
+                        localBooking = new LocalBooking(_meis007Entities, suppliersHotelsInfo, x, null, obj, basketSequence, array[0].ToString().Trim(), array[1].ToString().Trim(), name, "Hotel",  txtRemarks.Text,"999");
+                        localBooking.Create();
+                        hotelsToRemove.Add(x);
+
+                    }
+
+                    if (suppliersHotelsInfo.SupplierID == "1008")
+                    {
+
+                        localBooking = new LocalBooking(_meis007Entities, suppliersHotelsInfo, x, null, obj, basketSequence, obj.ReservationId, obj.ReservationId, name, "Hotel",  txtRemarks.Text, "999");
+                        localBooking.Create();
+                        hotelsToRemove.Add(x);
+
+                    }
                 }
             }
         }

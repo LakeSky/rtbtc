@@ -27,4 +27,7 @@ public class BasketHotelDetails
     public DateTime fromDate { get; set; }
     public DateTime toDate { get; set; }
     public List<BasketHotelGuestDetails> guestDetails { get; set; }
+    public int InfantNum { get; set; } //shams added 
+    public string Title { get; set; }//shams added 
+    public string AgentText { get; set; }//shams added 
 }

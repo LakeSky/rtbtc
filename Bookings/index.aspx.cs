@@ -60,12 +60,13 @@ public partial class Bookings_index : System.Web.UI.Page
     protected void BindDataToGridView()
     {
         var userId = CurrentUser.Id();
+        string userDD = userId.ToString();
         _meis007Entities = new meis007Entities();
         var status = DbParameter.GetBookingStatus();
         var data = from pm in _meis007Entities.ProductMasters
                    join bm in _meis007Entities.BkgMasters
                    on pm.ProductID equals bm.ProductID
-                   where bm.ProductID != null && bm.CustConsultantID == userId && bm.BkgStatus == status
+                   where bm.ProductID != null && bm.UserID == userDD && bm.BkgStatus == status
                    orderby bm.BkgID descending
                    select new { booking = bm, HotelName = pm.ProductName };
         DataTable dt = new DataTable();
@@ -169,12 +170,13 @@ public partial class Bookings_index : System.Web.UI.Page
         var selectedValue = ddlSearchFields.SelectedValue;
         var searchValue = txtSearchValue.Text.Trim();
         var userId = CurrentUser.Id();
+        string userDD = userId.ToString();
         var data = from pm in _meis007Entities.ProductMasters
                    join bm in _meis007Entities.BkgMasters
                    on pm.ProductID equals bm.ProductID
                    join c in _meis007Entities.CityMasters
                    on pm.CityID equals c.CityID
-                   where bm.ProductID != null && bm.CustConsultantID == userId
+                   where bm.ProductID != null && bm.UserID == userDD
                    orderby bm.BkgID descending
                    select new { booking = bm, HotelName = pm.ProductName, CityName = c.CityName };
 

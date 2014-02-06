@@ -64,22 +64,22 @@
             <span class="difference-nights"></span>
             <div id="div-rooms">
               <h4>How many of you?</h4>
-              <input type="button" class="btn btn-success right add-room" value="Add Room" />
+              <!--<input type="button" class="btn btn-success right add-room" value="Add Rooms"   />-->
               <div class="clear"></div>
               <table class="rooms-table">
                 <tr>
                   <th style="width:65px;">&nbsp;</th>
                   <th style="width:47px;">Adults</th>
-                  <th style="width:67px;">Kids(2-12)</th>
+                  <th style="width:67px;">Kids(2-11)</th>
                   <th style="width:75px;">Infants(0-1)</th>
                   <th style="width:40px;">&nbsp;</th>
                 </tr>
                 <% if(ShoppingRoomsList == null){ %>
                   <tr id="room_1">
                     <td>Room 1</td>
-                    <td><select name="rooms[1][adults]" class="ddl-small"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select> </td>
-                    <td><select name="rooms[1][kids]" class="ddl-small kids" data-id="1"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
-                    <td><select name="rooms[1][infants]" class="ddl-small"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
+                    <td><select name="rooms[1][adults]" class="ddl-small"><option>1</option><option>2</option><option>3</option></select> </td>
+                    <td><select name="rooms[1][kids]" class="ddl-small kids" data-id="1"><option>0</option><option>1</option></select> </td>
+                    <td><select name="rooms[1][infants]" class="ddl-small"><option>0</option><option>1</option></select> </td>
                     <td></td>
                   </tr>
                 <%}else{%>
@@ -87,9 +87,9 @@
                   <%foreach (var room in ShoppingRoomsList) {%>
                     <tr id="room_<%= i %>">
                       <td><%= room.RoomName %></td>
-                      <td><select name="rooms[<%= i %>][adults]" class="ddl-small old-ddl" data-value="<%= room.Adults %>" ><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></td>
-                      <td><select name="rooms[<%= i %>][kids]" class="ddl-small kids old-ddl" data-id="<%= i %>"  data-value="<%= room.Kids %>"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
-                      <td><select name="rooms[<%= i %>][infants]" class="ddl-small old-ddl"  data-value="<%= room.Infants %>"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
+                      <td><select name="rooms[<%= i %>][adults]" class="ddl-small old-ddl" data-value="<%= room.Adults %>" ><option>1</option><option>2</option><option>3</option></select></td>
+                      <td><select name="rooms[<%= i %>][kids]" class="ddl-small kids old-ddl" data-id="<%= i %>"  data-value="<%= room.Kids %>"><option>0</option><option>1</option></select> </td>
+                      <td><select name="rooms[<%= i %>][infants]" class="ddl-small old-ddl"  data-value="<%= room.Infants %>"><option>0</option><option>1</option></select> </td>
                       <% if ((i != 1) && (RoomsCount == i)) {%>
                         <td><input type="button" class="btn btn-danger remove-room" value="x" data-id="<%= i %>" id="remove_room_<%= i %>" /></td>
                       <%} else {%>
@@ -202,7 +202,7 @@
                    <a class="product_img" href="<%= detailsPath %>&sid=<%# Eval("Id") %>&id=<%# Eval("ProductMasterId")%>" style="width:195px;height:195px;">
                      <img src="<%# Eval("ProductImagePath") %>" alt="<%# Eval("ProductName") %>" width="195" height="195" style="width:195px;height:195px;">
                    </a>
-                 </div>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                  <div class="product_info_wrapper">
                    <div class="data">
                      <div class="fl_left">

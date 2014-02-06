@@ -17,16 +17,19 @@ public partial class Bookings_show : System.Web.UI.Page
             Redirect("Invalid booking Id");
             return;
         }
+        
         var userId = CurrentUser.Id();
+        string userDD = userId.ToString();
         var status = DbParameter.GetBookingStatus();
         _meis007Entities = new meis007Entities();
-        var booking = _meis007Entities.BkgMasters.Where(x => x.BkgID == bookingId && x.CustConsultantID == userId && x.BkgStatus == status).FirstOrDefault();
+        var booking = _meis007Entities.BkgMasters.Where(x => x.BkgID == bookingId && x.UserID == userDD && x.BkgStatus == status).FirstOrDefault();
         if (booking == null)
         {
-            Session["ErrorMessage"] = "You are not authorized to access that booking!";
+            Session["ErrorMessage"] = "Booking not found !";
             Response.Redirect("index.aspx");
             return;
         }
+        Session["BkgID"] = bookingId.ToString();
         rptrBookingIndex.DataSource = BookingsIndexObjectHelper.GetBookings(bookingId);
         rptrBookingIndex.DataBind();
         rptrCancelPolicies.DataSource = GetCancelPolicies(bookingId);
@@ -47,7 +50,8 @@ public partial class Bookings_show : System.Web.UI.Page
         SuppliersHotelsInfo suppliersHotelsInfo;
         _meis007Entities = new meis007Entities();
         var id = CurrentUser.Id();
-        var booking = _meis007Entities.BkgMasters.Where(x => x.BkgID == bookingId && x.CustConsultantID == id).FirstOrDefault();
+        string userDD = id.ToString();
+        var booking = _meis007Entities.BkgMasters.Where(x => x.BkgID == bookingId && x.UserID == userDD).FirstOrDefault();
         if (booking == null) {
             return list;
         }
@@ -62,7 +66,7 @@ public partial class Bookings_show : System.Web.UI.Page
             {
                 Id = x.Id,
                 BasisType = x.RateBasisType,
-                HotelId = x.LocalHotelId,
+                HotelId = x.LocalHotelId.ToString(),
                 HotelInfoId = x.HotelInfoId,
                 HotelRoomTypeId = x.HotelRoomTypeId.ToString(),
                 OffSetUnit = x.OffSetUnit,
@@ -81,5 +85,10 @@ public partial class Bookings_show : System.Web.UI.Page
             list.Add(_cancellationPolicyHelper);
         }
         return list;
+    }
+
+    protected void btnVoucher_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(Route.GetRootPath("bookings/VoucherPrint.aspx"));
     }
 }
