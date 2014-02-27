@@ -11,10 +11,13 @@ using RTCEntities.ENUMS;
 using System.Data;
 using System.Globalization;
 
-public partial class Orders_checkout : PublicApplicationPage
+public partial class Orders_checkout : PaymentGatewayHelper
 {
     public BasketHelper basketHelper;
     meis007Entities _meis007Entities;
+    public List<TextValue> monthsList;
+    public List<TextValue> yearList;
+    TextValue textValObj;
     protected void Page_Load(object sender, EventArgs e)
     {
         basketHelper = GetBasketHelperObject();
@@ -25,6 +28,7 @@ public partial class Orders_checkout : PublicApplicationPage
         }
         if (!IsPostBack)
         {
+            BuildInitialVariables();
             _meis007Entities = new meis007Entities();
             var userId = CurrentUser.Id();
             var data = _meis007Entities.B2CPaxinfo.Where(x => x.ForeignCustomerSNo == userId).OrderBy(x => x.CustomerSno).First();
@@ -33,8 +37,7 @@ public partial class Orders_checkout : PublicApplicationPage
             txtMiddleName.Text = data.PaxMiddleName;
             txtLastName.Text = data.PaxLastName;
             txtMobile.Text = data.B2CCustomerinfo.PaxmobileNo;
-            txtCCFirstName.Text = data.PaxFirstName;
-            txtCCLastName.Text = data.PaxLastName;
+            //txtCCHolderName.Text = data.PaxFirstName + " " + data.PaxLastName;
             txtTelephone.Text = data.B2CCustomerinfo.PaxTelNo;
             BuildDDLExpirationMonths(_meis007Entities);
             BuildDDLExpirationYear(_meis007Entities);
@@ -43,11 +46,6 @@ public partial class Orders_checkout : PublicApplicationPage
 
     protected void btnConfirmOrder_Click(object sender, EventArgs e)
     {
-        if (int.Parse(ddlCCExpirationMonth.SelectedValue) < DateTime.Now.Month && int.Parse(ddlCCExpirationYear.SelectedValue) == DateTime.Now.Year)
-        {
-            ShowError("Please enter valid expiration month!");
-            return;
-        }
         _meis007Entities = new meis007Entities();
         basketHelper = GetBasketHelperObject();
         if (false)
@@ -127,45 +125,33 @@ public partial class Orders_checkout : PublicApplicationPage
 
     protected void BuildDDLExpirationMonths(meis007Entities _meis007Entities)
     {
-        DataTable table = new DataTable();
-        table.Columns.Add("Text");
-        table.Columns.Add("Value");
-        DataRow dr;
+        monthsList = new List<TextValue>();
         var months = CultureInfo.CurrentUICulture.DateTimeFormat.MonthNames;
         for (int i = 0; i < 12; i++)
         {
-            dr = table.NewRow();
-            dr["Value"] = i + 1;
-            dr["Text"] = months[i];
-            table.Rows.Add(dr);
+            textValObj = new TextValue
+            {
+                Text = months[i],
+                Value = (i + 1).ToString().PadLeft(2, '0')
+            };
+            monthsList.Add(textValObj);
         }
-        ddlCCExpirationMonth.DataSource = table;
-        ddlCCExpirationMonth.DataTextField = table.Columns["Text"].ColumnName;
-        ddlCCExpirationMonth.DataValueField = table.Columns["Value"].ColumnName;
-        ddlCCExpirationMonth.DataBind();
-        ddlCCExpirationMonth.SelectedIndexChanged += new System.EventHandler(BindCategories);
     }
 
     protected void BuildDDLExpirationYear(meis007Entities _meis007Entities)
     {
-        DataTable table = new DataTable();
-        table.Columns.Add("Text");
-        table.Columns.Add("Value");
-        DataRow dr;
+        yearList = new List<TextValue>();
         var startYear = DateTime.Now.Year;
         var endYear = DateTime.Now.Year + 5;
         for (int i = startYear; i <= endYear; i++)
         {
-            dr = table.NewRow();
-            dr["Value"] = i;
-            dr["Text"] = i;
-            table.Rows.Add(dr);
+            textValObj = new TextValue
+            {
+                Text = i.ToString(),
+                Value = i.ToString()
+            };
+            yearList.Add(textValObj);
         }
-        ddlCCExpirationYear.DataSource = table;
-        ddlCCExpirationYear.DataTextField = table.Columns["Text"].ColumnName;
-        ddlCCExpirationYear.DataValueField = table.Columns["Value"].ColumnName;
-        ddlCCExpirationYear.DataBind();
-        ddlCCExpirationYear.SelectedIndexChanged += new System.EventHandler(BindCategories);
     }
 
     protected void ShowError(string message)
