@@ -85,8 +85,6 @@
                                                <option value="<%= obj.Value %>"> <%= obj.Text %> </option>
                                              <% } %>
                                             </select>
-                                            <asp:DropDownList ID="ddlCCExpirationMonth" runat="server">
-                                            </asp:DropDownList>
                                         </td>
                                     </tr>
                                     <tr>

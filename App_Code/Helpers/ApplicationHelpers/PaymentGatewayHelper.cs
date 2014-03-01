@@ -11,13 +11,14 @@ public class PaymentGatewayHelper : PublicApplicationPage
 {
     protected Payfort_Response obj;
     public string orderId, sha, pspId, acceptUrl, exceptionUrl, passPhrase, aliasUrl, errorMessage;
+    protected bool orderStatus;
     protected void BuildInitialVariables()
     {
         obj = Session["Payfort_Response"] as Payfort_Response;
         if (obj != null)
         {
             orderId = obj.OrderId;
-            errorMessage = obj.ErrorMessage;
+            Session["ErrorMessage"] = obj.ErrorMessage;
             Session["Payfort_Response"] = null;
         }
         else
@@ -28,7 +29,7 @@ public class PaymentGatewayHelper : PublicApplicationPage
         exceptionUrl = GetErrorUrl();
         passPhrase = ConfigurationManager.AppSettings["PASS_PHRASE"];
         pspId = ConfigurationManager.AppSettings["PSPID"];
-        aliasUrl = ConfigurationManager.AppSettings["ALIAS_URL"];
+        aliasUrl = AliasUrl();
         string data = "ACCEPTURL=" + acceptUrl + passPhrase + "EXCEPTIONURL=" + exceptionUrl + passPhrase + "ORDERID=" + orderId
           + passPhrase + "PSPID=" + pspId + passPhrase;
         sha = GetHashString(data);
@@ -67,12 +68,16 @@ public class PaymentGatewayHelper : PublicApplicationPage
 
     string GetSuccessUrl()
     {
-        //return GetBaseUrl() + "/success.aspx";
-        return GetBaseUrl() + "/sms.aspx";
+        return GetBaseUrl() + "/orders/sms.aspx";
     }
 
     string GetErrorUrl()
     {
-        return GetBaseUrl() + "/error.aspx";
+        return GetBaseUrl() + "/orders/error.aspx";
+    }
+
+    protected string AliasUrl()
+    {
+        return ConfigurationManager.AppSettings["ALIAS_URL"];
     }
 }

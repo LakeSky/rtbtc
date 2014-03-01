@@ -10,6 +10,7 @@ using RTCModel.Models;
 using RTCEntities.ENUMS;
 using System.Data;
 using System.Globalization;
+using System.Configuration;
 
 public partial class Orders_checkout : PaymentGatewayHelper
 {
@@ -25,6 +26,7 @@ public partial class Orders_checkout : PaymentGatewayHelper
         {
             Session["ErrorMessage"] = "You dont have any items in basket please add it !";
             Response.Redirect(Route.GetRootPath("home.aspx"));
+            return;
         }
         if (!IsPostBack)
         {
@@ -39,6 +41,7 @@ public partial class Orders_checkout : PaymentGatewayHelper
             txtMobile.Text = data.B2CCustomerinfo.PaxmobileNo;
             //txtCCHolderName.Text = data.PaxFirstName + " " + data.PaxLastName;
             txtTelephone.Text = data.B2CCustomerinfo.PaxTelNo;
+            btnConfirmOrder.PostBackUrl = AliasUrl();
             BuildDDLExpirationMonths(_meis007Entities);
             BuildDDLExpirationYear(_meis007Entities);
         }
