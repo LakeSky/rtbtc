@@ -78,12 +78,17 @@ public partial class Orders_sms : PublicApplicationPage
     {
         _createBooking = new CreateBooking(_entity, basketHelper, obj, Session["cityCode"].ToString());
         _createBookingBasket = _createBooking.Create();
-        if (_createBookingBasket.hotelDetails == null || _createBookingBasket.hotelDetails.Count == 0)
+        if ((_createBookingBasket.hotelDetails != null && _createBookingBasket.hotelDetails.Count > 0) ||
+            (_createBookingBasket.packageDetails != null && _createBookingBasket.packageDetails.Count > 0))
+        {
+            Mailer.SendBookingFailedEmail(_createBookingBasket);
+            Session["NoticeMessage"] = "Successfully created few bookings. Some bookings were not done please contact support.";
+        }
+        else
         {
             Session["NoticeMessage"] = "Successfully created booking.";
-            Response.Redirect("home.aspx");
-            return;
         }
+        Response.Redirect("home.aspx");
         //send an email
     }
 

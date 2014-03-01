@@ -8,6 +8,7 @@ using System.Web;
 /// </summary>
 public class BasketHelper
 {
+    public string ErrorMessage { get; set; }
     public decimal totalPrice { get; set; }
     public List<BasketHotelDetails> hotelDetails { get; set; }
     public List<BasketPackageDetails> packageDetails { get; set; }

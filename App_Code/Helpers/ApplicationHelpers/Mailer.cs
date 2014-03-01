@@ -50,4 +50,11 @@ public class Mailer
         var body = "Hi " + _B2CCustomerinfo.PaxFirstName + " your password is "+_decryptPassword  +"<br/>. <a href='" + href + "'>Login</a>";
         SendMailMessage(_B2CCustomerinfo.PaxEmail, "", "", "Password", body);
     }
+
+    public static void SendBookingFailedEmail(BasketHelper basket)
+    {
+        var email = DbParameter.GetManagerEmail();
+        var body = "No booking created for";
+        SendMailMessage(email, "", "", "Booking Error", body);
+    }
 }

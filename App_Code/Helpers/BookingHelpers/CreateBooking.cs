@@ -39,37 +39,44 @@ public class CreateBooking
         foreach (var x in _basket.hotelDetails)
         {
             CheckEnityObject();
-            if (!DbParameter.IsInetrnalSupplier(x.supplierId))
+            try
             {
-                _suppliersHotelsInfo = _entity.SuppliersHotelsInfoes.Where(y => y.HotelInfoID == x.hotelInfoId).First();
-                _supplierBooking = 
-                    new SupplierBooking( _suppliersHotelsInfo, x, "First Name", "Middle Name", "Last Name", "Mobile", 
-                        "Telephone", _cityCode, "Title", "Remarks");
-                string reservartionId = _supplierBooking.Book();
-                _hotelBooking = _entity.HotelBookings.Where(y => y.HotelInfoId == x.hotelInfoId).FirstOrDefault();
-                if (_hotelBooking != null)
+                if (!DbParameter.IsInetrnalSupplier(x.supplierId))
                 {
-                    if (_suppliersHotelsInfo.SupplierID == "1006")
+                    _suppliersHotelsInfo = _entity.SuppliersHotelsInfoes.Where(y => y.HotelInfoID == x.hotelInfoId).First();
+                    _supplierBooking =
+                        new SupplierBooking(_suppliersHotelsInfo, x, "First Name", "Middle Name", "Last Name", "Mobile",
+                            "Telephone", _cityCode, "Title", "Remarks");
+                    string reservartionId = _supplierBooking.Book();
+                    _hotelBooking = _entity.HotelBookings.Where(y => y.HotelInfoId == x.hotelInfoId).FirstOrDefault();
+                    if (_hotelBooking != null)
                     {
-                        var array = _hotelBooking.ReservationId.Split('~');
-                        _localBooking = 
-                            new LocalBooking(_entity, _suppliersHotelsInfo, x, null, _hotelBooking, _sequenceNumber,
-                            array[0].ToString().Trim(), array[1].ToString().Trim(), "NAME", "Hotel", "Remarks", _payfortResponse.PayId);
-                        _localBooking.Create();
-                        _hotelsToRemove.Add(x);
-                    }
+                        if (_suppliersHotelsInfo.SupplierID == "1006")
+                        {
+                            var array = _hotelBooking.ReservationId.Split('~');
+                            _localBooking =
+                                new LocalBooking(_entity, _suppliersHotelsInfo, x, null, _hotelBooking, _sequenceNumber,
+                                array[0].ToString().Trim(), array[1].ToString().Trim(), "NAME", "Hotel", "Remarks", _payfortResponse.PayId);
+                            _localBooking.Create();
+                            _hotelsToRemove.Add(x);
+                        }
 
-                    if (_suppliersHotelsInfo.SupplierID == "1008")
-                    {
+                        if (_suppliersHotelsInfo.SupplierID == "1008")
+                        {
 
-                        _localBooking = 
-                            new LocalBooking(_entity, _suppliersHotelsInfo, x, null, _hotelBooking, _sequenceNumber, _hotelBooking.ReservationId, 
-                            _hotelBooking.ReservationId, "NAME", "Hotel", "Remarks", _payfortResponse.PayId);
-                        _localBooking.Create();
-                        _hotelsToRemove.Add(x);
+                            _localBooking =
+                                new LocalBooking(_entity, _suppliersHotelsInfo, x, null, _hotelBooking, _sequenceNumber, _hotelBooking.ReservationId,
+                                _hotelBooking.ReservationId, "NAME", "Hotel", "Remarks", _payfortResponse.PayId);
+                            _localBooking.Create();
+                            _hotelsToRemove.Add(x);
 
+                        }
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                _basket.ErrorMessage += e.Message + "\n";
             }
         }
     }
@@ -79,9 +86,16 @@ public class CreateBooking
         foreach (var x in _basket.packageDetails)
         {
             CheckEnityObject();
-            _localBooking = new LocalBooking(
-                _entity, null, null, x, null, _sequenceNumber, "", "", "NAME", "Package", "REMARKS", _payfortResponse.PayId);// localTrans.Id);
-            _localBooking.Create();
+            try
+            {
+                _localBooking = new LocalBooking(
+                    _entity, null, null, x, null, _sequenceNumber, "", "", "NAME", "Package", "REMARKS", _payfortResponse.PayId);// localTrans.Id);
+                _localBooking.Create();
+            }
+            catch (Exception e)
+            {
+                _basket.ErrorMessage += e.Message + "\n";
+            }
         }
         _basket.packageDetails = new List<BasketPackageDetails>();
     }

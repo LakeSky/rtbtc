@@ -37,6 +37,21 @@ public static class DbParameter
         return _customerId;
     }
 
+    public static string GetManagerEmail()
+    {
+        var email = string.Empty;
+        SqlConnection _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
+        _sqlConnection.Open();
+        SqlCommand _sqlCommand = new SqlCommand("SELECT ParameterValue FROM SysParameters where ParameterName='ContactingManager';", _sqlConnection);
+        SqlDataReader _sqlDataReader = _sqlCommand.ExecuteReader();
+        while (_sqlDataReader.Read())
+        {
+            email = _sqlDataReader["ParameterValue"].ToString();
+        }
+        _sqlConnection.Close();
+        return email;
+    }
+
     public static CustomerMaster GetCustomer(meis007Entities _meis007Entities) {
         CustomerMaster cust = (CustomerMaster)(HttpContext.Current.Session["CustomerMaster"]);
         if (_meis007Entities == null)
