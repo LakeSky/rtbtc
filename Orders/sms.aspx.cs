@@ -21,7 +21,8 @@ public partial class Orders_sms : PublicApplicationPage
     XmlNodeList xmlResponse, htmlResponse;
     XmlNode ncresponseTag;
     Payfort_Response obj;
-    BasketHelper basketHelper;
+    BasketHelper basketHelper, _createBookingBasket;
+    CreateBooking _createBooking;
     string pspid, userId, pwd, amnt, currrency, alias, orderId, data, operation, smsc, acpt, userAgent, wind, acceptUrl, exceptionUrl;
     string responseFromServer, language, encodedString, html, message;
     string responseStatus, responseErrorDes, ncStatus, ncError, acceptenceCode, payId, currency;
@@ -66,13 +67,24 @@ public partial class Orders_sms : PublicApplicationPage
         if (withoutSms)
         {
             obj.Status = true;
-            //lblStatus.Text = message;
             return;
         }
-        //lblStatus.Text = message;
         decodeHtml();
         smsHtml.InnerHtml = html;
         //4000000000000002
+    }
+
+    void DoBooking()
+    {
+        _createBooking = new CreateBooking(_entity, basketHelper, obj, Session["cityCode"].ToString());
+        _createBookingBasket = _createBooking.Create();
+        if (_createBookingBasket.hotelDetails == null || _createBookingBasket.hotelDetails.Count == 0)
+        {
+            Session["NoticeMessage"] = "Successfully created booking.";
+            Response.Redirect("home.aspx");
+            return;
+        }
+        //send an email
     }
 
     void decodeHtml()
