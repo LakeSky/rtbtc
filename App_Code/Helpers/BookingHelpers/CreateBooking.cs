@@ -15,7 +15,8 @@ public class CreateBooking
     LocalBooking _localBooking;
     HotelBooking _hotelBooking;
     Payfort_Response _payfortResponse;
-    long _sequenceNumber;
+    B2CCustomerinfo _cust;
+    long _sequenceNumber, _userId;
     string _cityCode;
     public CreateBooking(meis007Entities entity, BasketHelper basket, Payfort_Response payfortResponse, string cityCode)
     {
@@ -24,6 +25,9 @@ public class CreateBooking
         _basket = basket;
         _payfortResponse = payfortResponse;
         _cityCode = cityCode;
+        _userId = CurrentUser.Id();
+        CheckEnityObject();
+        _cust = _entity.B2CCustomerinfo.Where(x => x.CustomerSNo == _userId).First();
     }
 
     public BasketHelper Create()
@@ -45,8 +49,8 @@ public class CreateBooking
                 {
                     _suppliersHotelsInfo = _entity.SuppliersHotelsInfoes.Where(y => y.HotelInfoID == x.hotelInfoId).First();
                     _supplierBooking =
-                        new SupplierBooking(_suppliersHotelsInfo, x, "First Name", "Middle Name", "Last Name", "Mobile",
-                            "Telephone", _cityCode, "Title", "Remarks");
+                        new SupplierBooking(_suppliersHotelsInfo, x, _cust.PaxFirstName, _cust.PaxMiddleName, _cust.PaxLastName, _cust.PaxmobileNo,
+                            _cust.PaxTelNo, _cityCode, "", "");
                     string reservartionId = _supplierBooking.Book();
                     _hotelBooking = _entity.HotelBookings.Where(y => y.HotelInfoId == x.hotelInfoId).FirstOrDefault();
                     if (_hotelBooking != null)
@@ -89,7 +93,7 @@ public class CreateBooking
             try
             {
                 _localBooking = new LocalBooking(
-                    _entity, null, null, x, null, _sequenceNumber, "", "", "NAME", "Package", "REMARKS", _payfortResponse.PayId);// localTrans.Id);
+                    _entity, null, null, x, null, _sequenceNumber, "", "", _cust.PaxFirstName + " " + _cust.PaxLastName, "Package", "", _payfortResponse.PayId);// localTrans.Id);
                 _localBooking.Create();
             }
             catch (Exception e)

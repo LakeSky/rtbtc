@@ -31,16 +31,6 @@ public partial class Orders_checkout : PaymentGatewayHelper
         if (!IsPostBack)
         {
             BuildInitialVariables();
-            _meis007Entities = new meis007Entities();
-            var userId = CurrentUser.Id();
-            var data = _meis007Entities.B2CPaxinfo.Where(x => x.ForeignCustomerSNo == userId).OrderBy(x => x.CustomerSno).First();
-            lblTitle.Text = data.Title;
-            txtFirstName.Text = data.PaxFirstName;
-            txtMiddleName.Text = data.PaxMiddleName;
-            txtLastName.Text = data.PaxLastName;
-            txtMobile.Text = data.B2CCustomerinfo.PaxmobileNo;
-            //txtCCHolderName.Text = data.PaxFirstName + " " + data.PaxLastName;
-            txtTelephone.Text = data.B2CCustomerinfo.PaxTelNo;
             btnConfirmOrder.PostBackUrl = AliasUrl();
             BuildDDLExpirationMonths(_meis007Entities);
             BuildDDLExpirationYear(_meis007Entities);

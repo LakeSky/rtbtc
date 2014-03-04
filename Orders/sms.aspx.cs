@@ -38,22 +38,7 @@ public partial class Orders_sms : PublicApplicationPage
             Response.Redirect(Route.GetRootPath("home.aspx"));
             return;
         }
-        pspid = ConfigurationManager.AppSettings["PSPID"];
-        userId = ConfigurationManager.AppSettings["API_USERID"];
-        pwd = ConfigurationManager.AppSettings["API_PWD"];
-        operation = ConfigurationManager.AppSettings["SALE_OPERATION"];
-        obj = new Payfort_Response();
-        obj.Status = false;
-        amnt = (int.Parse((basketHelper.totalPrice.ToString().Split('.')[0])) * 100).ToString(); //since payfort takes 1000 as 10
-        //currrency = ApplicationObject.GetBaseCurrency();
-        currrency = "USD";
-        alias = Request.QueryString["Alias"];
-        orderId = Request.QueryString["OrderID"];
-        smsc = "Y";
-        wind = "MAINW";
-        acpt = Request.Headers["Accept"];
-        userAgent = Request.ServerVariables["HTTP_USER_AGENT"];
-        language = "en-US";
+        InitializeVariables();
         BuildPostData();
         PostData();
         if (!status)
@@ -114,6 +99,26 @@ public partial class Orders_sms : PublicApplicationPage
         pgTrans.UserId = CurrentUser.Id();
         _entity.AddToPGTransactions(pgTrans);
         _entity.SaveChanges();
+    }
+
+    void InitializeVariables()
+    {
+        pspid = ConfigurationManager.AppSettings["PSPID"];
+        userId = ConfigurationManager.AppSettings["API_USERID"];
+        pwd = ConfigurationManager.AppSettings["API_PWD"];
+        operation = ConfigurationManager.AppSettings["SALE_OPERATION"];
+        obj = new Payfort_Response();
+        obj.Status = false;
+        amnt = (int.Parse((basketHelper.totalPrice.ToString().Split('.')[0])) * 100).ToString(); //since payfort takes 1000 as 10
+        //currrency = ApplicationObject.GetBaseCurrency();
+        currrency = "USD";
+        alias = Request.QueryString["Alias"];
+        orderId = Request.QueryString["OrderID"];
+        smsc = "Y";
+        wind = "MAINW";
+        acpt = Request.Headers["Accept"];
+        userAgent = Request.ServerVariables["HTTP_USER_AGENT"];
+        language = "en-US";
     }
 
     void decodeHtml()
