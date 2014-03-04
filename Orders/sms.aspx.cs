@@ -25,7 +25,7 @@ public partial class Orders_sms : PublicApplicationPage
     CreateBooking _createBooking;
     string pspid, userId, pwd, amnt, currrency, alias, orderId, data, operation, smsc, acpt, userAgent, wind, acceptUrl, exceptionUrl;
     string responseFromServer, language, encodedString, html, message;
-    string responseStatus, responseErrorDes, ncStatus, ncError, acceptenceCode, payId, currency;
+    string responseStatus, responseErrorDes, ncStatus, ncError, acceptenceCode, payId, currency, cityCode;
     bool status, withoutSms;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -42,8 +42,9 @@ public partial class Orders_sms : PublicApplicationPage
         operation = ConfigurationManager.AppSettings["SALE_OPERATION"];
         obj = new Payfort_Response();
         obj.Status = false;
-        amnt = (basketHelper.totalPrice * 100).ToString(); //since payfort takes 1000 as 10
-        currrency = ApplicationObject.GetBaseCurrency();
+        amnt = (int.Parse((basketHelper.totalPrice.ToString().Split('.')[0])) * 100).ToString(); //since payfort takes 1000 as 10
+        //currrency = ApplicationObject.GetBaseCurrency();
+        currrency = "USD";
         alias = Request.QueryString["Alias"];
         orderId = Request.QueryString["OrderID"];
         smsc = "Y";
@@ -79,7 +80,8 @@ public partial class Orders_sms : PublicApplicationPage
 
     void DoBooking()
     {
-        _createBooking = new CreateBooking(_entity, basketHelper, obj, Session["cityCode"].ToString());
+        cityCode = Session["cityCode"] == null ? string.Empty : Session["cityCode"].ToString();
+        _createBooking = new CreateBooking(_entity, basketHelper, obj, cityCode);
         _createBookingBasket = _createBooking.Create();
         if ((_createBookingBasket.hotelDetails != null && _createBookingBasket.hotelDetails.Count > 0) ||
             (_createBookingBasket.packageDetails != null && _createBookingBasket.packageDetails.Count > 0))
@@ -92,7 +94,7 @@ public partial class Orders_sms : PublicApplicationPage
             Mailer.SendBookingSuccessEmail(_createBookingBasket, obj);
             Session["NoticeMessage"] = "Successfully created booking.";
         }
-        Response.Redirect("home.aspx");
+        Response.Redirect(Route.GetRootPath("home.aspx"));
     }
 
     void decodeHtml()

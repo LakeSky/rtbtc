@@ -62,7 +62,7 @@ public class Mailer
     {
         var email = "ubaidkhan88@gmail.com";//DbParameter.GetManagerEmail();
         var body = BuildBookingSuccessText(basket, obj);
-        SendMailMessage(email, "", "", "Booking Error", body);
+        SendMailMessage(email, "", "", "Booking Success", body);
     }
 
     static string BuildBookingFailedText(BasketHelper basket, Payfort_Response obj)

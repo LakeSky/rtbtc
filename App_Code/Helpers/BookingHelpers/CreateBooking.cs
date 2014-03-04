@@ -102,6 +102,7 @@ public class CreateBooking
 
     void GetSequenceNumber()
     {
+        CheckEnityObject();
         _sequence = _entity.BasketSequences.OrderBy(x => x.Id).First();
         _sequenceNumber = _sequence.SequenceNumber + 1;
         _sequence.SequenceNumber = _sequenceNumber;
