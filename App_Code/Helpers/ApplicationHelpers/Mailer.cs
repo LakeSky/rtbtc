@@ -76,7 +76,7 @@ public class Mailer
     {
         var email = "ubaidkhan88@gmail.com"; //DbParameter.GetManagerEmail();
         var body = BuildRefundFailedText(basket, obj);
-        SendMailMessage(email, "", "", "Refund Success", body);
+        SendMailMessage(email, "", "", "Refund Failed", body);
     }
 
     static string BuildBookingFailedText(BasketHelper basket, Payfort_Response obj)

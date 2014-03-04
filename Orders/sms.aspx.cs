@@ -63,18 +63,18 @@ public partial class Orders_sms : PayfortMaster
         if ((_createBookingBasket.hotelDetails != null && _createBookingBasket.hotelDetails.Count > 0) ||
             (_createBookingBasket.packageDetails != null && _createBookingBasket.packageDetails.Count > 0))
         {
-            rfndObj = new RefundBooking(basketHelper, orderId);
+            rfndObj = new RefundBooking(basketHelper, orderId, obj.PayId);
             objRefund = rfndObj.Refund();
             objRefund.TotalAmount = basketHelper.totalPrice.ToString();
             Mailer.SendBookingFailedEmail(_createBookingBasket, obj);
-            if (obj.Status)
+            if (objRefund.Status)
             {
-                Mailer.SendRefundSuccessEmail(_createBookingBasket, obj);
-                message = "Successfully created few bookings. Some bookings were not done for which refund was done.";
+                Mailer.SendRefundSuccessEmail(_createBookingBasket, objRefund);
+                message = "Successfully created few bookings. Some bookings were not done for which refund is done.";
             }
             else
             {
-                Mailer.SendRefundFailedEmail(_createBookingBasket, obj);
+                Mailer.SendRefundFailedEmail(_createBookingBasket, objRefund);
                 message = "Successfully created few bookings. Some bookings were not done please contact support.";
             }
             Session["NoticeMessage"] = message;

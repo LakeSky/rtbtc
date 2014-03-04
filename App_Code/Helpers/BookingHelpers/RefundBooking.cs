@@ -14,11 +14,12 @@ public class RefundBooking : PayfortMaster
     string pspid, userId, pwd, orderId, data, operation, postUrl;
     string responseFromServer, message, samnt;
     string responseStatus, responseErrorDes, ncStatus, ncError, acceptenceCode, payId, paySubId;
-    bool status;
-    public RefundBooking(BasketHelper _basket, string _orderId)
+    bool status, readVariab;
+    public RefundBooking(BasketHelper _basket, string _orderId, string _payId)
     {
         basketHelper = _basket;
         orderId = _orderId;
+        payId = _payId;
     }
 
     public Payfort_Response Refund()
@@ -30,8 +31,9 @@ public class RefundBooking : PayfortMaster
         {
             return obj;
         }
+        readVariab = false;
         ReadResponse();
-        if (!status)
+        if (!status && !readVariab)
         {
             return obj;
         }
@@ -62,8 +64,9 @@ public class RefundBooking : PayfortMaster
                 amnt += double.Parse(x.TotalPrice.ToString());
             }
         }
-        samnt = (int.Parse(amnt.ToString().Split('.')[0].ToString())).ToString();
+        samnt = amnt.ToString().Split('.')[0].ToString();
         obj.TotalRefundAmount = samnt;
+        samnt = (int.Parse(samnt) * 100).ToString();
     }
 
     void BuildPostData()
@@ -154,7 +157,7 @@ public class RefundBooking : PayfortMaster
         pgTrans.ResponseRefundAmount = respAmnt;
         _entity.AddToPGTransactions(pgTrans);
         _entity.SaveChanges();
-        obj.Status = true;
+        obj.Status = status;
     }
 
     void ReadVariables()
@@ -166,11 +169,16 @@ public class RefundBooking : PayfortMaster
         acceptenceCode = ncresponseTag.Attributes["ACCEPTANCE"].Value;
         payId = ncresponseTag.Attributes["PAYID"].Value;
         paySubId = ncresponseTag.Attributes["PAYIDSUB"].Value;
-        respAmnt = double.Parse(ncresponseTag.Attributes["AMOUNT"].Value);
+        respAmnt = 0;
+        if (ncresponseTag.Attributes["amount"] != null && ncresponseTag.Attributes["amount"].Value != null && ncresponseTag.Attributes["amount"].Value != "")
+        {
+            respAmnt = double.Parse(ncresponseTag.Attributes["amount"].Value);
+        }
         obj.Acceptence = acceptenceCode;
         obj.PayId = payId;
         obj.OrderId = orderId;
         obj.Xml = ncresponseTag.ToString();
         obj.PayIdSub = paySubId;
+        readVariab = true;
     }
 }

@@ -29,7 +29,7 @@ public partial class Orders_error : System.Web.UI.Page
         obj.ErrorMessage += errorValue;
         errorCode = Request.QueryString["NCError"];
         NCE_ERROR();
-        //obj.ErrorMessage += errorValue;
+        obj.ErrorMessage += errorValue;
         obj.ErrorMessage += "Please correct the errors";
         Session["Payfort_Response"] = obj;
         Response.Redirect("checkout.aspx");
