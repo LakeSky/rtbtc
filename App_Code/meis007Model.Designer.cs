@@ -675,22 +675,6 @@ namespace meis007Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<PGTransaction> PGTransactions
-        {
-            get
-            {
-                if ((_PGTransactions == null))
-                {
-                    _PGTransactions = base.CreateObjectSet<PGTransaction>("PGTransactions");
-                }
-                return _PGTransactions;
-            }
-        }
-        private ObjectSet<PGTransaction> _PGTransactions;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<PaxDetail> PaxDetails
         {
             get
@@ -703,6 +687,22 @@ namespace meis007Model
             }
         }
         private ObjectSet<PaxDetail> _PaxDetails;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PGTransaction> PGTransactions
+        {
+            get
+            {
+                if ((_PGTransactions == null))
+                {
+                    _PGTransactions = base.CreateObjectSet<PGTransaction>("PGTransactions");
+                }
+                return _PGTransactions;
+            }
+        }
+        private ObjectSet<PGTransaction> _PGTransactions;
 
         #endregion
         #region AddTo Methods
@@ -996,19 +996,19 @@ namespace meis007Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the PGTransactions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToPGTransactions(PGTransaction pGTransaction)
-        {
-            base.AddObject("PGTransactions", pGTransaction);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the PaxDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToPaxDetails(PaxDetail paxDetail)
         {
             base.AddObject("PaxDetails", paxDetail);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PGTransactions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPGTransactions(PGTransaction pGTransaction)
+        {
+            base.AddObject("PGTransactions", pGTransaction);
         }
 
         #endregion
@@ -8782,6 +8782,102 @@ namespace meis007Model
         private global::System.String _Field3;
         partial void OnField3Changing(global::System.String value);
         partial void OnField3Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> TotalAmount
+        {
+            get
+            {
+                return _TotalAmount;
+            }
+            set
+            {
+                OnTotalAmountChanging(value);
+                ReportPropertyChanging("TotalAmount");
+                _TotalAmount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TotalAmount");
+                OnTotalAmountChanged();
+            }
+        }
+        private Nullable<global::System.Double> _TotalAmount;
+        partial void OnTotalAmountChanging(Nullable<global::System.Double> value);
+        partial void OnTotalAmountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> RefundAmount
+        {
+            get
+            {
+                return _RefundAmount;
+            }
+            set
+            {
+                OnRefundAmountChanging(value);
+                ReportPropertyChanging("RefundAmount");
+                _RefundAmount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RefundAmount");
+                OnRefundAmountChanged();
+            }
+        }
+        private Nullable<global::System.Double> _RefundAmount;
+        partial void OnRefundAmountChanging(Nullable<global::System.Double> value);
+        partial void OnRefundAmountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> ResponseAmount
+        {
+            get
+            {
+                return _ResponseAmount;
+            }
+            set
+            {
+                OnResponseAmountChanging(value);
+                ReportPropertyChanging("ResponseAmount");
+                _ResponseAmount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ResponseAmount");
+                OnResponseAmountChanged();
+            }
+        }
+        private Nullable<global::System.Double> _ResponseAmount;
+        partial void OnResponseAmountChanging(Nullable<global::System.Double> value);
+        partial void OnResponseAmountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> ResponseRefundAmount
+        {
+            get
+            {
+                return _ResponseRefundAmount;
+            }
+            set
+            {
+                OnResponseRefundAmountChanging(value);
+                ReportPropertyChanging("ResponseRefundAmount");
+                _ResponseRefundAmount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ResponseRefundAmount");
+                OnResponseRefundAmountChanged();
+            }
+        }
+        private Nullable<global::System.Double> _ResponseRefundAmount;
+        partial void OnResponseRefundAmountChanging(Nullable<global::System.Double> value);
+        partial void OnResponseRefundAmountChanged();
 
         #endregion
     

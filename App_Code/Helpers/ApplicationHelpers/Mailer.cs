@@ -65,6 +65,20 @@ public class Mailer
         SendMailMessage(email, "", "", "Booking Success", body);
     }
 
+    public static void SendRefundSuccessEmail(BasketHelper basket, Payfort_Response obj)
+    {
+        var email = "ubaidkhan88@gmail.com"; //DbParameter.GetManagerEmail();
+        var body = BuildRefundSuccessText(basket, obj);
+        SendMailMessage(email, "", "", "Refund Success", body);
+    }
+
+    public static void SendRefundFailedEmail(BasketHelper basket, Payfort_Response obj)
+    {
+        var email = "ubaidkhan88@gmail.com"; //DbParameter.GetManagerEmail();
+        var body = BuildRefundFailedText(basket, obj);
+        SendMailMessage(email, "", "", "Refund Success", body);
+    }
+
     static string BuildBookingFailedText(BasketHelper basket, Payfort_Response obj)
     {
         var text = string.Empty;
@@ -102,6 +116,68 @@ public class Mailer
         text += "\n";
         text += "Payfort PAYID is " + obj.PayId + " ACCEPTANCE CODE is " + obj.Acceptence + " ORDER ID is " + obj.OrderId;
         text += "\n";
+        return text;
+    }
+
+    static string BuildRefundFailedText(BasketHelper basket, Payfort_Response obj)
+    {
+        var text = string.Empty;
+        text += "Unable to do refund with BASKET ID as " + basket.BasketSequenceNumber;
+        text += "\n";
+        text += "Total Amount: " + obj.TotalAmount + " To be Refund Amount " + obj.TotalRefundAmount;
+        text += "\n";
+        if (basket.hotelDetails != null && basket.hotelDetails.Count > 0)
+        {
+            text += "Following are the hotels for which refund failed:";
+            text += "\n";
+            foreach (var x in basket.hotelDetails)
+            {
+                text += ("Hotel Info ID: " + x.hotelInfoId + " Supplier: " + x.SupplierName + " Session ID: " + x.sessionId);
+                text += "\n";
+            }
+        }
+        if (basket.packageDetails != null && basket.packageDetails.Count > 0)
+        {
+            text += "Following are the packages for which refund failed:";
+            text += "\n";
+            foreach (var x in basket.packageDetails)
+            {
+                text += ("Package ID: " + x.PackageId + " Package Name: " + x.PackageName);
+                text += "\n";
+            }
+        }
+        return text;
+    }
+
+    static string BuildRefundSuccessText(BasketHelper basket, Payfort_Response obj)
+    {
+        var text = string.Empty;
+        text += "Refund Success with BASKET ID as " + basket.BasketSequenceNumber;
+        text += "\n";
+        text += "Total Amount: " + obj.TotalAmount + " Refunded Amount " + obj.TotalRefundAmount;
+        text += "\n";
+        text += "Payfort PAYID is " + obj.PayId + " ACCEPTANCE CODE is " + obj.Acceptence + " ORDER ID is " + obj.OrderId;
+        text += "\n";
+        if (basket.hotelDetails != null && basket.hotelDetails.Count > 0)
+        {
+            text += "Following are the hotels for which refund is done:";
+            text += "\n";
+            foreach (var x in basket.hotelDetails)
+            {
+                text += ("Hotel Info ID: " + x.hotelInfoId + " Supplier: " + x.SupplierName + " Session ID: " + x.sessionId);
+                text += "\n";
+            }
+        }
+        if (basket.packageDetails != null && basket.packageDetails.Count > 0)
+        {
+            text += "Following are the packages for which refund is done:";
+            text += "\n";
+            foreach (var x in basket.packageDetails)
+            {
+                text += ("Package ID: " + x.PackageId + " Package Name: " + x.PackageName);
+                text += "\n";
+            }
+        }
         return text;
     }
 }

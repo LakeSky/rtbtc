@@ -12,7 +12,7 @@ using System.IO;
 using System.Xml;
 using meis007Model;
 
-public partial class Orders_sms : PublicApplicationPage
+public partial class Orders_sms : PayfortMaster
 {
     WebRequest request;
     Stream dataStream;
@@ -21,12 +21,13 @@ public partial class Orders_sms : PublicApplicationPage
     XmlDocument xml;
     XmlNodeList xmlResponse, htmlResponse;
     XmlNode ncresponseTag;
-    Payfort_Response obj;
+    Payfort_Response obj, objRefund;
     BasketHelper basketHelper, _createBookingBasket;
     CreateBooking _createBooking;
     PGTransaction pgTrans;
+    RefundBooking rfndObj;
     string pspid, userId, pwd, amnt, currrency, alias, orderId, data, operation, smsc, acpt, userAgent, wind, acceptUrl, exceptionUrl;
-    string responseFromServer, language, encodedString, html, message;
+    string responseFromServer, language, encodedString, html, message, respAmnt;
     string responseStatus, responseErrorDes, ncStatus, ncError, acceptenceCode, payId, currency, cityCode;
     bool status, withoutSms;
     protected void Page_Load(object sender, EventArgs e)
@@ -74,8 +75,21 @@ public partial class Orders_sms : PublicApplicationPage
         if ((_createBookingBasket.hotelDetails != null && _createBookingBasket.hotelDetails.Count > 0) ||
             (_createBookingBasket.packageDetails != null && _createBookingBasket.packageDetails.Count > 0))
         {
+            rfndObj = new RefundBooking(basketHelper, orderId);
+            objRefund = rfndObj.Refund();
+            objRefund.TotalAmount = basketHelper.totalPrice.ToString();
             Mailer.SendBookingFailedEmail(_createBookingBasket, obj);
-            Session["NoticeMessage"] = "Successfully created few bookings. Some bookings were not done please contact support.";
+            if (obj.Status)
+            {
+                Mailer.SendRefundSuccessEmail(_createBookingBasket, obj);
+                message = "Successfully created few bookings. Some bookings were not done for which refund was done.";
+            }
+            else
+            {
+                Mailer.SendRefundFailedEmail(_createBookingBasket, obj);
+                message = "Successfully created few bookings. Some bookings were not done please contact support.";
+            }
+            Session["NoticeMessage"] = message;
         }
         else
         {
@@ -96,17 +110,20 @@ public partial class Orders_sms : PublicApplicationPage
         pgTrans.RawData = responseFromServer;
         pgTrans.TransType = operation;
         pgTrans.Field1 = acceptenceCode;
+        pgTrans.Field2 = orderId;
         pgTrans.UserId = CurrentUser.Id();
+        pgTrans.TotalAmount = double.Parse(basketHelper.totalPrice.ToString());
+        pgTrans.ResponseAmount = double.Parse(respAmnt);
         _entity.AddToPGTransactions(pgTrans);
         _entity.SaveChanges();
     }
 
     void InitializeVariables()
     {
-        pspid = ConfigurationManager.AppSettings["PSPID"];
-        userId = ConfigurationManager.AppSettings["API_USERID"];
-        pwd = ConfigurationManager.AppSettings["API_PWD"];
-        operation = ConfigurationManager.AppSettings["SALE_OPERATION"];
+        pspid = GetPSPID();
+        userId = GetUserId();
+        pwd = GetPassword();
+        operation = GetOperType("sale");
         obj = new Payfort_Response();
         obj.Status = false;
         amnt = (int.Parse((basketHelper.totalPrice.ToString().Split('.')[0])) * 100).ToString(); //since payfort takes 1000 as 10
@@ -149,7 +166,7 @@ public partial class Orders_sms : PublicApplicationPage
         status = true;
         try
         {
-            request = WebRequest.Create(ConfigurationManager.AppSettings["DIRECT_LINK_URL"]);
+            request = WebRequest.Create(GetDirectLinkUrl());
             request.Method = "POST";
             byte[] byteArray = Encoding.UTF8.GetBytes(data);
             request.ContentType = "application/x-www-form-urlencoded";
@@ -215,6 +232,7 @@ public partial class Orders_sms : PublicApplicationPage
         ncStatus = ncresponseTag.Attributes["NCSTATUS"].Value;
         ncError = ncresponseTag.Attributes["NCERROR"].Value;
         acceptenceCode = ncresponseTag.Attributes["ACCEPTANCE"].Value;
+        respAmnt = ncresponseTag.Attributes["amount"].Value;
         payId = ncresponseTag.Attributes["PAYID"].Value;
         obj.Acceptence = acceptenceCode;
         obj.PayId = payId;
