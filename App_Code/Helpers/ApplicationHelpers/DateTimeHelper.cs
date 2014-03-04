@@ -117,6 +117,7 @@ public static class DateTimeHelper
     public static string[] Datetime_Formats(string defaultFormat)
     {
         var array = new string[] { defaultFormat, 
+            "dd/MM/yyyy","dd-MM-yyyy", "dd-MM-yy", "d/M/yyyy",
             "d-MM-yyyy", "dd-M-yyyy", "d-MM-yy", "dd-M-yy",
             "d-MMM-yyyy", "dd-MMM-yyyy", "d-MMM-yy", "dd-MMM-yy",
             "d-MM-yyyy HH:mm:ss tt", "dd-M-yyyy HH:mm:ss tt", "d-MM-yy HH:mm:ss tt", "dd-M-yy HH:mm:ss tt",

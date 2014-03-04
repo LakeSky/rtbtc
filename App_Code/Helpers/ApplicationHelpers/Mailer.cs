@@ -51,10 +51,57 @@ public class Mailer
         SendMailMessage(_B2CCustomerinfo.PaxEmail, "", "", "Password", body);
     }
 
-    public static void SendBookingFailedEmail(BasketHelper basket)
+    public static void SendBookingFailedEmail(BasketHelper basket, Payfort_Response obj)
     {
-        var email = DbParameter.GetManagerEmail();
-        var body = "No booking created for";
+        var email = "ubaidkhan88@gmail.com"; //DbParameter.GetManagerEmail();
+        var body = BuildBookingFailedText(basket, obj);
         SendMailMessage(email, "", "", "Booking Error", body);
+    }
+
+    public static void SendBookingSuccessEmail(BasketHelper basket, Payfort_Response obj)
+    {
+        var email = "ubaidkhan88@gmail.com";//DbParameter.GetManagerEmail();
+        var body = BuildBookingSuccessText(basket, obj);
+        SendMailMessage(email, "", "", "Booking Error", body);
+    }
+
+    static string BuildBookingFailedText(BasketHelper basket, Payfort_Response obj)
+    {
+        var text = string.Empty;
+        text += "Unable to do bookings with BASKET ID as " + basket.BasketSequenceNumber;
+        text += "\n";
+        text += "Payfort PAYID is " + obj.PayId + " ACCEPTANCE CODE is "  + obj.Acceptence + " ORDER ID is " + obj.OrderId ;
+        text += "\n";
+        if(basket.hotelDetails != null && basket.hotelDetails.Count > 0)
+        {
+            text += "Following are the hotels for which bookings failed:";
+            text += "\n";
+            foreach (var x in basket.hotelDetails)
+            {
+                text += ("Hotel Info ID: " + x.hotelInfoId + " Supplier: " + x.SupplierName + " Session ID: " + x.sessionId);
+                text += "\n";
+            }
+        }
+        if (basket.packageDetails != null && basket.packageDetails.Count > 0)
+        {
+            text += "Following are the packages for which bookings failed:";
+            text += "\n";
+            foreach (var x in basket.packageDetails)
+            {
+                text += ("Package ID: " + x.PackageId + " Package Name: " + x.PackageName);
+                text += "\n";
+            }
+        }
+        return text;
+    }
+
+    static string BuildBookingSuccessText(BasketHelper basket, Payfort_Response obj)
+    {
+        var text = string.Empty;
+        text += ("Successfully done Bookings with BASKET ID as " + basket.BasketSequenceNumber);
+        text += "\n";
+        text += "Payfort PAYID is " + obj.PayId + " ACCEPTANCE CODE is " + obj.Acceptence + " ORDER ID is " + obj.OrderId;
+        text += "\n";
+        return text;
     }
 }

@@ -114,8 +114,8 @@ public class LocalBooking
             {
                 BkgID = bkgMaster.BkgID,
                 PaxName = y.firstName + " " + y.middleName + " " + y.lastName,
-                Title = y.title,
-                Age = y.title == "Master" ? int.Parse(y.age) : 0   //Shams Added 
+                //Title = y.title,
+                //Age = y.title == "Master" ? int.Parse(y.age) : 0   //Shams Added 
             };
             _meis007Entities.AddToPaxDetails(paxDetail);
             _meis007Entities.SaveChanges();

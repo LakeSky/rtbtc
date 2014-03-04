@@ -106,6 +106,7 @@ public class CreateBooking
         _sequenceNumber = _sequence.SequenceNumber + 1;
         _sequence.SequenceNumber = _sequenceNumber;
         _entity.SaveChanges();
+        _basket.BasketSequenceNumber = _sequenceNumber;
     }
 
     void CheckEnityObject()

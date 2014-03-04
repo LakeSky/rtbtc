@@ -56,17 +56,20 @@ public partial class Orders_sms : PublicApplicationPage
         if (!status)
         {
             obj.ErrorMessage = message;
+            RedirectToCheckOut();
             return;
         }
         ReadResponse();
         if (!status)
         {
             obj.ErrorMessage = message;
+            RedirectToCheckOut();
             return;
         }
         if (withoutSms)
         {
             obj.Status = true;
+            DoBooking();
             return;
         }
         decodeHtml();
@@ -81,15 +84,15 @@ public partial class Orders_sms : PublicApplicationPage
         if ((_createBookingBasket.hotelDetails != null && _createBookingBasket.hotelDetails.Count > 0) ||
             (_createBookingBasket.packageDetails != null && _createBookingBasket.packageDetails.Count > 0))
         {
-            Mailer.SendBookingFailedEmail(_createBookingBasket);
+            Mailer.SendBookingFailedEmail(_createBookingBasket, obj);
             Session["NoticeMessage"] = "Successfully created few bookings. Some bookings were not done please contact support.";
         }
         else
         {
+            Mailer.SendBookingSuccessEmail(_createBookingBasket, obj);
             Session["NoticeMessage"] = "Successfully created booking.";
         }
         Response.Redirect("home.aspx");
-        //send an email
     }
 
     void decodeHtml()
@@ -191,5 +194,11 @@ public partial class Orders_sms : PublicApplicationPage
         obj.PayId = payId;
         obj.OrderId = orderId;
         obj.Xml = ncresponseTag.ToString();
+    }
+
+    void RedirectToCheckOut()
+    {
+        Session["Payfort_Response"] = obj;
+        Response.Redirect("checkout.aspx");
     }
 }

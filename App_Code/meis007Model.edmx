@@ -506,8 +506,6 @@
           <Property Name="Sno" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="BkgID" Type="bigint" />
           <Property Name="PaxName" Type="nvarchar" MaxLength="200" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="Age" Type="int" />
         </EntityType>
         <EntityType Name="PGCreditCards">
           <Key>
@@ -545,10 +543,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="LPGID" Type="int" Nullable="false" />
+          <Property Name="LPGID" Type="int" />
           <Property Name="ConfirmationID" Type="nvarchar" Nullable="false" MaxLength="250" />
           <Property Name="Status" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="CreditCardId" Type="bigint" Nullable="false" />
+          <Property Name="CreditCardId" Type="bigint" />
           <Property Name="RawData" Type="nvarchar(max)" Nullable="false" />
           <Property Name="UserId" Type="bigint" Nullable="false" />
           <Property Name="BasketId" Type="bigint" Nullable="false" />
@@ -684,7 +682,7 @@
           <Property Name="ModDate" Type="smalldatetime" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'meis241213.dbo.SuppliersCancelationPolicy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'meis007.dbo.SuppliersCancelationPolicy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="SuppliersCancelationPolicy">
           <Key>
@@ -741,7 +739,7 @@
           <Property Name="ModDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'meis241213.dbo.TouricoCancelationPolicy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'meis007.dbo.TouricoCancelationPolicy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="TouricoCancelationPolicy">
           <Key>
@@ -1142,7 +1140,6 @@
           <EntitySet Name="PackageImages" EntityType="meis007Model.PackageImage" />
           <EntitySet Name="PGCreditCards" EntityType="meis007Model.PGCreditCard" />
           <EntitySet Name="PGMasters" EntityType="meis007Model.PGMaster" />
-          <EntitySet Name="PGTransactions" EntityType="meis007Model.PGTransaction" />
           <EntitySet Name="ProductAmenities" EntityType="meis007Model.ProductAmenity" />
           <EntitySet Name="ProductFacilities" EntityType="meis007Model.ProductFacility" />
           <EntitySet Name="ProductImages" EntityType="meis007Model.ProductImage" />
@@ -1265,12 +1262,13 @@
             <End Role="UserMaster" EntitySet="UserMasters" />
             <End Role="CustomerMaster" EntitySet="CustomerMasters" />
           </AssociationSet>
-          <EntitySet Name="PaxDetails" EntityType="meis007Model.PaxDetail" />
           <EntitySet Name="CustConsultantMasters" EntityType="meis007Model.CustConsultantMaster" />
           <AssociationSet Name="FK_CustConsultantMaster_CustomerMaster" Association="meis007Model.FK_CustConsultantMaster_CustomerMaster">
             <End Role="CustomerMaster" EntitySet="CustomerMasters" />
             <End Role="CustConsultantMaster" EntitySet="CustConsultantMasters" />
           </AssociationSet>
+          <EntitySet Name="PGTransactions" EntityType="meis007Model.PGTransaction" />
+          <EntitySet Name="PaxDetails" EntityType="meis007Model.PaxDetail" />
         </EntityContainer>
         <EntityType Name="AmadeusTable">
           <Key>
@@ -1549,24 +1547,6 @@
           <Property Type="String" Name="Field3" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ModUserid" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="ModDatetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PGTransaction">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="LPGID" Nullable="false" />
-          <Property Type="String" Name="ConfirmationID" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Status" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Int64" Name="CreditCardId" Nullable="false" />
-          <Property Type="String" Name="RawData" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Int64" Name="UserId" Nullable="false" />
-          <Property Type="Int64" Name="BasketId" Nullable="false" />
-          <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
-          <Property Type="String" Name="TransType" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Field1" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Field2" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Field3" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ProductAmenity">
           <Key>
@@ -2219,16 +2199,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="PaxDetail">
-          <Key>
-            <PropertyRef Name="Sno" />
-          </Key>
-          <Property Type="Int64" Name="Sno" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="BkgID" />
-          <Property Type="String" Name="PaxName" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Title" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Age" />
-        </EntityType>
         <EntityType Name="CustConsultantMaster">
           <Key>
             <PropertyRef Name="ConsultantID" />
@@ -2258,6 +2228,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PGTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="LPGID" />
+          <Property Type="String" Name="ConfirmationID" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="CreditCardId" />
+          <Property Type="String" Name="RawData" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="UserId" Nullable="false" />
+          <Property Type="Int64" Name="BasketId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
+          <Property Type="String" Name="TransType" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Field1" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Field2" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Field3" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PaxDetail">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Type="Int64" Name="Sno" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="BkgID" />
+          <Property Type="String" Name="PaxName" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2542,25 +2538,6 @@
                 <ScalarProperty Name="GatewayUserID" ColumnName="GatewayUserID" />
                 <ScalarProperty Name="GatewayName" ColumnName="GatewayName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PGTransactions">
-            <EntityTypeMapping TypeName="meis007Model.PGTransaction">
-              <MappingFragment StoreEntitySet="PGTransactions">
-                <ScalarProperty Name="Field3" ColumnName="Field3" />
-                <ScalarProperty Name="Field2" ColumnName="Field2" />
-                <ScalarProperty Name="Field1" ColumnName="Field1" />
-                <ScalarProperty Name="TransType" ColumnName="TransType" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="BasketId" ColumnName="BasketId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="RawData" ColumnName="RawData" />
-                <ScalarProperty Name="CreditCardId" ColumnName="CreditCardId" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ConfirmationID" ColumnName="ConfirmationID" />
-                <ScalarProperty Name="LPGID" ColumnName="LPGID" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2882,17 +2859,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PaxDetails">
-            <EntityTypeMapping TypeName="meis007Model.PaxDetail">
-              <MappingFragment StoreEntitySet="PaxDetails">
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="PaxName" ColumnName="PaxName" />
-                <ScalarProperty Name="BkgID" ColumnName="BkgID" />
-                <ScalarProperty Name="Sno" ColumnName="Sno" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CustConsultantMasters">
             <EntityTypeMapping TypeName="meis007Model.CustConsultantMaster">
               <MappingFragment StoreEntitySet="CustConsultantMaster">
@@ -2907,6 +2873,34 @@
                 <ScalarProperty Name="ConsultantName" ColumnName="ConsultantName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ConsultantID" ColumnName="ConsultantID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PGTransactions">
+            <EntityTypeMapping TypeName="meis007Model.PGTransaction">
+              <MappingFragment StoreEntitySet="PGTransactions">
+                <ScalarProperty Name="Field3" ColumnName="Field3" />
+                <ScalarProperty Name="Field2" ColumnName="Field2" />
+                <ScalarProperty Name="Field1" ColumnName="Field1" />
+                <ScalarProperty Name="TransType" ColumnName="TransType" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="BasketId" ColumnName="BasketId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RawData" ColumnName="RawData" />
+                <ScalarProperty Name="CreditCardId" ColumnName="CreditCardId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ConfirmationID" ColumnName="ConfirmationID" />
+                <ScalarProperty Name="LPGID" ColumnName="LPGID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaxDetails">
+            <EntityTypeMapping TypeName="meis007Model.PaxDetail">
+              <MappingFragment StoreEntitySet="PaxDetails">
+                <ScalarProperty Name="PaxName" ColumnName="PaxName" />
+                <ScalarProperty Name="BkgID" ColumnName="BkgID" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2948,7 +2942,6 @@
         <EntityTypeShape EntityType="meis007Model.PackageImage" Width="1.5" PointX="12" PointY="7.625" Height="1.980286458333353" />
         <EntityTypeShape EntityType="meis007Model.PGCreditCard" Width="1.5" PointX="4.75" PointY="16.75" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="meis007Model.PGMaster" Width="1.5" PointX="6.75" PointY="16.75" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="meis007Model.PGTransaction" Width="1.5" PointX="16.75" PointY="7.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="meis007Model.ProductAmenity" Width="1.5" PointX="7.5" PointY="4.125" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="meis007Model.ProductFacility" Width="1.5" PointX="9.75" PointY="1.125" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="meis007Model.ProductImage" Width="1.5" PointX="7.5" PointY="7" Height="1.7879850260416674" />
@@ -2985,6 +2978,8 @@
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_PackageDescription_PackageHeader" >
           <ConnectorPoint PointX="11.25" PointY="6.0814925130208337" />
+          <ConnectorPoint PointX="11.416666666666666" PointY="6.0814925130208328" />
+          <ConnectorPoint PointX="11.583333333333334" PointY="6.0814925130208337" />
           <ConnectorPoint PointX="11.666666666666666" PointY="6.0814925130208328" />
           <ConnectorPoint PointX="11.833333333333334" PointY="6.0814925130208337" />
           <ConnectorPoint PointX="12" PointY="6.0814925130208337" />
@@ -3001,8 +2996,8 @@
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductImages_ProductMaster" >
           <ConnectorPoint PointX="6.75" PointY="7.8362125651041659" />
-          <ConnectorPoint PointX="7.041666666666667" PointY="7.836212565104165" />
-          <ConnectorPoint PointX="7.208333333333333" PointY="7.8362125651041659" />
+          <ConnectorPoint PointX="7.0833333333333339" PointY="7.836212565104165" />
+          <ConnectorPoint PointX="7.25" PointY="7.8362125651041659" />
           <ConnectorPoint PointX="7.5" PointY="7.8362125651041659" />
         </AssociationConnector>
         <EntityTypeShape EntityType="meis007Model.B2CPaxinfo" Width="1.5" PointX="3" PointY="8.375" Height="2.9417936197916674" />
@@ -3014,11 +3009,15 @@
         <EntityTypeShape EntityType="meis007Model.ProductRRC" Width="1.5" PointX="19.75" PointY="7.25" Height="2.7494921874999818" />
         <EntityTypeShape EntityType="meis007Model.RoomTypeDetail" Width="1.5" PointX="7.5" PointY="13.5" Height="2.3648893229166674" />
         <AssociationConnector Association="meis007Model.FK_ProductFacilities_ProductRRC" >
-          <ConnectorPoint PointX="20.5" PointY="7.25" />
-          <ConnectorPoint PointX="20.5" PointY="0.5" />
-          <ConnectorPoint PointX="11.625" PointY="0.5" />
-          <ConnectorPoint PointX="11.625" PointY="2.1151432291666667" />
-          <ConnectorPoint PointX="11.25" PointY="2.1151432291666667" />
+          <ConnectorPoint PointX="19.75" PointY="8.6247460937499909" />
+          <ConnectorPoint PointX="18.583333333333332" PointY="8.6247460937499909" />
+          <ConnectorPoint PointX="18.416666666666668" PointY="8.6247460937499909" />
+          <ConnectorPoint PointX="16.125" PointY="8.6247460937499909" />
+          <ConnectorPoint PointX="16.125" PointY="7.375" />
+          <ConnectorPoint PointX="11.5" PointY="7.375" />
+          <ConnectorPoint PointX="11.5" PointY="5.125" />
+          <ConnectorPoint PointX="10.5" PointY="5.125" />
+          <ConnectorPoint PointX="10.5" PointY="3.1052864583333246" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductRRC_ProductMaster" >
           <ConnectorPoint PointX="6.75" PointY="3.4622832441406182" />
@@ -3027,22 +3026,26 @@
           <ConnectorPoint PointX="9.2916666666666661" PointY="6.3552864583333237" />
           <ConnectorPoint PointX="9.4583333333333339" PointY="6.3552864583333246" />
           <ConnectorPoint PointX="9.5" PointY="6.3552864583333246" />
-          <ConnectorPoint PointX="9.5" PointY="5.125" />
-          <ConnectorPoint PointX="11.75" PointY="5.125" />
-          <ConnectorPoint PointX="11.75" PointY="7.0379850260416674" />
-          <ConnectorPoint PointX="18.541666666666668" PointY="7.0379850260416665" />
-          <ConnectorPoint PointX="18.708333333333332" PointY="7.0379850260416674" />
-          <ConnectorPoint PointX="20.093747999999998" PointY="7.0379850260416674" />
-          <ConnectorPoint PointX="20.093747999999998" PointY="7.25" />
+          <ConnectorPoint PointX="9.5" PointY="4.875" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="4.8749999999999991" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="4.875" />
+          <ConnectorPoint PointX="11.75" PointY="4.875" />
+          <ConnectorPoint PointX="11.75" PointY="7" />
+          <ConnectorPoint PointX="18.416666666666668" PointY="6.9999999999999991" />
+          <ConnectorPoint PointX="18.583333333333332" PointY="7" />
+          <ConnectorPoint PointX="20.5" PointY="7" />
+          <ConnectorPoint PointX="20.5" PointY="7.25" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_ProductRRC_RoomTypeDetail" >
           <ConnectorPoint PointX="9" PointY="14.682444661458334" />
           <ConnectorPoint PointX="9.5" PointY="14.682444661458334" />
           <ConnectorPoint PointX="9.5" PointY="12.5" />
-          <ConnectorPoint PointX="18.541666666666668" PointY="12.5" />
-          <ConnectorPoint PointX="18.708333333333332" PointY="12.5" />
+          <ConnectorPoint PointX="18.416666666666668" PointY="12.5" />
+          <ConnectorPoint PointX="18.583333333333332" PointY="12.5" />
           <ConnectorPoint PointX="18.75" PointY="12.5" />
           <ConnectorPoint PointX="18.75" PointY="10.5" />
+          <ConnectorPoint PointX="20.010414666666666" PointY="10.5" />
+          <ConnectorPoint PointX="20.17708133333333" PointY="10.5" />
           <ConnectorPoint PointX="20.5" PointY="10.5" />
           <ConnectorPoint PointX="20.5" PointY="9.9994921874999818" />
         </AssociationConnector>
@@ -3054,19 +3057,21 @@
           <ConnectorPoint PointX="7.375" PointY="10.125" />
           <ConnectorPoint PointX="9.1666666666666661" PointY="10.125" />
           <ConnectorPoint PointX="9.3333333333333339" PointY="10.125" />
-          <ConnectorPoint PointX="16.5" PointY="10.125" />
-          <ConnectorPoint PointX="16.5" PointY="11.518697916666667" />
-          <ConnectorPoint PointX="18.5" PointY="11.518697916666667" />
-          <ConnectorPoint PointX="18.5" PointY="10.25" />
-          <ConnectorPoint PointX="18.541666666666668" PointY="10.25" />
-          <ConnectorPoint PointX="18.708333333333332" PointY="10.25" />
-          <ConnectorPoint PointX="20.093747999999998" PointY="10.25" />
+          <ConnectorPoint PointX="14.125" PointY="10.125" />
+          <ConnectorPoint PointX="14.125" PointY="11.518697916666667" />
+          <ConnectorPoint PointX="18.416666666666668" PointY="11.518697916666667" />
+          <ConnectorPoint PointX="18.583333333333332" PointY="11.518697916666667" />
+          <ConnectorPoint PointX="18.666666666666668" PointY="11.518697916666667" />
+          <ConnectorPoint PointX="18.833333333333332" PointY="11.518697916666667" />
+          <ConnectorPoint PointX="18.875" PointY="11.518697916666667" />
+          <ConnectorPoint PointX="18.875" PointY="10.625" />
+          <ConnectorPoint PointX="20.093747999999998" PointY="10.625" />
           <ConnectorPoint PointX="20.093747999999998" PointY="9.9994921874999818" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_RoomTypeDetail_RoomTypeHeader" >
-          <ConnectorPoint PointX="6.75" PointY="11.005460561899035" />
-          <ConnectorPoint PointX="7.1342891666806478" PointY="11.916839094673103" />
-          <ConnectorPoint PointX="7.1990441666526861" PointY="12.070411773742" />
+          <ConnectorPoint PointX="6.75" PointY="11.560966120793264" />
+          <ConnectorPoint PointX="7.1241905216399" PointY="12.192561009116258" />
+          <ConnectorPoint PointX="7.2091428116934342" PointY="12.335951685913733" />
           <ConnectorPoint PointX="7.5625" PointY="12.93238206290064" />
           <ConnectorPoint PointX="7.5625" PointY="14.682444661458334" />
           <ConnectorPoint PointX="7.5" PointY="14.682444661458334" />
@@ -3074,13 +3079,13 @@
         <EntityTypeShape EntityType="meis007Model.SuppliersCancelationPolicy" Width="1.5" PointX="13.375" PointY="19" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="meis007Model.SuppliersHotelsInfo" Width="1.5" PointX="5.75" PointY="20.75" Height="8.3262337239583246" />
         <AssociationConnector Association="meis007Model.FK__HotelBook__Hotel__28A2FA0E" >
-          <ConnectorPoint PointX="7.25" PointY="26.044927451230073" />
-          <ConnectorPoint PointX="16.75" PointY="26.044927451230073" />
-          <ConnectorPoint PointX="16.75" PointY="19.249695638020839" />
-          <ConnectorPoint PointX="18.5" PointY="19.249695638020839" />
-          <ConnectorPoint PointX="18.5" PointY="6.16404296875" />
-          <ConnectorPoint PointX="17.75" PointY="6.16404296875" />
-          <ConnectorPoint PointX="17.75" PointY="5.78904296875" />
+          <ConnectorPoint PointX="7.25" PointY="25.828715320312497" />
+          <ConnectorPoint PointX="16.75" PointY="25.828715320312497" />
+          <ConnectorPoint PointX="16.75" PointY="19.557190755208325" />
+          <ConnectorPoint PointX="18.5" PointY="19.557190755208325" />
+          <ConnectorPoint PointX="18.5" PointY="6.4994921874999818" />
+          <ConnectorPoint PointX="17.75" PointY="6.4994921874999818" />
+          <ConnectorPoint PointX="17.75" PointY="6.1244921874999818" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK__TouricoCa__Hotel__28F7FFC9" >
           <ConnectorPoint PointX="7.25" PointY="23.463400065104167" />
@@ -3125,30 +3130,31 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="meis007Model.CustomerMaster" Width="1.5" PointX="19" PointY="10.75" Height="7.3647265625000085" />
         <AssociationConnector Association="meis007Model.FK_CustomerMaster_CityMaster" >
-          <ConnectorPoint PointX="12.75" PointY="15.6570849609375" />
-          <ConnectorPoint PointX="12.75" PointY="16.17229298046875" />
-          <ConnectorPoint PointX="18.416666666666668" PointY="16.17229298046875" />
-          <ConnectorPoint PointX="18.583333333333332" PointY="16.17229298046875" />
-          <ConnectorPoint PointX="19" PointY="16.17229298046875" />
+          <ConnectorPoint PointX="12.90625" PointY="16.07639648437501" />
+          <ConnectorPoint PointX="12.90625" PointY="16.381948742187504" />
+          <ConnectorPoint PointX="18.416666666666668" PointY="16.381948742187504" />
+          <ConnectorPoint PointX="18.583333333333332" PointY="16.381948742187504" />
+          <ConnectorPoint PointX="19" PointY="16.381948742187504" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_CustomerMaster_UserMaster" >
-          <ConnectorPoint PointX="18.25" PointY="14.709940490722655" />
-          <ConnectorPoint PointX="18.416666666666668" PointY="14.709940490722655" />
-          <ConnectorPoint PointX="18.583333333333332" PointY="14.709940490722655" />
-          <ConnectorPoint PointX="19" PointY="14.709940490722655" />
+          <ConnectorPoint PointX="18.25" PointY="14.934433364868163" />
+          <ConnectorPoint PointX="18.416666666666668" PointY="14.934433364868163" />
+          <ConnectorPoint PointX="18.583333333333332" PointY="14.934433364868163" />
+          <ConnectorPoint PointX="19" PointY="14.934433364868163" />
         </AssociationConnector>
         <AssociationConnector Association="meis007Model.FK_CustomerMaster_UserMaster1" >
-          <ConnectorPoint PointX="18.25" PointY="13.667470245361328" />
-          <ConnectorPoint PointX="18.416666666666668" PointY="13.667470245361328" />
-          <ConnectorPoint PointX="18.583333333333332" PointY="13.667470245361328" />
-          <ConnectorPoint PointX="19" PointY="13.667470245361328" />
+          <ConnectorPoint PointX="18.25" PointY="13.779716682434081" />
+          <ConnectorPoint PointX="18.416666666666668" PointY="13.779716682434081" />
+          <ConnectorPoint PointX="18.583333333333332" PointY="13.779716682434081" />
+          <ConnectorPoint PointX="19" PointY="13.779716682434081" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="meis007Model.PaxDetail" Width="1.5" PointX="14.375" PointY="0.75" Height="1.7566536458333246" />
         <EntityTypeShape EntityType="meis007Model.CustConsultantMaster" Width="1.5" PointX="21.25" PointY="12.5" Height="2.907084960937496" />
         <AssociationConnector Association="meis007Model.FK_CustConsultantMaster_CustomerMaster" >
           <ConnectorPoint PointX="20.5" PointY="13.953542480468748" />
           <ConnectorPoint PointX="21.25" PointY="13.953542480468748" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="meis007Model.PGTransaction" Width="1.5" PointX="14.375" PointY="7.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="meis007Model.PaxDetail" Width="1.5" PointX="14.375" PointY="0.75" Height="1.5956835937500102" />
       </Diagram>
     </Diagrams>
   </Designer>
