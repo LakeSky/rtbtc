@@ -14,18 +14,6 @@ using meis007Model;
 
 public partial class Orders_sms : PayfortMaster
 {
-    WebRequest request;
-    Stream dataStream;
-    WebResponse webResponse;
-    StreamReader reader;
-    XmlDocument xml;
-    XmlNodeList xmlResponse, htmlResponse;
-    XmlNode ncresponseTag;
-    Payfort_Response obj, objRefund;
-    BasketHelper basketHelper, _createBookingBasket;
-    CreateBooking _createBooking;
-    PGTransaction pgTrans;
-    RefundBooking rfndObj;
     string pspid, userId, pwd, amnt, currrency, alias, orderId, data, operation, smsc, acpt, userAgent, wind, acceptUrl, exceptionUrl;
     string responseFromServer, language, encodedString, html, message, respAmnt;
     string responseStatus, responseErrorDes, ncStatus, ncError, acceptenceCode, payId, currency, cityCode;

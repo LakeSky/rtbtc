@@ -3,9 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Configuration;
+using System.Text;
+using System.Net;
+using System.IO;
+using System.Xml;
+using meis007Model;
 
 public class PayfortMaster : PublicApplicationPage
 {
+    protected WebRequest request;
+    protected Stream dataStream;
+    protected WebResponse webResponse;
+    protected StreamReader reader;
+    protected XmlDocument xml;
+    protected XmlNodeList xmlResponse, htmlResponse;
+    protected XmlNode ncresponseTag;
+    protected Payfort_Response obj, objRefund;
+    protected BasketHelper basketHelper, _createBookingBasket;
+    protected CreateBooking _createBooking;
+    protected PGTransaction pgTrans;
+    protected RefundBooking rfndObj;
 	public PayfortMaster()
 	{
 

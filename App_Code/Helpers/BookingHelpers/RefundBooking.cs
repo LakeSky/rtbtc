@@ -10,16 +10,6 @@ using meis007Model;
 
 public class RefundBooking : PayfortMaster
 {
-    WebRequest request;
-    Stream dataStream;
-    WebResponse webResponse;
-    StreamReader reader;
-    XmlDocument xml;
-    XmlNodeList xmlResponse;
-    XmlNode ncresponseTag;
-    Payfort_Response obj;
-    BasketHelper basketHelper;
-    PGTransaction pgTrans;
     double amnt, respAmnt;
     string pspid, userId, pwd, orderId, data, operation, postUrl;
     string responseFromServer, message, samnt;
