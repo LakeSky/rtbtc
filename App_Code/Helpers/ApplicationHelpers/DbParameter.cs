@@ -40,6 +40,11 @@ public static class DbParameter
     public static string GetManagerEmail()
     {
         var email = string.Empty;
+        email = (string)(HttpContext.Current.Session["ManagerEmail"]);
+        if (email != null && !string.IsNullOrEmpty(email))
+        {
+            return email;
+        }
         SqlConnection _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
         SqlCommand _sqlCommand = new SqlCommand("SELECT ParameterValue FROM SysParameters where ParameterName='ContactingManager';", _sqlConnection);
@@ -47,6 +52,7 @@ public static class DbParameter
         while (_sqlDataReader.Read())
         {
             email = _sqlDataReader["ParameterValue"].ToString();
+            HttpContext.Current.Session["ManagerEmail"] = email;
         }
         _sqlConnection.Close();
         return email;

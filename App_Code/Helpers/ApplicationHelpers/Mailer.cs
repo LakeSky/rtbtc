@@ -53,28 +53,28 @@ public class Mailer
 
     public static void SendBookingFailedEmail(BasketHelper basket, Payfort_Response obj)
     {
-        var email = "ubaidkhan88@gmail.com"; //DbParameter.GetManagerEmail();
+        var email = DbParameter.GetManagerEmail();
         var body = BuildBookingFailedText(basket, obj);
         SendMailMessage(email, "", "", "Booking Error", body);
     }
 
     public static void SendBookingSuccessEmail(BasketHelper basket, Payfort_Response obj)
     {
-        var email = "ubaidkhan88@gmail.com";//DbParameter.GetManagerEmail();
+        var email = DbParameter.GetManagerEmail();
         var body = BuildBookingSuccessText(basket, obj);
         SendMailMessage(email, "", "", "Booking Success", body);
     }
 
     public static void SendRefundSuccessEmail(BasketHelper basket, Payfort_Response obj)
     {
-        var email = "ubaidkhan88@gmail.com"; //DbParameter.GetManagerEmail();
+        var email = DbParameter.GetManagerEmail();
         var body = BuildRefundSuccessText(basket, obj);
         SendMailMessage(email, "", "", "Refund Success", body);
     }
 
     public static void SendRefundFailedEmail(BasketHelper basket, Payfort_Response obj)
     {
-        var email = "ubaidkhan88@gmail.com"; //DbParameter.GetManagerEmail();
+        var email = DbParameter.GetManagerEmail();
         var body = BuildRefundFailedText(basket, obj);
         SendMailMessage(email, "", "", "Refund Failed", body);
     }
