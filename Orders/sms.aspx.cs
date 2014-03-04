@@ -10,6 +10,7 @@ using System.Text;
 using System.Net;
 using System.IO;
 using System.Xml;
+using meis007Model;
 
 public partial class Orders_sms : PublicApplicationPage
 {
@@ -23,6 +24,7 @@ public partial class Orders_sms : PublicApplicationPage
     Payfort_Response obj;
     BasketHelper basketHelper, _createBookingBasket;
     CreateBooking _createBooking;
+    PGTransaction pgTrans;
     string pspid, userId, pwd, amnt, currrency, alias, orderId, data, operation, smsc, acpt, userAgent, wind, acceptUrl, exceptionUrl;
     string responseFromServer, language, encodedString, html, message;
     string responseStatus, responseErrorDes, ncStatus, ncError, acceptenceCode, payId, currency, cityCode;
@@ -83,6 +85,7 @@ public partial class Orders_sms : PublicApplicationPage
         cityCode = Session["cityCode"] == null ? string.Empty : Session["cityCode"].ToString();
         _createBooking = new CreateBooking(_entity, basketHelper, obj, cityCode);
         _createBookingBasket = _createBooking.Create();
+        SaveTransaction();
         if ((_createBookingBasket.hotelDetails != null && _createBookingBasket.hotelDetails.Count > 0) ||
             (_createBookingBasket.packageDetails != null && _createBookingBasket.packageDetails.Count > 0))
         {
@@ -95,6 +98,22 @@ public partial class Orders_sms : PublicApplicationPage
             Session["NoticeMessage"] = "Successfully created booking.";
         }
         Response.Redirect(Route.GetRootPath("home.aspx"));
+    }
+
+    void SaveTransaction()
+    {
+        _entity = GetEntity();
+        pgTrans = new PGTransaction();
+        pgTrans.BasketId = basketHelper.BasketSequenceNumber;
+        pgTrans.ConfirmationID = payId;
+        pgTrans.Status = responseStatus;
+        pgTrans.CreatedAt = DateTime.Now;
+        pgTrans.RawData = responseFromServer;
+        pgTrans.TransType = operation;
+        pgTrans.Field1 = acceptenceCode;
+        pgTrans.UserId = CurrentUser.Id();
+        _entity.AddToPGTransactions(pgTrans);
+        _entity.SaveChanges();
     }
 
     void decodeHtml()
