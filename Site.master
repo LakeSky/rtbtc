@@ -2,7 +2,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head runat="server">
+<head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=0.83, maximum-scale=0.83, minimum-scale=0.83, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -20,8 +20,8 @@
     <link rel="stylesheet" type="text/css" href="/rtbtc/styles/template/1152_24_col.css" />
     <link rel="stylesheet" type="text/css" href="/rtbtc/styles/master_page.css" />
     <script type="text/javascript" src="/rtbtc/scripts/template/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="/rtbtc/Scripts/underscore.js"></script>
-    <script type="text/javascript" src="/rtbtc/Scripts/underscore-template-settings.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/underscore.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/underscore-template-settings.js"></script>
     <script type="text/javascript" src="/rtbtc/scripts/template/jquery_qtip/qtip.js"></script>
     <script type="text/javascript" src="/rtbtc/scripts/template/jquery_box_gallery/jquery.bxGallery.1.1.min.js"></script>
     <script type="text/javascript" src="/rtbtc/scripts/template/jquery_fancy_box/jquery.fancybox-1.3.4.pack.js"></script>
@@ -67,7 +67,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form runat="server">
+    <form id="Form1" runat="server">
     <% var rootPath = Route.GetRootPath(""); %>
     <p id="back-top">
         <a href="#top"><span>Top</span></a></p>
@@ -173,17 +173,17 @@
                                     <div id="box_languages" class="box_languages hide">
                                         <div class="drop_down">
                                             <label>
-                                                <img src="/rtbtc/images/template/includes/en_icon.gif" alt="English" title="English"
+                                                <img src="/images/template/includes/en_icon.gif" alt="English" title="English"
                                                     width="18" height="12" />English<i></i></label>
                                             <ul>
                                                 <li class="activ"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php?language=en&amp;osCsid=qKSS-ugxZQ37A3jke2owD0">
-                                                    <img src="/rtbtc/images/template/includes/en_icon.gif" alt="English" title="English"
+                                                    <img src="/images/template/includes/en_icon.gif" alt="English" title="English"
                                                         width="18" height="12" />English</a></li>
                                                 <li class=""><a href="http://www.responsive-shop.com/osc/tstore/3/index.php?language=de&amp;osCsid=qKSS-ugxZQ37A3jke2owD0">
-                                                    <img src="/rtbtc/images/template/includes/ge_icon.gif" alt="German" title="German"
+                                                    <img src="/images/template/includes/ge_icon.gif" alt="German" title="German"
                                                         width="18" height="12" />German</a></li>
                                                 <li class=""><a href="http://www.responsive-shop.com/osc/tstore/3/index.php?language=es&amp;osCsid=qKSS-ugxZQ37A3jke2owD0">
-                                                    <img src="/rtbtc/images/template/includes/sp_icon.gif" alt="Spain" title="Spain"
+                                                    <img src="/images/template/includes/sp_icon.gif" alt="Spain" title="Spain"
                                                         width="18" height="12" />Spain</a></li>
                                             </ul>
                                         </div>
@@ -276,6 +276,10 @@
                                             <div class="list_bg">
                                             </div>
                                             <a href="#">Travel Insurance</a> </li>
+                                              <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="<%= rootPath %>visa/index.aspx">Visa</a> </li>
                                     </ul>
                                 </div>
                                 <div class="Footer_BoxWrapper">
@@ -340,7 +344,7 @@
                                 </div>
                                 <div class="Footer_BoxWrapper">
                                     <h4 class="Footer_BoxHeading">
-                                        <a href="#">Contact Us</a></h4>
+                                        Contact Us</h4>
                                     <ul class="footer_contact">
                                         <li class="field1">
                                             <div class="list_bg">
@@ -353,7 +357,7 @@
                                         <li class="field3">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="#"><span class="__cf_email__" data-cfemail="info@riyadhtravel.com">
+                                            <a href="mailto:info@riyadhtravel.com"><span class="__cf_email__" data-cfemail="info@riyadhtravel.com">
                                                 info@riyadhtravel.com</span></a> </li>
                                         <li class="field4">
                                             <div class="list_bg">
@@ -372,11 +376,11 @@
                                         <li class="item_2">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="http://http://www.twitter.com/">Twitter</a> </li>
+                                            <a href="http://www.twitter.com/">Twitter</a> </li>
                                         <li class="item_3">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="http://http://www.rss.com/">RSS</a> </li>
+                                            <a href="http://www.rss.com/">RSS</a> </li>
                                         <li class="item_4">
                                             <div class="list_bg">
                                             </div>
@@ -384,11 +388,11 @@
                                         <li class="item_5">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="http://http://www.pinterest.com/">Printerest</a> </li>
+                                            <a href="http://www.pinterest.com/">Printerest</a> </li>
                                         <li class="item_6">
                                             <div class="list_bg">
                                             </div>
-                                            <a href="http://http://www.youtube.com/">Youtube</a> </li>
+                                            <a href="http://www.youtube.com/">Youtube</a> </li>
                                     </ul>
                                 </div>
                             </div>

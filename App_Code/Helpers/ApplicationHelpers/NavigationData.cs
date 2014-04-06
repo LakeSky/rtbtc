@@ -12,6 +12,7 @@ public class NavigationData
         lst.Add(new NavigationDataList { Name = "HOTELS", Path = rootPath + "hotels/search.aspx" });
         lst.Add(new NavigationDataList { Name = "FLIGHTS", Path = rootPath + "amadeusflights.aspx" });
         lst.Add(new NavigationDataList { Name = "CARS", Path = rootPath + "cars.aspx" });
+        lst.Add(new NavigationDataList { Name = "VISAS", Path = rootPath + "visa/index.aspx" });
         lst.Add(new NavigationDataList { Name = "ABOUT US", Path = rootPath + "about.aspx" });
         lst.Add(new NavigationDataList { Name = "CONTACT US", Path = rootPath + "contact.aspx" });
         return lst;
