@@ -10,10 +10,28 @@ using System.Configuration;
 public class PaymentGatewayHelper : PublicApplicationPage
 {
     protected Payfort_Response obj;
-    public string orderId, sha, pspId, acceptUrl, exceptionUrl, passPhrase, aliasUrl, errorMessage;
+    public string orderId, sha, pspId, acceptUrl, exceptionUrl, passPhrase, aliasUrl, errorMessage, reqTimeOut, orderDes;
     protected bool orderStatus;
-    protected void BuildInitialVariables()
+    protected void BuildInitialVariables(BasketHelper basket)
     {
+        reqTimeOut = "90";
+        orderDes = CurrentUser.Id().ToString();
+        if (basket.hotelDetails.Count > 0)
+        {
+            var guest = basket.hotelDetails.First().guestDetails.First();
+            if(guest != null)
+            {
+                orderDes = guest.firstName + " " + guest.middleName + " " + guest.lastName;
+            }
+        }
+        else if(basket.packageDetails.Count > 0)
+        {
+            var pax = basket.packageDetails.First().Passengers.First();
+            if (pax != null)
+            {
+                orderDes = pax.FirstName + " " + pax.MiddleName + " " + pax.LastName;
+            }
+        }
         obj = Session["Payfort_Response"] as Payfort_Response;
         if (obj != null)
         {

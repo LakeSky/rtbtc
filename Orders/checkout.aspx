@@ -21,6 +21,8 @@
     <input id="EXCEPTIONURL" name="EXCEPTIONURL" type="hidden" value="<%= exceptionUrl %>" />
     <input id="ORDERID" name="ORDERID" type="hidden" value="<%= orderId %>" />
     <input id="SHASIGN" name="SHASIGN" type="hidden" value="<%= sha %>" />
+    <input id="COM" name="COM" type="hidden" value="<%= orderDes %>" />
+    <input id="RTIMEOUT " name="RTIMEOUT" type="hidden" value="<%= reqTimeOut %>" />
     <div class="row row_2 container_24">
         <div class="grid_24">
             <div class="contentContainer page_search">
