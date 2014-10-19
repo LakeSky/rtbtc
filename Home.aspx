@@ -135,7 +135,7 @@
             <div id="search-bar">
                 <div id="div-search">
                     <h3>
-                        Hotel Search</h3>
+                        Hotel Search | <a href="<%= rootPath %>amadeusflights.aspx"> Flight Search</a></h3>
                     <div id="div-destination">
                         <label>
                             Where do you want to go?</label>
@@ -168,26 +168,24 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div id="div-rooms">
-                        <h4>
-                            How many of you?</h4>
-                        <div class="clear">
-                        </div>
+                       
                         <table class="rooms-table">
                             <tr>
                                 <th style="width: 65px;">
-                                    &nbsp;
+                                    
                                 </th>
                                 <th style="width: 47px;">
                                     Adults
                                 </th>
-                                <th style="width: 67px;">
+                                <th style="width:75px;">
                                     Kids(2-11)
                                 </th>
-                                <th style="width: 75px;">
+                                <th style="width: 80px;">
                                     Infants(0-1)
                                 </th>
-                                <th style="width: 40px;">
+                                <th style="width:20px;">
                                     &nbsp;
                                 </th>
                             </tr>
@@ -209,7 +207,7 @@
                                     <select name="rooms[1][kids]" class="ddl-small kids" data-id="1">
                                         <option>0</option>
                                         <option>1</option>
-                                       
+                                        <option>2</option>
                                     </select>
                                 </td>
                                 <td>
@@ -220,6 +218,7 @@
                                     </select>
                                 </td>
                                 <td>
+                                     <input type="button" class="btn btn-success right add-room" value="Add" />
                                 </td>
                             </tr>
                             <%}
@@ -245,7 +244,7 @@
                                         data-value="<%= room.Kids %>">
                                         <option>0</option>
                                         <option>1</option>
-                                      
+                                       <option>2</option>
                                     </select>
                                 </td>
                                 <td>
@@ -268,6 +267,9 @@
                                     &nbsp;
                                 </td>
                                 <%} %>
+                                 <td>
+                                     <input type="button" class="btn btn-success right add-room" value="Add" />
+                                </td>
                             </tr>
                             <% var count = room.ChildAge.Count; %>
                             <% if (count > 0)
@@ -342,7 +344,7 @@
                                     <%# Eval("ImageDesc") %>
                                 </span><span class="slider_text_3"><small>for only</small> <i>
                                     <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %></i> <b>
-                                        <%# Eval("Price") %></b> </span><span class="slider_text_4"><a href="" target="_self">
+                                        <%# Eval("Price") %></b> </span><span class="slider_text_4"><a href="<%# Eval("RedirectPath") %>" target="_self">
                                             <strong class="button_slider"><strong class="button_bg"><strong></strong></strong><strong
                                                 class="button_text">BOOK NOW!</strong> </strong></a></span>
                         </div>
@@ -740,9 +742,9 @@
     <script id='add-room-template' type='text/html'>
 <tr id="room_{{index}}">
 <td>Room {{index}}</td>
-<td><select name="rooms[{{ index }}][adults]" class="ddl-small"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select> </td>
-<td><select name="rooms[{{ index }}][kids]" class="ddl-small kids" data-id="{{index}}"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></td>
-<td><select name="rooms[{{ index }}][infants]" class="ddl-small"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
+<td><select name="rooms[{{ index }}][adults]" class="ddl-small"><option>1</option><option>2</option><option>3</option></select> </td>
+<td><select name="rooms[{{ index }}][kids]" class="ddl-small kids" data-id="{{index}}"><option>0</option><option>1</option><option>2</option></select></td>
+<td><select name="rooms[{{ index }}][infants]" class="ddl-small"><option>0</option><option>1</option></select> </td>
 <td><input type="button" class="btn btn-danger remove-room" value="x" data-id="{{index}}" id="remove_room_{{index}}" /></td>
 </tr>
     </script>
@@ -767,7 +769,7 @@
   <option>9</option>
   <option>10</option>
   <option>11</option>
-  <option>12</option>
+
 </select> 
     </script>
 </asp:Content>

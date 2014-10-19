@@ -64,7 +64,7 @@
             <span class="difference-nights"></span>
             <div id="div-rooms">
               <h4>How many of you?</h4>
-              <!--<input type="button" class="btn btn-success right add-room" value="Add Rooms"   />-->
+              <input type="button" class="btn btn-success right add-room" value="Add Rooms" visible="true"  />
               <div class="clear"></div>
               <table class="rooms-table">
                 <tr>
@@ -78,7 +78,7 @@
                   <tr id="room_1">
                     <td>Room 1</td>
                     <td><select name="rooms[1][adults]" class="ddl-small"><option>1</option><option>2</option><option>3</option></select> </td>
-                    <td><select name="rooms[1][kids]" class="ddl-small kids" data-id="1"><option>0</option><option>1</option></select> </td>
+                    <td><select name="rooms[1][kids]" class="ddl-small kids" data-id="1"><option>0</option><option>1</option><option>2</option></select> </td>
                     <td><select name="rooms[1][infants]" class="ddl-small"><option>0</option><option>1</option></select> </td>
                     <td></td>
                   </tr>
@@ -88,7 +88,7 @@
                     <tr id="room_<%= i %>">
                       <td><%= room.RoomName %></td>
                       <td><select name="rooms[<%= i %>][adults]" class="ddl-small old-ddl" data-value="<%= room.Adults %>" ><option>1</option><option>2</option><option>3</option></select></td>
-                      <td><select name="rooms[<%= i %>][kids]" class="ddl-small kids old-ddl" data-id="<%= i %>"  data-value="<%= room.Kids %>"><option>0</option><option>1</option></select> </td>
+                      <td><select name="rooms[<%= i %>][kids]" class="ddl-small kids old-ddl" data-id="<%= i %>"  data-value="<%= room.Kids %>"><option>0</option><option>1</option><option>2</option></select> </td>
                       <td><select name="rooms[<%= i %>][infants]" class="ddl-small old-ddl"  data-value="<%= room.Infants %>"><option>0</option><option>1</option></select> </td>
                       <% if ((i != 1) && (RoomsCount == i)) {%>
                         <td><input type="button" class="btn btn-danger remove-room" value="x" data-id="<%= i %>" id="remove_room_<%= i %>" /></td>
@@ -103,7 +103,7 @@
                         <% int x = 1; %>
                         <%foreach (var age in room.ChildAge) {%>
                           <td class="td_<%= x %>">
-                            <select name="rooms[<%= i %>][kids][age][<%= x %>]" class="ddl-small old-ddl" data-value="<%= age %>" data-id="<%= i %>"><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select> 
+                            <select name="rooms[<%= i %>][kids][age][<%= x %>]" class="ddl-small old-ddl" data-value="<%= age %>" data-id="<%= i %>"><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select> 
                           </td>
                           <% x += 1; %>
                         <%} %>
@@ -142,7 +142,12 @@
         </h2>      
         <asp:UpdatePanel ID="UpdatePanelStartRatings" runat="server"  UpdateMode="Conditional">
           <ContentTemplate>
-            <asp:Repeater ID="rptrStarRatings" runat="server" >
+                           <asp:DropDownList ID="ddlStart" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlStars_SelectedIndexChanged"    CssClass="left">
+                           
+                            <asp:ListItem Value="ALL">ALL</asp:ListItem>
+                          
+                        </asp:DropDownList>
+            <asp:Repeater ID="rptrStarRatings" runat="server" Visible="false" >
               <HeaderTemplate>
                 <div class="infoBoxContents">
                   <ul>
@@ -316,9 +321,9 @@
 <script id='add-room-template' type='text/html'>
 <tr id="room_{{index}}">
 <td>Room {{index}}</td>
-<td><select name="rooms[{{ index }}][adults]" class="ddl-small"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select> </td>
-<td><select name="rooms[{{ index }}][kids]" class="ddl-small kids" data-id="{{index}}"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></td>
-<td><select name="rooms[{{ index }}][infants]" class="ddl-small"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select> </td>
+<td><select name="rooms[{{ index }}][adults]" class="ddl-small"><option>1</option><option>2</option><option>3</option></select> </td>
+<td><select name="rooms[{{ index }}][kids]" class="ddl-small kids" data-id="{{index}}"><option>0</option><option>1</option><option>2</option></select></td>
+<td><select name="rooms[{{ index }}][infants]" class="ddl-small"><option>0</option><option>1</option></select> </td>
 <td><input type="button" class="btn btn-danger remove-room" value="x" data-id="{{index}}" id="remove_room_{{index}}" /></td>
 </tr>
 </script>
@@ -343,7 +348,7 @@
   <option>9</option>
   <option>10</option>
   <option>11</option>
-  <option>12</option>
+ 
 </select> 
 </script>
 </asp:Content>

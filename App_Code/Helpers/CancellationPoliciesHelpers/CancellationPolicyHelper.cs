@@ -54,22 +54,22 @@ public class CancellationPolicyHelper
         {
             FromDate = start_date
         };
-        if (fullCharge) {
+       // if (fullCharge) {
             _cancellationPolicyHelper.ChargingType = "Full Charges (No Refund)";
             _cancellationPolicyHelper.ToDate = "";
-        }
-        else
-        {
-            _cancellationPolicyHelper.ToDate = endDate.AddHours(-(int.Parse(x.UnitMultiplier.ToString()))).ToString("dd MMM yyyy");
-            if (x.BasisType == "Nights")
-            {
-                _cancellationPolicyHelper.ChargingType = x.NumberOfNights.ToString() + " Nights Fee will be charged if cancelled before ";
-            }
-            else
-            {
-                _cancellationPolicyHelper.ChargingType = Math.Round(decimal.Parse(x.Percentage.ToString())).ToString() + "% of Booking Amount will be charged if cancelled before ";
-            }
-        }
+        //}
+        //else
+        //{
+        //    _cancellationPolicyHelper.ToDate = endDate.AddHours(-(int.Parse(x.UnitMultiplier.ToString()))).ToString("dd MMM yyyy");
+        //    if (x.BasisType == "Nights")
+        //    {
+        //        _cancellationPolicyHelper.ChargingType = x.NumberOfNights.ToString() + " Nights Fee will be charged if cancelled before ";
+        //    }
+        //    else
+        //    {
+        //        _cancellationPolicyHelper.ChargingType = Math.Round(decimal.Parse(x.Percentage.ToString())).ToString() + "% of Booking Amount will be charged if cancelled before ";
+        //    }
+        //}
         return _cancellationPolicyHelper;
     }
 }

@@ -53,13 +53,24 @@ public class SupplierHotelObjectHelper
         defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
         _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
-        _sqlCommand = new SqlCommand("spProductMasterExtension", _sqlConnection);
+        if (HttpContext.Current.Session["RoomCount"].ToString() != "99")
+        {
+            _sqlCommand = new SqlCommand(" spDeleteHotelsForMultiRooms @searchid =" + shoppingHotelHelper.SearchId + " ,@cont=" + int.Parse(HttpContext.Current.Session["RoomCount"].ToString()), _sqlConnection);
+            _sqlCommand.ExecuteNonQuery();
+            _sqlCommand.Dispose();
+        }
+
+        _sqlCommand = new SqlCommand("spProductMasterExtension1", _sqlConnection);
         _sqlCommand.CommandType = CommandType.StoredProcedure;
         _sqlCommand.Parameters.AddWithValue("@Trans", "SearchBySession");
-        _sqlCommand.Parameters.AddWithValue("@SessionId", shoppingHotelHelper.SessionId);//"sq4245oog1wivewdvmkccded"
-        _sqlCommand.Parameters.AddWithValue("@SearchId", searchId);
-        _sqlCommand.Parameters.AddWithValue("@IsAvailable", "True");
+        _sqlCommand.Parameters.AddWithValue("@SessionId", shoppingHotelHelper.SessionId);
+        _sqlCommand.Parameters.AddWithValue("@SearchId", shoppingHotelHelper.SearchId);
+        _sqlCommand.Parameters.AddWithValue("@isAvailable", "True");//shams Added
+
         _sqlDataReader = _sqlCommand.ExecuteReader();
+
+
+
         while (_sqlDataReader.Read())
         {
             supplierHotelRoomId = _sqlDataReader["RoomID"].ToString();
@@ -113,6 +124,85 @@ public class SupplierHotelObjectHelper
             x.Rooms = x.Rooms.OrderBy(z => z.RoomName).ToList();
         }
         return supplierHotels;
+
+        ///
+
+    }
+    public List<SupplierHotelHelper> GetHotelsByStars(string PstarValue)
+    {
+        //searchId = shoppingHotelHelper.SearchId;
+       // if (searchNew || string.IsNullOrEmpty(shoppingHotelHelper.SearchId.ToString()) || shoppingHotelHelper.SearchId == 0)
+       // {
+       //     searchId = searchId; //shams added CustomerId as parameter
+       //     shoppingHotelHelper.SearchId = searchId;
+//}
+        _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
+        _sqlConnection.Open();
+        _sqlCommand = new SqlCommand("spProductMasterExtension1", _sqlConnection);
+        _sqlCommand.CommandType = CommandType.StoredProcedure;
+        _sqlCommand.Parameters.AddWithValue("@Trans", "SearchByStars");
+        _sqlCommand.Parameters.AddWithValue("@SessionId", shoppingHotelHelper.SessionId);
+        _sqlCommand.Parameters.AddWithValue("@SearchId", searchId);
+        _sqlCommand.Parameters.AddWithValue("@StarsName", PstarValue);
+        _sqlCommand.Parameters.AddWithValue("@isAvailable", "True");//shams Added
+
+        _sqlDataReader = _sqlCommand.ExecuteReader();
+
+        while (_sqlDataReader.Read())
+        {
+            supplierHotelRoomId = _sqlDataReader["RoomID"].ToString();
+            supplierHotelId = _sqlDataReader["HotelID"].ToString();
+            productMasterId = long.Parse(_sqlDataReader["ProductID"].ToString());
+            price = decimal.Parse("0.0");
+            hotelInfoId = long.Parse(_sqlDataReader["HotelInfoID"].ToString());
+            if (_sqlDataReader["LCAP"] != null && _sqlDataReader["NumOfPassengers"] != null && _sqlDataReader["NumOfPassengers"].ToString() != "0")
+            {
+                price = Math.Floor(decimal.Parse(_sqlDataReader["AvrNightPriceSale"].ToString()));
+            }
+            roomName = _sqlDataReader["RoomName"].ToString();
+            if (!string.IsNullOrEmpty(_sqlDataReader["BBName"].ToString()))
+            {
+                roomName = roomName + " - " + _sqlDataReader["BBName"].ToString();
+            }
+            supplierHotelRoomHelper = new SupplierHotelRoomHelper { HotelInfoId = hotelInfoId, RoomId = supplierHotelRoomId, RoomName = roomName, RoomType = _sqlDataReader["RoomType"].ToString(), Price = price };
+            if (productMasterIds.Contains(productMasterId))
+            {
+                supplierHotelHelper = supplierHotels.Where(p => p.ProductMasterId == productMasterId).First();
+                supplierHotelHelper.Rooms.Add(supplierHotelRoomHelper);
+            }
+            else
+            {
+                supplierHotelHelper = new SupplierHotelHelper
+                {
+                    Id = hotelInfoId,
+                    SupplierId = _sqlDataReader["SupplierID"].ToString(),
+                    SupplierName = _sqlDataReader["SupplierName"].ToString(),
+                    FromDate = shoppingHotelHelper.FromDate,
+                    ToDate = shoppingHotelHelper.ToDate,
+                    ProductName = _sqlDataReader["ProductName"].ToString(),
+                    City = _sqlDataReader["CityName"].ToString(),
+                    CityCode = shoppingHotelHelper.CityCode,
+                    ProdcutDescription = _sqlDataReader["ShortDescription"].ToString(),
+                    ProductMasterId = productMasterId,
+                    //ProductStarsId = int.Parse(_sqlDataReader["ClsID"].ToString()),
+                    ProductStarsName = _sqlDataReader["ClsName"].ToString(),
+                    ProductStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
+                    ProductImagePath = _sqlDataReader["ThumbnailPath"].ToString()
+                };
+                var rooms = new List<SupplierHotelRoomHelper>();
+                rooms.Add(supplierHotelRoomHelper);
+                supplierHotelHelper.Rooms = rooms;
+                supplierHotels.Add(supplierHotelHelper);
+                productMasterIds.Add(productMasterId);
+            }
+        }
+        _sqlConnection.Close();
+        foreach (var x in supplierHotels)
+        {
+            x.BasicPrice = int.Parse(Math.Floor(decimal.Parse(x.Rooms.Where(z => z.Price != null).OrderBy(z => z.Price).First().Price.ToString())).ToString());
+            x.Rooms = x.Rooms.OrderBy(z => z.RoomName).ToList();
+        }
+        return supplierHotels;
     }
 
     protected int GetSearchId(string cityCode) {
@@ -123,6 +213,7 @@ public class SupplierHotelObjectHelper
         _search.CheckOut = DateTimeHelper.customFormat(shoppingHotelHelper.ToDate);
         _search.AdultCount = shoppingHotelHelper.RoomDetails.Select(x => x.Adults).Sum();
         _search.IsAvailable = true;
+        _search.SeqNo = 1;
         List<int> lstAges = new List<int>();
         foreach (var x in shoppingHotelHelper.RoomDetails) {
             foreach (var y in x.ChildAge) {
@@ -216,5 +307,6 @@ public static class SupplierHotelObjectSortHelper
         }
         return sortedList;
     }
+
 
 }
