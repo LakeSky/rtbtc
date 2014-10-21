@@ -9,75 +9,142 @@ using System.Dynamic;
 
 public partial class Hotels_Details : PublicApplicationPage
 {
-    protected meis007Entities _meis007Entities;
-    public ProductMaster productMaster;
-    public string address;
-    public string cityName;
-    public string countryName;
-    public string latitude;
-    public string longitude;
-    public string hotelName;
-    public string starsImagePath;
-    public string requestFrom;
-    public string roomName = "";
     public dynamic shoppingHotelDetailDynamic;
-    public BasketHotelDetails basketHotelDetailsObj;
-    public string masterCurrencyValue;
     public string fromDate;
     public string toDate;
+    public string hotelName, cityName, countryName, starsImagePath, address, latitude, longitude, requestFrom;
+    string supplierid, masterCurrencyValue, roomName = "";
+    int totalRoomsBook, totalRoomsChecked;
+    meis007Entities _meis007Entities;
+    BasketHotelDetails basketHotelDetailsObj;
+    CityMaster _city;
+    CountryMaster _country;
+    ProductMaster productMaster;
+    CheckBox ckbRoomCheckP;
+    HiddenField hdnFldHotelInfoIdP;
+    Button btnBookP;
     protected void Page_Load(object sender, EventArgs e)
     {
-        masterCurrencyValue = GetMasteCurrencySelectedValue();
-        _meis007Entities = new meis007Entities();
-        var id = (string)(Request.QueryString["id"]);
-        var found = false;
-        dynamic expando = CheckRequestFromValid();
-        if ( expando.valid && id != null){
-            var productId = int.Parse(id);
-            productMaster = _meis007Entities.ProductMasters.Where(x => x.ProductID == productId).FirstOrDefault();
-            if (productMaster != null){
-                cityName = QueryHelper.GetCityName(_meis007Entities, productMaster.CityID);
-                countryName = QueryHelper.GetCountryName(_meis007Entities, productMaster.CountryID);
-                address = productMaster.Address;
-                latitude = string.IsNullOrEmpty(productMaster.Latitude) ? "24.711666" : productMaster.Latitude;
-                longitude = string.IsNullOrEmpty(productMaster.Longitude) ? "46.724166" : productMaster.Longitude;
-                hotelName = productMaster.ProductName;
-                if (productMaster.ClsID == null){
-                    var classification = _meis007Entities.Classifications.Where(x => x.ClsName == "1").First();
-                    starsImagePath = classification.ImagePath;
-                }else {
-                    starsImagePath = productMaster.Classification.ImagePath;
+
+        if (!IsPostBack)
+        {
+            masterCurrencyValue = GetMasteCurrencySelectedValue();
+            _meis007Entities = new meis007Entities();
+            var id = (string)(Request.QueryString["id"]);
+            var found = false;
+            dynamic expando = CheckRequestFromValid();
+            fromSearchDiv.Visible = fromBasketDiv.Visible = false;
+            if (expando.valid && id != null)
+            {
+                var productId = int.Parse(id);
+                productMaster = _meis007Entities.ProductMasters.Where(x => x.ProductID == productId).FirstOrDefault();
+                hdnFldTotalRoomsBook.Value = "0";
+                if (productMaster != null)
+                {
+                    lblHotelName.Text = productMaster.ProductName;
+                    lblAddress.Text = productMaster.Address;
+                    hdnFldAddress.Value = productMaster.Address;
+                    hdnFldHotelName.Value = productMaster.ProductName;
+                    _city = _meis007Entities.CityMasters.Where(x => x.CityID == productMaster.CityID).FirstOrDefault();
+                    if (_city != null)
+                    {
+                        hdnFldCityName.Value = _city.CityName;
+                        lblCityName.Text = _city.CityName;
+                    }
+                    _country = _meis007Entities.CountryMasters.Where(x => x.CountryID == productMaster.CountryID).FirstOrDefault();
+                    if (_country != null)
+                    {
+                        hdnFldCountryName.Value = _country.CountryName;
+                        lblCountryName.Text = _country.CountryName;
+                    }
+                    hdnFldLatitude.Value = string.IsNullOrEmpty(productMaster.Latitude) ? "24.711666" : productMaster.Latitude;
+                    hdnFldLongitude.Value = string.IsNullOrEmpty(productMaster.Longitude) ? "46.724166" : productMaster.Longitude;
+                    if (productMaster.ClsID == null)
+                    {
+                        var classification = _meis007Entities.Classifications.Where(x => x.ClsName == "1").First();
+                        imgStars.Src = classification.ImagePath;
+                        hdnFldStarsImagePath.Value = classification.ImagePath;
+                    }
+                    else
+                    {
+                        imgStars.Src = productMaster.Classification.ImagePath;
+                        hdnFldStarsImagePath.Value = imgStars.Src;
+                    }
+                    found = true;
+                    List<SupplierHotelRoomHelper> data;
+                    if (requestFrom == "search")
+                    {
+                        data = RoomObjectHelper.GetHotelRooms(expando.hotelInfoId, _meis007Entities, null, masterCurrencyValue);
+                        shoppingHotelDetailDynamic = expando.shoppingHotelDetails.formattedSearchText();
+                        lblSHCity.Text = shoppingHotelDetailDynamic.city;
+                        lblSHDate.Text = shoppingHotelDetailDynamic.dates;
+                        lblSHNights.Text = shoppingHotelDetailDynamic.nights;
+                        lblSHGuest.Text = shoppingHotelDetailDynamic.guestDetails;
+                        fromDate = expando.shoppingHotelDetails.FromDate;
+                        toDate = expando.shoppingHotelDetails.ToDate;
+                        fromBasketDiv.Visible = false;
+                        fromSearchDiv.Visible = true;
+                        hdnFldTotalRoomsBook.Value = expando.shoppingHotelDetails.RoomDetails.Count.ToString();
+                    }
+                    else
+                    {
+                        data = RoomObjectHelper.GetHotelRooms(expando.hotelInfoId, null, expando.basketHelper, masterCurrencyValue);
+                        roomName = data.First().RoomName;
+                        supplierid = data.First().SupplierName;
+                        long hotelInfoId = expando.hotelInfoId;
+                        BasketHelper basketHelper = expando.basketHelper;
+                        BasketHotelDetails basketHotelDetails = basketHelper.hotelDetails.Where(x => x.hotelInfoId == hotelInfoId).First();
+                        fromDate = basketHotelDetails.fromDate.ToString();
+                        toDate = basketHotelDetails.toDate.ToString();
+                        lblBHDStay.Text = basketHotelDetailsObj.stay;
+                        lblBHDGuest.Text = basketHotelDetailsObj.guests;
+                        lblBHDRoom.Text = basketHotelDetailsObj.room;
+                        lblBHDtotalPrice.Text =
+                            ApplicationObject.GetMasterCurrency(masterCurrencyValue) + " " +
+                            ApplicationObject.FormattedCurrencyDisplayPrice(basketHotelDetailsObj.totalPrice, masterCurrencyValue);
+                        fromSearchDiv.Visible = false;
+                        fromBasketDiv.Visible = true;
+                    }
+                    lblProductShortDescription.Text = productMaster.ShortDescription;
+                    rptrRooms.DataSource = data;
+                    rptrRooms.DataBind();
+                    BindProductAmenities();
+                    BindRoomFacilites();
+                    BindProductImages();
                 }
-                found = true;
-                List<SupplierHotelRoomHelper> data;
-                if (requestFrom == "search"){
-                    data = RoomObjectHelper.GetHotelRooms(expando.hotelInfoId, _meis007Entities, null);
-                    shoppingHotelDetailDynamic = expando.shoppingHotelDetails.formattedSearchText();
-                    fromDate = expando.shoppingHotelDetails.FromDate;
-                    toDate = expando.shoppingHotelDetails.ToDate;
-                }else {
-                    data = RoomObjectHelper.GetHotelRooms(expando.hotelInfoId, null, expando.basketHelper);
-                    long hotelInfoId = expando.hotelInfoId;
-                    BasketHelper basketHelper = expando.basketHelper;
-                    BasketHotelDetails basketHotelDetails = basketHelper.hotelDetails.Where(x => x.hotelInfoId == hotelInfoId).First();
-                    fromDate = basketHotelDetails.fromDate.ToString();
-                    toDate = basketHotelDetails.toDate.ToString();
-                    roomName = data.First().RoomName;
-                }
-                rptrRooms.DataSource = data;
-                rptrRooms.DataBind();
             }
-        } 
-        if (!found) {
-            Session["ErrorMessage"] = "Hotel not found";
-            Response.Redirect(Route.GetRootPath("home.aspx"));
-            return;
+            if (!found)
+            {
+                Session["ErrorMessage"] = "Hotel not found";
+                Response.Redirect(Route.GetRootPath("home.aspx"));
+                return;
+            }
+            AssignPublicVariables();
         }
     }
 
-    protected dynamic CheckRequestFromValid() {
+    protected void ckbBookRoom_CheckedChanged(object sender, EventArgs e)
+    {
+        totalRoomsChecked = 0;
+        totalRoomsBook = int.Parse(hdnFldTotalRoomsBook.Value);
+        foreach (RepeaterItem item in rptrRooms.Items)
+        {
+            hdnFldHotelInfoIdP = (HiddenField)item.FindControl("hdnFldHoyelInfoId");
+            ckbRoomCheckP = (CheckBox)item.FindControl("ckbBookRoom");
+            if (ckbRoomCheckP.Checked)
+            {
+                totalRoomsChecked += 1;
+            }
+        }
+        btnBookP = (Button)rptrRooms.Controls[rptrRooms.Controls.Count - 1].Controls[0].FindControl("btnBook");
+        btnBookP.Enabled = totalRoomsChecked == totalRoomsBook;
+    }
+
+    dynamic CheckRequestFromValid()
+    {
         requestFrom = (string)Request.QueryString["from"];
-        long hotelInfoId ;
+        hdnFldRequestFrom.Value = requestFrom;
+        long hotelInfoId;
         dynamic expando = new ExpandoObject();
         if (!long.TryParse(Request.QueryString["sid"], out hotelInfoId) || (requestFrom != "search" && requestFrom != "basket"))
         {
@@ -86,9 +153,11 @@ public partial class Hotels_Details : PublicApplicationPage
         }
         expando.hotelInfoId = hotelInfoId;
         expando.valid = true;
-        if (requestFrom == "search") {
+        if (requestFrom == "search")
+        {
             var obj = GetShoppingHotelDetailsObject();
-            if (!obj.valid) {
+            if (!obj.valid)
+            {
                 expando.valid = false;
                 return expando;
             }
@@ -96,12 +165,59 @@ public partial class Hotels_Details : PublicApplicationPage
             return expando;
         }
         BasketHelper basketHelper = GetBasketHelperObject();
-        if (!hasHotelsInBasket(basketHelper)) {
+        if (!hasHotelsInBasket(basketHelper))
+        {
             expando.valid = false;
             return expando;
         }
         expando.basketHelper = basketHelper;
         basketHotelDetailsObj = basketHelper.hotelDetails.Where(x => x.hotelInfoId == hotelInfoId).First();
         return expando;
+    }
+
+    void AssignPublicVariables()
+    {
+        address = hdnFldAddress.Value;
+        cityName = hdnFldCityName.Value;
+        countryName = hdnFldCountryName.Value;
+        hotelName = hdnFldHotelName.Value;
+        latitude = hdnFldLatitude.Value;
+        longitude = hdnFldLongitude.Value;
+        starsImagePath = hdnFldStarsImagePath.Value;
+        requestFrom = hdnFldRequestFrom.Value;
+        imgAjaxLoader.Src = Route.GetRootPath("Images/ajax-loader.gif");
+    }
+
+    void BindProductAmenities()
+    {
+        var productAmenties = from pa in productMaster.ProductAmenities
+                              select new { Name = pa.Amenity.AmenitiesName };
+        rptrHotelAmenities.DataSource = productAmenties;
+        rptrHotelAmenities.DataBind();
+    }
+
+
+    void BindRoomFacilites()
+    {
+        var roomFacitlites = from pr in productMaster.ProductRRCs
+                             select new
+                             {
+                                 RoomTypeHeaderName = pr.RoomTypeHeader.RoomTHName,
+                                 RoomTypeDetailName = pr.RoomTypeDetail.RoomTDName,
+                                 Facilities = pr.ProductFacilities
+                             };
+        rptrRoomFacilities.DataSource = roomFacitlites;
+        rptrRoomFacilities.DataBind();
+    }
+
+    void BindProductImages()
+    {
+        var productImages = from pi in productMaster.ProductImages
+                            select new
+                            {
+                                pi.ImageAddress
+                            };
+        rptrProductImages.DataSource = productImages;
+        rptrProductImages.DataBind();
     }
 }

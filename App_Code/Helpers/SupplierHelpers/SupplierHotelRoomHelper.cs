@@ -14,4 +14,5 @@ public class SupplierHotelRoomHelper
     public string RoomType { get; set; }
     public string RoomName { get; set; }
     public decimal? Price { get; set; }
+    public string FormattedPrice { get; set; }
 }

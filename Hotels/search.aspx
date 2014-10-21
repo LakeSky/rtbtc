@@ -257,7 +257,6 @@
                        <th>Room Name</th>
                        <th>Price</th>
                        <th></th>
-                       <th></th>
                      </tr>
                  </HeaderTemplate>
                  <ItemTemplate>
@@ -272,16 +271,6 @@
                        data-to="<%# DataBinder.Eval(Container.Parent.Parent, "DataItem.ToDate")%>">
                          !
                        </a>
-                     </td>
-                     <% var path = Route.GetRootPath("hotels/book.aspx"); %>
-                     <td>
-                       <strong class="button_content button_content1">
-                         <strong class="button bg_button">
-                           <a href="<%= path %>?id=<%# Eval("HotelInfoId")%>" role="button">
-                             <span class="ui-button-text">Book</span>
-                           </a>
-                         </strong>
-                       </strong>
                      </td>
                    </tr>
                  </ItemTemplate>

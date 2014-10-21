@@ -12,7 +12,7 @@ using meis007Model;
 /// </summary>
 public static class RoomObjectHelper
 {
-    public static List<SupplierHotelRoomHelper> GetHotelRooms(long supplierHotelInfoId, meis007Entities _meis007Model, BasketHelper basketHelper)
+    public static List<SupplierHotelRoomHelper> GetHotelRooms(long supplierHotelInfoId, meis007Entities _meis007Model, BasketHelper basketHelper, string masterCurrency)
     {
         var roomsList = new List<SupplierHotelRoomHelper>();
         SupplierHotelRoomHelper supplierHotelRoomHelper;
@@ -71,7 +71,9 @@ public static class RoomObjectHelper
                     RoomId = _sqlDataReader["RoomID"].ToString(),
                     RoomName = _sqlDataReader["RoomName"].ToString(),
                     RoomType = _sqlDataReader["RoomType"].ToString(),
-                    Price = price
+                    Price = price,
+                    FormattedPrice = ApplicationObject.GetMasterCurrency(masterCurrency) + " " +
+                    ApplicationObject.FormattedCurrencyDisplayPrice(price, masterCurrency)
                 };
                 roomsList.Add(supplierHotelRoomHelper);
             }
