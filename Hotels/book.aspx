@@ -1,40 +1,46 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="book.aspx.cs" Inherits="Hotels_book" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
-  <style type="text/css">
-    #container {
-      min-height: 900px;
-    }
-    td label{
-        display: inline-block;
-        margin-left: 5px;
-    }
-  </style>
-  <script type = "text/javascript">
-      function ValidateCheckBox(sender, args) {
-        if (document.getElementById("ckbAgree").checked == true) {
-          args.IsValid = true;
-        } else {
-          args.IsValid = false;
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
+    CodeFile="book.aspx.cs" Inherits="Hotels_book" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
+    <style type="text/css">
+        #container
+        {
+            min-height: 900px;
         }
-      }
-  </script>
+        td label
+        {
+            display: inline-block;
+            margin-left: 5px;
+        }
+    </style>
+    <script type="text/javascript">
+        function ValidateCheckBox(sender, args) {
+            if (document.getElementById("ckbAgree").checked == true) {
+                args.IsValid = true;
+            } else {
+                args.IsValid = false;
+            }
+        }
+    </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-  <asp:HiddenField ID="hdnFldHotelInfoId" runat="server" />
-  <asp:HiddenField ID="hdnFldFromDate" runat="server" />
-  <asp:HiddenField ID="hdnFldToDate" runat="server" />
-  <div class="row row_4 container_24">
-    <section id="bodyContent" class="col grid_6">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
+    <asp:HiddenField ID="hdnFldHotelInfoId" runat="server" />
+    <asp:HiddenField ID="hdnFldFromDate" runat="server" />
+    <asp:HiddenField ID="hdnFldToDate" runat="server" />
+    <div class="row row_4 container_24">
+        <section id="bodyContent" class="col grid_6">
       <div class="ui-widget infoBoxContainer box_list"> 
         <div class="ui-widget-header infoBoxHeading">
           Current Search
         </div>
         <div class="infoBoxContents">
           <ul>
-            <li>Stay: <%= bookingHotelDetails.stay %></li>
-            <li>Room: <%= bookingHotelDetails.room %></li>
-            <li>Guest: <%= bookingHotelDetails.guests %></li>
-            <li>Total Price <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %> <%= ApplicationObject.FormattedCurrencyDisplayPrice(bookingHotelDetails.totalPrice, masterCurrencyValue) %></li>
+            <li>Stay: <asp:Label ID="lblStay" runat="server"></asp:Label></li>
+            <li>Room: <asp:Label ID="lblRoom" runat="server"></asp:Label></li>
+            <li>Guest: <asp:Label ID="lblGuest" runat="server"></asp:Label></li>
+            <li>Total Price 
+            <asp:Label ID="lblTotalPrice" runat="server"></asp:Label>
+            </li>
           </ul>
         </div>
       </div>
@@ -43,23 +49,35 @@
           Cancellation Policy
         </div>
         <div class="infoBoxContents">
-          <ul>
+          <ol>
              <asp:Repeater ID="rptrCancelPolicies" runat="server"  >
                <HeaderTemplate>
                </HeaderTemplate>
                <ItemTemplate>
-                 <li>
-                   <%# Eval("ChargingType")%>  <%# Eval("ToDate") %>
-                 </li>
+                   <li><%# Eval("RoomName") %></li>
+                   <asp:Repeater ID="rptrCancelPoliciesChildren" runat="server" DataSource='<%# Eval("CancellationPolicies") %>'>
+                       <HeaderTemplate>
+                           <ul>
+                       </HeaderTemplate>
+                       <ItemTemplate>
+                           <li>
+                               <%# Eval("ChargingType")%>
+                               <%# Eval("ToDate") %>
+                           </li>
+                       </ItemTemplate>
+                       <FooterTemplate>
+                           </ul>
+                       </FooterTemplate>
+                    </asp:Repeater>
                </ItemTemplate>
                <FooterTemplate>
                </FooterTemplate>
              </asp:Repeater>
-          </ul>
+          </ol>
         </div>
       </div>
     </section>
-    <aside id="columnRight" class="col grid_18">
+        <aside id="columnRight" class="col grid_18">
       <div class="contentContainer page_new_product">
         <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" style="">
           <div class="contentBlock row_view" style="visibility: visible;">
@@ -68,12 +86,12 @@
                 <li class="responsive_block first" style="width:100%;">
                   <div class="product_block equal-height_products_block">
                     <div class="product_pic_wrapper" style="width:195px;height:195px;">
-                      <img src="<%= bookingHotelDetails.productDefaultImagePath %>" alt="<%= bookingHotelDetails.productName %>" width="195" height="195" style="width:195px;height:195px;" />
+                      <img  id="imgDefault" runat="server" width="195" height="195" style="width:195px;height:195px;" />
                     </div>
                     <div class="product_info_wrapper">
                      <div class="data">
                        <div class="fl_left">
-                         <img src="<%= bookingHotelDetails.productStarsImagePath %>" class="media-image" alt="" />
+                         <img id="imgStars" runat="server" class="media-image" alt="" />
                        </div>
                        <div class="fl_right">
                        </div>
@@ -82,9 +100,8 @@
                        <div class="product_price_wrapper price ">
                          <b>Price:&nbsp;&nbsp;</b>
                          <span class="productSpecialPrice">
-                            Price Per Person <%= ApplicationObject.GetMasterCurrency(masterCurrencyValue) %>
-                           &nbsp;
-                           <%= ApplicationObject.FormattedCurrencyDisplayPrice(bookingHotelDetails.totalPrice, masterCurrencyValue) %>
+                            Price Per Person 
+                            <asp:Label ID="lblPricePerPerson" runat="server"></asp:Label>
                          </span>
                        </div>
                      </div>
@@ -92,33 +109,32 @@
                        <h3 class="name equal-height_products_name">
                          <span>
                            <a href="">
-                             <%= bookingHotelDetails.productName %>
+                             <asp:Label ID="lblProductName" runat="server"></asp:Label>
                            </a>
                          </span>
                        </h3>
                        <div class="manuf">
-                         <span><%= bookingHotelDetails.cityName %></span>
+                            <asp:Label ID="lblCityName" runat="server"></asp:Label>
                         </div>
                      </div>                
                      <div class="margin10"></div>
                    </div>                  
-                   <h3 class="custom-h3 blue-font">
-                     <% if(!User.Identity.IsAuthenticated) {%>
-                       <% var path = Route.GetRootPath("account"); %>
-                       <% var bookingId = Request.QueryString["id"]; %>
+                   <div id="divLogIn" runat="server">
                        <span class="right">
-                         To Book or add to basket use
-                         <a href="<%= path %>/login.aspx?bookingtype=hotel&bookingid=<%= bookingId %>">Existing Account</a>
-                         |
-                         <a href="<%= path %>/register.aspx?bookingtype=hotel&bookingid=<%= bookingId %>">New Account</a>
+                           <h3 class="custom-h3 blue-font">
+                               To Book or add to basket use
+                               <a id="ancExistingAcnt" runat="server" href="<%= path %>/login.aspx?bookingtype=hotel&bookingid=<%= bookingId %>">Existing Account</a>
+                               |
+                               <a id="ancNewAcnt" runat="server"  href="<%= path %>/register.aspx?bookingtype=hotel&bookingid=<%= bookingId %>">New Account</a>
+                           </h3>
                        </span>
-                     <%} %>
-                     <div class="clear"></div>
-                   </h3>
+                       <div class="clear"></div>
+                   </div>
                    <asp:Repeater ID="rptrBookingGuests" runat="server"  OnItemDataBound="rptrBookingGuests_ItemDataBound" >
                     <HeaderTemplate>
                       <table class="table">
                         <tr>
+                          <th>Room</th>   
                           <th>Guest Type</th>
                           <th>Title</th>
                           <th>First Name</th>
@@ -133,6 +149,10 @@
                             <asp:HiddenField ID="hdnFldType" runat="server" Value='<%# Eval("type") %>' />
                             <asp:HiddenField ID="hdnFldAge" runat="server" Value='<%# Eval("age") %>' />
                             <asp:HiddenField ID="hdnFldTitle" runat="server" Value='<%# Eval("title") %>' />
+                            <asp:HiddenField ID="hdnFldHotelInfoId" runat="server" Value='<%# Eval("HotelInfoId") %>' />
+                            <%# Eval("RoomName") %>
+                          </td>
+                          <td>
                             <%# Eval("type") %>
                           </td>
                           <td>
@@ -168,16 +188,18 @@
                       </ItemTemplate>
                       <FooterTemplate>
                         <tr>
-                          <td colspan="6">
-                            <% if (User.Identity.IsAuthenticated){%>
+                          <td colspan="7">
+                            <% if (loggedIn)
+                               {%>
                               <asp:CheckBox ID="ckbAgree" runat="server" Text="I have read and  agree cancellation policy!" ClientIDMode="Static" />
                               <asp:CustomValidator ID="CustomValidator" runat="server" ErrorMessage="" ClientValidationFunction = "ValidateCheckBox" Text="*"  ForeColor="#FF3300"></asp:CustomValidator>
                             <%} %>
                           </td>
                         </tr>
                         <tr>
-                          <td colspan="6">
-                            <% if (User.Identity.IsAuthenticated){%>
+                          <td colspan="7">
+                            <% if (loggedIn)
+                               {%>
                               <asp:Button ID="btnAddToBasket" runat="server" Text="Add to Basket" CssClass="btn btn-success" OnClick="btnAddToBasket_Click" />
                             <%} %>
                           </td>
@@ -193,6 +215,5 @@
         </div>
       </div>
     </aside>
-  </div>
+    </div>
 </asp:Content>
-

@@ -135,7 +135,15 @@ public static class DbParameter
         }
         if (supplierName == "TRAVCO")
         {
-            //supplierName = Suppliers.Travco.ToString();
+            supplierName = Suppliers.Travco.ToString();
+        }
+        if (supplierName == "HOTELBEDS")
+        {
+            supplierName = Suppliers.HotelBeds.ToString();
+        }
+        if (supplierName == "DOTW")
+        {
+            supplierName = Suppliers.Dotw.ToString();
         }
         return supplierName;
     }

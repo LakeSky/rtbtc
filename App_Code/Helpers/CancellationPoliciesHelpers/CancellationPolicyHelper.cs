@@ -9,6 +9,7 @@ using meis007Model;
 
 public class CancellationPolicyHelper
 {
+    public string RoomName { get; set; }
     public string FromDate { get; set; }
     public string ToDate { get; set; }
     public string ChargingType { get; set; }
@@ -16,7 +17,6 @@ public class CancellationPolicyHelper
     public static List<CancellationPolicyHelper> GetCancelPolicies(string id, string supplierName, string startDateTime, string endDateTime)
     {
         long hotelInfoId = long.Parse(id);
-        
         var startDate = DateTimeHelper.ConvertToDateWithoutNull(startDateTime);
         var endDate = DateTimeHelper.ConvertToDateWithoutNull(startDateTime);
         meis007Entities _meis007Entities = new meis007Entities();

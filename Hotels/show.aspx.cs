@@ -14,7 +14,7 @@ public partial class Hotels_Details : PublicApplicationPage
     public string toDate;
     public string hotelName, cityName, countryName, starsImagePath, address, latitude, longitude, requestFrom;
     string supplierid, masterCurrencyValue, roomName = "";
-    int totalRoomsBook, totalRoomsChecked;
+    int totalRoomsBook, totalRoomsChecked, index;
     meis007Entities _meis007Entities;
     BasketHotelDetails basketHotelDetailsObj;
     CityMaster _city;
@@ -23,6 +23,8 @@ public partial class Hotels_Details : PublicApplicationPage
     CheckBox ckbRoomCheckP;
     HiddenField hdnFldHotelInfoIdP;
     Button btnBookP;
+    ShoppingHelper _objShoppingHelper;
+    List<long> _lstHotelInfoIdChecked;
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -138,6 +140,34 @@ public partial class Hotels_Details : PublicApplicationPage
         }
         btnBookP = (Button)rptrRooms.Controls[rptrRooms.Controls.Count - 1].Controls[0].FindControl("btnBook");
         btnBookP.Enabled = totalRoomsChecked == totalRoomsBook;
+    }
+
+    protected void btnBook_Click(object sender, EventArgs e)
+    {
+         _objShoppingHelper =  GetShoppingHelperObject();
+        if (_objShoppingHelper == null || _objShoppingHelper.HotelDetails == null)
+        {
+            Session["ErrorMessage"] = "Please select hotel first!";
+            Response.Redirect("search.aspx");
+            return;
+        }
+        _lstHotelInfoIdChecked = new List<long>();
+        foreach (RepeaterItem item in rptrRooms.Items)
+        {
+            hdnFldHotelInfoIdP = (HiddenField)item.FindControl("hdnFldHoyelInfoId");
+            ckbRoomCheckP = (CheckBox)item.FindControl("ckbBookRoom");
+            if (ckbRoomCheckP.Checked)
+            {
+                _lstHotelInfoIdChecked.Add(long.Parse(hdnFldHotelInfoIdP.Value));
+            }
+        }
+        index = 0;
+        foreach (var x in _objShoppingHelper.HotelDetails.RoomDetails)
+        {
+            x.HotelInfoId = _lstHotelInfoIdChecked[index];
+            index += 1;
+        }
+        Response.Redirect("book.aspx");
     }
 
     dynamic CheckRequestFromValid()

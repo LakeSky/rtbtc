@@ -64,9 +64,9 @@ public class SupplierBooking
         {
             bookingInfo.HotelCode = Shi.HotelID.ToString();
             bookingInfo.RoomCode = Shi.RoomID.ToString();
-            //bookingInfo.InfantNum = Bhd.InfantNum;
-            //bookingInfo.AgentText = (Bhd.InfantNum > 0) ? "Cot Required" : (this.CustomerRemarks == null) ? null : this.CustomerRemarks;
-            //bookingInfo.Title = Title;
+            bookingInfo.InfantNum = Bhd.InfantNum;
+            bookingInfo.AgentText = (Bhd.InfantNum > 0) ? "Cot Required" : (this.CustomerRemarks == null) ? null : this.CustomerRemarks;
+            bookingInfo.Title = Title;
         }
         else
         {

@@ -271,7 +271,7 @@
                 <% if (requestFrom == "search")
                    {%>
                   <th></th>
-                  <th>Add to Basket</th>
+                  <th>Book</th>
                 <%} %>
               </tr>
           </HeaderTemplate>
@@ -306,7 +306,8 @@
                        {%>
                     <td></td>
                       <td>
-                        <asp:Button ID="btnBook" runat="server" Text="Add to Basket" CssClass="btn btn-success" Enabled="false" />
+                        <asp:Button ID="Button1" runat="server" Text="Book" CssClass="btn btn-success" Enabled="false"
+                            OnClick="btnBook_Click" />
                         <td>
                     <%} %>
                     

@@ -38,17 +38,22 @@ public static class BookingObjectHelper
         {
 
             roomName = _sqlDataReader["RoomType"].ToString() + " - " + _sqlDataReader["RoomName"].ToString();
-            if (!string.IsNullOrEmpty(_sqlDataReader["BBName"].ToString())){
+            if (!string.IsNullOrEmpty(_sqlDataReader["BBName"].ToString()))
+            {
                 roomName = roomName + " - " + _sqlDataReader["BBName"].ToString();
             }
 
-            if (!string.IsNullOrEmpty(_sqlDataReader["NumOfPassengers"].ToString())){
+            if (!string.IsNullOrEmpty(_sqlDataReader["NumOfPassengers"].ToString()))
+            {
                 NoOfPassengers = int.Parse(_sqlDataReader["NumOfPassengers"].ToString());
-            } else{
+            }
+            else
+            {
                 NoOfPassengers = bookingGuestDetails.Where(x => x.type != "Infant").Count();
             }
 
-            if (!string.IsNullOrEmpty(_sqlDataReader["LCAP"].ToString())){
+            if (!string.IsNullOrEmpty(_sqlDataReader["LCAP"].ToString()))
+            {
                 price = Math.Floor(decimal.Parse(_sqlDataReader["LCAP"].ToString()) / NoOfPassengers);
             }
 
@@ -68,14 +73,14 @@ public static class BookingObjectHelper
                 productStarsImagePath = _sqlDataReader["StarImagesPath"].ToString(),
                 productDefaultImagePath = _sqlDataReader["ThumbnailPath"].ToString(),
                 pricePerPassenger = price,
-                stay = (fromDate.ToString("dd MMM yy") + " to " + toDate.ToString("dd MMM yy") + " (" + differenceDays+ " Nights)"),
+                stay = (fromDate.ToString("dd MMM yy") + " to " + toDate.ToString("dd MMM yy") + " (" + differenceDays + " Nights)"),
                 guests = guests,
                 room = roomName,
                 guestDetails = bookingGuestDetails,
                 totalPrice = totalPrice,
                 fromDate = fromDate,
                 toDate = toDate
-            };            
+            };
         }
         _sqlConnection.Close();
 
@@ -88,7 +93,8 @@ public static class BookingObjectHelper
         var childAgeMin = DateTime.Now.AddYears(-2);
         var childAgeMax = DateTime.Now.AddYears(-11);
         long userId;
-        if (currentUserId != null) { 
+        if (currentUserId != null)
+        {
             userId = long.Parse(currentUserId.ToString());
             var data = _meis007Entities.B2CPaxinfo.Where(x => x.ForeignCustomerSNo == userId);
             var t = data.Count();
@@ -104,24 +110,30 @@ public static class BookingObjectHelper
 
         foreach (var x in _shoppingHelper.HotelDetails.RoomDetails)
         {
-            if (x.Adults != null){
-                for (int i = 0; i < x.Adults; i++){
-                    tempGuestType = new TempGuestType { type = "Adult", age = "-" };
+            if (x.Adults != null)
+            {
+                for (int i = 0; i < x.Adults; i++)
+                {
+                    tempGuestType = new TempGuestType { HotelInfoId = x.HotelInfoId, RoomName = x.RoomName, type = "Adult", age = "-" };
                     tempGuestTypeList.Add(tempGuestType);
                 }
             }
-            if (x.Kids != null){
+            if (x.Kids != null)
+            {
                 childAges = x.ChildAge.ToArray();
-                for (int i = 0; i < x.Kids; i++){
-                    tempGuestType = new TempGuestType { type = "Kid", age = childAges[i].ToString() };
+                for (int i = 0; i < x.Kids; i++)
+                {
+                    tempGuestType = new TempGuestType { HotelInfoId = x.HotelInfoId, RoomName = x.RoomName, type = "Kid", age = childAges[i].ToString() };
                     tempGuestTypeList.Add(tempGuestType);
                 }
             }
 
-            if (x.Infants != null){
+            if (x.Infants != null)
+            {
                 childAges = x.ChildAge.ToArray();
-                for (int i = 0; i < x.Infants; i++){
-                    tempGuestType = new TempGuestType { type = "Infant", age = "-" };
+                for (int i = 0; i < x.Infants; i++)
+                {
+                    tempGuestType = new TempGuestType { HotelInfoId = x.HotelInfoId, RoomName = x.RoomName, type = "Infant", age = "-" };
                     tempGuestTypeList.Add(tempGuestType);
                 }
             }
@@ -132,7 +144,8 @@ public static class BookingObjectHelper
         int objAdultCount = 0;
         int objChildCount = 0;
         int objInfantCount = 0;
-        if (currentUserId != null) {
+        if (currentUserId != null)
+        {
             objAdultCount = obj.adultsArray.Length;
             objChildCount = obj.childArray.Length;
             objInfantCount = obj.infantArray.Length;
@@ -140,7 +153,7 @@ public static class BookingObjectHelper
         bookingGuestDetails = AppendData(bookingGuestDetails, tempGuestTypeList, "Adult", adultsCount, objAdultCount, obj, currentUserId);
         bookingGuestDetails = AppendData(bookingGuestDetails, tempGuestTypeList, "Kid", childrenCount, objChildCount, obj, currentUserId);
         bookingGuestDetails = AppendData(bookingGuestDetails, tempGuestTypeList, "Infant", infantsCount, objInfantCount, obj, currentUserId);
-        
+
         return bookingGuestDetails;
     }
 
@@ -149,30 +162,46 @@ public static class BookingObjectHelper
         string title, firstName, middleName, lastName, age;
         int index = 0;
         BookingGuestDetails bookingGuestDetail;
-        foreach (var x in tempGuestTypeList.Where(g => g.type == type)){
+        foreach (var x in tempGuestTypeList.Where(g => g.type == type))
+        {
             title = firstName = middleName = lastName = "";
             age = x.age;
             if (currentUserId != null && objCount != 0 && index < objCount)
             {
                 var paxObj = new B2CPaxinfo();
-                if (type == "Adult"){
+                if (type == "Adult")
+                {
                     paxObj = obj.adultsArray[index];
-                }else if (type == "Kid"){
+                }
+                else if (type == "Kid")
+                {
                     paxObj = obj.childArray[index];
                     age = x.age;
                 }
-                else {
+                else
+                {
                     paxObj = obj.infantArray[index];
                 }
                 title = paxObj.Title;
                 firstName = paxObj.PaxFirstName;
                 middleName = paxObj.PaxMiddleName;
                 lastName = paxObj.PaxLastName;
-                if (paxObj.PaxDOB != null){
+                if (paxObj.PaxDOB != null)
+                {
                     age = (DateTime.Now.Year - (DateTimeHelper.customFormat(paxObj.PaxDOB.Value.ToString("dd-MM-yyyy")).Year)).ToString();
                 }
             }
-            bookingGuestDetail = new BookingGuestDetails { type = x.type, age = age, firstName = firstName, middleName = middleName, lastName = lastName, title = title };
+            bookingGuestDetail = new BookingGuestDetails
+            {
+                type = x.type,
+                age = x.age,
+                firstName = firstName,
+                middleName = middleName,
+                lastName = lastName,
+                title = title,
+                HotelInfoId = x.HotelInfoId,
+                RoomName = x.RoomName
+            };
             bookingGuestDetails.Add(bookingGuestDetail);
             index += 1;
         }
@@ -180,7 +209,10 @@ public static class BookingObjectHelper
     }
 }
 
-public class TempGuestType {
+public class TempGuestType
+{
+    public long HotelInfoId { get; set; }
+    public string RoomName { get; set; }
     public string type { get; set; }
     public string age { get; set; }
 }

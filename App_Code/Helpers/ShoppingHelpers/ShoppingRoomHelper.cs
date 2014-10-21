@@ -13,4 +13,7 @@ public class ShoppingRoomHelper
     public int Kids { get; set; }
     public int Infants { get; set; }
     public List<int> ChildAge { get; set; }
+    public long HotelInfoId { get; set; }
+    public string Residences { get; set; }
+    public string Nationality { get; set; }
 }

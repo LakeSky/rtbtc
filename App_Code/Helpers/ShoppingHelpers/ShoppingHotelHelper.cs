@@ -9,6 +9,7 @@ using System.Dynamic;
 /// </summary>
 public class ShoppingHotelHelper
 {
+    public long LocHotelId { get; set; }
     public string SessionId { get; set; }
     public int SearchId { get; set; }
     public string CityCode { get; set; }

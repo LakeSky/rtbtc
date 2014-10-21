@@ -5,6 +5,7 @@ using System.Web;
 
 public class BasketHotelGuestDetails
 {
+    public long HotelInfoId { get; set; }
     public string type { get; set; }
     public string title { get; set; }
     public string firstName { get; set; }

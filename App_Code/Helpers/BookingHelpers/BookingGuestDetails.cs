@@ -8,6 +8,8 @@ using System.Web;
 /// </summary>
 public class BookingGuestDetails
 {
+    public long HotelInfoId { get; set; }
+    public string RoomName { get; set; }
     public string title { get; set; }
     public string firstName { get; set; }
     public string middleName { get; set; }

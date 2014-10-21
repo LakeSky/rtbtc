@@ -14,7 +14,7 @@ using System.Data.SqlClient;
 /// </summary>
 public class SupplierHotelObjectHelper
 {
-    int searchId;
+    int searchId, searhchIdDefault;
     string supplierHotelId;
     string supplierHotelRoomId;
     long productMasterId;
@@ -47,11 +47,11 @@ public class SupplierHotelObjectHelper
     {
         searchId = shoppingHotelHelper.SearchId;
         if (searchNew || string.IsNullOrEmpty(shoppingHotelHelper.SearchId.ToString()) || shoppingHotelHelper.SearchId == 0) {
-            searchId = 1911;// GetSearchId(shoppingHotelHelper.CityCode);
-            //searchId =  GetSearchId(shoppingHotelHelper.CityCode);
+            //searchId = 1778;// GetSearchId(shoppingHotelHelper.CityCode);
+            searchId =  GetSearchId(shoppingHotelHelper.CityCode);
             shoppingHotelHelper.SearchId = searchId;//18
         }
-        shoppingHotelHelper.SessionId = "oyrz1aorbgtkw0p2n3kyzd2a";
+        //shoppingHotelHelper.SessionId = "aqt4x2cgrdvrp2drive2dskw";
         defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
         _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
@@ -208,53 +208,37 @@ public class SupplierHotelObjectHelper
     }
 
     protected int GetSearchId(string cityCode) {
-        SearchEntity _search = new SearchEntity();
-        _search.HotelName = shoppingHotelHelper.HotelName;
-        _search.Destination = cityCode;
-        _search.CheckIn = DateTimeHelper.customFormat(shoppingHotelHelper.FromDate);
-        _search.CheckOut = DateTimeHelper.customFormat(shoppingHotelHelper.ToDate);
-        _search.AdultCount = shoppingHotelHelper.RoomDetails.Select(x => x.Adults).Sum();
-        _search.IsAvailable = true;
-        _search.SeqNo = 1;
-        List<int> lstAges = new List<int>();
-        foreach (var x in shoppingHotelHelper.RoomDetails) {
-            foreach (var y in x.ChildAge) {
-                lstAges.Add(y);
-            }
-        }
-        int[] ages =  lstAges.Count == 0 ? null : lstAges.ToArray();
-        _search.ChildCount = lstAges.Count;
-        _search.ChildAges = ages;
-        _search.CustomerID = DbParameter.GetCustomerId();
-        status = string.Empty;
-        if (cityCode == "LON")  //shams addes this for Travco xml supplier to get only one roomtype
-        {
-            if ((_search.AdultCount == 3) && (_search.ChildCount == 1))
-            {
-                return 0;
-            }
-            else
-            {
-                if ((_search.AdultCount == 1) && (_search.ChildCount == 1))
-                {
-                    return 0;
-                }
-                else
-                {
-                    status = string.Empty;
-                    RepositoryFactory supplierFactory = new RepositoryFactory(_search, shoppingHotelHelper.SessionId);
-                    return supplierFactory.GetSuppliersHotelsInfo(out status);
-                }
-            }
 
+        searhchIdDefault = 0;
+        int ii = 0;
+         foreach (var x in shoppingHotelHelper.RoomDetails)
+         {
+            ii = ii + 1;
+            SearchEntity _search = new SearchEntity();
+            _search.HotelName = shoppingHotelHelper.HotelName;
+            _search.Destination = cityCode;
+            _search.CheckIn = DateTimeHelper.customFormat(shoppingHotelHelper.FromDate);
+            _search.CheckOut = DateTimeHelper.customFormat(shoppingHotelHelper.ToDate);
+            _search.AdultCount = x.Adults;
+            _search.IsAvailable = true;  //shams changed to true 
+            _search.SeqNo = ii;
+            List<int> lstAges = new List<int>();
+             foreach (var y in x.ChildAge)
+             {
+                 lstAges.Add(y);
+             }
+              _search.Nationality = x.Nationality;
+            _search.Residence = x.Residences;
+            int[] ages = lstAges.Count == 0 ? null : lstAges.ToArray();
+            _search.ChildCount = lstAges.Count;
+            _search.ChildAges = ages;
+            //_search.CustomerID = customerID;  //shams need to add correct CustomerID
+            _search.SearchIdDefault = searhchIdDefault;
+             status = string.Empty;
+             RepositoryFactory supplierFactory = new RepositoryFactory(_search, shoppingHotelHelper.SessionId);
+             searhchIdDefault = supplierFactory.GetSuppliersHotelsInfo(out status);
         }
-        else
-        {
-            status = string.Empty;
-            RepositoryFactory supplierFactory = new RepositoryFactory(_search, shoppingHotelHelper.SessionId);
-            return supplierFactory.GetSuppliersHotelsInfo(out status);
-
-        }
+        return searhchIdDefault;
     }
 
     public static List<SupplierHotelHelper> GetHomePageHotels(meis007Entities _meis007Entities)
