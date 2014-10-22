@@ -23,6 +23,7 @@ public static class RoomObjectHelper
         int nights;
         int passengers;
         int children;
+        int searchId = 0;
         string roomId = string.Empty;
         if (basketHelper == null){
             var supplierHotelInfo = _meis007Model.SuppliersHotelsInfoes.Where(x => x.HotelInfoID == supplierHotelInfoId).First();
@@ -32,6 +33,7 @@ public static class RoomObjectHelper
             nights = int.Parse(supplierHotelInfo.NumOfNights.ToString());
             passengers = int.Parse(supplierHotelInfo.NumOfPassengers.ToString());
             children = int.Parse(supplierHotelInfo.NumOfChildrens.ToString());
+            searchId = supplierHotelInfo.SearchID.Value;
         }else {
             BasketHotelDetails basketHotelDetails = basketHelper.hotelDetails.Where(x => x.hotelInfoId == supplierHotelInfoId).First();
             sessionId = basketHotelDetails.sessionId;
@@ -41,6 +43,7 @@ public static class RoomObjectHelper
             passengers = basketHotelDetails.NoOfPassengers;
             children = basketHotelDetails.NoOfChildren;
             roomId = basketHotelDetails.supplierRoomId;
+            searchId = int.Parse(basketHotelDetails.searchId);
         }
 
         var _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
@@ -49,6 +52,7 @@ public static class RoomObjectHelper
         _sqlCommand.CommandType = CommandType.StoredProcedure;
         _sqlCommand.Parameters.AddWithValue("@Trans", "SearchMultipleRooms");
         _sqlCommand.Parameters.AddWithValue("@SessionId", sessionId);
+        _sqlCommand.Parameters.AddWithValue("@SearchId", searchId);
         _sqlCommand.Parameters.AddWithValue("@SupplierId", supplierId);
         _sqlCommand.Parameters.AddWithValue("@SupplierHotelId", supplierHotelId);
         _sqlCommand.Parameters.AddWithValue("@Nights", nights);

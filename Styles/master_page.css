@@ -258,3 +258,8 @@ div[id*="foo"] a
 {
     margin-right: 11px;
 }
+
+.txt-small-cust
+{
+    width: 115px;
+}

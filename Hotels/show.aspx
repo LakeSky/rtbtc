@@ -83,6 +83,8 @@
     <asp:HiddenField ID="hdnFldStarsImagePath" runat="server" />
     <asp:HiddenField ID="hdnFldRequestFrom" runat="server" />
     <asp:HiddenField ID="hdnFldTotalRoomsBook" runat="server" />
+    <asp:HiddenField ID="hdnFldFromDate" runat="server" />
+    <asp:HiddenField ID="hdnFldToDate" runat="server" />
     <div class="row row_4 container_24">
         <section id="bodyContent" class="col grid_6">
       <div class="ui-widget infoBoxContainer box_list" style="min-height:580px;"> 
@@ -306,9 +308,9 @@
                        {%>
                     <td></td>
                       <td>
-                        <asp:Button ID="Button1" runat="server" Text="Book" CssClass="btn btn-success" Enabled="false"
+                        <asp:Button ID="btnBook" runat="server" Text="Book" CssClass="btn btn-success" Enabled="false"
                             OnClick="btnBook_Click" />
-                        <td>
+                        </td>
                     <%} %>
                     
                 </tr>

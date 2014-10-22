@@ -30,4 +30,5 @@ public class BasketHotelDetails
     public int InfantNum { get; set; } //shams added 
     public string Title { get; set; }//shams added 
     public string AgentText { get; set; }//shams added 
+    public string searchId { get; set; } // shams added 
 }

@@ -31,18 +31,18 @@ public partial class Hotels_Index : PublicApplicationPage
         {
             var parms = Request.Params;
             //var totalRooms = int.Parse(Request.Params["totalRooms"].ToString());
-           
 
-             _ShoppingHelper = GetShoppingHelperObject(true);
-             _ShoppingHotel = new ShoppingHotelHelper();
-             ShoppingRoomsList = new List<ShoppingRoomHelper>();
-             ShoppingRoomHelper _ShoppingRoomHelper;
+
+            _ShoppingHelper = GetShoppingHelperObject(true);
+            _ShoppingHotel = new ShoppingHotelHelper();
+            ShoppingRoomsList = new List<ShoppingRoomHelper>();
+            ShoppingRoomHelper _ShoppingRoomHelper;
 
             _ShoppingHotel = _ShoppingHelper.HotelDetails;
             ShoppingRoomsList = _ShoppingHotel.RoomDetails;
-                   txtCity.Text = _ShoppingHotel.CityName;
+            txtCity.Text = _ShoppingHotel.CityName;
             txtHotelName.Text = _ShoppingHotel.HotelName;
-         txtStartDate.Text = _ShoppingHotel.FromDate;
+            txtStartDate.Text = _ShoppingHotel.FromDate;
             txtEndDate.Text = _ShoppingHotel.ToDate;
             CityCode = _ShoppingHotel.CityCode;
             Session["cityCode"] = CityCode;  //shams added 
@@ -73,29 +73,29 @@ public partial class Hotels_Index : PublicApplicationPage
             //    }
             //   ShoppingRoomsList.Add(_ShoppingRoomHelper);
             //}
-        _ShoppingHotel.RoomDetails = ShoppingRoomsList;
-        _ShoppingHelper.HotelDetails = _ShoppingHotel;
-        Session["StoredShopping"] = _ShoppingHelper;
-          ListItem first = this.ddlStart.Items[0]; 
-        this.ddlStart.Items.Clear();
-        this.ddlStart.Items.Add(first);
-        var supplierHotelObjectHelper = new SupplierHotelObjectHelper(_ShoppingHelper.HotelDetails, true);
-        //check for Multi room 
-        if (RoomsCount > 1)
-        {
-            Session["RoomCount"] = RoomsCount.ToString();
-}
-        else
-        {
-            Session["RoomCount"] = "99";
-        }
+            _ShoppingHotel.RoomDetails = ShoppingRoomsList;
+            _ShoppingHelper.HotelDetails = _ShoppingHotel;
+            Session["StoredShopping"] = _ShoppingHelper;
+            ListItem first = this.ddlStart.Items[0];
+            this.ddlStart.Items.Clear();
+            this.ddlStart.Items.Add(first);
+            var supplierHotelObjectHelper = new SupplierHotelObjectHelper(_ShoppingHelper.HotelDetails, true);
+            //check for Multi room 
+            if (RoomsCount > 1)
+            {
+                Session["RoomCount"] = RoomsCount.ToString();
+            }
+            else
+            {
+                Session["RoomCount"] = "99";
+            }
             var data = supplierHotelObjectHelper.GetHotels();
             productStarIds = new List<int>();
             productStarIds = data.Select(x => x.ProductStarsId).Distinct().ToList();
             BindStarRatingsRepeater();
             EnableOrDisableStarRatingCheckBoxes(data);
             PopulateDataSource(1, this.Pager.PageSize, true, data);
-                 
+
         }
     }
 
@@ -160,7 +160,7 @@ public partial class Hotels_Index : PublicApplicationPage
         this.Pager.TotalPages =
         (data.Count / pageSize) + (data.Count % pageSize > 0 ? 1 : 0);
         //this.Pager1.TotalPages =
-            //(data.Count / pageSize) + (data.Count % pageSize > 0 ? 1 : 0);
+        //(data.Count / pageSize) + (data.Count % pageSize > 0 ? 1 : 0);
         this.Pager.GenerateLinks();
         //this.Pager1.GenerateLinks();
         ///
@@ -172,22 +172,25 @@ public partial class Hotels_Index : PublicApplicationPage
 
     }
 
-    protected void BindStarRatingsRepeater() {
+    protected void BindStarRatingsRepeater()
+    {
         _meis007Entities = new meis007Entities();
-        rptrStarRatings.DataSource = _meis007Entities.Classifications.Where(x => x.ServiceID == 1 ).OrderBy(x => x.ClsName).ToList();
+        rptrStarRatings.DataSource = _meis007Entities.Classifications.Where(x => x.ServiceID == 1).OrderBy(x => x.ClsName).ToList();
         rptrStarRatings.DataBind();
     }
 
-    protected void EnableOrDisableStarRatingCheckBoxes(List<SupplierHotelHelper> data) {
-        foreach (RepeaterItem item in rptrStarRatings.Items){
-          var chkBox = item.FindControl("chkBoxStar") as CheckBox;
-          var hotel = data.Where(x => x.ProductStarsName == chkBox.Text).FirstOrDefault();
-          chkBox.Enabled = hotel == null ? false : true;
-          chkBox.Checked = hotel == null ? false : true;
-          if (chkBox.Checked)
-          {
-              this.ddlStart.Items.Add(new ListItem(hotel.ProductStarsName.ToString()));
-          }
+    protected void EnableOrDisableStarRatingCheckBoxes(List<SupplierHotelHelper> data)
+    {
+        foreach (RepeaterItem item in rptrStarRatings.Items)
+        {
+            var chkBox = item.FindControl("chkBoxStar") as CheckBox;
+            var hotel = data.Where(x => x.ProductStarsName == chkBox.Text).FirstOrDefault();
+            chkBox.Enabled = hotel == null ? false : true;
+            chkBox.Checked = hotel == null ? false : true;
+            if (chkBox.Checked)
+            {
+                this.ddlStart.Items.Add(new ListItem(hotel.ProductStarsName.ToString()));
+            }
         }
 
 

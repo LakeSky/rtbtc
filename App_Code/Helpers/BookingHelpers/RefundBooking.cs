@@ -155,6 +155,8 @@ public class RefundBooking : PayfortMaster
         pgTrans.UserId = CurrentUser.Id();
         pgTrans.RefundAmount = amnt;
         pgTrans.ResponseRefundAmount = respAmnt;
+        pgTrans.LPGID = 0;
+        pgTrans.CreditCardId = 0;
         _entity.AddToPGTransactions(pgTrans);
         _entity.SaveChanges();
         obj.Status = status;

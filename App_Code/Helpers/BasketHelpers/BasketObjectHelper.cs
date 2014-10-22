@@ -30,7 +30,7 @@ public class BasketObjectHelper
 
         _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
-        _sqlCommand = new SqlCommand("spProductMasterExtension", _sqlConnection);
+        _sqlCommand = new SqlCommand("spProductMasterExtension1", _sqlConnection);
         _sqlCommand.CommandType = CommandType.StoredProcedure;
         _sqlCommand.Parameters.AddWithValue("@Trans", "SearchSingle");
         _sqlCommand.Parameters.AddWithValue("@HotelInfoId", supplierHotelInfoId);
@@ -82,7 +82,8 @@ public class BasketObjectHelper
                 guestDetails = basketHotelGuestDetailsList,
                 totalPrice = totalPrice,
                 fromDate = fromDateParsed,
-                toDate = toDateParsed
+                toDate = toDateParsed,
+                searchId = _sqlDataReader["SearchID"].ToString()
             };
         }
         _sqlConnection.Close();

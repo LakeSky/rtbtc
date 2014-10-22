@@ -169,15 +169,15 @@
                             SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
                           </td>
                           <td>
-                            <asp:TextBox ID="txtFirstName" runat="server" CssClass="input-small" Text='<%# Eval("firstName") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtFirstName" runat="server" CssClass="input-small txt-small-cust" Text='<%# Eval("firstName") %>'></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" ControlToValidate="txtFirstName" ForeColor="#FF3300" 
                             SetFocusOnError="True">*</asp:RequiredFieldValidator>
                           </td>
                           <td>
-                            <asp:TextBox ID="txtMiddleName" runat="server" CssClass="input-small" Text='<%# Eval("middleName") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtMiddleName" runat="server" CssClass="input-small txt-small-cust" Text='<%# Eval("middleName") %>'></asp:TextBox>
                           </td>
                           <td>
-                            <asp:TextBox ID="txtLastName" runat="server" CssClass="input-small" Text='<%# Eval("lastName") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtLastName" runat="server" CssClass="input-small txt-small-cust" Text='<%# Eval("lastName") %>'></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvLastName" runat="server" ControlToValidate="txtLastName" ForeColor="#FF3300" 
                             SetFocusOnError="True">*</asp:RequiredFieldValidator>
                           </td>

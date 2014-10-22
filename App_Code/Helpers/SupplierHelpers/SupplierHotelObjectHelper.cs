@@ -47,11 +47,11 @@ public class SupplierHotelObjectHelper
     {
         searchId = shoppingHotelHelper.SearchId;
         if (searchNew || string.IsNullOrEmpty(shoppingHotelHelper.SearchId.ToString()) || shoppingHotelHelper.SearchId == 0) {
-            //searchId = 1778;// GetSearchId(shoppingHotelHelper.CityCode);
+            //searchId = 1938;// GetSearchId(shoppingHotelHelper.CityCode);
             searchId =  GetSearchId(shoppingHotelHelper.CityCode);
             shoppingHotelHelper.SearchId = searchId;//18
         }
-        //shoppingHotelHelper.SessionId = "aqt4x2cgrdvrp2drive2dskw";
+        //shoppingHotelHelper.SessionId = "ad0aeulesxhyetinvvk02ulr";
         defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
         _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();
@@ -232,7 +232,7 @@ public class SupplierHotelObjectHelper
             int[] ages = lstAges.Count == 0 ? null : lstAges.ToArray();
             _search.ChildCount = lstAges.Count;
             _search.ChildAges = ages;
-            //_search.CustomerID = customerID;  //shams need to add correct CustomerID
+            _search.CustomerID = DbParameter.GetCustomerId();  //shams need to add correct CustomerID
             _search.SearchIdDefault = searhchIdDefault;
              status = string.Empty;
              RepositoryFactory supplierFactory = new RepositoryFactory(_search, shoppingHotelHelper.SessionId);

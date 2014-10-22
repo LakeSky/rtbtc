@@ -113,6 +113,8 @@ public partial class Hotels_Details : PublicApplicationPage
                     BindProductAmenities();
                     BindRoomFacilites();
                     BindProductImages();
+                    hdnFldFromDate.Value = fromDate.ToString();
+                    hdnFldToDate.Value = toDate.ToString();
                 }
             }
             if (!found)
@@ -127,6 +129,9 @@ public partial class Hotels_Details : PublicApplicationPage
 
     protected void ckbBookRoom_CheckedChanged(object sender, EventArgs e)
     {
+        requestFrom = "search";
+        fromDate = hdnFldFromDate.Value;
+        toDate = hdnFldToDate.Value;
         totalRoomsChecked = 0;
         totalRoomsBook = int.Parse(hdnFldTotalRoomsBook.Value);
         foreach (RepeaterItem item in rptrRooms.Items)

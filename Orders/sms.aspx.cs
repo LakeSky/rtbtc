@@ -102,6 +102,8 @@ public partial class Orders_sms : PayfortMaster
         pgTrans.UserId = CurrentUser.Id();
         pgTrans.TotalAmount = double.Parse(basketHelper.totalPrice.ToString());
         pgTrans.ResponseAmount = double.Parse(respAmnt);
+        pgTrans.LPGID = 0;
+        pgTrans.CreditCardId = 0;
         _entity.AddToPGTransactions(pgTrans);
         _entity.SaveChanges();
     }
@@ -119,7 +121,8 @@ public partial class Orders_sms : PayfortMaster
         currrency = "USD";
         alias = Request.QueryString["Alias"];
         orderId = Request.QueryString["OrderID"];
-        smsc = "Y";
+        //smsc = "Y";
+        smsc = "N"; // TEMP Purpose
         wind = "MAINW";
         acpt = Request.Headers["Accept"];
         userAgent = Request.ServerVariables["HTTP_USER_AGENT"];
@@ -215,6 +218,7 @@ public partial class Orders_sms : PayfortMaster
 
     void ReadVariables()
     {
+        var st = ncresponseTag.OuterXml;
         responseErrorDes = ncresponseTag.Attributes["NCERRORPLUS"].Value;
         responseStatus = ncresponseTag.Attributes["STATUS"].Value;
         ncStatus = ncresponseTag.Attributes["NCSTATUS"].Value;
