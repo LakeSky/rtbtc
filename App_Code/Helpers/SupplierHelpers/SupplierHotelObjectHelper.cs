@@ -47,11 +47,11 @@ public class SupplierHotelObjectHelper
     {
         searchId = shoppingHotelHelper.SearchId;
         if (searchNew || string.IsNullOrEmpty(shoppingHotelHelper.SearchId.ToString()) || shoppingHotelHelper.SearchId == 0) {
-            //searchId = 1938;// GetSearchId(shoppingHotelHelper.CityCode);
-            searchId =  GetSearchId(shoppingHotelHelper.CityCode);
+            searchId = GetSearchId(shoppingHotelHelper.CityCode);
+           // searchId = 1938;// GetSearchId(shoppingHotelHelper.CityCode);
             shoppingHotelHelper.SearchId = searchId;//18
         }
-        //shoppingHotelHelper.SessionId = "ad0aeulesxhyetinvvk02ulr";
+       // shoppingHotelHelper.SessionId = "ad0aeulesxhyetinvvk02ulr";
         defaultImagePath = _meis007Entities.ProductImages.First().ImageAddress;
         _sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["meis007ConnectionString"].ToString());
         _sqlConnection.Open();

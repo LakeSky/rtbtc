@@ -14,10 +14,11 @@ using meis007Model;
 
 public partial class Orders_sms : PayfortMaster
 {
-    string pspid, userId, pwd, amnt, currrency, alias, orderId, data, operation, smsc, acpt, userAgent, wind, acceptUrl, exceptionUrl;
+    string pspid, userId, pwd, amnt, currrency, alias, orderId, data, operation, smsc, acpt, userAgent, wind;
     string responseFromServer, language, encodedString, html, message, respAmnt;
-    string responseStatus, responseErrorDes, ncStatus, ncError, acceptenceCode, payId, currency, cityCode;
+    string responseStatus, responseErrorDes, ncStatus, ncError, acceptenceCode, payId, cityCode;
     bool status, withoutSms;
+    decimal sellingExgRate;
     protected void Page_Load(object sender, EventArgs e)
     {
         basketHelper = GetBasketHelperObject();
@@ -113,16 +114,17 @@ public partial class Orders_sms : PayfortMaster
         pspid = GetPSPID();
         userId = GetUserId();
         pwd = GetPassword();
+        AssignAmount();
         operation = GetOperType("sale");
         obj = new Payfort_Response();
         obj.Status = false;
-        amnt = (int.Parse((basketHelper.totalPrice.ToString().Split('.')[0])) * 100).ToString(); //since payfort takes 1000 as 10
+        //amnt = (int.Parse((basketHelper.totalPrice.ToString().Split('.')[0])) * 100).ToString(); //since payfort takes 1000 as 10
         //currrency = ApplicationObject.GetBaseCurrency();
         currrency = "USD";
         alias = Request.QueryString["Alias"];
         orderId = Request.QueryString["OrderID"];
-        //smsc = "Y";
-        smsc = "N"; // TEMP Purpose
+        smsc = "Y";
+        //smsc = "N"; // TEMP Purpose
         wind = "MAINW";
         acpt = Request.Headers["Accept"];
         userAgent = Request.ServerVariables["HTTP_USER_AGENT"];
@@ -236,5 +238,12 @@ public partial class Orders_sms : PayfortMaster
     {
         Session["Payfort_Response"] = obj;
         Response.Redirect("checkout.aspx");
+    }
+
+    void AssignAmount()
+    {
+        _entity = new meis007Entities();
+        sellingExgRate = _entity.CurrencyMasters.Where(x => x.CurID == "USD").First().SellingExRate.Value;
+        amnt = (int.Parse((Math.Round(sellingExgRate * basketHelper.totalPrice).ToString().Split('.')[0])) * 100).ToString(); //since payfort takes 1000 as 10
     }
 }

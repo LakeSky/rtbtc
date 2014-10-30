@@ -1,0 +1,411 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Payfort.master.cs" Inherits="Payfort" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.83, maximum-scale=0.83, minimum-scale=0.83, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>AL Riyadh Travels</title>
+    <link rel="stylesheet" type="text/css" href="/rtbtc/styles/template/redmond/style.css" />
+    <link rel="stylesheet" type="text/css" href="/rtbtc/styles/template/jquery_qtip/style.css" />
+    <link rel="stylesheet" type="text/css" href="/rtbtc/styles/template/stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="/rtbtc/styles/template/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/rtbtc/styles/template/superfish.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/rtbtc/styles/template/camera.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/rtbtc/styles/template/sprinkle.css" />
+    <link rel="stylesheet" type="text/css" href="/rtbtc/styles/template/jquery_fancy_box/style.css" />
+    <!--[if IE]><script type="text/javascript" src="/rtbtc/styles/template/ie.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="/rtbtc/styles/template/1152_24_col.css" />
+    <link rel="stylesheet" type="text/css" href="/rtbtc/styles/master_page.css" />
+    <script type="text/javascript" src="/rtbtc/scripts/template/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/underscore.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/underscore-template-settings.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/jquery_qtip/qtip.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/jquery_box_gallery/jquery.bxGallery.1.1.min.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/jquery_fancy_box/jquery.fancybox-1.3.4.pack.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/xeasyTooltipIMG.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/hoverIntent.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/superfish.js"></script>
+    <script type='text/javascript' src='/rtbtc/scripts/template/jquery.mobile.customized.min.js'></script>
+    <script type='text/javascript' src='/rtbtc/scripts/template/jquery.easing.1.3.js'></script>
+    <script type='text/javascript' src='/rtbtc/scripts/template/jquery.camera.js'></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/jquery.equalheights.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/jquery.stringball.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/jquery-ui-personalized-1.5.2.packed.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/sprinkle.js"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/jquery.carouFredSel-6.2.0-packed.js"
+        charset="utf-8"></script>
+    <script type="text/javascript" src="/rtbtc/scripts/template/js.js"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
+        window.CurrencyChangeUrl = '<%=ResolveUrl("~/ApplicationWebService.asmx/CurrencyChange") %>';
+    </script>
+    <script type="text/javascript" src="/rtbtc/scripts/master_page.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet'
+        type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin,cyrillic,cyrillic-ext'
+        rel='stylesheet' type='text/css' />
+    <!--[if lte IE 7]>
+        <div id="ie_message"><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." src="images/banner_ie.png"></a></div>
+    <![endif]-->
+    <script type="text/javascript" src="/rtbtc/scripts/template/jquery_ui/jquery-ui-1.8.23.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+          <asp:HiddenField ID="hdnMasterCurrencySelectedValue" runat="server" />
+    </div>
+    </form>
+    <p id="back-top">
+        <a href="#top"><span>Top</span></a></p>
+    <div id="bodyWrapper" class="page_index en">
+        <div id="mainWrapper">
+            <div id="wrapper">
+                <div class="container">
+                    <div class="master-currency-wrap">
+                    </div>
+                    <div class="row row_1 container_24">
+                        <div class="grid_24">
+                            <div id="header">
+                                <div class="boxes_header">
+                                    <div id="box_header_cart">
+                                        <div class="cart_header_wrapper">
+                                            <div class="cart_header_inner">
+                                                <div class="title">
+                                                    <label>
+                                                        My Cart
+                                                    </label>
+                                                    <strong id="cart_header_count" runat="server"></strong>&nbsp;items.
+                                                    <ul id="submenu" class="submenu">
+                                                        <asp:Repeater ID="rptrCartPackages" runat="server">
+                                                            <ItemTemplate>
+                                                                <li class="items first" id="li_<%# Eval("Id") %>">
+                                                                    <img src="<%# Eval("DisplayImage") %>" alt="" width="80" height="80" alt="" />
+                                                                    <div class="item">
+                                                                        <h5 class="item1">
+                                                                            <%# Eval("PackageName")%>
+                                                                        </h5>
+                                                                    </div>
+                                                                </li>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+                                                        <asp:Repeater ID="rptrCartHotels" runat="server">
+                                                            <ItemTemplate>
+                                                                <li class="items first" id="li_<%# Eval("hotelInfoId") %>">
+                                                                    <img src="<%# Eval("productDefaultImagePath") %>" alt="" width="80" height="80" alt="" />
+                                                                    <div class="item">
+                                                                        <h5 class="item1">
+                                                                            <%# Eval("productName")%>
+                                                                        </h5>
+                                                                    </div>
+                                                                </li>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+                                                        <li class="total" id="totalBasketItems" runat="server"></li>
+                                                        <li class="last" id="basketButtons" runat="server"></li>
+                                                        <li id="emptyBasketItems" runat="server"></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="search">
+                                    </div>
+                                    <div class="box_header_phone">
+                                        <span>Call us:</span> <b>(+966)-11-292-7777</b>
+                                    </div>
+                                </div>
+                                <div class="boxes_above_header">
+                                    <div class="menu">
+                                        <div>
+                                        </div>
+                                    </div>
+                                    <div class="box_header_user_menu">
+                                        <div class="user_menu">
+                                            <div runat="server" id="logged_in_div">
+                                                <a class="in user_menu_account" id="logged_in_account_link" runat="server"><i></i><span
+                                                    id="logged_in_text" runat="server"></span></a><a class="in user_menu_login" runat="server"
+                                                        id="log_out_link"><i></i><span>Log off</span> </a>
+                                            </div>
+                                            <div runat="server" id="log_out_div">
+                                                <a class="out user_menu_account" runat="server" id="create_account_link"><i></i><span>
+                                                    Create an Account</span> </a><a class="out user_menu_login" runat="server" id="log_in_link">
+                                                        <i></i><span>Log in</span> </a><a class="out user_menu_login" runat="server" id="forgot_password_link">
+                                                            <i></i><span>Forgot Password?</span> </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="box_currencies" class="box_currencies">
+                                        <div class="drop_down" style="width: 60px;">
+                                            <asp:Repeater ID="rptrCurrencies" runat="server">
+                                                <HeaderTemplate>
+                                                    <label>
+                                                        <%# MasterCurrnecySelectedValue() %>
+                                                        <i></i>
+                                                    </label>
+                                                    <ul>
+                                                </HeaderTemplate>
+                                                <ItemTemplate>
+                                                    <li><a href="/ <%# Eval("Text") %>" data-value="<%# Eval("Text") %>">
+                                                        <%# Eval("Text") %>
+                                                    </a></li>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    </ul>
+                                                </FooterTemplate>
+                                            </asp:Repeater>
+                                        </div>
+                                    </div>
+                                    <div id="box_languages" class="box_languages hide">
+                                        <div class="drop_down">
+                                            <label>
+                                                <img src="/images/template/includes/en_icon.gif" alt="English" title="English" width="18"
+                                                    height="12" />English<i></i></label>
+                                            <ul>
+                                                <li class="activ"><a href="http://www.responsive-shop.com/osc/tstore/3/index.php?language=en&amp;osCsid=qKSS-ugxZQ37A3jke2owD0">
+                                                    <img src="/images/template/includes/en_icon.gif" alt="English" title="English" width="18"
+                                                        height="12" />English</a></li>
+                                                <li class=""><a href="http://www.responsive-shop.com/osc/tstore/3/index.php?language=de&amp;osCsid=qKSS-ugxZQ37A3jke2owD0">
+                                                    <img src="/images/template/includes/ge_icon.gif" alt="German" title="German" width="18"
+                                                        height="12" />German</a></li>
+                                                <li class=""><a href="http://www.responsive-shop.com/osc/tstore/3/index.php?language=es&amp;osCsid=qKSS-ugxZQ37A3jke2owD0">
+                                                    <img src="/images/template/includes/sp_icon.gif" alt="Spain" title="Spain" width="18"
+                                                        height="12" />Spain</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div id="google_translate_element" style="position: relative; bottom: 10px; right: 2px">
+                                    </div>
+                                </div>
+                                <a id="storeLogo" runat="server" style="padding: 1px 0 0 1px"></a>
+                            </div>
+                        </div>
+                        <div class="grid_24">
+                            <div class="cat_navbar">
+                                <div class="wpapper">
+                                    <div class="navbar_bg">
+                                        <ul class="sf-menu">
+                                            <asp:Repeater ID="rptrHeaderNavigation" runat="server">
+                                                <ItemTemplate>
+                                                    <li class="current_0"><a href="<%# Eval("Path") %>">
+                                                        <%# Eval("Name") %></a> </li>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% if ((Session["NoticeMessage"] != null) || (Session["ErrorMessage"] != null))
+                       {%>
+                    <div class="row row_2 container_24">
+                        <div class="grid_24">
+                            <% if (Session["NoticeMessage"] != null)
+                               {%>
+                            <div class="alert alert-success">
+                                <h4>
+                                    <%= Session["NoticeMessage"]%>
+                                    <a class="right close">X</a>
+                                </h4>
+                                <div class="clear">
+                                </div>
+                                <% Session["NoticeMessage"] = null; %>
+                            </div>
+                            <%} %>
+                            <% if (Session["ErrorMessage"] != null)
+                               {%>
+                            <div class="alert alert-danger">
+                                <h4>
+                                    <%= Session["ErrorMessage"]%>
+                                    <a class="right close">X</a>
+                                </h4>
+                                <div class="clear">
+                                </div>
+                                <% Session["ErrorMessage"] = null; %>
+                            </div>
+                            <%} %>
+                        </div>
+                    </div>
+                    <%} %>
+                    <div class="custom-div-wrapper">
+                        <asp:ContentPlaceHolder ID="PayfortContentPlaceHolder" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <div class="row row_5 container_24">
+                        <div class="col grid_24">
+                            <div class="boxes_footer">
+                                <div class="Footer_BoxWrapper">
+                                    <h4 class="Footer_BoxHeading">
+                                        Information</h4>
+                                    <ul class="footer_information">
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="#">About Us</a> </li>
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="<%= rootPath %>hotels/search.aspx">Hotels</a> </li>
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="<%= rootPath %>packages/index.aspx">Packages</a> </li>
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="#">Cruise</a> </li>
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="#">Trains</a> </li>
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="#">Travel Insurance</a> </li>
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="<%= rootPath %>visa/index.aspx">Visa</a> </li>
+                                    </ul>
+                                </div>
+                                <div class="Footer_BoxWrapper">
+                                    <h4 class="Footer_BoxHeading">
+                                        Our Offers</h4>
+                                    <ul class="footer_information">
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="#">Promotions</a> </li>
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="#">Specials</a> </li>
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="<%= rootPath %>hotels/search.aspx">Top Hotels</a> </li>
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="<%= rootPath %>packages/index.aspx">Top Packages</a> </li>
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="#">Top Cruise</a> </li>
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="#">Top Trains</a> </li>
+                                    </ul>
+                                </div>
+                                <div class="Footer_BoxWrapper">
+                                    <h4 class="Footer_BoxHeading">
+                                        Your Account</h4>
+                                    <ul class="footer_information">
+                                        <li class="0">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="<%= rootPath %>account/login.aspx">Log in</a> </li>
+                                        <li class="0">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="<%= rootPath %>account/register.aspx">Create an Account</a> </li>
+                                        <li class="0">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="<%= rootPath %>bookings/index.aspx">View Booking</a> </li>
+                                        <li class="">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="<%= rootPath %>hotels/search.aspx">View Search</a> </li>
+                                        <li class="0">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="<%= rootPath %>hotels/search.aspx">Advanced Search</a> </li>
+                                        <li class="0">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="#">Newsletter</a> </li>
+                                    </ul>
+                                </div>
+                                <div class="Footer_BoxWrapper">
+                                    <h4 class="Footer_BoxHeading">
+                                        Contact Us</h4>
+                                    <ul class="footer_contact">
+                                        <li class="field1">
+                                            <div class="list_bg">
+                                            </div>
+                                            Riyadh Travels, Riyadh, Saudi Arabia. </li>
+                                        <li class="field2">
+                                            <div class="list_bg">
+                                            </div>
+                                            +966 11 292 7777 </li>
+                                        <li class="field3">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="mailto:info@riyadhtravel.com"><span class="__cf_email__" data-cfemail="info@riyadhtravel.com">
+                                                info@riyadhtravel.com</span></a> </li>
+                                        <li class="field4">
+                                            <div class="list_bg">
+                                            </div>
+                                            riyadhtravel</li>
+                                    </ul>
+                                </div>
+                                <div class="Footer_BoxWrapper">
+                                    <h4 class="Footer_BoxHeading">
+                                        Stay Connected</h4>
+                                    <ul class="footer_information footer_stay_connected">
+                                        <li class="item_1">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="https://www.facebook.com/">Facebook</a> </li>
+                                        <li class="item_2">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="http://www.twitter.com/">Twitter</a> </li>
+                                        <li class="item_3">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="http://www.rss.com/">RSS</a> </li>
+                                        <li class="item_4">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="https://www.google.com">Google+</a> </li>
+                                        <li class="item_5">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="http://www.pinterest.com/">Printerest</a> </li>
+                                        <li class="item_6">
+                                            <div class="list_bg">
+                                            </div>
+                                            <a href="http://www.youtube.com/">Youtube</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="footer" id="footerDiv" runat="server">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

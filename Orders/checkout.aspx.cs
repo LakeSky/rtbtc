@@ -15,7 +15,6 @@ using System.Configuration;
 public partial class Orders_checkout : PaymentGatewayHelper
 {
     public BasketHelper basketHelper;
-    meis007Entities _meis007Entities;
     public List<TextValue> monthsList;
     public List<TextValue> yearList;
     TextValue textValObj;
@@ -31,9 +30,9 @@ public partial class Orders_checkout : PaymentGatewayHelper
         if (!IsPostBack)
         {
             BuildInitialVariables(basketHelper);
-            btnConfirmOrder.PostBackUrl = AliasUrl();
-            BuildDDLExpirationMonths(_meis007Entities);
-            BuildDDLExpirationYear(_meis007Entities);
+            //btnConfirmOrder.PostBackUrl = AliasUrl();
+            BuildDDLExpirationMonths();
+            BuildDDLExpirationYear();
         }
     }
 
@@ -41,7 +40,7 @@ public partial class Orders_checkout : PaymentGatewayHelper
     {
     }
 
-    protected void BuildDDLExpirationMonths(meis007Entities _meis007Entities)
+    protected void BuildDDLExpirationMonths()
     {
         monthsList = new List<TextValue>();
         var months = CultureInfo.CurrentUICulture.DateTimeFormat.MonthNames;
@@ -56,7 +55,7 @@ public partial class Orders_checkout : PaymentGatewayHelper
         }
     }
 
-    protected void BuildDDLExpirationYear(meis007Entities _meis007Entities)
+    protected void BuildDDLExpirationYear()
     {
         yearList = new List<TextValue>();
         var startYear = DateTime.Now.Year;
